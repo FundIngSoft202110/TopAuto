@@ -31,7 +31,7 @@ TopAuto es una plataforma de reseñas de vehículos (aplicación web), que brind
   
 ### Juan Pablo Amorocho
 
-  Mini bigrafia
+  Estudiante de 8vo semestre de la universidad Javeriana. Juan Pablo maneja bien varios lenguajes de programación como C/C++, Java, y C#. Ademas, Tiene conocimiento de ciertas librerias visuales como OpenGL y programas de creación de videojuegos como Unity y GameMaker. Tambien ha trabajado y tiene buen conocimiento de R y en manejo de datos. En la carrera, lo que mas le gusta es la creación de videojuegos y la computación gráfica, lo cual es su enfasis.
   
   ![image](https://user-images.githubusercontent.com/53922735/107679108-29e2e180-6c6a-11eb-943e-8cf35bd3f8ea.png)
   
