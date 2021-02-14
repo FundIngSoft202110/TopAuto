@@ -1,6 +1,9 @@
 # TopAuto
 ## Introducción proyecto:
-TopAuto es una plataforma de reseñas de vehículos (aplicación web), que brinda espacios de discusión sobre los mismos (Q&A y foros). Además de ser un espacio online en que futuros compradores de vehículos pueden leer reseñas basadas en calificaciones reales, entusiastas de los automóviles pueden consultar la enciclopedia automotriz más completa de Internet: desde modelos antiguos, hasta ediciones especiales de vehículos, TopAuto ofrece especificaciones completas e imágenes de calidad, garantizando una experiencia plena para sus usuarios.
+
+Visita el prototipo del proyecto: https://app.moqups.com/RurZRzna55/view/page/ae973f342
+
+TopAuto es una plataforma de reseñas de vehículos (aplicación web), que brinda espacios de discusión (Q&A y foros). Además de ser un espacio online en que futuros compradores de vehículos pueden leer reseñas basadas en calificaciones reales, los entusiastas de los automóviles pueden consultar la enciclopedia automotriz más completa de Internet: desde modelos antiguos, hasta ediciones especiales de vehículos, TopAuto ofrece especificaciones completas e imágenes de calidad, garantizando la mejor experiencia para sus usuarios.
 ## Presentación del grupo:
 ### Cristobal Castrillón
 
