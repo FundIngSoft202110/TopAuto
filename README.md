@@ -31,7 +31,8 @@ TopAuto es una plataforma de reseñas de vehículos (aplicación web), que brind
   ![image](https://user-images.githubusercontent.com/53922735/107678984-0750c880-6c6a-11eb-8f74-1d09b522a570.png)
   
   Estudiante de sexto semestre de Ingenieria de Sistemas en la Universidad Javeriana de Bogota. Maneja los lenguajes de programacion c, c++, java y progamacion de aplicaciones mobiles. Tambien, esta aprendiendo programacion en Python y perfeccionando programacion en java.
-  
+  CONFIRMOOO
+
 ### Juan Pablo Amorocho
 
   Estudiante de 8vo semestre de la universidad Javeriana. Juan Pablo maneja bien varios lenguajes de programación como C/C++, Java, y C#. Ademas, Tiene conocimiento de ciertas librerias visuales como OpenGL y programas de creación de videojuegos como Unity y GameMaker. Tambien ha trabajado y tiene buen conocimiento de R y en manejo de datos. En la carrera, lo que mas le gusta es la creación de videojuegos y la computación gráfica, lo cual es su enfasis.
