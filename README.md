@@ -10,6 +10,9 @@ TopAuto es una plataforma de reseñas de vehículos (aplicación web), que brind
 ![73A4914C-E09E-4B6B-A68B-803AE732D360_4_5005_c](https://user-images.githubusercontent.com/44101193/107680214-8c88ad00-6c6b-11eb-879a-048d4a5a37e5.jpeg)
 
   Estudiante de séptimo semestre de Ing. de Sistemas en la Pontificia Universidad Javeriana. Conocimiento intermedio en lenguajes C/C++ y Java; y básico en HTML, CSS y JavaScript; Python; R; y Flutter (Dart). Interesado en Machine Learning.
+  
+  PROBAO
+  
 ### Daniel Ricardo Ramirez
 
 
