@@ -25,7 +25,7 @@ public class Resenia extends Publicacion {
     }
     
     public Resenia copiar(){
-        return new Resenia(this.puntuacion, this.getId(), this.getTitulo(), this.getDescripcion(), this.getFecha(), this.getNumVotos(),
-                this.getNumDenuncias(), this.getPropietario(), this.getComentarios());
+        return new Resenia(this.puntuacion, this.id, this.titulo, this.descripcion, this.fecha, this.numVotos,
+                this.numDenuncias, this.propietario, this.comentarios);
     }
 }

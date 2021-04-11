@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public abstract class Publicacion {
-    private String id;
-    private String titulo;
-    private String descripcion;
-    private Date fecha;
-    private int numVotos;
-    private int numDenuncias;
-    private Usuario propietario;
-    private ArrayList<Comentario> comentarios;
+    protected String id;
+    protected String titulo;
+    protected String descripcion;
+    protected Date fecha;
+    protected int numVotos;
+    protected int numDenuncias;
+    protected Usuario propietario;
+    protected ArrayList<Comentario> comentarios;
 
     public Publicacion(String id, String titulo, String descripcion, Date fecha, int numVotos, int numDenuncias, Usuario propietario, ArrayList<Comentario> comentarios) {
         this.id = id;
@@ -32,6 +32,7 @@ public abstract class Publicacion {
         this.numVotos = 0;
         this.numDenuncias = 0;
         this.propietario = propietario;
+        this.comentarios = new ArrayList<>();
     }
 
     public String getId() {

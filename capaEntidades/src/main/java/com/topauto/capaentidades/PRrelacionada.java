@@ -25,8 +25,8 @@ public class PRrelacionada extends Pregunta{
     }
     
     public PRrelacionada copiar(){
-        return new PRrelacionada(this.vehiculo, this.getId(), this.getTitulo(), this.getDescripcion(), this.getFecha(), 
-                this.getNumVotos(), this.getNumDenuncias(), this.getPropietario(), this.getComentarios());
+        return new PRrelacionada(this.vehiculo, this.id, this.titulo, this.descripcion, this.fecha, 
+                this.numVotos, this.numDenuncias, this.propietario, this.comentarios);
     }
 
 }

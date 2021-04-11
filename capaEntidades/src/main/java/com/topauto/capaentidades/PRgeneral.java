@@ -25,7 +25,7 @@ public class PRgeneral extends Pregunta{
     }
 
     public PRgeneral copiar(){
-        return new PRgeneral(this.tags, this.getId(), this.getTitulo(), this.getDescripcion(), this.getFecha(), this.getNumVotos(),
-                this.getNumDenuncias(), this.getPropietario(), this.getComentarios());
+        return new PRgeneral(this.tags, this.id, this.titulo, this.descripcion, this.fecha, this.numVotos,
+                this.numDenuncias, this.propietario, this.comentarios);
     }
 }
