@@ -17,6 +17,8 @@ TopAuto es una plataforma de reseñas de vehículos (aplicación web), que brind
    Estudiante de 7mo semestre de la universidad Javeriana. Daniel tiene conocimientos en lenguajes como C/C++ y Java. Ha trabajado con Python para análisis de datos y automatización de navegadores con Selenium. Le gusta mucho el desarrollo de videojuegos y tiene amplios conocimientos en C# para Unity. 
    
    Lenguaje favorito: C#
+
+   RAMOOOOOOOOOOO  
    
    Proyectos independientes realizados: 
    - Aplicación móvil para rutinas de entrenamiento
@@ -47,8 +49,8 @@ TopAuto es una plataforma de reseñas de vehículos (aplicación web), que brind
   
 ### Richard Fonseca
 
-   Estudiante de Sexto Semestre de la Universidad Javeriana en el programa de Ingeniería de Sistemas. Experiencia en C++, Java, SQL y python basico.Interesado en el desarrollo de videojuegos, teniendo Unity y Gamemaker en un nivel bajo.
-   
+   Estudiante de Sexto Semestre de la Universidad Javeriana en el programa de Ingeniería de Sistemas. Experiencia en C++, Java, SQL y python basico.Interesado en el desarrollo de videojuegos, teniendo Unity y Gamemaker en un nivel bajo
+   PROBADO
    
    ![imgRichard](https://user-images.githubusercontent.com/58142219/107572879-cf3e7c80-6bba-11eb-9455-df9ff723244d.jpeg)
    
