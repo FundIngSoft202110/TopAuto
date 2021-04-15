@@ -23,6 +23,9 @@ public class Vehiculo {
     private ArrayList<OrgSeguridad> orgAsociadas;
     private ArrayList<VendedorExterno> vendedoresAsociados;
 
+    public Vehiculo() {
+    }
+    
     public Vehiculo(String id, float velMax, float accMax, float potencia, float capacidadMotor, TipoMotor motor, TipoFrenos frenos, TipoDireccion direccion, TipoTransmision transmision, boolean tieneVidriosElectricos, boolean tieneAireAcondicionado, boolean maxPasajeros, boolean numPuertas, String modelo, ArrayList<Imagen> fotos, Fabricante marca, ArrayList<OrgSeguridad> orgAsociadas, ArrayList<VendedorExterno> vendedoresAsociados) {
         this.id = id;
         this.velMax = velMax;

@@ -8,6 +8,9 @@ public class VendedorExterno {
     private Imagen logo;
     private String link;
 
+    public VendedorExterno() {
+    }
+    
     public VendedorExterno(String nombre, Region region, Imagen logo, String link) {
         this.nombre = nombre;
         this.region = region;
