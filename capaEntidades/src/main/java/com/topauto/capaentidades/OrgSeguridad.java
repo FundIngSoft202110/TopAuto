@@ -8,6 +8,9 @@ public class OrgSeguridad {
     private Imagen logo;
     private String link;
 
+    public OrgSeguridad() {
+    }
+
     public OrgSeguridad(String nombre, Region region, Imagen logo, String link) {
         this.nombre = nombre;
         this.region = region;

@@ -6,6 +6,9 @@ public class Comentario {
     private String descripcion;
     private Date fecha;
 
+    public Comentario() {
+    }
+
     public Comentario(String descripcion, Date fecha) {
         this.descripcion = descripcion;
         this.fecha = fecha;

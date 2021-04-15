@@ -6,12 +6,15 @@ import java.util.ArrayList;
 public class Fabricante {
     private String nombre;
     private Region region;
-    private ArrayList<String> modelos;
+    private ArrayList<String> vehiculos;
 
-    public Fabricante(String nombre, Region region, ArrayList<String> modelos) {
+    public Fabricante() {
+    }
+    
+    public Fabricante(String nombre, Region region, ArrayList<String> vehiculos) {
         this.nombre = nombre;
         this.region = region;
-        this.modelos = modelos;
+        this.vehiculos = vehiculos;
     }
 
     public String getNombre() {
@@ -22,8 +25,8 @@ public class Fabricante {
         return region;
     }
 
-    public ArrayList<String> getModelos() {
-        return modelos;
+    public ArrayList<String> getVehiculos() {
+        return vehiculos;
     }
 
     public void setNombre(String nombre) {
@@ -34,11 +37,11 @@ public class Fabricante {
         this.region = region;
     }
 
-    public void setModelos(ArrayList<String> modelos) {
-        this.modelos = modelos;
+    public void setVehiculos(ArrayList<String> vehiculos) {
+        this.vehiculos = vehiculos;
     }
     
     public Fabricante copiar(){
-        return new Fabricante(this.nombre, this.region, this.modelos);
+        return new Fabricante(this.nombre, this.region, this.vehiculos);
     }
 }

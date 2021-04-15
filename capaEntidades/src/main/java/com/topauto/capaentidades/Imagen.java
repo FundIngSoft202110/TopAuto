@@ -3,6 +3,9 @@ package com.topauto.capaentidades;
 public class Imagen {
     private String url;
 
+    public Imagen() {
+    }
+
     public Imagen(String url) {
         this.url = url;
     }
