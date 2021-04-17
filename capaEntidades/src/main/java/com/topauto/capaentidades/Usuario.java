@@ -13,6 +13,9 @@ public class Usuario {
     private Imagen foto;
     private Pais pais;
 
+    public Usuario() {
+    }
+    
     public Usuario(String nombre, String userName, String correo, String descripcion, String contrasenia, boolean estaVerficado, ArrayList<Publicacion> publicaciones, Imagen foto, Pais pais) {
         this.nombre = nombre;
         this.userName = userName;
