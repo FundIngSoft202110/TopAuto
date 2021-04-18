@@ -1,10 +1,19 @@
 package com.topauto.capaaccesodatos;
 
 import com.topauto.capaentidades.Usuario;
+import java.util.ArrayList;
 
 public class RepositorioPerfil {
 
     public RepositorioPerfil() {
+    }
+    
+    public ArrayList<Usuario> descargarPerfiles(){
+        return new ArrayList<>();
+    }
+    
+    public ArrayList<Usuario> descargarPaises(){
+        return new ArrayList<>();
     }
     
     public boolean buscarCorreo(String correo){

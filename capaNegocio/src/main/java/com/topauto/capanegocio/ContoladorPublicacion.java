@@ -4,10 +4,12 @@ import com.topauto.capaaccesodatos.RepositorioPublicacion;
 import com.topauto.capaentidades.Comentario;
 import com.topauto.capaentidades.Publicacion;
 import com.topauto.capanegocio.interfaces.IControladorPublicacion;
+import java.util.ArrayList;
 
 public class ContoladorPublicacion implements IControladorPublicacion{
 
     private RepositorioPublicacion persistenciaPublicacion;
+    private ArrayList<Publicacion> publicaciones;
 
     public ContoladorPublicacion() {
     }
@@ -16,8 +18,21 @@ public class ContoladorPublicacion implements IControladorPublicacion{
         return persistenciaPublicacion;
     }
 
+    public ArrayList<Publicacion> getPublicaciones() {
+        return publicaciones;
+    }
+
     public void setPersistenciaPublicacion(RepositorioPublicacion persistenciaPublicacion) {
         this.persistenciaPublicacion = persistenciaPublicacion;
+    }
+
+    public void setPublicaciones(ArrayList<Publicacion> publicaciones) {
+        this.publicaciones = publicaciones;
+    }
+    
+    @Override
+    public boolean descargarPublicaciones() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     @Override
