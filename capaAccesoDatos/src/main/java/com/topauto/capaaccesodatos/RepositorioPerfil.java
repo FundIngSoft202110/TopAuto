@@ -3,6 +3,7 @@ package com.topauto.capaaccesodatos;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
+import static com.mongodb.client.model.Filters.eq;
 import com.topauto.capaentidades.Imagen;
 import com.topauto.capaentidades.Pais;
 import com.topauto.capaentidades.Usuario;
@@ -40,11 +41,19 @@ public class RepositorioPerfil {
     }
     
     public boolean buscarCorreo(String correo){
-        return true;
+        try(MongoClient mongoClient = MongoClients.create(ConstantesConexion.CONNECTION_STRING)){
+            MongoCollection<Document> coleccionUsuario = mongoClient.getDatabase("entities").getCollection("usuario");
+            ArrayList<Document> docsUsuarios = coleccionUsuario.find(eq("correo", correo)).into(new ArrayList<>());
+            return !docsUsuarios.isEmpty();
+        }
     }
     
     public boolean buscarUserName(String username){
-        return true;
+        try(MongoClient mongoClient = MongoClients.create(ConstantesConexion.CONNECTION_STRING)){
+            MongoCollection<Document> coleccionUsuario = mongoClient.getDatabase("entities").getCollection("usuario");
+            ArrayList<Document> docsUsuarios = coleccionUsuario.find(eq("username", username)).into(new ArrayList<>());
+            return !docsUsuarios.isEmpty();
+        }
     }
     
     public boolean persistirNuevoUsuario(Usuario usuario){
