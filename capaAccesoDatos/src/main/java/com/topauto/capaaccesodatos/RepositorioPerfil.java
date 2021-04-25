@@ -12,10 +12,6 @@ public class RepositorioPerfil {
         return new ArrayList<>();
     }
     
-    public ArrayList<Usuario> descargarPaises(){
-        return new ArrayList<>();
-    }
-    
     public boolean buscarCorreo(String correo){
         return true;
     }

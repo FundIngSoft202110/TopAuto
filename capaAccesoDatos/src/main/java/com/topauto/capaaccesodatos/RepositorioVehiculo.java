@@ -8,6 +8,7 @@ import com.topauto.capaentidades.Fabricante;
 import com.topauto.capaentidades.Imagen;
 import com.topauto.capaentidades.OrgSeguridad;
 import com.topauto.capaentidades.Pais;
+import com.topauto.capaentidades.Usuario;
 import com.topauto.capaentidades.Vehiculo;
 import com.topauto.capaentidades.VendedorExterno;
 import com.topauto.capaentidades.enumerados.*;
@@ -95,6 +96,23 @@ public class RepositorioVehiculo{
             }
             
             return fabricantes;
+        }
+    }
+    
+    public ArrayList<Pais> descargarPaises(){
+        try(MongoClient mongoClient = MongoClients.create(ConstantesConexion.CONNECTION_STRING)){
+            MongoCollection<Document> coleccionPais = mongoClient.getDatabase("entities").getCollection("pais");
+            ArrayList<Document> docsPaises = coleccionPais.find().into(new ArrayList<>());
+            ArrayList<Pais> paises = new ArrayList<>();
+            for (Document docPais : docsPaises) {
+                Pais pais = new Pais();
+                pais.setNombre(docPais.getString("nombre"));
+                pais.setBandera(new Imagen(docPais.getString("bandera")));
+               
+                paises.add(pais);
+            }
+            
+            return paises;
         }
     }
     
