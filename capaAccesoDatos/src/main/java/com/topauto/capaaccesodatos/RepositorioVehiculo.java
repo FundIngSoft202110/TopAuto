@@ -98,6 +98,23 @@ public class RepositorioVehiculo{
         }
     }
     
+    public ArrayList<Pais> descargarPaises(){
+        try(MongoClient mongoClient = MongoClients.create(ConstantesConexion.CONNECTION_STRING)){
+            MongoCollection<Document> coleccionPais = mongoClient.getDatabase("entities").getCollection("pais");
+            ArrayList<Document> docsPaises = coleccionPais.find().into(new ArrayList<>());
+            ArrayList<Pais> paises = new ArrayList<>();
+            for (Document docPais : docsPaises) {
+                Pais pais = new Pais();
+                pais.setNombre(docPais.getString("nombre"));
+                pais.setBandera(new Imagen(docPais.getString("bandera")));
+               
+                paises.add(pais);
+            }
+            
+            return paises;
+        }
+    }
+    
     public boolean persistirNuevoVehiculo(Vehiculo vehiculo) {
         try(MongoClient mongoClient = MongoClients.create(ConstantesConexion.CONNECTION_STRING)){
             MongoCollection<Document> coleccionVehiculo = mongoClient.getDatabase("entities").getCollection("vehiculo");
