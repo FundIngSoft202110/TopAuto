@@ -910,7 +910,7 @@ private void createButtonsFrancia()
     @FXML
     private void responder(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/PaginaListadoPreguntasScene.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaListadoPreguntasScene.fxml"));
             
             Parent root = loader.load();
             
@@ -933,7 +933,7 @@ private void createButtonsFrancia()
     @FXML
     private void preguntar(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/PaginaEscribirPreguntaScene.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaEscribirPreguntaScene.fxml"));
             
             Parent root = loader.load();
             
@@ -956,7 +956,7 @@ private void createButtonsFrancia()
     @FXML
     private void reseñar(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/PaginaEscribirReseniaScene.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaEscribirReseniaScene.fxml"));
             
             Parent root = loader.load();
             

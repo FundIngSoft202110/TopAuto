@@ -140,7 +140,7 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
     private void btnHazUnaPregunta(ActionEvent event) {
         
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/PaginaEscribirPreguntaScene.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaEscribirPreguntaScene.fxml"));
             
             Parent root = loader.load();
             
@@ -165,7 +165,7 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
     private void btnHasUnaReseña(ActionEvent event) {
         
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/PaginaEscribirReseniaScene.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaEscribirReseniaScene.fxml"));
             
             Parent root = loader.load();
             
@@ -190,7 +190,7 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
     private void btnRespondePreguntas(ActionEvent event) {
         
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/PaginaListadoPreguntasScene.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaListadoPreguntasScene.fxml"));
             
             Parent root = loader.load();
             
@@ -220,7 +220,7 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
         {
             
             try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/PaginaLoginScene.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaLoginScene.fxml"));
             
             Parent root = loader.load();
             
@@ -242,7 +242,7 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
         }
         else{
             try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/PaginaPerfilScene.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaPerfilScene.fxml"));
             
             Parent root = loader.load();
             
