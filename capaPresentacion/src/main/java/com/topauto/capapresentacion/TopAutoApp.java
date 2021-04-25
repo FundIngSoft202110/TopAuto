@@ -1,10 +1,12 @@
 package com.topauto.capapresentacion;
 
+import java.io.IOException;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 
@@ -12,14 +14,21 @@ public class TopAutoApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/PaginaLoginScene.fxml"));
-        
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add("/styles/Styles.css");
-
-        stage.setTitle("JavaFX and Maven");
-        stage.setScene(scene);
-        stage.show();
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(TopAutoApp.class.getResource("/fxml/PaginaListadoVehiculosScene.fxml"));
+            // Cargo la ventana
+            Pane ventana = (Pane) loader.load();
+ 
+            // Cargo el scene
+            Scene scene = new Scene(ventana);
+ 
+            // Seteo la scene y la muestro
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     /**

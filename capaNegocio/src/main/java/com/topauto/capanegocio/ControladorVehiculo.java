@@ -2,6 +2,7 @@ package com.topauto.capanegocio;
 
 import com.topauto.capaaccesodatos.RepositorioVehiculo;
 import com.topauto.capaentidades.Fabricante;
+import com.topauto.capaentidades.Pais;
 import com.topauto.capaentidades.Vehiculo;
 import com.topauto.capanegocio.interfaces.IControladorVehiculo;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ public class ControladorVehiculo implements IControladorVehiculo{
     private RepositorioVehiculo persistenciaVehiculo;
     private ArrayList<Vehiculo> vehiculos;
     private ArrayList<Fabricante> fabricantes;
+    private ArrayList<Pais> paises;
 
     public ControladorVehiculo() {
     }
@@ -26,6 +28,10 @@ public class ControladorVehiculo implements IControladorVehiculo{
     public ArrayList<Fabricante> getFabricantes() {
         return fabricantes;
     }
+
+    public ArrayList<Pais> getPaises() {
+        return paises;
+    }
     
     public void setPersistenciaVehiculo(RepositorioVehiculo persistenciaVehiculo) {
         this.persistenciaVehiculo = persistenciaVehiculo;
@@ -37,6 +43,10 @@ public class ControladorVehiculo implements IControladorVehiculo{
 
     public void setFabricantes(ArrayList<Fabricante> fabricantes) {
         this.fabricantes = fabricantes;
+    }
+
+    public void setPaises(ArrayList<Pais> paises) {
+        this.paises = paises;
     }
     
     @Override
