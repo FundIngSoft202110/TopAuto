@@ -8,7 +8,6 @@ import com.topauto.capaentidades.Fabricante;
 import com.topauto.capaentidades.Imagen;
 import com.topauto.capaentidades.OrgSeguridad;
 import com.topauto.capaentidades.Pais;
-import com.topauto.capaentidades.Usuario;
 import com.topauto.capaentidades.Vehiculo;
 import com.topauto.capaentidades.VendedorExterno;
 import com.topauto.capaentidades.enumerados.*;

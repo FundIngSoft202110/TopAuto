@@ -57,14 +57,40 @@ public class RepositorioPerfil {
     }
     
     public boolean persistirNuevoUsuario(Usuario usuario){
-        return true;
+        try(MongoClient mongoClient = MongoClients.create(ConstantesConexion.CONNECTION_STRING)){
+            MongoCollection<Document> coleccionUsuario = mongoClient.getDatabase("entities").getCollection("usuario");
+            if(coleccionUsuario.insertOne(new Document("nombre", usuario.getNombre())
+                    .append("username", usuario.getUserName())
+                    .append("correo", usuario.getCorreo())
+                    .append("descripcion", usuario.getDescripcion())
+                    .append("contrasenia", usuario.getContrasenia())
+                    .append("estaVerificado", true)
+                    .append("foto", usuario.getFoto().getPath())
+                    .append("pais", usuario.getPais().getNombre())) != null)
+            {
+                return true;
+            }
+        }
+        
+        return false;
     }
     
     public boolean persistirPerfilModificado(Usuario usuario){
-        return true;
-    }
-    
-    public boolean persistirNuevaContrasenia(String contrasenia){
-        return true;
+        try(MongoClient mongoClient = MongoClients.create(ConstantesConexion.CONNECTION_STRING)){
+            MongoCollection<Document> coleccionUsuario = mongoClient.getDatabase("entities").getCollection("usuario");
+            if(coleccionUsuario.replaceOne(eq("username", usuario.getUserName()), new Document("nombre", usuario.getNombre())
+                    .append("username", usuario.getUserName())
+                    .append("correo", usuario.getCorreo())
+                    .append("descripcion", usuario.getDescripcion())
+                    .append("contrasenia", usuario.getContrasenia())
+                    .append("estaVerificado", true)
+                    .append("foto", usuario.getFoto().getPath())
+                    .append("pais", usuario.getPais().getNombre())) != null)
+            {
+                return true;
+            }
+        }
+        
+        return false;
     }
 }
