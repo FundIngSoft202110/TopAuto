@@ -1,7 +1,6 @@
 package com.topauto.capanegocio;
 
 import com.topauto.capaaccesodatos.RepositorioPublicacion;
-import com.topauto.capaentidades.Comentario;
 import com.topauto.capaentidades.Publicacion;
 import com.topauto.capanegocio.interfaces.IControladorPublicacion;
 import java.util.ArrayList;
@@ -47,11 +46,6 @@ public class ContoladorPublicacion implements IControladorPublicacion{
 
     @Override
     public boolean borrarPublicacion(String idPublicacion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean agregarComentario(String idPublicacion, Comentario cometario) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

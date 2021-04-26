@@ -221,10 +221,14 @@ public class RepositorioPublicacion {
     }
     
     public boolean borrarPublicacion(String idPublicacion){
-        return true;
-    }
-    
-    public boolean persistirNuevoComentario(String idPublicacion, Comentario comentario){
-        return true;
+        try(MongoClient mongoClient = MongoClients.create(ConstantesConexion.CONNECTION_STRING)){
+            MongoCollection<Document> coleccionPublicacion = mongoClient.getDatabase("entities").getCollection("publicacion");
+            if(coleccionPublicacion.deleteOne(eq("id", idPublicacion)) != null)
+            {
+                return true;
+            }
+        }
+        
+        return false;
     }
 }
