@@ -3,6 +3,7 @@ package com.topauto.capaaccesodatos;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
+import static com.mongodb.client.model.Filters.eq;
 import com.topauto.capaentidades.Comentario;
 import com.topauto.capaentidades.PRgeneral;
 import com.topauto.capaentidades.PRrelacionada;
@@ -166,7 +167,57 @@ public class RepositorioPublicacion {
     }
     
     public boolean persistirPublicacionModificada(Publicacion publicacion){
-        return true;
+        try(MongoClient mongoClient = MongoClients.create(ConstantesConexion.CONNECTION_STRING)){
+            MongoCollection<Document> coleccionPublicacion = mongoClient.getDatabase("entities").getCollection("publicacion");
+            if(publicacion.getId().startsWith("RES"))
+            {
+                if(coleccionPublicacion.replaceOne(eq("id", publicacion.getId()), new Document("id", publicacion.getId())
+                        .append("titulo", publicacion.getTitulo())
+                        .append("descripcion", publicacion.getDescripcion())
+                        .append("fecha", publicacion.getFecha())
+                        .append("numVotos", publicacion.getNumVotos())
+                        .append("numDenuncias", publicacion.getNumDenuncias())
+                        .append("comentarios", publicacion.getComentarios())
+                        .append("propietario", publicacion.getPropietario().getUserName())
+                        .append("idVehiculo", ((Resenia)publicacion).getVehiculo().getId())
+                        .append("puntuacion", ((Resenia)publicacion).getPuntuacion())) != null)
+                {
+                    return true;
+                }
+            }
+            else if(publicacion.getId().startsWith("PRA"))
+            {
+                if(coleccionPublicacion.replaceOne(eq("id", publicacion.getId()), new Document("id", publicacion.getId())
+                        .append("titulo", publicacion.getTitulo())
+                        .append("descripcion", publicacion.getDescripcion())
+                        .append("fecha", publicacion.getFecha())
+                        .append("numVotos", publicacion.getNumVotos())
+                        .append("numDenuncias", publicacion.getNumDenuncias())
+                        .append("comentarios", publicacion.getComentarios())
+                        .append("propietario", publicacion.getPropietario().getUserName())
+                        .append("idVehiculo", ((PRrelacionada)publicacion).getVehiculo().getId())) != null)
+                {
+                    return true;
+                }                
+            }
+            else if(publicacion.getId().startsWith("PRG"))
+            {
+                if(coleccionPublicacion.replaceOne(eq("id", publicacion.getId()), new Document("id", publicacion.getId())
+                        .append("titulo", publicacion.getTitulo())
+                        .append("descripcion", publicacion.getDescripcion())
+                        .append("fecha", publicacion.getFecha())
+                        .append("numVotos", publicacion.getNumVotos())
+                        .append("numDenuncias", publicacion.getNumDenuncias())
+                        .append("comentarios", publicacion.getComentarios())
+                        .append("propietario", publicacion.getPropietario().getUserName())
+                        .append("tags", ((PRgeneral)publicacion).getTags())) != null)
+                {
+                    return true;
+                }                
+            }
+        }
+        
+        return false;
     }
     
     public boolean borrarPublicacion(String idPublicacion){
