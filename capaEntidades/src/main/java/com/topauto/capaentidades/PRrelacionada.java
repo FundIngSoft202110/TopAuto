@@ -6,6 +6,9 @@ import java.util.Date;
 public class PRrelacionada extends Pregunta{
     private Vehiculo vehiculo;
 
+    public PRrelacionada() {
+    }
+
     public PRrelacionada(Vehiculo vehiculo, String id, String titulo, String descripcion, Date fecha, int numVotos, int numDenuncias, Usuario propietario, ArrayList<Comentario> comentarios) {
         super(id, titulo, descripcion, fecha, numVotos, numDenuncias, propietario, comentarios);
         this.vehiculo = vehiculo;

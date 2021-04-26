@@ -13,6 +13,9 @@ public abstract class Publicacion {
     protected Usuario propietario;
     protected ArrayList<Comentario> comentarios;
 
+    public Publicacion() {
+    }
+    
     public Publicacion(String id, String titulo, String descripcion, Date fecha, int numVotos, int numDenuncias, Usuario propietario, ArrayList<Comentario> comentarios) {
         this.id = id;
         this.titulo = titulo;
