@@ -112,7 +112,57 @@ public class RepositorioPublicacion {
     }
     
     public boolean persistirNuevaPublicacion(Publicacion publicacion){
-        return true;
+        try(MongoClient mongoClient = MongoClients.create(ConstantesConexion.CONNECTION_STRING)){
+            MongoCollection<Document> coleccionPublicacion = mongoClient.getDatabase("entities").getCollection("publicacion");
+            if(publicacion.getId().startsWith("RES"))
+            {
+                if(coleccionPublicacion.insertOne(new Document("id", publicacion.getId())
+                        .append("titulo", publicacion.getTitulo())
+                        .append("descripcion", publicacion.getDescripcion())
+                        .append("fecha", publicacion.getFecha())
+                        .append("numVotos", publicacion.getNumVotos())
+                        .append("numDenuncias", publicacion.getNumDenuncias())
+                        .append("comentarios", publicacion.getComentarios())
+                        .append("propietario", publicacion.getPropietario().getUserName())
+                        .append("idVehiculo", ((Resenia)publicacion).getVehiculo().getId())
+                        .append("puntuacion", ((Resenia)publicacion).getPuntuacion())) != null)
+                {
+                    return true;
+                }
+            }
+            else if(publicacion.getId().startsWith("PRA"))
+            {
+                if(coleccionPublicacion.insertOne(new Document("id", publicacion.getId())
+                        .append("titulo", publicacion.getTitulo())
+                        .append("descripcion", publicacion.getDescripcion())
+                        .append("fecha", publicacion.getFecha())
+                        .append("numVotos", publicacion.getNumVotos())
+                        .append("numDenuncias", publicacion.getNumDenuncias())
+                        .append("comentarios", publicacion.getComentarios())
+                        .append("propietario", publicacion.getPropietario().getUserName())
+                        .append("idVehiculo", ((PRrelacionada)publicacion).getVehiculo().getId())) != null)
+                {
+                    return true;
+                }                
+            }
+            else if(publicacion.getId().startsWith("PRG"))
+            {
+                if(coleccionPublicacion.insertOne(new Document("id", publicacion.getId())
+                        .append("titulo", publicacion.getTitulo())
+                        .append("descripcion", publicacion.getDescripcion())
+                        .append("fecha", publicacion.getFecha())
+                        .append("numVotos", publicacion.getNumVotos())
+                        .append("numDenuncias", publicacion.getNumDenuncias())
+                        .append("comentarios", publicacion.getComentarios())
+                        .append("propietario", publicacion.getPropietario().getUserName())
+                        .append("tags", ((PRgeneral)publicacion).getTags())) != null)
+                {
+                    return true;
+                }                
+            }
+        }
+        
+        return false;
     }
     
     public boolean persistirPublicacionModificada(Publicacion publicacion){
