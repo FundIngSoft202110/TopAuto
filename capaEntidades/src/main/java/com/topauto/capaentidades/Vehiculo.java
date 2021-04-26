@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Vehiculo {
     private String id;
+    private String modelo;
     private float velMax;
     private float accMax;
     private float potencia;
@@ -15,9 +16,8 @@ public class Vehiculo {
     private TipoTransmision transmision;
     private boolean tieneVidriosElectricos;
     private boolean tieneAireAcondicionado;
-    private boolean maxPasajeros;
-    private boolean numPuertas;
-    private String modelo;
+    private int maxPasajeros;
+    private int numPuertas;
     private ArrayList<Imagen> fotos;
     private Fabricante marca;
     private ArrayList<OrgSeguridad> orgAsociadas;
@@ -26,7 +26,7 @@ public class Vehiculo {
     public Vehiculo() {
     }
     
-    public Vehiculo(String id, float velMax, float accMax, float potencia, float capacidadMotor, TipoMotor motor, TipoFrenos frenos, TipoDireccion direccion, TipoTransmision transmision, boolean tieneVidriosElectricos, boolean tieneAireAcondicionado, boolean maxPasajeros, boolean numPuertas, String modelo, ArrayList<Imagen> fotos, Fabricante marca, ArrayList<OrgSeguridad> orgAsociadas, ArrayList<VendedorExterno> vendedoresAsociados) {
+    public Vehiculo(String id, float velMax, float accMax, float potencia, float capacidadMotor, TipoMotor motor, TipoFrenos frenos, TipoDireccion direccion, TipoTransmision transmision, boolean tieneVidriosElectricos, boolean tieneAireAcondicionado, int maxPasajeros, int numPuertas, String modelo, ArrayList<Imagen> fotos, Fabricante marca, ArrayList<OrgSeguridad> orgAsociadas, ArrayList<VendedorExterno> vendedoresAsociados) {
         this.id = id;
         this.velMax = velMax;
         this.accMax = accMax;
@@ -91,11 +91,11 @@ public class Vehiculo {
         return tieneAireAcondicionado;
     }
 
-    public boolean isMaxPasajeros() {
+    public int getMaxPasajeros() {
         return maxPasajeros;
     }
 
-    public boolean isNumPuertas() {
+    public int getNumPuertas() {
         return numPuertas;
     }
 
@@ -163,11 +163,11 @@ public class Vehiculo {
         this.tieneAireAcondicionado = tieneAireAcondicionado;
     }
 
-    public void setMaxPasajeros(boolean maxPasajeros) {
+    public void setMaxPasajeros(int maxPasajeros) {
         this.maxPasajeros = maxPasajeros;
     }
 
-    public void setNumPuertas(boolean numPuertas) {
+    public void setNumPuertas(int numPuertas) {
         this.numPuertas = numPuertas;
     }
 

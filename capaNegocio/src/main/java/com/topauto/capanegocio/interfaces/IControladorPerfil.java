@@ -3,6 +3,8 @@ package com.topauto.capanegocio.interfaces;
 import com.topauto.capaentidades.Usuario;
 
 public interface IControladorPerfil {
+    public boolean descargarPerfiles();
+    public boolean descargarPaises();
     public boolean esCorreo(String cadena);
     public boolean validarCorreo(String correo);
     public boolean validarUserName(String username);

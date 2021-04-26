@@ -1,20 +1,20 @@
 package com.topauto.capaentidades;
 
 public class Imagen {
-    private String url;
+    private String path;
 
     public Imagen() {
     }
 
-    public Imagen(String url) {
-        this.url = url;
+    public Imagen(String path) {
+        this.path = path;
     }
 
-    public String getUrl() {
-        return url;
+    public String getPath() {
+        return path;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setPath(String path) {
+        this.path = path;
     }
 }

@@ -1,11 +1,113 @@
-<?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.paint.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.topauto.capapresentacion.ControladorEventosPaginaListadoVehiculos">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="977.0" prefWidth="1366.0" style="-fx-background-color: FFFFFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topauto.capapresentacion.ControladorEventosPaginaListadoVehiculos">
    <children>
-      <Label layoutX="256.0" layoutY="192.0" text="ListadoVehiculos" />
+      <ScrollPane pannable="true" prefHeight="977.0" prefWidth="1366.0" style="-fx-background-color: FFFFFF;">
+        <content>
+          <AnchorPane prefHeight="1500.0" prefWidth="1367.0" style="-fx-background-color: FFFFFF;">
+               <children>
+                  <ImageView fitHeight="68.0" fitWidth="63.0" layoutX="1086.0" layoutY="3.0" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/perfil.JPG" />
+                     </image>
+                  </ImageView>
+                  <Line endX="1366.0" fill="#00000080" layoutY="80.0" stroke="#00000080" />
+                  <Button fx:id="resPregunta" layoutX="324.0" layoutY="23.0" mnemonicParsing="false" onAction="#responder" style="-fx-background-color: FFFFFF;" text="Responde Preguntas" textFill="#00000080">
+                     <font>
+                        <Font name="Rockwell" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="hazPregunta" layoutX="822.0" layoutY="23.0" mnemonicParsing="false" onAction="#preguntar" style="-fx-background-color: FFFFFF;" text="Haz una pregunta" textFill="#00000080">
+                     <font>
+                        <Font name="Rockwell" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="hazReseña" layoutX="599.0" layoutY="23.0" mnemonicParsing="false" onAction="#reseñar" style="-fx-background-color: FFFFFF;" text="Haz una reseña" textFill="#00000080">
+                     <font>
+                        <Font name="Rockwell" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="perfil" layoutX="1226.0" layoutY="35.0" mnemonicParsing="false" onAction="#verPerfil" style="-fx-background-color: FFFFFF;" text="Ver mi perfil" textFill="#00000080">
+                     <font>
+                        <Font name="Rockwell" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="1137.0" layoutY="4.0" mnemonicParsing="false" style="-fx-background-color: FFFFFF;" text="Nombre de Usuario" textFill="#00000080">
+                     <font>
+                        <Font name="Rockwell" size="20.0" />
+                     </font>
+                  </Button>
+                  <ImageView fx:id="norAmerica" fitHeight="373.0" fitWidth="392.0" layoutX="98.0" layoutY="126.0" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/territorios/americas.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="273.0" fitWidth="261.0" layoutX="985.0" layoutY="197.0" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/territorios/asia.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="297.0" fitWidth="255.0" layoutX="579.0" layoutY="233.0" preserveRatio="true">
+                     <image>
+                        <Image url="@../Imagenes/territorios/europa.png" />
+                     </image>
+                  </ImageView>
+                  <TextField fx:id="texto" alignment="CENTER" editable="false" layoutX="453.0" layoutY="101.0" style="-fx-background-color: FFFFFF;" text="Continente">
+                     <font>
+                        <Font name="Rockwell" size="40.0" />
+                     </font>
+                  </TextField>
+                  <Line endX="956.0" layoutX="395.0" layoutY="595.0" startX="-408.0" />
+                  <Line endX="1254.0" layoutX="98.0" layoutY="670.0" startX="-100.0" />
+                  <AnchorPane fx:id="countries" layoutY="596.0" prefHeight="70.0" prefWidth="1350.0" />
+                  <Line endX="1262.0" layoutX="104.0" layoutY="743.0" startX="-100.0" />
+                  <Button fx:id="botonAmerica" layoutX="120.0" layoutY="507.0" mnemonicParsing="false" onAction="#clickNorAmerica" prefHeight="74.0" prefWidth="284.0" style="-fx-background-color: FFFFFF;" text="America" textFill="#686868">
+                     <font>
+                        <Font name="Rockwell" size="20.0" />
+                     </font></Button>
+                  <Button fx:id="botonEuropa" layoutX="558.0" layoutY="523.0" mnemonicParsing="false" onAction="#clickEuropa" prefHeight="57.0" prefWidth="284.0" style="-fx-background-color: FFFFFF;" text="Europa" textFill="#686868">
+                     <font>
+                        <Font name="Rockwell" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="botonAsia" layoutX="985.0" layoutY="523.0" mnemonicParsing="false" onAction="#clickAsia" prefHeight="57.0" prefWidth="284.0" style="-fx-background-color: FFFFFF;" text="Asia" textFill="#686868">
+                     <font>
+                        <Font name="Rockwell" size="20.0" />
+                     </font>
+                  </Button>
+                  <AnchorPane fx:id="marcas" layoutX="-2.0" layoutY="671.0" prefHeight="72.0" prefWidth="1354.0" />
+                  <AnchorPane fx:id="vehiculos" layoutX="-2.0" layoutY="743.0" prefHeight="400.0" prefWidth="1354.0" />
+                  <Button fx:id="topAuto" layoutY="-14.0" mnemonicParsing="false" onAction="#menu" style="-fx-background-color: fffffF;" text="topAuto">
+                     <font>
+                        <Font name="Arial" size="50.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="BLACK" />
+                              <Stop color="RED" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Button>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
    </children>
 </AnchorPane>
