@@ -4,10 +4,9 @@ import com.topauto.capaaccesodatos.RepositorioVehiculo;
 import com.topauto.capaentidades.Fabricante;
 import com.topauto.capaentidades.Pais;
 import com.topauto.capaentidades.Vehiculo;
-import com.topauto.capanegocio.interfaces.IControladorVehiculo;
 import java.util.ArrayList;
 
-public class ControladorVehiculo implements IControladorVehiculo{
+public class ControladorVehiculo {
 
     private RepositorioVehiculo persistenciaVehiculo;
     private ArrayList<Vehiculo> vehiculos;
@@ -48,33 +47,27 @@ public class ControladorVehiculo implements IControladorVehiculo{
     public void setPaises(ArrayList<Pais> paises) {
         this.paises = paises;
     }
-    
-    @Override
+
     public boolean descargarVehiculos() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    @Override
+
     public boolean descargarFabricantes() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    @Override
+
     public boolean crearVehiculo(Vehiculo vehiculo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public boolean modificarVehiculo(Vehiculo vehiculo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public boolean borrarVehiculo(String idVehiculo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    @Override
+
     public boolean buscarVehiculo(String busqueda) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }   
