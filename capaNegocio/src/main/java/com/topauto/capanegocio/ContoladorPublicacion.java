@@ -2,6 +2,7 @@ package com.topauto.capanegocio;
 
 import com.topauto.capaaccesodatos.RepositorioPublicacion;
 import com.topauto.capaentidades.Publicacion;
+import com.topauto.capaentidades.Usuario;
 import com.topauto.capanegocio.interfaces.IControladorPublicacion;
 import java.util.ArrayList;
 
@@ -9,6 +10,7 @@ public class ContoladorPublicacion implements IControladorPublicacion{
 
     private RepositorioPublicacion persistenciaPublicacion;
     private ArrayList<Publicacion> publicaciones;
+    private ArrayList<Usuario> usuarios;
 
     public ContoladorPublicacion() {
     }
@@ -21,12 +23,20 @@ public class ContoladorPublicacion implements IControladorPublicacion{
         return publicaciones;
     }
 
+    public ArrayList<Usuario> getUsuarios() {
+        return usuarios;
+    }
+    
     public void setPersistenciaPublicacion(RepositorioPublicacion persistenciaPublicacion) {
         this.persistenciaPublicacion = persistenciaPublicacion;
     }
 
     public void setPublicaciones(ArrayList<Publicacion> publicaciones) {
         this.publicaciones = publicaciones;
+    }
+
+    public void setUsuarios(ArrayList<Usuario> usuarios) {
+        this.usuarios = usuarios;
     }
     
     @Override
