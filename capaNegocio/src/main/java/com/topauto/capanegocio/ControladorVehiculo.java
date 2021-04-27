@@ -4,10 +4,9 @@ import com.topauto.capaaccesodatos.RepositorioVehiculo;
 import com.topauto.capaentidades.Fabricante;
 import com.topauto.capaentidades.Pais;
 import com.topauto.capaentidades.Vehiculo;
-import com.topauto.capanegocio.interfaces.IControladorVehiculo;
 import java.util.ArrayList;
 
-public class ControladorVehiculo implements IControladorVehiculo{
+public class ControladorVehiculo {
 
     private RepositorioVehiculo persistenciaVehiculo;
     private ArrayList<Vehiculo> vehiculos;
@@ -48,18 +47,11 @@ public class ControladorVehiculo implements IControladorVehiculo{
     public void setPaises(ArrayList<Pais> paises) {
         this.paises = paises;
     }
-    
-    @Override
-    public boolean descargarVehiculos() {
+
+    public boolean descargarDatos() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    @Override
-    public boolean descargarFabricantes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    @Override
+
     public boolean crearVehiculo(Vehiculo vehiculo) {
         //Castri
         try{
@@ -70,7 +62,6 @@ public class ControladorVehiculo implements IControladorVehiculo{
         }
     }
 
-    @Override
     public boolean modificarVehiculo(Vehiculo vehiculo) {
         //Castri
         //Se hace la búsqueda con el ID como criterio...
@@ -89,7 +80,6 @@ public class ControladorVehiculo implements IControladorVehiculo{
         }
     }
 
-    @Override
     public boolean borrarVehiculo(String idVehiculo) {
         //Castri
         try{
@@ -105,8 +95,7 @@ public class ControladorVehiculo implements IControladorVehiculo{
             return false;
         }
     }
-    
-    @Override
+
     public boolean buscarVehiculo(String busqueda) {
         //Castri
         for(Vehiculo v : vehiculos){
