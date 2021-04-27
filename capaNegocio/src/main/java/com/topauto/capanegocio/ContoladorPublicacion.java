@@ -37,32 +37,46 @@ public class ContoladorPublicacion implements IControladorPublicacion{
     
     @Override
     public boolean crearPublicacion(Publicacion publicacion) {
+        //Yerro
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean modificarPublicacion(Publicacion publicacion) {
+        //Yerro
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean borrarPublicacion(String idPublicacion) {
+        //Yerro
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean agregarComentario(String idPublicacion, Comentario cometario) {
+        //Yerro
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean denunciarPublicacion(String idPublicacion) {
+        //Yerro
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean puntuarPublicacion(String idPublicacion, boolean puntoEnContra) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //Castri
+        try{
+            //No puede haber instancias de Publicación
+            //Hay una lista de objetos Publicación
+            //Creo que está mal
+            //TODO: Resolver duda (Ramo)
+        }
+        catch(Exception e){
+            System.out.println("No se ha podido puntuar la publicación");
+        }
     }
     
 }
