@@ -68,7 +68,15 @@ public class ContoladorPublicacion implements IControladorPublicacion{
     @Override
     public boolean puntuarPublicacion(String idPublicacion, boolean puntoEnContra) {
         //Castri
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            //No puede haber instancias de Publicación
+            //Hay una lista de objetos Publicación
+            //Creo que está mal
+            //TODO: Resolver duda (Ramo)
+        }
+        catch(Exception e){
+            System.out.println("No se ha podido puntuar la publicación");
+        }
     }
     
 }

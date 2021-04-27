@@ -72,7 +72,20 @@ public class ControladorPerfil implements IControladorPerfil{
     @Override
     public boolean modificarPerfil(Usuario usuario) {
         //Castri
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //Se hace la búsqueda con el userName como criterio...
+        try{
+            for(Usuario u : usuarios){
+                if(u.getUserName() == usuario.getUserName()){
+                    int pos = usuarios.indexOf(u);
+                    usuarios.set(pos, usuario);
+                    return true;
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println("No se ha podido modificar el perfil");
+            return false;
+        }
     }
 
     @Override
