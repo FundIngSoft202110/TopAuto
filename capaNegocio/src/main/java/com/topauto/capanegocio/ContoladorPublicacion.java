@@ -37,31 +37,37 @@ public class ContoladorPublicacion implements IControladorPublicacion{
     
     @Override
     public boolean crearPublicacion(Publicacion publicacion) {
+        //Yerro
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean modificarPublicacion(Publicacion publicacion) {
+        //Yerro
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean borrarPublicacion(String idPublicacion) {
+        //Yerro
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean agregarComentario(String idPublicacion, Comentario cometario) {
+        //Yerro
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean denunciarPublicacion(String idPublicacion) {
+        //Yerro
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean puntuarPublicacion(String idPublicacion, boolean puntoEnContra) {
+        //Castri
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

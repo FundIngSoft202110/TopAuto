@@ -61,21 +61,25 @@ public class ControladorVehiculo implements IControladorVehiculo{
     
     @Override
     public boolean crearVehiculo(Vehiculo vehiculo) {
+        //Castri
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean modificarVehiculo(Vehiculo vehiculo) {
+        //Castri
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean borrarVehiculo(String idVehiculo) {
+        //Castri
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     @Override
     public boolean buscarVehiculo(String busqueda) {
+        //Castri
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }   
 }
