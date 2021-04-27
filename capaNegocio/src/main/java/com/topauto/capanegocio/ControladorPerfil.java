@@ -28,13 +28,9 @@ public class ControladorPerfil {
         this.usuarios = usuarios;
     }
     
-    public boolean descargarPerfiles() {
+    public boolean descargarDatos() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    public boolean descargarPaises() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }    
 
     public boolean esCorreo(String cadena) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
