@@ -190,6 +190,11 @@ public class Vehiculo {
     public void setVendedoresAsociados(ArrayList<VendedorExterno> vendedoresAsociados) {
         this.vendedoresAsociados = vendedoresAsociados;
     }
+
+    @Override
+    public String toString() {
+        return "Vehiculo{" + "id=" + id + ", modelo=" + modelo + ", velMax=" + velMax + ", accMax=" + accMax + ", potencia=" + potencia + ", capacidadMotor=" + capacidadMotor + ", motor=" + motor + ", frenos=" + frenos + ", direccion=" + direccion + ", transmision=" + transmision + ", tieneVidriosElectricos=" + tieneVidriosElectricos + ", tieneAireAcondicionado=" + tieneAireAcondicionado + ", maxPasajeros=" + maxPasajeros + ", numPuertas=" + numPuertas + ", fotos=" + fotos + ", marca=" + marca + ", orgAsociadas=" + orgAsociadas + ", vendedoresAsociados=" + vendedoresAsociados + '}';
+    }
     
     public Vehiculo copiar(){
         return new Vehiculo(this.id, this.velMax, this.accMax, this.potencia, this.capacidadMotor, this.motor, this.frenos, 

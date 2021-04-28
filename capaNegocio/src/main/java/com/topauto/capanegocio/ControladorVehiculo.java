@@ -14,6 +14,7 @@ public class ControladorVehiculo {
     private ArrayList<Pais> paises;
 
     public ControladorVehiculo() {
+        this.persistenciaVehiculo = new RepositorioVehiculo();
     }
 
     public RepositorioVehiculo getPersistenciaVehiculo() {

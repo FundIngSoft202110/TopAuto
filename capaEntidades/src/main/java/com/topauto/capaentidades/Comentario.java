@@ -29,6 +29,11 @@ public class Comentario {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+
+    @Override
+    public String toString() {
+        return "Comentario{" + "descripcion=" + descripcion + ", fecha=" + fecha + '}';
+    }
     
     public Comentario copiar(){
         return new Comentario(this.descripcion, this.fecha);

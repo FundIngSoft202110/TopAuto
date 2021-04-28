@@ -11,6 +11,7 @@ public class Fabricante {
     private ArrayList<Vehiculo> vehiculos;
 
     public Fabricante() {
+        this.vehiculos = new ArrayList<>();
     }
     
     public Fabricante(String nombre, Region region, Imagen logo, Pais pais, ArrayList<Vehiculo> vehiculos) {
@@ -59,6 +60,11 @@ public class Fabricante {
     
     public void setVehiculos(ArrayList<Vehiculo> vehiculos) {
         this.vehiculos = vehiculos;
+    }
+
+    @Override
+    public String toString() {
+        return "Fabricante{" + "nombre=" + nombre + ", region=" + region + ", logo=" + logo + ", pais=" + pais + ", vehiculos=" + vehiculos + '}';
     }
     
     public Fabricante copiar(){

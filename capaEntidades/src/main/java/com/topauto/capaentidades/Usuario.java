@@ -14,6 +14,7 @@ public class Usuario {
     private Pais pais;
 
     public Usuario() {
+        this.publicaciones = new ArrayList<>();
     }
     
     public Usuario(String nombre, String userName, String correo, String descripcion, String contrasenia, boolean estaVerficado, ArrayList<Publicacion> publicaciones, Imagen foto, Pais pais) {
@@ -108,6 +109,11 @@ public class Usuario {
         this.pais = pais;
     }
 
+    @Override
+    public String toString() {
+        return "Usuario{" + "nombre=" + nombre + ", userName=" + userName + ", correo=" + correo + ", descripcion=" + descripcion + ", contrasenia=" + contrasenia + ", estaVerficado=" + estaVerficado + ", publicaciones=" + publicaciones + ", foto=" + foto + ", pais=" + pais + '}';
+    }
+    
     public Usuario copiar(){
         return new Usuario(this.nombre, this.userName, this.correo, this.descripcion, this.contrasenia, this.estaVerficado, 
                 this.publicaciones, this.foto, this.pais);

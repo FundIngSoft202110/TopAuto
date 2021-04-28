@@ -49,7 +49,12 @@ public class OrgSeguridad {
     public void setLink(String link) {
         this.link = link;
     }
-    
+
+    @Override
+    public String toString() {
+        return "OrgSeguridad{" + "nombre=" + nombre + ", region=" + region + ", logo=" + logo + ", link=" + link + '}';
+    }
+
     public OrgSeguridad copiar(){
         return new OrgSeguridad(this.nombre, this.region, this.logo, this.link);
     }

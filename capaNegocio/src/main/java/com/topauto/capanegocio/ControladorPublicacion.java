@@ -17,6 +17,7 @@ public class ControladorPublicacion {
     private ArrayList<Publicacion> publicaciones;
 
     public ControladorPublicacion() {
+        this.persistenciaPublicacion = new RepositorioPublicacion();
     }
 
     public RepositorioPublicacion getPersistenciaPublicacion() {

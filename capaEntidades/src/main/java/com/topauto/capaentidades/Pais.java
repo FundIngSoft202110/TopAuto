@@ -8,6 +8,7 @@ public class Pais {
     private ArrayList<Fabricante> fabricantes;
 
     public Pais() {
+        this.fabricantes = new ArrayList<>();
     }
     
     public Pais(String nombre, Imagen bandera, ArrayList<Fabricante> fabricantes) {
