@@ -101,4 +101,10 @@ public abstract class Publicacion {
     public void setComentarios(ArrayList<Comentario> comentarios) {
         this.comentarios = comentarios;
     }
+
+    @Override
+    public String toString() {
+        return "Publicacion{" + "id=" + id + ", titulo=" + titulo + ", descripcion=" + descripcion + ", fecha=" + fecha + ", numVotos=" + numVotos + ", numDenuncias=" + numDenuncias + ", propietario=" + propietario + ", comentarios=" + comentarios + '}';
+    }
+   
 }

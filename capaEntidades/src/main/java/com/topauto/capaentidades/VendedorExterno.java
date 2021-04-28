@@ -49,6 +49,11 @@ public class VendedorExterno {
     public void setLink(String link) {
         this.link = link;
     }
+
+    @Override
+    public String toString() {
+        return "VendedorExterno{" + "nombre=" + nombre + ", region=" + region + ", logo=" + logo + ", link=" + link + '}';
+    }
     
     public VendedorExterno copiar(){
         return new VendedorExterno(this.nombre, this.region, this.logo, this.link);
