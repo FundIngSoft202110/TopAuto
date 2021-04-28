@@ -49,18 +49,42 @@ public class ControladorVehiculo {
     }
 
     public boolean descargarDatos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        paises = persistenciaVehiculo.descargarPaises();
+        fabricantes = persistenciaVehiculo.descargarFabricantes();
+        vehiculos = persistenciaVehiculo.descargarVehiculos();
+        
+        for (Fabricante fabricante: fabricantes) {
+            for (Vehiculo vehiculo: vehiculos) {
+                if(fabricante.getNombre().compareTo(vehiculo.getMarca().getNombre()) == 0){
+                    vehiculo.setMarca(fabricante);
+                    fabricante.getVehiculos().add(vehiculo);
+                }
+            }
+        }
+        
+        for (Pais pais : paises) {
+            for (Fabricante fabricante : fabricantes) {
+                if(pais.getNombre().compareTo(fabricante.getPais().getNombre()) == 0){
+                    fabricante.setPais(pais);
+                    pais.getFabricantes().add(fabricante);
+                }
+            }
+        }
+
+        return !(paises.isEmpty() || fabricantes.isEmpty() || vehiculos.isEmpty());
     }
 
     public boolean crearVehiculo(Vehiculo vehiculo) {
         //Castri
         try{
-            vehiculos.add(vehiculo);
-            return true;
+
+            return vehiculos.add(vehiculo);
+
         }
         catch(Exception e){
             System.out.println("No se ha podido añadir el vehículo");
         }
+
         return false;
     }
 
@@ -79,6 +103,7 @@ public class ControladorVehiculo {
         catch(Exception e){
             System.out.println("No se ha podido modificar el vehículo");
         }
+
         return false;
     }
 
@@ -95,6 +120,7 @@ public class ControladorVehiculo {
         catch(Exception e){
             System.out.println("No se ha podido borrar el vehículo");
         }
+
         return false;
     }
 
@@ -110,6 +136,7 @@ public class ControladorVehiculo {
                 }
             }
         }
+
         catch(Exception e){
             System.out.println("No se ha encontrado el vehículo");
         }
