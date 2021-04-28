@@ -6,6 +6,9 @@ import java.util.Date;
 public class PRgeneral extends Pregunta{
     private ArrayList<String> tags;
 
+    public PRgeneral() {
+    }
+    
     public PRgeneral(ArrayList<String> tags, String id, String titulo, String descripcion, Date fecha, int numVotos, int numDenuncias, Usuario propietario, ArrayList<Comentario> comentarios) {
         super(id, titulo, descripcion, fecha, numVotos, numDenuncias, propietario, comentarios);
         this.tags = tags;

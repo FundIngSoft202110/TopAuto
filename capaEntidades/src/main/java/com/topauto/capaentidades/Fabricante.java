@@ -8,12 +8,12 @@ public class Fabricante {
     private Region region;
     private Imagen logo;
     private Pais pais;
-    private ArrayList<String> vehiculos;
+    private ArrayList<Vehiculo> vehiculos;
 
     public Fabricante() {
     }
     
-    public Fabricante(String nombre, Region region, Imagen logo, Pais pais, ArrayList<String> vehiculos) {
+    public Fabricante(String nombre, Region region, Imagen logo, Pais pais, ArrayList<Vehiculo> vehiculos) {
         this.nombre = nombre;
         this.region = region;
         this.logo = logo;
@@ -37,7 +37,7 @@ public class Fabricante {
         return pais;
     }
     
-    public ArrayList<String> getVehiculos() {
+    public ArrayList<Vehiculo> getVehiculos() {
         return vehiculos;
     }
 
@@ -57,7 +57,7 @@ public class Fabricante {
         this.pais = pais;
     }
     
-    public void setVehiculos(ArrayList<String> vehiculos) {
+    public void setVehiculos(ArrayList<Vehiculo> vehiculos) {
         this.vehiculos = vehiculos;
     }
     

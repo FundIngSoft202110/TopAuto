@@ -98,9 +98,28 @@ public class RepositorioVehiculo{
         }
     }
     
+    public ArrayList<Pais> descargarPaises(){
+        try(MongoClient mongoClient = MongoClients.create(ConstantesConexion.CONNECTION_STRING)){
+            MongoCollection<Document> coleccionPais = mongoClient.getDatabase("entities").getCollection("pais");
+            ArrayList<Document> docsPaises = coleccionPais.find().into(new ArrayList<>());
+            ArrayList<Pais> paises = new ArrayList<>();
+            for (Document docPais : docsPaises) {
+                Pais pais = new Pais();
+                pais.setNombre(docPais.getString("nombre"));
+                pais.setBandera(new Imagen(docPais.getString("bandera")));
+                
+                paises.add(pais);
+            }
+            
+            return paises;
+        }
+    }
+    
     public boolean persistirNuevoVehiculo(Vehiculo vehiculo) {
         try(MongoClient mongoClient = MongoClients.create(ConstantesConexion.CONNECTION_STRING)){
             MongoCollection<Document> coleccionVehiculo = mongoClient.getDatabase("entities").getCollection("vehiculo");
+            ArrayList<String> paths = new ArrayList<>();
+            vehiculo.getFotos().forEach((foto) -> paths.add(foto.getPath()));
             if(coleccionVehiculo.insertOne(new Document("id", vehiculo.getId())
                     .append("modelo", vehiculo.getModelo())
                     .append("marca", vehiculo.getMarca().getNombre())
@@ -116,9 +135,9 @@ public class RepositorioVehiculo{
                     .append("tieneAireAcondicionado", vehiculo.isTieneAireAcondicionado())
                     .append("maxPasajeros", vehiculo.getMaxPasajeros())
                     .append("numPuertas", vehiculo.getNumPuertas())
-                    .append("fotos", vehiculo.getFotos())
-                    .append("orgAsociadas", vehiculo.getOrgAsociadas())
-                    .append("vendedoresAsociados", vehiculo.getVendedoresAsociados())) != null)
+                    .append("fotos", paths) //DUDA
+                    .append("orgAsociadas", vehiculo.getOrgAsociadas()) //DUDA
+                    .append("vendedoresAsociados", vehiculo.getVendedoresAsociados())) != null) //DUDA
             {
                 return true;
             }
@@ -130,6 +149,8 @@ public class RepositorioVehiculo{
     public boolean persistirVehiculoModificado(Vehiculo vehiculo) {
         try(MongoClient mongoClient = MongoClients.create(ConstantesConexion.CONNECTION_STRING)){
             MongoCollection<Document> coleccionVehiculo = mongoClient.getDatabase("entities").getCollection("vehiculo");
+            ArrayList<String> paths = new ArrayList<>();
+            vehiculo.getFotos().forEach((foto) -> paths.add(foto.getPath()));
             if(coleccionVehiculo.replaceOne(eq("id", vehiculo.getId()), new Document("id", vehiculo.getId())
                     .append("modelo", vehiculo.getModelo())
                     .append("marca", vehiculo.getMarca().getNombre())
@@ -145,7 +166,7 @@ public class RepositorioVehiculo{
                     .append("tieneAireAcondicionado", vehiculo.isTieneAireAcondicionado())
                     .append("maxPasajeros", vehiculo.getMaxPasajeros())
                     .append("numPuertas", vehiculo.getNumPuertas())
-                    .append("fotos", vehiculo.getFotos())
+                    .append("fotos", paths)
                     .append("orgAsociadas", vehiculo.getOrgAsociadas())
                     .append("vendedoresAsociados", vehiculo.getVendedoresAsociados())) != null)
             {

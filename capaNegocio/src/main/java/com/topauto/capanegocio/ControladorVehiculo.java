@@ -4,10 +4,9 @@ import com.topauto.capaaccesodatos.RepositorioVehiculo;
 import com.topauto.capaentidades.Fabricante;
 import com.topauto.capaentidades.Pais;
 import com.topauto.capaentidades.Vehiculo;
-import com.topauto.capanegocio.interfaces.IControladorVehiculo;
 import java.util.ArrayList;
 
-public class ControladorVehiculo implements IControladorVehiculo{
+public class ControladorVehiculo {
 
     private RepositorioVehiculo persistenciaVehiculo;
     private ArrayList<Vehiculo> vehiculos;
@@ -48,34 +47,92 @@ public class ControladorVehiculo implements IControladorVehiculo{
     public void setPaises(ArrayList<Pais> paises) {
         this.paises = paises;
     }
-    
-    @Override
-    public boolean descargarVehiculos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+    public boolean descargarDatos() {
+        paises = persistenciaVehiculo.descargarPaises();
+        fabricantes = persistenciaVehiculo.descargarFabricantes();
+        vehiculos = persistenciaVehiculo.descargarVehiculos();
+        
+        for (Fabricante fabricante: fabricantes) {
+            for (Vehiculo vehiculo: vehiculos) {
+                if(fabricante.getNombre().compareTo(vehiculo.getMarca().getNombre()) == 0){
+                    vehiculo.setMarca(fabricante);
+                    fabricante.getVehiculos().add(vehiculo);
+                }
+            }
+        }
+        
+        for (Pais pais : paises) {
+            for (Fabricante fabricante : fabricantes) {
+                if(pais.getNombre().compareTo(fabricante.getPais().getNombre()) == 0){
+                    fabricante.setPais(pais);
+                    pais.getFabricantes().add(fabricante);
+                }
+            }
+        }
+
+        return !(paises.isEmpty() || fabricantes.isEmpty() || vehiculos.isEmpty());
     }
-    
-    @Override
-    public boolean descargarFabricantes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    @Override
+
     public boolean crearVehiculo(Vehiculo vehiculo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //Castri
+        try{
+            return vehiculos.add(vehiculo);
+        }
+        catch(Exception e){
+            System.out.println("No se ha podido añadir el vehículo");
+        }
+        
+        return false;
     }
 
-    @Override
     public boolean modificarVehiculo(Vehiculo vehiculo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //Castri
+        //Se hace la búsqueda con el ID como criterio...
+        try{
+            for(Vehiculo v : vehiculos){
+                if(v.getId() == vehiculo.getId()){
+                    int pos = vehiculos.indexOf(v);
+                    vehiculos.set(pos, vehiculo);
+                    return true;
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println("No se ha podido modificar el vehículo");
+        }
+        
+        return false;
     }
 
-    @Override
     public boolean borrarVehiculo(String idVehiculo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //Castri
+        try{
+            for(Vehiculo v : vehiculos){
+                if(v.getId() == idVehiculo){
+                    vehiculos.remove(vehiculos.indexOf(v));
+                    return true;
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println("No se ha podido borrar el vehículo");
+        }
+        
+        return false;
     }
-    
-    @Override
+
     public boolean buscarVehiculo(String busqueda) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //Castri
+        for(Vehiculo v : vehiculos){
+            //TODO: Averiguar cuál es el parámetro (criterio) de búsqueda
+            //Por ahora es ID...
+            if(v.getId() == busqueda){
+                //Para qué se retorna el booleano?
+                return true;
+            }
+        }
+        
+        return false;
     }   
 }
