@@ -60,8 +60,8 @@ public class ControladorVehiculo {
         }
         catch(Exception e){
             System.out.println("No se ha podido añadir el vehículo");
-            return false;
         }
+        return false;
     }
 
     public boolean modificarVehiculo(Vehiculo vehiculo) {
@@ -69,7 +69,7 @@ public class ControladorVehiculo {
         //Se hace la búsqueda con el ID como criterio...
         try{
             for(Vehiculo v : vehiculos){
-                if(v.getId() == vehiculo.getId()){
+                if(v.getId().equals(vehiculo.getId())){
                     int pos = vehiculos.indexOf(v);
                     vehiculos.set(pos, vehiculo);
                     return true;
@@ -78,15 +78,15 @@ public class ControladorVehiculo {
         }
         catch(Exception e){
             System.out.println("No se ha podido modificar el vehículo");
-            return false;
         }
+        return false;
     }
 
     public boolean borrarVehiculo(String idVehiculo) {
         //Castri
         try{
             for(Vehiculo v : vehiculos){
-                if(v.getId() == idVehiculo){
+                if(v.getId().equals(idVehiculo)){
                     vehiculos.remove(vehiculos.indexOf(v));
                     return true;
                 }
@@ -94,19 +94,25 @@ public class ControladorVehiculo {
         }
         catch(Exception e){
             System.out.println("No se ha podido borrar el vehículo");
-            return false;
         }
+        return false;
     }
 
     public boolean buscarVehiculo(String busqueda) {
         //Castri
-        for(Vehiculo v : vehiculos){
-            //TODO: Averiguar cuál es el parámetro (criterio) de búsqueda
-            //Por ahora es ID...
-            if(v.getId() == busqueda){
-                //Para qué se retorna el booleano?
-                return true;
+        try{
+            for(Vehiculo v : vehiculos){
+                //TODO: Averiguar cuál es el parámetro (criterio) de búsqueda
+                //Por ahora es ID...
+                if(v.getId().equals(busqueda)){
+                    //Para qué se retorna el booleano?
+                    return true;
+                }
             }
         }
+        catch(Exception e){
+            System.out.println("No se ha encontrado el vehículo");
+        }
+        return false;
     }   
 }
