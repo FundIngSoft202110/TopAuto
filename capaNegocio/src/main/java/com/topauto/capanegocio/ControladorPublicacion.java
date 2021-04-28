@@ -96,22 +96,27 @@ public class ControladorPublicacion {
     }
     
     public boolean crearPublicacion(Publicacion publicacion) {
+        //Yerro
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public boolean modificarPublicacion(Publicacion publicacion) {
+        //Yerro
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public boolean borrarPublicacion(String idPublicacion) {
+        //Yerro
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public boolean denunciarPublicacion(String idPublicacion) {
+        //Yerro
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public boolean puntuarPublicacion(String idPublicacion, boolean puntoEnContra) {
+        //Castri
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
