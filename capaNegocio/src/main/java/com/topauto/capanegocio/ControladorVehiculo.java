@@ -56,9 +56,11 @@ public class ControladorVehiculo {
         //Castri
         try{
             vehiculos.add(vehiculo);
+            return true;
         }
         catch(Exception e){
             System.out.println("No se ha podido añadir el vehículo");
+            return false;
         }
     }
 
