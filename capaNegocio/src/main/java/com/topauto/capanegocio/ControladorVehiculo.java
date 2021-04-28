@@ -49,19 +49,43 @@ public class ControladorVehiculo {
     }
 
     public boolean descargarDatos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        paises = persistenciaVehiculo.descargarPaises();
+        fabricantes = persistenciaVehiculo.descargarFabricantes();
+        vehiculos = persistenciaVehiculo.descargarVehiculos();
+        
+        for (Fabricante fabricante: fabricantes) {
+            for (Vehiculo vehiculo: vehiculos) {
+                if(fabricante.getNombre().compareTo(vehiculo.getMarca().getNombre()) == 0){
+                    vehiculo.setMarca(fabricante);
+                    fabricante.getVehiculos().add(vehiculo);
+                }
+            }
+        }
+        
+        for (Pais pais : paises) {
+            for (Fabricante fabricante : fabricantes) {
+                if(pais.getNombre().compareTo(fabricante.getPais().getNombre()) == 0){
+                    fabricante.setPais(pais);
+                    pais.getFabricantes().add(fabricante);
+                }
+            }
+        }
+
+        return !(paises.isEmpty() || fabricantes.isEmpty() || vehiculos.isEmpty());
     }
 
     public boolean crearVehiculo(Vehiculo vehiculo) {
         //Castri
         try{
-            vehiculos.add(vehiculo);
-            return true;
+
+            return vehiculos.add(vehiculo);
+
         }
         catch(Exception e){
             System.out.println("No se ha podido añadir el vehículo");
-            return false;
         }
+
+        return false;
     }
 
     public boolean modificarVehiculo(Vehiculo vehiculo) {
@@ -69,7 +93,7 @@ public class ControladorVehiculo {
         //Se hace la búsqueda con el ID como criterio...
         try{
             for(Vehiculo v : vehiculos){
-                if(v.getId() == vehiculo.getId()){
+                if(v.getId().equals(vehiculo.getId())){
                     int pos = vehiculos.indexOf(v);
                     vehiculos.set(pos, vehiculo);
                     return true;
@@ -78,15 +102,16 @@ public class ControladorVehiculo {
         }
         catch(Exception e){
             System.out.println("No se ha podido modificar el vehículo");
-            return false;
         }
+
+        return false;
     }
 
     public boolean borrarVehiculo(String idVehiculo) {
         //Castri
         try{
             for(Vehiculo v : vehiculos){
-                if(v.getId() == idVehiculo){
+                if(v.getId().equals(idVehiculo)){
                     vehiculos.remove(vehiculos.indexOf(v));
                     return true;
                 }
@@ -94,19 +119,27 @@ public class ControladorVehiculo {
         }
         catch(Exception e){
             System.out.println("No se ha podido borrar el vehículo");
-            return false;
         }
+
+        return false;
     }
 
     public boolean buscarVehiculo(String busqueda) {
         //Castri
-        for(Vehiculo v : vehiculos){
-            //TODO: Averiguar cuál es el parámetro (criterio) de búsqueda
-            //Por ahora es ID...
-            if(v.getId() == busqueda){
-                //Para qué se retorna el booleano?
-                return true;
+        try{
+            for(Vehiculo v : vehiculos){
+                //TODO: Averiguar cuál es el parámetro (criterio) de búsqueda
+                //Por ahora es ID...
+                if(v.getId().equals(busqueda)){
+                    //Para qué se retorna el booleano?
+                    return true;
+                }
             }
         }
+
+        catch(Exception e){
+            System.out.println("No se ha encontrado el vehículo");
+        }
+        return false;
     }   
 }
