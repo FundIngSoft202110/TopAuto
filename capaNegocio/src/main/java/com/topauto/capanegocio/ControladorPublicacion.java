@@ -97,22 +97,66 @@ public class ControladorPublicacion {
     
     public boolean crearPublicacion(Publicacion publicacion) {
         //Yerro
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            if(publicaciones.add(publicacion) == true){
+                return true;
+            }
+        }
+        catch(Exception e){
+            System.out.println("Ocurrio un error al crear la publicación.");
+        }
+        return false;
     }
 
     public boolean modificarPublicacion(Publicacion publicacion) {
         //Yerro
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            for(Publicacion p : publicaciones){
+                if(p.getId().equals(publicacion.getId()) ){
+                    //int pos = publicaciones.indexOf(p); por si las moscas
+                    publicaciones.set(publicaciones.indexOf(p), publicacion);
+                    return true;
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println("Ocurrio un error al modificar la publicacion");
+        }
+        return false;
     }
 
     public boolean borrarPublicacion(String idPublicacion) {
         //Yerro
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            for(Publicacion p : publicaciones){
+                if(p.getId().equals(idPublicacion)){
+                    publicaciones.remove(publicaciones.indexOf(p));
+                    return true;
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println("Ocurrio un error al borrar la publicacion");
+        }
+        return false;
     }
 
     public boolean denunciarPublicacion(String idPublicacion) {
         //Yerro
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            for(Publicacion p : publicaciones){
+                if(p.getId().equals(idPublicacion)){
+                    p.setNumDenuncias(p.getNumDenuncias()+1); //al cambiar este valor de P ya se guarda o toca llamar la funcion?
+                    if(modificarPublicacion(p) == true){
+                        return true;
+                    }
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println("Ocurrio un error al borrar la publicacion");
+        }
+        return false;
     }
 
     public boolean puntuarPublicacion(String idPublicacion, boolean puntoEnContra) {

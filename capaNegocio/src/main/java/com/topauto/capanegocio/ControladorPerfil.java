@@ -48,13 +48,22 @@ public class ControladorPerfil {
     }
 
     public boolean acceder(String identificador, String contrasenia) {
-        //Yerro
+        //YERROOOOOOOOOOO
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public boolean registrarPerfil(Usuario usuario) {
         //Yerro
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            
+            if(persistenciaPerfil.persistirNuevoUsuario(usuario) == true){
+                return true;
+            }
+        }
+        catch(Exception e){
+            System.out.println("Ocurrio un error al registrar el perfil");
+        }
+        return false;
     }
 
     public boolean modificarPerfil(Usuario usuario) {
@@ -78,7 +87,13 @@ public class ControladorPerfil {
 
     public boolean modificarContraseña(String nueva) {
         //Yerro
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            return true;
+        }
+        catch(Exception e){
+            System.out.println("Ocurrio un error al modificar la contraseña.");
+        }
+        return false;
     }
     
 }
