@@ -50,7 +50,7 @@ TopAuto es una plataforma de reseñas de vehículos (aplicación web), que brind
 ### Richard Fonseca
 
    Estudiante de Sexto Semestre de la Universidad Javeriana en el programa de Ingeniería de Sistemas. Experiencia en C++, Java, SQL y python basico.Interesado en el desarrollo de videojuegos, teniendo Unity y Gamemaker en un nivel bajo
-   PROBADO :)
+   
    
    ![imgRichard](https://user-images.githubusercontent.com/58142219/107572879-cf3e7c80-6bba-11eb-9455-df9ff723244d.jpeg)
    
@@ -59,3 +59,5 @@ TopAuto es una plataforma de reseñas de vehículos (aplicación web), que brind
   Estudiante de Séptimo semestre de Ingeniería de Sistemas de la Universidad Javeriana. Conocimiento básico en lenguajes C/C++, Java, HTMLy SQL. Experiencia en programas cómo Eclipse, dev, codeblocks, Netbeans, Arduino, Enterprise Architect, Lego Mindstorms, sqldeveloper, Visual paradigm, entre otros. 
 
 ![SbImg](https://user-images.githubusercontent.com/78318752/107680914-729b9a00-6c6c-11eb-91ff-6e9b646321f2.jpeg)
+
+PROBADO POR MANUEL
