@@ -216,18 +216,20 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
     private void btnIngresar(ActionEvent event) {
         
         String nombreBoton = this.botonIngresarOPerfil.getText();
-        if(nombreBoton == "Ingresar")
+        if("Ingresar".equals(nombreBoton))
         {
             
             try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaLoginScene.fxml"));
             
-            Parent root = loader.load();
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaLoginScene.fxml"));
+            stage.setMaxWidth(840);
+            stage.setMaxHeight(500);
+            stage.setTitle("TopAuto Login");
             
             ControladorEventosPaginaLogin controlador = loader.getController();
-            
+            Parent root = loader.load();
             Scene scene = new Scene(root);
-            Stage stage = new Stage();
             
             stage.setScene(scene);
             stage.show();
@@ -236,7 +238,7 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
             myStage.close();
             
             } catch (IOException ex) {
-            Logger.getLogger(ControladorEventosPaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ControladorEventosPaginaListadoVehiculos.class.getName()).log(Level.SEVERE, null, ex);
             }
             
         }
@@ -250,6 +252,7 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
             
             Scene scene = new Scene(root);
             Stage stage = new Stage();
+            stage.setTitle("Perfil Usuario");
             
             stage.setScene(scene);
             stage.show();
@@ -278,6 +281,7 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
             
             Scene scene = new Scene(root);
             Stage stage = new Stage();
+            stage.setTitle("TopAuto Vehiculos");
             
             stage.setScene(scene);
             stage.show();
