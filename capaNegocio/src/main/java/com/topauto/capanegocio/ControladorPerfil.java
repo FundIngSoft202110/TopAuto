@@ -49,6 +49,9 @@ public class ControladorPerfil {
 
     public boolean acceder(String identificador, String contrasenia) {
         //YERROOOOOOOOOOO
+        //validar username y correo
+        //verificar si es correo o username con esCorreo
+        
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -85,8 +88,9 @@ public class ControladorPerfil {
         return false;
     }
 
-    public boolean modificarContraseña(String nueva) {
+    public boolean modificarContraseña(String identificador, String nueva) {
         //Yerro
+        //persistir perfil modificado de la base de datos
         try{
             return true;
         }
