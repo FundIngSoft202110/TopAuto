@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.paint.*?>
 <?import java.lang.*?>
@@ -23,7 +24,7 @@
                <children>
                   <ImageView fitHeight="68.0" fitWidth="63.0" layoutX="1086.0" layoutY="3.0" preserveRatio="true">
                      <image>
-                        <Image url="@../Imagenes/perfil.JPG" />
+                        <Image url="@../imagenes/perfil.JPG" />
                      </image>
                   </ImageView>
                   <Line endX="1366.0" fill="#00000080" layoutY="80.0" stroke="#00000080" />
@@ -42,7 +43,7 @@
                         <Font name="Rockwell" size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="perfil" layoutX="1226.0" layoutY="35.0" mnemonicParsing="false" onAction="#verPerfil" style="-fx-background-color: FFFFFF;" text="Ver mi perfil" textFill="#00000080">
+                  <Button fx:id="perfil" layoutX="1140.0" layoutY="38.0" mnemonicParsing="false" onAction="#verPerfil" style="-fx-background-color: FFFFFF;" text="Ver mi perfil" textFill="#00000080">
                      <font>
                         <Font name="Rockwell" size="15.0" />
                      </font>
@@ -54,17 +55,17 @@
                   </Button>
                   <ImageView fx:id="norAmerica" fitHeight="373.0" fitWidth="392.0" layoutX="98.0" layoutY="126.0" preserveRatio="true">
                      <image>
-                        <Image url="@../Imagenes/territorios/americas.png" />
+                        <Image url="@../imagenes/territorios/americas.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="273.0" fitWidth="261.0" layoutX="985.0" layoutY="197.0" preserveRatio="true">
                      <image>
-                        <Image url="@../Imagenes/territorios/asia.png" />
+                        <Image url="@../imagenes/territorios/asia.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="297.0" fitWidth="255.0" layoutX="579.0" layoutY="233.0" preserveRatio="true">
                      <image>
-                        <Image url="@../Imagenes/territorios/europa.png" />
+                        <Image url="@../imagenes/territorios/europa.png" />
                      </image>
                   </ImageView>
                   <TextField fx:id="texto" alignment="CENTER" editable="false" layoutX="453.0" layoutY="101.0" style="-fx-background-color: FFFFFF;" text="Continente">

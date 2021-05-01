@@ -232,11 +232,11 @@
                            <children>
                               <ImageView fitHeight="484.0" fitWidth="1394.0" layoutX="-39.0" layoutY="-4.0">
                                  <image>
-                                    <Image url="@../Imagenes/fotosvehiculos/tesla/models/general.jpg" />
+                                    <Image url="@../imagenes/Fondo%20Tesla.jpg" />
                                  </image>
                               </ImageView>
                               <TextField fx:id="barraDeBusqueda" layoutX="440.0" layoutY="323.0" prefHeight="27.0" prefWidth="476.0" style="-fx-border-color: d6d2d2;" />
-                              <Text fill="WHITE" layoutX="396.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Encuentra detalles y reseñas de más de 10000 vehículos" textAlignment="CENTER" wrappingWidth="549.0009765625">
+                              <Text fill="WHITE" layoutX="405.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Encuentra detalles y reseñas de más de 10000 vehículos" textAlignment="CENTER" wrappingWidth="549.0009765625">
                                  <font>
                                     <Font name="Bell MT" size="43.0" />
                                  </font>

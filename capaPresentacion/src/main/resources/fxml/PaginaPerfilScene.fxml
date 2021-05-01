@@ -7,12 +7,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.topauto.capapresentacion.ControladorEventosPaginaPerfil">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topauto.capapresentacion.ControladorEventosPaginaPerfil">
    <children>
       <ImageView layoutX="231.0" layoutY="119.0">
          <image>
-            <Image url="@../Imagenes/perfil.JPG" />
+            <Image url="@../imagenes/perfil.JPG" />
          </image>
       </ImageView>
    </children>
