@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.control.*?>
+
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
@@ -14,11 +16,13 @@
 <AnchorPane maxHeight="473.0" maxWidth="840.0" minHeight="473.0" minWidth="840.0" prefHeight="473.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topauto.capapresentacion.ControladorEventosPaginaLogin">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#445361" height="95.0" layoutX="-8.0" layoutY="354.0" stroke="BLACK" strokeType="INSIDE" width="857.0" />
+
       <ImageView fitHeight="473.0" fitWidth="840.0" opacity="0.6">
          <image>
             <Image url="@../imagenes/Fondo%20Login.png" />
          </image>
       </ImageView>
+
       <Button fx:id="btIngreso" layoutX="599.0" layoutY="388.0" mnemonicParsing="false" onAction="#acceder" opacity="0.9" style="-fx-background-color: #070707; -fx-border-color: #6DFF00;" text="Ingresar" textFill="WHITE" />
       <Button fx:id="btRegistro" layoutX="697.0" layoutY="388.0" mnemonicParsing="false" onAction="#registrar" opacity="0.9" style="-fx-background-color: #070707; -fx-border-color: #6DFF00;" text="Registrarse" textFill="WHITE" />
       <TextField layoutX="76.0" layoutY="390.0" prefHeight="25.0" prefWidth="219.0" promptText="Usuario o correo" />
@@ -33,5 +37,6 @@
             <Font name="Arial" size="50.0" />
          </font>
       </Text>
+
    </children>
 </AnchorPane>
