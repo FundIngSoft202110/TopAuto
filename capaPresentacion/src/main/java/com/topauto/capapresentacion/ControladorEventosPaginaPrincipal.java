@@ -216,7 +216,7 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
     private void btnIngresar(ActionEvent event) {
         
         String nombreBoton = this.botonIngresarOPerfil.getText();
-        if(nombreBoton == "Ingresar")
+        if("Ingresar".equals(nombreBoton))
         {
             
             try {
