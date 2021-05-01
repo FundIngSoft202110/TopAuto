@@ -27,14 +27,6 @@ import javafx.stage.Stage;
 public class ControladorEventosPaginaListadoVehiculos implements Initializable {
 
     @FXML
-    private ImageView norAmerica;
-    @FXML
-    private Button botonAmerica;
-    @FXML
-    private Button botonEuropa;
-    @FXML
-    private Button botonAsia;
-    @FXML
     private AnchorPane countries;
     @FXML
     private AnchorPane marcas;
@@ -96,6 +88,14 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
     private TextField texto;
     @FXML
     private Button topAuto;
+    @FXML
+    private ImageView norAmerica;
+    @FXML
+    private Button botonAmerica;
+    @FXML
+    private Button botonEuropa;
+    @FXML
+    private Button botonAsia;
     
     
     
@@ -987,6 +987,7 @@ private void createButtonsFrancia()
             
             Scene scene = new Scene(root);
             Stage stage = new Stage();
+            stage.setTitle("Perfil Usuario");
             
             stage.setScene(scene);
             stage.show();
@@ -1010,6 +1011,7 @@ private void createButtonsFrancia()
             
             Scene scene = new Scene(root);
             Stage stage = new Stage();
+            stage.setTitle("TopAuto");
             
             stage.setScene(scene);
             stage.show();

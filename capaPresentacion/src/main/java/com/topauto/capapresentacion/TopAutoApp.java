@@ -16,9 +16,9 @@ public class TopAutoApp extends Application {
     public void start(Stage stage) throws Exception {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(TopAutoApp.class.getResource("/fxml/PaginaListadoVehiculosScene.fxml"));
+            loader.setLocation(TopAutoApp.class.getResource("/fxml/PaginaLoginScene.fxml"));
             stage.setMaxWidth(840);
-            stage.setMaxHeight(473);
+            stage.setMaxHeight(500);
             stage.setTitle("TopAuto Login");
             
             // Cargo la ventana

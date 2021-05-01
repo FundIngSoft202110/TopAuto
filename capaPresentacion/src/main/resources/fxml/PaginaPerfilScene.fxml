@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,12 +10,111 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topauto.capapresentacion.ControladorEventosPaginaPerfil">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="977.0" prefWidth="1366.0" style="-fx-background-color: FFFFFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topauto.capapresentacion.ControladorEventosPaginaPerfil">
    <children>
-      <ImageView layoutX="231.0" layoutY="119.0">
-         <image>
-            <Image url="@../imagenes/perfil.JPG" />
-         </image>
-      </ImageView>
+      <ScrollPane pannable="true" prefHeight="977.0" prefWidth="1366.0" style="-fx-background-color: FFFFFF;">
+         <content>
+            <AnchorPane prefHeight="1500.0" prefWidth="1367.0" style="-fx-background-color: FFFFFF;">
+               <children>
+                  <Button layoutX="1136.0" layoutY="23.0" mnemonicParsing="false" style="-fx-background-color: FFFFFF;" text="Nombre de Usuario" textFill="#00000080">
+                     <font>
+                        <Font name="Rockwell" size="20.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="68.0" fitWidth="63.0" layoutX="1086.0" layoutY="3.0" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/perfil.JPG" />
+                     </image>
+                  </ImageView>
+                  <Line endX="1366.0" fill="#00000080" layoutY="80.0" stroke="#00000080" />
+                  <Button fx:id="resPregunta" layoutX="324.0" layoutY="23.0" mnemonicParsing="false" onAction="#responder" style="-fx-background-color: FFFFFF;" text="Responde Preguntas" textFill="#00000080">
+                     <font>
+                        <Font name="Rockwell" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="hazPregunta" layoutX="822.0" layoutY="23.0" mnemonicParsing="false" onAction="#preguntar" style="-fx-background-color: FFFFFF;" text="Haz una pregunta" textFill="#00000080">
+                     <font>
+                        <Font name="Rockwell" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="hazReseña" layoutX="599.0" layoutY="23.0" mnemonicParsing="false" onAction="#reseñar" style="-fx-background-color: FFFFFF;" text="Haz una reseña" textFill="#00000080">
+                     <font>
+                        <Font name="Rockwell" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="topAuto" layoutY="-14.0" mnemonicParsing="false" onAction="#menu" style="-fx-background-color: fffffF;" text="topAuto">
+                     <font>
+                        <Font name="Arial" size="50.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="BLACK" />
+                              <Stop color="RED" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Button>
+                  <ImageView fitHeight="266.0" fitWidth="274.0" layoutX="96.0" layoutY="138.0" preserveRatio="true" smooth="false">
+                     <image>
+                        <Image url="@../imagenes/perfil.png" />
+                     </image>
+                  </ImageView>
+                  <Text layoutX="420.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre Completo" wrappingWidth="419.20806884765625">
+                     <font>
+                        <Font name="Arial" size="50.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="421.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="username" wrappingWidth="147.20806884765625">
+                     <font>
+                        <Font name="Arial Italic" size="30.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="421.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#" wrappingWidth="25.874725341796875">
+                     <font>
+                        <Font name="Arial Italic" size="30.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="448.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="reseñas" wrappingWidth="147.20806884765625">
+                     <font>
+                        <Font name="Arial Italic" size="30.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="616.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#" wrappingWidth="25.874725341796875">
+                     <font>
+                        <Font name="Arial Italic" size="30.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="641.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="preguntas" wrappingWidth="147.20806884765625">
+                     <font>
+                        <Font name="Arial Italic" size="30.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="420.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="pais" wrappingWidth="147.20806884765625">
+                     <font>
+                        <Font name="Arial Italic" size="30.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="422.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripcion" wrappingWidth="541.874755859375">
+                     <font>
+                        <Font name="Arial Italic" size="30.0" />
+                     </font>
+                  </Text>
+                  <Line endX="1366.0" fill="#00000080" layoutX="-5.0" layoutY="557.0" stroke="#00000080" />
+                  <AnchorPane fx:id="countries" layoutY="559.0" prefHeight="70.0" prefWidth="1350.0">
+                     <children>
+                        <SplitPane dividerPositions="0.5003706449221645" prefHeight="64.0" prefWidth="1351.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="837.0" />
+                          </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+                  <Line endX="1366.0" fill="#00000080" layoutX="-1.0" layoutY="625.0" stroke="#00000080" />
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>
