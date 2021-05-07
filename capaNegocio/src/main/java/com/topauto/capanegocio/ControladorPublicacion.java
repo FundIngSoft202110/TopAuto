@@ -99,6 +99,7 @@ public class ControladorPublicacion {
         //Yerro
         try{
             if(publicaciones.add(publicacion) == true){
+                persistenciaPublicacion.persistirNuevaPublicacion(publicacion);
                 return true;
             }
         }
@@ -115,6 +116,7 @@ public class ControladorPublicacion {
                 if(p.getId().equals(publicacion.getId()) ){
                     //int pos = publicaciones.indexOf(p); por si las moscas
                     publicaciones.set(publicaciones.indexOf(p), publicacion);
+                    persistenciaPublicacion.persistirPublicacionModificada(publicacion);
                     return true;
                 }
             }
@@ -131,6 +133,7 @@ public class ControladorPublicacion {
             for(Publicacion p : publicaciones){
                 if(p.getId().equals(idPublicacion)){
                     publicaciones.remove(publicaciones.indexOf(p));
+                    persistenciaPublicacion.borrarPublicacion(idPublicacion);
                     return true;
                 }
             }
@@ -146,8 +149,9 @@ public class ControladorPublicacion {
         try{
             for(Publicacion p : publicaciones){
                 if(p.getId().equals(idPublicacion)){
-                    p.setNumDenuncias(p.getNumDenuncias()+1); //al cambiar este valor de P ya se guarda o toca llamar la funcion?
+                    p.setNumDenuncias(p.getNumDenuncias()+1); 
                     if(modificarPublicacion(p) == true){
+                        persistenciaPublicacion.persistirPublicacionModificada(p);
                         return true;
                     }
                 }
