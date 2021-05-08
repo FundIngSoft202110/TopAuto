@@ -43,8 +43,6 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
     @FXML
     private Text preguntasPopulares122;
     @FXML
-    private Text preguntasPopulares123;
-    @FXML
     private Pane paneImagenVehiculo;
     @FXML
     private Button botonImagenGeneral;
@@ -67,15 +65,11 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
     @FXML
     private Text textNombreVehiculo;
     @FXML
-    private Text textReseñas;
-    @FXML
     private Text textNumeroReseñas;
     @FXML
     private ProgressBar progressBarVelocidadMaxima;
     @FXML
     private ProgressBar progressBarAceleracionMaxima;
-    @FXML
-    private Text textNombreVehiculo1111;
     @FXML
     private Text cpMarca;
     @FXML
@@ -101,13 +95,7 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
     @FXML
     private VBox vBoxCaracteristicasAdicionales;
     @FXML
-    private Text textNombreVehiculo11111;
-    @FXML
-    private VBox vBoxCaracteristicasAdicionales1;
-    @FXML
     private Button botonPreguntas;
-    @FXML
-    private Button boton;
     @FXML
     private VBox vBoxResenasOPreguntas;
     @FXML
@@ -118,6 +106,10 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
     private Text tituloTop;
     @FXML
     private Text tituloAuto;
+    @FXML
+    private VBox vBoxConsigueTuVehiculoEn;
+    @FXML
+    private Button botonResenas;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
