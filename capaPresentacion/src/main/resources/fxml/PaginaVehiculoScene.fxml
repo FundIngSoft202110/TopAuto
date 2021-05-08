@@ -1,11 +1,340 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.topauto.capapresentacion.ControladorEventosPaginaVehiculo">
-   <children>
-      <Label layoutX="277.0" layoutY="192.0" text="Vehiculo" />
-   </children>
-</AnchorPane>
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2000.0" prefWidth="1366.0" style="-fx-background-color: ffffff;" text="Buscar Vehiculo Por Barra De Busqueda" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topauto.capapresentacion.ControladorEventosPaginaVehiculo">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
+         <children>
+            <ScrollPane prefHeight="2000.0" prefWidth="1366.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2000.0" prefWidth="1351.0" style="-fx-background-color: ffffff;">
+                     <children>
+                        <Text fx:id="tituloTop" layoutX="14.0" layoutY="45.0" onMouseClicked="#clickTop" strokeType="OUTSIDE" strokeWidth="0.0" text="top">
+                           <font>
+                              <Font name="Arial" size="42.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="tituloAuto" fill="#c90000" layoutX="72.0" layoutY="47.0" onMouseClicked="#clickAuto" strokeType="OUTSIDE" strokeWidth="0.0" text="Auto">
+                           <font>
+                              <Font name="Arial Bold" size="50.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="botonHazUnaPregunta" layoutX="875.0" layoutY="16.0" mnemonicParsing="false" onAction="#btnHazUnaPregunta" style="-fx-background-color: ffffff;" text="Haz una pregunta">
+                           <font>
+                              <Font name="Arial Bold" size="20.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="botonHazUnaReseña" layoutX="638.0" layoutY="16.0" mnemonicParsing="false" onAction="#btnHazUnaReseña" style="-fx-background-color: ffffff;" text="Haz una reseña">
+                           <font>
+                              <Font name="Arial Bold" size="20.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="botonRespondePreguntas" layoutX="334.0" layoutY="16.0" mnemonicParsing="false" onAction="#btnRespondePreguntas" style="-fx-background-color: ffffff;" text="Responde Preguntas">
+                           <font>
+                              <Font name="Arial Bold" size="20.0" />
+                           </font>
+                        </Button>
+                        <Text fx:id="textoNombreUsuario" layoutX="1204.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" textAlignment="CENTER" wrappingWidth="133.0">
+                           <font>
+                              <Font name="Arial Bold" size="17.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="botonIngresarOPerfil" layoutX="1191.0" layoutY="30.0" mnemonicParsing="false" onAction="#btnIngresarOPerfil" prefHeight="13.0" prefWidth="160.0" style="-fx-background-color: ffffff;" text="Ingresar" textAlignment="CENTER">
+                           <font>
+                              <Font name="Arial" size="13.0" />
+                           </font>
+                        </Button>
+                        <Pane fx:id="imagenUsuario" layoutX="1165.0" layoutY="6.0" prefHeight="53.0" prefWidth="52.0" style="-fx-border-color: b20000;" />
+                        <Pane fx:id="paneImagenVehiculo" layoutX="193.0" layoutY="116.0" prefHeight="291.0" prefWidth="613.0" style="-fx-border-color: b20000; -fx-background-color: ffffff;">
+                           <children>
+                              <Text fx:id="preguntasPopulares12" fill="WHITE" layoutX="628.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Busca marca, año o modelo" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                                 <font>
+                                    <Font name="Arial Bold Italic" size="12.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="preguntasPopulares121" fill="WHITE" layoutX="628.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ó" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                                 <font>
+                                    <Font name="Arial Bold Italic" size="15.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="preguntasPopulares122" fill="WHITE" layoutX="627.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Navega el listado de vehículos" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                                 <font>
+                                    <Font name="Arial Bold Italic" size="12.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </Pane>
+                        <Text layoutX="14.0" layoutY="1932.0" strokeType="OUTSIDE" strokeWidth="0.0" text="top">
+                           <font>
+                              <Font name="Arial" size="42.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#c90000" layoutX="72.0" layoutY="1934.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Auto">
+                           <font>
+                              <Font name="Arial Bold" size="50.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#d0d0d0" layoutX="14.0" layoutY="1960.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Copyright 2021" textAlignment="JUSTIFY" wrappingWidth="146.23974609375">
+                           <font>
+                              <Font name="Arial Bold Italic" size="17.0" />
+                           </font>
+                        </Text>
+                        <VBox layoutX="14.0" layoutY="116.0" prefHeight="288.0" prefWidth="179.0" style="-fx-border-color: d5cdcd;">
+                           <children>
+                              <Button fx:id="botonImagenGeneral" mnemonicParsing="false" onAction="#btnImegenGeneral" prefHeight="50.0" prefWidth="182.0" style="-fx-background-color: #c90000; -fx-border-color: d5cdcd;" text="General" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="botonImagenFrente" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnImagenFrente" prefHeight="50.0" prefWidth="182.0" style="-fx-background-color: #c90000; -fx-border-color: d5cdcd;" text="Frente" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="botonImagenLado" layoutX="10.0" layoutY="60.0" mnemonicParsing="false" onAction="#btnImagenLado" prefHeight="50.0" prefWidth="182.0" style="-fx-background-color: #c90000; -fx-border-color: d5cdcd;" text="Lado" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="botonImagenTrasero" layoutX="10.0" layoutY="110.0" mnemonicParsing="false" onAction="#btnImagenTrasero" prefHeight="50.0" prefWidth="182.0" style="-fx-background-color: #c90000; -fx-border-color: d5cdcd;" text="Trasero" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="botonImagenMotor" layoutX="10.0" layoutY="160.0" mnemonicParsing="false" onAction="#btnImagenMotor" prefHeight="50.0" prefWidth="182.0" style="-fx-background-color: #c90000; -fx-border-color: d5cdcd;" text="Motor" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="botonImagenInterior" layoutX="10.0" layoutY="210.0" mnemonicParsing="false" onAction="#btnImagenInterior" prefHeight="50.0" prefWidth="182.0" style="-fx-background-color: #c90000; -fx-border-color: d5cdcd;" text="Interior" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <Pane fx:id="paneLogoVehiculo" layoutX="1261.0" layoutY="116.0" prefHeight="78.0" prefWidth="72.0" style="-fx-background-color: ffffff;">
+                           <children>
+                              <Text fx:id="preguntasPopulares121" fill="WHITE" layoutX="628.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Busca marca, año o modelo" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                                 <font>
+                                    <Font name="Arial Bold Italic" size="12.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="preguntasPopulares1211" fill="WHITE" layoutX="628.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ó" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                                 <font>
+                                    <Font name="Arial Bold Italic" size="15.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="preguntasPopulares1221" fill="WHITE" layoutX="627.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Navega el listado de vehículos" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                                 <font>
+                                    <Font name="Arial Bold Italic" size="12.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </Pane>
+                        <Text fx:id="textNombreVehiculo" layoutX="819.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="442.13671875">
+                           <font>
+                              <Font name="Arial Bold Italic" size="34.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="972.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="reseñas" wrappingWidth="107.13671875">
+                           <font>
+                              <Font name="Arial" size="20.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="textNumeroReseñas" layoutX="840.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="107.13671875">
+                           <font>
+                              <Font name="Arial Bold" size="20.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="821.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Velocidad Maxima" wrappingWidth="153.13671875">
+                           <font>
+                              <Font name="Arial Bold" size="17.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="821.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aceleracion Maxima" wrappingWidth="165.13671875">
+                           <font>
+                              <Font name="Arial Bold" size="17.0" />
+                           </font>
+                        </Text>
+                        <ProgressBar fx:id="progressBarVelocidadMaxima" layoutX="1026.0" layoutY="238.0" prefWidth="200.0" progress="0.0" />
+                        <ProgressBar fx:id="progressBarAceleracionMaxima" layoutX="1026.0" layoutY="272.0" prefWidth="200.0" progress="0.0" />
+                        <Text layoutX="497.0" layoutY="469.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Caracteristicas Principales" textAlignment="CENTER" wrappingWidth="454.13671875">
+                           <font>
+                              <Font name="Arial Bold" size="35.0" />
+                           </font>
+                        </Text>
+                        <VBox layoutX="379.0" layoutY="516.0" prefHeight="221.0" prefWidth="165.0" style="-fx-background-color: #c90000; -fx-border-color: d5cdcd;">
+                           <children>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Marca" textAlignment="CENTER" wrappingWidth="164.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="WHITE" layoutX="10.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modelo" textAlignment="CENTER" wrappingWidth="163.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="WHITE" layoutX="10.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Año" textAlignment="CENTER" wrappingWidth="164.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="WHITE" layoutX="10.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rango Estimado" textAlignment="CENTER" wrappingWidth="163.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="WHITE" layoutX="10.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0-60 MPH" textAlignment="CENTER" wrappingWidth="164.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="WHITE" layoutX="10.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Velocidad Maxima" textAlignment="CENTER" wrappingWidth="163.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="WHITE" layoutX="10.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Horse Power" textAlignment="CENTER" wrappingWidth="163.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="WHITE" layoutX="10.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Peso" textAlignment="CENTER" wrappingWidth="163.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="WHITE" layoutX="10.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Llantas" textAlignment="CENTER" wrappingWidth="163.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="WHITE" layoutX="10.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cargo" textAlignment="CENTER" wrappingWidth="163.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="WHITE" layoutX="10.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valocidad De Carga" textAlignment="CENTER" wrappingWidth="162.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                        <VBox layoutX="546.0" layoutY="516.0" prefHeight="221.0" prefWidth="165.0" style="-fx-border-color: #c90000;">
+                           <children>
+                              <Text fx:id="cpMarca" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Marca" textAlignment="CENTER" wrappingWidth="164.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="cpModelo" fill="WHITE" layoutX="10.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modelo" textAlignment="CENTER" wrappingWidth="163.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="cpAno" fill="WHITE" layoutX="10.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Año" textAlignment="CENTER" wrappingWidth="164.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="cpRangoEstimado" fill="WHITE" layoutX="10.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rango Estimado" textAlignment="CENTER" wrappingWidth="163.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="cpCeroACien" fill="WHITE" layoutX="10.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0-60 MPH" textAlignment="CENTER" wrappingWidth="164.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="cpVelocidadMaxima" fill="WHITE" layoutX="10.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Velocidad Maxima" textAlignment="CENTER" wrappingWidth="163.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="cpHorsePower" fill="WHITE" layoutX="10.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Horse Power" textAlignment="CENTER" wrappingWidth="163.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="cpPeso" fill="WHITE" layoutX="10.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Peso" textAlignment="CENTER" wrappingWidth="163.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="cpLlantas" fill="WHITE" layoutX="10.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Llantas" textAlignment="CENTER" wrappingWidth="163.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="cpCargo" fill="WHITE" layoutX="10.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valocidad De Carga" textAlignment="CENTER" wrappingWidth="162.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="cpVelocidadCarga" fill="WHITE" layoutX="11.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valocidad De Carga" textAlignment="CENTER" wrappingWidth="162.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                        <TextField alignment="CENTER" editable="false" layoutX="715.0" layoutY="515.0" prefHeight="34.0" prefWidth="334.0" style="-fx-border-color: #c90000;" text="Caracteristicas Adicionales">
+                           <font>
+                              <Font name="Arial Bold" size="17.0" />
+                           </font>
+                        </TextField>
+                        <VBox fx:id="vBoxCaracteristicasAdicionales" layoutX="715.0" layoutY="549.0" prefHeight="189.0" prefWidth="334.0" style="-fx-border-color: #c90000;" />
+                        <Text layoutX="497.0" layoutY="801.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Consigue Tu Vehiculo En" textAlignment="CENTER" wrappingWidth="454.13671875">
+                           <font>
+                              <Font name="Arial Bold" size="35.0" />
+                           </font>
+                        </Text>
+                        <VBox fx:id="vBoxConsigueTuVehiculoEn" layoutX="380.0" layoutY="823.0" prefHeight="370.0" prefWidth="666.0" style="-fx-border-color: #c90000;" />
+                        <Button fx:id="botonPreguntas" layoutX="295.0" layoutY="1242.0" mnemonicParsing="false" onAction="#btnPreguntas" prefHeight="84.0" prefWidth="420.0" style="-fx-background-color: ffffff; -fx-border-color: d5cdcd;" text="Preguntas">
+                           <font>
+                              <Font name="Arial Bold" size="44.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="botonResenas" layoutX="715.0" layoutY="1242.0" mnemonicParsing="false" onAction="#btnReseñas" prefHeight="84.0" prefWidth="420.0" style="-fx-background-color: ffffff; -fx-border-color: d5cdcd;" text="Reseñas">
+                           <font>
+                              <Font name="Arial Bold" size="44.0" />
+                           </font>
+                        </Button>
+                        <ScrollPane layoutX="295.0" layoutY="1396.0" prefHeight="412.0" prefWidth="840.0" style="-fx-border-color: d5cdcd;">
+                           <content>
+                              <VBox fx:id="vBoxResenasOPreguntas" prefHeight="405.0" prefWidth="835.0" />
+                           </content>
+                        </ScrollPane>
+                        <AnchorPane layoutX="295.0" layoutY="1326.0" prefHeight="71.0" prefWidth="840.0" style="-fx-border-color: d5cdcd;">
+                           <children>
+                              <TextField fx:id="textFieldResenasOPreguntas" layoutX="8.0" layoutY="10.0" prefHeight="49.0" prefWidth="691.0" style="-fx-border-color: #c90000;" />
+                              <Button fx:id="botonPublicarResenaOPregunta" layoutX="707.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnPublicarResenaOPregunta" prefHeight="49.0" prefWidth="122.0" style="-fx-border-color: d5cdcd; -fx-background-color: #c90000;" text="Publicar" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+  </content>
+</TitledPane>
