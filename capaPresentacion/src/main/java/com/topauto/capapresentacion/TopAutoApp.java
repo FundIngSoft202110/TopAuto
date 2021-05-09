@@ -15,12 +15,12 @@ public class TopAutoApp extends Application {
     public void start(Stage stage) throws Exception {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(TopAutoApp.class.getResource("/fxml/PaginaLoginScene.fxml"));
+            loader.setLocation(TopAutoApp.class.getResource("/fxml/PaginaInicialScene.fxml"));
             stage.setMaxWidth(840);
 
             stage.setMaxHeight(500);
 
-            stage.setTitle("TopAuto Login");
+            stage.setTitle("TopAuto");
             
             // Cargo la ventana
             Pane ventana = (Pane) loader.load();

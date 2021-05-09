@@ -11,6 +11,10 @@ public class Pais {
         this.fabricantes = new ArrayList<>();
     }
     
+    public Pais(String nombre){
+        this.nombre = nombre;
+    }
+    
     public Pais(String nombre, Imagen bandera, ArrayList<Fabricante> fabricantes) {
         this.nombre = nombre;
         this.bandera = bandera;
