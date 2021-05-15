@@ -58,6 +58,10 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
     @FXML
     private Button botonContinente;
     @FXML
+    private Button botonContinente2;
+    @FXML
+    private Button botonContinente3;
+    @FXML
     private Button botonPais;
     @FXML
     private Button botonVehiculo;
@@ -82,8 +86,7 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
     {
      //Mi creacion del Controlador de Datos y la obtencion de estos de la base de datos:
      this.ControllerDatos = new ControladorVehiculo();
-     ControllerDatos.descargarVehiculos();
-     ControllerDatos.descargarFabricantes();
+     ControllerDatos.descargarDatos();
      
      
      this.MisPaises = ControllerDatos.getPaises();
