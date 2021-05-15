@@ -1,5 +1,5 @@
 package com.topauto.capapresentacion;
-
+//-- Falta probar --
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -19,63 +19,28 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+//  --Importaciones necesarias de otras capas: --
+import com.topauto.capaentidades.Pais;
+import com.topauto.capaentidades.Vehiculo;
+import com.topauto.capaentidades.Fabricante;
+import com.topauto.capaentidades.Imagen;
+import com.topauto.capanegocio.ControladorVehiculo;
 
 public class ControladorEventosPaginaListadoVehiculos implements Initializable {
-
+    
+    /* VARIABLES
+     
+                                -- VARIABLES FXML --:
+    */
     @FXML
     private AnchorPane countries;
     @FXML
     private AnchorPane marcas;
     @FXML
     private AnchorPane vehiculos;
-    
-    EventHandler<ActionEvent> buttonHandlerUSA;
-    EventHandler<ActionEvent> buttonHandlerEuropa;
-    EventHandler<ActionEvent> buttonHandlerAsia;
-    EventHandler<ActionEvent> buttonHandlerItalia;
-    EventHandler<ActionEvent> buttonHandlerAlemania;
-    EventHandler<ActionEvent> buttonHandlerJapon;
-    EventHandler<ActionEvent> buttonHandlerChina;
-    EventHandler<ActionEvent> buttonHandlerNA;
-    EventHandler<ActionEvent> buttonHandlerEspaña;
-    EventHandler<ActionEvent> buttonHandlerFrancia;
-    EventHandler<ActionEvent> buttonHandlerUK;
-    EventHandler<ActionEvent> buttonHandlerIndia;
-    EventHandler<ActionEvent> buttonHandlerChevrolet;
-    EventHandler<ActionEvent> buttonHandlerToyota;
-    EventHandler<ActionEvent> buttonHandlerAlfaRomeo;
-    EventHandler<ActionEvent> buttonHandlerGM;
-    EventHandler<ActionEvent> buttonHandlerSAIC;
-    EventHandler<ActionEvent> buttonHandlerMercedez;
-    EventHandler<ActionEvent> buttonHandlerBMW;
-
-
-    EventHandler<ActionEvent> buttonHandlerCanada;
-    EventHandler<ActionEvent> buttonHandlerMexico;
-    
-   
-    int noCountriesNA = 2;
-    int noCountriesEU = 5;
-    int noCountriesAS = 3;
-    
-    //Contadores de NoMarcas por Pais
-    int marcasUSA = 3;
-    int marcasMexico = 1;
-    
-    int marcasItalia = 2;
-    int marcasAlemania = 2;
-    int marcasFrancia = 3;
-    int marcasEspaña = 1;
-    int marcasUK=1;
-    
-    
-    int marcasChina = 2;
-    int marcasIndia = 1;
-    int marcasJapon = 5;
     @FXML
     private Button resPregunta;
     @FXML
@@ -91,822 +56,262 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
     @FXML
     private ImageView norAmerica;
     @FXML
-    private Button botonAmerica;
+    private Button botonContinente;
     @FXML
-    private Button botonEuropa;
+    private Button botonPais;
     @FXML
-    private Button botonAsia;
+    private Button botonVehiculo;
+
     
+        //            EventHandlers - ActionEvents asignados a botones:
+    EventHandler<ActionEvent> ButtonHandlerPais;
+    EventHandler<ActionEvent> ButtonHandlerMarca;
+    EventHandler<ActionEvent> ButtonHandlerVehiculo;
+    ControladorVehiculo ControllerDatos;
     
-    
+          //            Variables locales de la clase:
+    private ArrayList<Pais> MisPaises;
+    private ArrayList<Pais> PaisesActuales = new ArrayList<Pais>();
+    private ArrayList<Fabricante> FabricantesActuales = new ArrayList<Fabricante>();
+    private ArrayList<Vehiculo> VehiculosActuales = new ArrayList<Vehiculo>();
+    private final int VehiculosXPagina = 6;
+
     
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-      
+    public void initialize(URL url, ResourceBundle rb) 
+    {
+     //Mi creacion del Controlador de Datos y la obtencion de estos de la base de datos:
+     this.ControllerDatos = new ControladorVehiculo();
+     ControllerDatos.descargarVehiculos();
+     ControllerDatos.descargarFabricantes();
      
-     buttonHandlerUSA = new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) 
-      {
-          createButtonsUSA();
-      }
-     };
      
-     buttonHandlerMexico = new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) 
-      {
-          createButtonsMexico();
-      }
-     };
+     this.MisPaises = ControllerDatos.getPaises();
+
      
-     buttonHandlerChina = new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) 
-      {
-          createButtonsChina();
-      }
-     };
-     
-     buttonHandlerUK = new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) 
-      {
-          createButtonsUK();
-      }
-     };
-     buttonHandlerFrancia = new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) 
-      {
-          createButtonsFrancia();
-      }
-     };
-     buttonHandlerEspaña = new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) 
-      {
-          createButtonsEspaña();
-      }
-     };
-     buttonHandlerIndia = new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) 
-      {
-          createButtonsIndia();
-      }
-     };
-     
-     buttonHandlerEuropa = new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) 
-      {
-          createButtonsEuropa();
-      }
-     };
-     
-     buttonHandlerItalia = new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) 
-      {
-          createButtonsItalia();
-      }
-     };
-     
-     buttonHandlerAlemania = new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) 
-      {
-          createButtonsAlemania();
-      }
-     };
-     
-     buttonHandlerChevrolet = new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) 
-      {
-          crearVehiculosChevrolet();
-      }
-     };
-     
-     buttonHandlerAlfaRomeo = new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) 
-      {
-          crearVehiculosAlfaRomeo();
-      }
-     };
-     
-     buttonHandlerGM = new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) 
-      {
-          crearVehiculosGM();
-      }
-     };
-     
-     buttonHandlerToyota = new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) 
-      {
-          crearVehiculosToyota();
-      }
-     };
-     buttonHandlerSAIC = new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) 
-      {
-          crearVehiculosSAIC();
-      }
-     };
-     
-     buttonHandlerMercedez = new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) 
-      {
-          crearVehiculosMercedez();
-      }
-     };
-     
-     buttonHandlerBMW = new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) 
-      {
-          crearVehiculosBMW();
-      }
-     };
-     buttonHandlerNA = new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) 
-      {
-          crearVehiculosNA();
-      }
-     };
-     
-     buttonHandlerJapon = new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) 
-      {
-          createButtonsJapon();
-      }
-     };
-     
-        // TODO
+     //Creación de EventHandlers que se le asignaran a los botones creados:
+     this.ButtonHandlerPais = new EventHandler<ActionEvent>()
+             {
+                 @Override
+                 public void handle (ActionEvent event)
+                 {
+                     createButtonsDeCountry((Button)event.getSource());
+                 }
+             };
+     this.ButtonHandlerMarca = new EventHandler<ActionEvent>()
+             {
+                 @Override
+                 public void handle (ActionEvent event)
+                {
+                    crearBotonesDeMarca((Button)event.getSource());
+                }
+             };
+     this.ButtonHandlerVehiculo = new EventHandler<ActionEvent>()
+             {
+                 @Override
+                 public void handle (ActionEvent event)
+                {
+                    crearBotonesDeMarca((Button)event.getSource());
+                }
+             };
     }    
+    // Ya que los botones de continentes son estáticos, no es necesario asignar un EventHandler dinamico:
     @FXML
-    private void clickNorAmerica (ActionEvent event)
+    private void clickContinent(ActionEvent event)
     {
-        this.texto.setText("America");
-        //Crear Botones
-      System.out.println("DEBUG: NA!");
-     
-        this.createButtonsNA();
-        
+        this.createButtonsDeContinent((Button)event.getSource());
     }
-    @FXML
-    private void clickAsia (ActionEvent event)
+    /** Nuestro handler cuando un Boton de Area/Continente es presionado:
+     * @param clickedButton -- El boton activado - Depende del texto que contiene el botón:
+     */
+    private void createButtonsDeContinent(Button clickedButton)
     {
-        this.texto.setText("Asia");
-        //Crear Botones
-      System.out.println("DEBUG: ASIA!");
-     
-        this.createButtonsAsia();
         
-    }
-    
-    @FXML
-    private void clickEuropa (ActionEvent event)
-    {
-        this.texto.setText("Europa");
-        //Crear Botones
-        System.out.println("DEBUG: Europa!");
-     
-        this.createButtonsEuropa();
-        
-    }
-    
-    private void createButtonsNA()
-    {
+        //Borro los botones de anteriores busquedas, si hay:
         countries.getChildren().clear();
         marcas.getChildren().clear();
         vehiculos.getChildren().clear();
-        double buttonWidth = (this.countries.getPrefWidth() / this.noCountriesNA);
-        double buttonHeight = this.countries.getPrefHeight();
-        ArrayList<Button> but = new ArrayList<Button>();
-        for(int i = 0; i < this.noCountriesNA; i++)
-        {
-            but.add(new Button());
-            but.get(i).setPrefWidth(buttonWidth);
-            but.get(i).setPrefHeight(buttonHeight);
-            
-            //Añade tres botones
-        }
-        //Set text
-        but.get(0).setText("USA");
-        but.get(1).setText("Mexico");
-        //Set functionality
-        but.get(0).setOnAction(buttonHandlerUSA);
-        but.get(1).setOnAction(buttonHandlerMexico);
         
-        AnchorPane.setLeftAnchor(but.get(0), 0.0);
-        AnchorPane.setLeftAnchor(but.get(1), buttonWidth);
-
-        countries.getChildren().addAll(but.get(0),but.get(1));
-    }
-    
-    private void createButtonsEuropa()
+        ArrayList<Button> but = new ArrayList<Button>();
+        double ButtonWidth, ButtonHeight;
+        int cont = 0;
+        
+        //Recibo el nombre del continente colocado...
+        String nameContinent = clickedButton.getText();
+        
+        //Hay tres areas programadas estáticamente - América, Europa y Asia:
+        if(nameContinent.equals("America") || nameContinent.equals("Europa") || nameContinent.equals("Asia"))
+        {
+            for ( Pais v : this.MisPaises)
+            {
+                if(v.getNombre().equals(nameContinent))
+                {
+                    this.PaisesActuales.add(v);
+                }
+            }
+            if(!this.PaisesActuales.isEmpty())
+            {
+               ButtonWidth = (this.countries.getPrefWidth() / (double)this.PaisesActuales.size());
+               ButtonHeight = this.countries.getPrefHeight();
+               for(Pais v : this.PaisesActuales)
+               {
+                   but.add(new Button());
+                   but.get(cont).setPrefWidth(ButtonWidth);
+                   but.get(cont).setPrefHeight(ButtonHeight);
+                   but.get(cont).setText(v.getNombre());
+                   but.get(cont).setOnAction(this.ButtonHandlerPais);
+                   AnchorPane.setLeftAnchor(but.get(cont), (double)(cont * ButtonWidth));
+                   countries.getChildren().add(but.get(cont));
+                   cont++;
+               }
+               
+            }
+            else
+            {
+                System.out.println("No se encuentran paises en la base de datos para este Continente");
+            }
+        }
+        else
+        {
+            System.out.println("Botón Inválido");
+        }
+   
+        
+    } 
+    /**Nuestro handler cuando un boton tipo Country es activado
+     * @param clickedButton - El botón activado, depende del texto contenido de este...
+     */
+    private void createButtonsDeCountry(Button clickedButton)
     {
-        countries.getChildren().clear();
         marcas.getChildren().clear();
         vehiculos.getChildren().clear();
-        double buttonWidth = (this.countries.getPrefWidth() / this.noCountriesEU);
-        double buttonHeight = this.countries.getPrefHeight();
-        ArrayList<Button> but = new ArrayList<Button>();
-        for(int i = 0; i < this.noCountriesEU; i++)
-        {
-            but.add(new Button());
-            but.get(i).setPrefWidth(buttonWidth);
-            but.get(i).setPrefHeight(buttonHeight);
-            
-            //Añade tres botones
-        }
-        //Set text
-        but.get(0).setText("Italia");
-        but.get(1).setText("Alemania");
-        but.get(2).setText("España");
-        but.get(3).setText("Reino Unido");
-        but.get(4).setText("Francia");
-        //Set functionality
-        but.get(0).setOnAction(buttonHandlerItalia);
-        but.get(1).setOnAction(buttonHandlerAlemania);
-        but.get(2).setOnAction(buttonHandlerEspaña);
-        but.get(3).setOnAction(buttonHandlerUK);
-        but.get(4).setOnAction(buttonHandlerFrancia);
+        ArrayList<Button> ButtonList = new ArrayList<Button>();
+        double ButtonWidth, ButtonHeight;
+        int Cont = 0;
         
-        AnchorPane.setLeftAnchor(but.get(0), 0.0);
-        AnchorPane.setLeftAnchor(but.get(1), buttonWidth);
-        AnchorPane.setLeftAnchor(but.get(2), buttonWidth * 2);
-        AnchorPane.setLeftAnchor(but.get(3), buttonWidth * 3);
-        AnchorPane.setLeftAnchor(but.get(4), buttonWidth * 4);
-
-        countries.getChildren().addAll(but.get(0),but.get(1),but.get(2),but.get(3),but.get(4));
-    }
-    
-    private void createButtonsAsia()
+        //Consigo el nombre del pais desde el boton...
+        String NameCountry = clickedButton.getText();
+        
+        for( Pais v : this.PaisesActuales)
+        {
+            if(NameCountry.equals(v.getNombre()))
+            {
+                this.FabricantesActuales = v.getFabricantes();
+            }
+        }
+        
+        if (!this.FabricantesActuales.isEmpty())
+        {
+            ButtonWidth = (this.marcas.getPrefWidth() / (double)this.FabricantesActuales.size());
+            ButtonHeight = this.marcas.getPrefHeight();
+            for(Fabricante f : this.FabricantesActuales)
+            {
+                ButtonList.add(new Button());
+                ButtonList.get(Cont).setPrefWidth(ButtonWidth);
+                ButtonList.get(Cont).setPrefHeight(ButtonHeight);
+                ButtonList.get(Cont).setText(f.getNombre());
+                ButtonList.get(Cont).setOnAction(this.ButtonHandlerMarca);
+                AnchorPane.setLeftAnchor(ButtonList.get(Cont), (double)(Cont * ButtonWidth));
+                countries.getChildren().add(ButtonList.get(Cont));
+                Cont ++;
+            }
+        }
+        else
+        {
+         System.out.println("No se encuentran Fabricantes en la base de datos de este Pais");
+        }
+        
+     }
+    /**Nuestro handler cuando un boton tipo Marca es activado
+     * @param clickedButton - El botón activado, depende del texto contenido de este...
+     */
+    private void crearBotonesDeMarca(Button clickedButton)
     {
-        countries.getChildren().clear();
-        marcas.getChildren().clear();
+        // Declaracion de Datos:
         vehiculos.getChildren().clear();
-        double buttonWidth = (this.countries.getPrefWidth() / this.noCountriesAS);
-        double buttonHeight = this.countries.getPrefHeight();
-        ArrayList<Button> but = new ArrayList<Button>();
-        for(int i = 0; i < this.noCountriesAS; i++)
-        {
-            but.add(new Button());
-            but.get(i).setPrefWidth(buttonWidth);
-            but.get(i).setPrefHeight(buttonHeight);
+        ArrayList<AnchorPane> PaneList = new ArrayList<AnchorPane>();
+        ImageView FotoActual;
+        Image miImage;
+        Imagen miImagen;
+        Text miTextCar = new Text();
+        Button miBoton = new Button();
+        double AnchorHeight = this.vehiculos.getPrefHeight() / VehiculosXPagina;
+        double AnchorWidth = (5/6) * this.vehiculos.getPrefWidth(), offsetText = 10.0;
+        int contador = 0, fontSize = 20;
+        String nameMarca = clickedButton.getText();
+         
+         for( Fabricante v : this.FabricantesActuales)
+         {
+            if(nameMarca.equals(v.getNombre()))
+            {
+                this.VehiculosActuales = v.getVehiculos();
+            }
+         }
+         if (!this.VehiculosActuales.isEmpty())
+         {
+            //Crear Imagen, Texto y Boton por ahora.
             
-            //Añade tres botones
-        }
-        //Set text
-        but.get(0).setText("Japon");
-        but.get(1).setText("China");
-        but.get(2).setText("India");
-        //Set functionality
-        but.get(0).setOnAction(buttonHandlerJapon);
-        but.get(1).setOnAction(buttonHandlerChina);
-        but.get(2).setOnAction(buttonHandlerIndia);
-        
-        AnchorPane.setLeftAnchor(but.get(0), 0.0);
-        AnchorPane.setLeftAnchor(but.get(1), buttonWidth);
-        AnchorPane.setLeftAnchor(but.get(2), buttonWidth * 2);
-
-
-        countries.getChildren().addAll(but.get(0),but.get(1),but.get(2));
-    }
-    
-private void createButtonsUSA()
-{
-    marcas.getChildren().clear();
-    vehiculos.getChildren().clear();
-    
-    double buttonWidth = (this.marcas.getPrefWidth() / marcasUSA);
-    double buttonHeight = this.marcas.getPrefHeight();
-     ArrayList<Button> but = new ArrayList<Button>();
-     for(int i = 0; i < this.marcasUSA; i++)
+             for(Vehiculo v : this.VehiculosActuales)
+             {
+                 //Extaigo el path de la imagen y creo mi variable tipo Image...
+                 miImagen = v.getFotos().get(0); //Como es un array de imagenes - Siempre acepta la primera.
+                 miImage = new Image(miImagen.getPath());
+                 FotoActual = new ImageView();
+                 FotoActual.setImage(miImage);
+                 FotoActual.setFitHeight(AnchorHeight);
+                 FotoActual.setFitWidth(AnchorWidth / 4); //Width de Foto : Width / 4
+                 //Extraigo el texto con el nombre del Vehiculo:
+                 miTextCar.setText(v.getModelo());
+                 miTextCar.setFont(new Font(fontSize));
+                 miTextCar.setWrappingWidth((((3 *AnchorWidth) / 4)) - offsetText); //Max Width de texto : 3/4 * Width - offset
+                 //Creo el boton necesario:
+                 miBoton.setText("Ver mas");
+                 miBoton.setOnAction(this.ButtonHandlerVehiculo); //Seteo mi action event!
+                 miBoton.setPrefHeight(AnchorHeight / 4);
+                 miBoton.setPrefWidth(AnchorWidth / 4);
+                                  
+                 //Añado a los tres elementos a su padre - Asumiendo que se posiciones desde un pivote central:
+                  //Ajusto posicion de nuestra imagen:
+                 AnchorPane.setTopAnchor(FotoActual, AnchorHeight / 2);
+                 AnchorPane.setLeftAnchor(FotoActual, 0.0);
+                  //Ajusto posicion de nuestro texto:
+                 AnchorPane.setLeftAnchor(miTextCar, (AnchorWidth / 4) + offsetText);
+                 AnchorPane.setBottomAnchor(miTextCar, (double)fontSize / 2);
+                  //Ajusto posicion de nuestro boton de carro:
+                 AnchorPane.setLeftAnchor(miBoton, (AnchorWidth / 4) + offsetText);
+                 AnchorPane.setTopAnchor(miBoton, AnchorHeight / 8);
+                 //Creación de mi AnchorPane
+                 PaneList.add(new AnchorPane());
+                 PaneList.get(contador).getChildren().addAll(FotoActual, miTextCar, miBoton);
+                 
+                 //Posicion del AnchorPane en el Global
+                 AnchorPane.setTopAnchor(PaneList.get(contador), AnchorHeight * contador);
+                 this.vehiculos.getChildren().add (PaneList.get(contador));
+                 contador++;
+             }
+         }
+        else
         {
-            but.add(new Button());
-            but.get(i).setPrefWidth(buttonWidth);
-            but.get(i).setPrefHeight(buttonHeight);
-            
-            //Añade tres botones
-        }
-        //Set text
-        but.get(0).setText("Chevrolet");
-        but.get(1).setText("GMC");
-        but.get(2).setText("Ford");
-        
-        //Set functionality
-       but.get(0).setOnAction(buttonHandlerChevrolet);
-       but.get(1).setOnAction(buttonHandlerGM);
-       but.get(2).setOnAction(buttonHandlerNA);
-
-        
-        AnchorPane.setLeftAnchor(but.get(0), 0.0);
-        AnchorPane.setLeftAnchor(but.get(1), buttonWidth);
-        AnchorPane.setLeftAnchor(but.get(2), buttonWidth * 2);
-
-        marcas.getChildren().addAll(but.get(0),but.get(1),but.get(2));
-    }
-
-private void createButtonsMexico()
-{
-    marcas.getChildren().clear();
-    vehiculos.getChildren().clear();
-    
-    double buttonWidth = (this.marcas.getPrefWidth() / this.marcasMexico);
-    double buttonHeight = this.marcas.getPrefHeight();
-     ArrayList<Button> but = new ArrayList<Button>();
-     for(int i = 0; i < this.marcasMexico; i++)
-        {
-            but.add(new Button());
-            but.get(i).setPrefWidth(buttonWidth);
-            but.get(i).setPrefHeight(buttonHeight);
-            
-            //Añade tres botones
-        }
-        //Set text
-        but.get(0).setText("Alfa Romeo");
-
-        //Set functionality
-        but.get(0).setOnAction(buttonHandlerAlfaRomeo);
-        
-        AnchorPane.setLeftAnchor(but.get(0), 0.0);
-        
-
-        marcas.getChildren().addAll(but.get(0));
-    }
-
-private void createButtonsEspaña()
-{
-    marcas.getChildren().clear();
-    vehiculos.getChildren().clear();
-    
-    double buttonWidth = (this.marcas.getPrefWidth() / this.marcasEspaña);
-    double buttonHeight = this.marcas.getPrefHeight();
-     ArrayList<Button> but = new ArrayList<Button>();
-     for(int i = 0; i < this.marcasEspaña; i++)
-        {
-            but.add(new Button());
-            but.get(i).setPrefWidth(buttonWidth);
-            but.get(i).setPrefHeight(buttonHeight);
-            
-            //Añade tres botones
-        }
-        //Set text
-        but.get(0).setText("Iveco-Pegaso");
-
-        //Set functionality
-        but.get(0).setOnAction(buttonHandlerNA);
-        
-        AnchorPane.setLeftAnchor(but.get(0), 0.0);
-        
-
-        marcas.getChildren().addAll(but.get(0));
-    }
-private void createButtonsUK()
-{
-    marcas.getChildren().clear();
-    vehiculos.getChildren().clear();
-    
-    double buttonWidth = (this.marcas.getPrefWidth() / this.marcasUK);
-    double buttonHeight = this.marcas.getPrefHeight();
-     ArrayList<Button> but = new ArrayList<Button>();
-     for(int i = 0; i < this.marcasUK; i++)
-        {
-            but.add(new Button());
-            but.get(i).setPrefWidth(buttonWidth);
-            but.get(i).setPrefHeight(buttonHeight);
-            
-            //Añade tres botones
-        }
-        //Set text
-        but.get(0).setText("Bentley");
-
-        //Set functionality
-        but.get(0).setOnAction(buttonHandlerNA);
-        
-        AnchorPane.setLeftAnchor(but.get(0), 0.0);
-        
-
-        marcas.getChildren().addAll(but.get(0));
-    }
-
-private void createButtonsIndia()
-{
-    marcas.getChildren().clear();
-    vehiculos.getChildren().clear();
-    
-    double buttonWidth = (this.marcas.getPrefWidth() / this.marcasIndia);
-    double buttonHeight = this.marcas.getPrefHeight();
-     ArrayList<Button> but = new ArrayList<Button>();
-     for(int i = 0; i < this.marcasIndia; i++)
-        {
-            but.add(new Button());
-            but.get(i).setPrefWidth(buttonWidth);
-            but.get(i).setPrefHeight(buttonHeight);
-            
-            //Añade tres botones
-        }
-        //Set text
-        but.get(0).setText("Mahindra & Mahindra");
-
-        //Set functionality
-        but.get(0).setOnAction(buttonHandlerNA);
-        
-        AnchorPane.setLeftAnchor(but.get(0), 0.0);
-        
-
-        marcas.getChildren().addAll(but.get(0));
-    }
-
-private void createButtonsFrancia()
-{
-    marcas.getChildren().clear();
-    vehiculos.getChildren().clear();
-    
-    double buttonWidth = (this.marcas.getPrefWidth() / this.marcasFrancia);
-    double buttonHeight = this.marcas.getPrefHeight();
-     ArrayList<Button> but = new ArrayList<Button>();
-     for(int i = 0; i < this.marcasFrancia; i++)
-        {
-            but.add(new Button());
-            but.get(i).setPrefWidth(buttonWidth);
-            but.get(i).setPrefHeight(buttonHeight);
-            
-            //Añade tres botones
-        }
-        //Set text
-        but.get(0).setText("Renault");
-        but.get(1).setText("Citroen");
-        but.get(2).setText("Peugeot");
-
-        //Set functionality
-        but.get(0).setOnAction(buttonHandlerNA);
-        but.get(1).setOnAction(buttonHandlerNA);
-        but.get(2).setOnAction(buttonHandlerNA);
-        
-        AnchorPane.setLeftAnchor(but.get(0), 0.0);
-        AnchorPane.setLeftAnchor(but.get(1), buttonWidth);
-        AnchorPane.setLeftAnchor(but.get(2), buttonWidth * 2);
-        
-
-        marcas.getChildren().addAll(but.get(0), but.get(1), but.get(2));
-    }
-
-
-
-      private void createButtonsItalia()
-      {
-    marcas.getChildren().clear();
-    vehiculos.getChildren().clear();
-    
-    double buttonWidth = (this.marcas.getPrefWidth() / this.marcasItalia);
-    double buttonHeight = this.marcas.getPrefHeight();
-     ArrayList<Button> but = new ArrayList<Button>();
-     for(int i = 0; i < this.marcasItalia; i++)
-        {
-            but.add(new Button());
-            but.get(i).setPrefWidth(buttonWidth);
-            but.get(i).setPrefHeight(buttonHeight);
-            
-            //Añade tres botones
-        }
-        //Set text
-        but.get(0).setText("FIAT");
-        but.get(1).setText("Lamborghini");
-        
-        //Set functionality
-     but.get(0).setOnAction(buttonHandlerNA);
-     but.get(1).setOnAction(buttonHandlerNA);
-        
-        AnchorPane.setLeftAnchor(but.get(0), 0.0);
-        AnchorPane.setLeftAnchor(but.get(1), buttonWidth);
-
-        marcas.getChildren().addAll(but.get(0),but.get(1));
-    }
-      
-      
-      private void createButtonsChina()
-      {
-    marcas.getChildren().clear();
-    vehiculos.getChildren().clear();
-    
-    double buttonWidth = (this.marcas.getPrefWidth() / this.marcasItalia);
-    double buttonHeight = this.marcas.getPrefHeight();
-     ArrayList<Button> but = new ArrayList<Button>();
-     for(int i = 0; i < this.marcasItalia; i++)
-        {
-            but.add(new Button());
-            but.get(i).setPrefWidth(buttonWidth);
-            but.get(i).setPrefHeight(buttonHeight);
-            
-            //Añade tres botones
-        }
-        //Set text
-        but.get(0).setText("SAIC");
-        but.get(1).setText("Shangan Motors");
-        but.get(0).setOnAction(buttonHandlerSAIC);
-        but.get(1).setOnAction(buttonHandlerNA);
-        //Set functionality
-     
-        
-        AnchorPane.setLeftAnchor(but.get(0), 0.0);
-        AnchorPane.setLeftAnchor(but.get(1), buttonWidth);
-
-        marcas.getChildren().addAll(but.get(0),but.get(1));
-    }
-      
-      private void createButtonsAlemania()
-{
-    marcas.getChildren().clear();
-    vehiculos.getChildren().clear();
-    
-    double buttonWidth = (this.marcas.getPrefWidth() / this.marcasAlemania);
-    double buttonHeight = this.marcas.getPrefHeight();
-     ArrayList<Button> but = new ArrayList<Button>();
-     for(int i = 0; i < this.marcasAlemania; i++)
-        {
-            but.add(new Button());
-            but.get(i).setPrefWidth(buttonWidth);
-            but.get(i).setPrefHeight(buttonHeight);
-            
-            //Añade tres botones
-        }
-        //Set text
-        but.get(0).setText("BMW");
-        but.get(1).setText("Mercedes-Benz");
-        but.get(0).setOnAction(buttonHandlerBMW);
-        but.get(1).setOnAction(buttonHandlerMercedez);
-        //Set functionality
-     
-        
-
-        
-        AnchorPane.setLeftAnchor(but.get(0), 0.0);
-        AnchorPane.setLeftAnchor(but.get(1), buttonWidth);
-
-
-        marcas.getChildren().addAll(but.get(0),but.get(1));
-    }
-     
-
-      
-      private void createButtonsJapon()
-{
-    marcas.getChildren().clear();
-    vehiculos.getChildren().clear();
-    
-    double buttonWidth = (this.marcas.getPrefWidth() / this.marcasJapon);
-    double buttonHeight = this.marcas.getPrefHeight();
-     ArrayList<Button> but = new ArrayList<Button>();
-     for(int i = 0; i < this.marcasJapon; i++)
-        {
-            but.add(new Button());
-            but.get(i).setPrefWidth(buttonWidth);
-            but.get(i).setPrefHeight(buttonHeight);
-            
-            //Añade tres botones
-        }
-        //Set text
-        but.get(0).setText("Toyota");
-        but.get(1).setText("Lexus");
-        but.get(2).setText("Suzuki");
-        but.get(3).setText("Mazda");
-        but.get(4).setText("Honda");
-
-        
-        //Set functionality
-        but.get(0).setOnAction(buttonHandlerToyota);
-                but.get(1).setOnAction(buttonHandlerNA);
-                but.get(2).setOnAction(buttonHandlerNA);
-                but.get(3).setOnAction(buttonHandlerNA);
-                but.get(4).setOnAction(buttonHandlerNA);
-        
-        AnchorPane.setLeftAnchor(but.get(0), 0.0);
-        AnchorPane.setLeftAnchor(but.get(1), buttonWidth);
-        AnchorPane.setLeftAnchor(but.get(2), buttonWidth * 2);
-        AnchorPane.setLeftAnchor(but.get(3), buttonWidth * 3);
-        AnchorPane.setLeftAnchor(but.get(4), buttonWidth * 4);
-
-
-        marcas.getChildren().addAll(but.get(0),but.get(1),but.get(2),but.get(3),but.get(4));
-    }
-   private void crearVehiculosChevrolet()
-   {
-       vehiculos.getChildren().clear();
-       Rectangle carro1 = new Rectangle();
-       carro1.setWidth(80);
-       carro1.setHeight(80);
-       
-       Text textoCarro = new Text();
-       textoCarro.setText("Spark GT 2019");
-       textoCarro.setFont(new Font(15));
-       textoCarro.setWrappingWidth(100);
-       
-       AnchorPane.setTopAnchor(carro1, 0.0);
-       AnchorPane.setLeftAnchor(textoCarro, 90.0);
-       AnchorPane.setTopAnchor(textoCarro, 30.0);
-       
-       vehiculos.getChildren().addAll(carro1,textoCarro);
-       
-       
-   }
-   
-   private void crearVehiculosBMW()
-   {
-       vehiculos.getChildren().clear();
-       Rectangle carro1 = new Rectangle();
-       carro1.setWidth(80);
-       carro1.setHeight(80);
-       
-       Text textoCarro = new Text();
-       textoCarro.setText("BMW Coupé 2018");
-       textoCarro.setFont(new Font(15));
-       textoCarro.setWrappingWidth(100);
-       
-       AnchorPane.setTopAnchor(carro1, 0.0);
-       AnchorPane.setLeftAnchor(textoCarro, 90.0);
-       AnchorPane.setTopAnchor(textoCarro, 30.0);
-       
-       vehiculos.getChildren().addAll(carro1,textoCarro);
-       
-       
-   }
-   
-   private void crearVehiculosAlfaRomeo()
-   {
-       vehiculos.getChildren().clear();
-       Rectangle carro1 = new Rectangle();
-       carro1.setWidth(80);
-       carro1.setHeight(80);
-       
-       Text textoCarro = new Text();
-       textoCarro.setText("Alfa Romeo Mito 2020");
-       textoCarro.setFont(new Font(15));
-       textoCarro.setWrappingWidth(100);
-       
-       AnchorPane.setTopAnchor(carro1, 0.0);
-       AnchorPane.setLeftAnchor(textoCarro, 90.0);
-       AnchorPane.setTopAnchor(textoCarro, 30.0);
-       
-       vehiculos.getChildren().addAll(carro1,textoCarro);
-       
-       
-   }
-   
-   private void crearVehiculosSAIC()
-   {
-       vehiculos.getChildren().clear();
-       Rectangle carro1 = new Rectangle();
-       carro1.setWidth(80);
-       carro1.setHeight(80);
-       
-       Text textoCarro = new Text();
-       textoCarro.setText("SAIC MG EHS 2020");
-       textoCarro.setFont(new Font(15));
-       textoCarro.setWrappingWidth(100);
-       
-       AnchorPane.setTopAnchor(carro1, 0.0);
-       AnchorPane.setLeftAnchor(textoCarro, 90.0);
-       AnchorPane.setTopAnchor(textoCarro, 30.0);
-       
-       vehiculos.getChildren().addAll(carro1,textoCarro);
-       
-       
-   }
-   
-   private void crearVehiculosNA()
-   {
-       vehiculos.getChildren().clear();
-       
-       
-       Text textoCarro = new Text();
-       textoCarro.setText("No existen Carros en esta categoria. Por favor seleccionar otra.");
-       textoCarro.setFont(new Font(30));
-       textoCarro.setWrappingWidth(1000);
+            //Coloco un mensaje de error:
+            System.out.println("No se encuentran vehiculos en este pais");
+            Text textoCarro = new Text();
+            textoCarro.setText("No existen Carros en esta categoria. Por favor seleccionar otra.");
+            textoCarro.setFont(new Font(30));
+            textoCarro.setWrappingWidth(1000);
        
       
-       AnchorPane.setLeftAnchor(textoCarro, 180.0);
-       AnchorPane.setTopAnchor(textoCarro, 90.0);
-       
-       vehiculos.getChildren().addAll(textoCarro);
-       
-       
-   }
-   
-   
-   
-    private void crearVehiculosGM()
-   {
-       vehiculos.getChildren().clear();
-       Rectangle carro1 = new Rectangle(), carro2 = new Rectangle(), carro3 = new Rectangle();
-       carro1.setWidth(80);
-       carro1.setHeight(80);
-       carro2.setWidth(80);
-       carro2.setHeight(80);
-       carro3.setWidth(80);
-       carro3.setHeight(80);
-       Text textoCarro = new Text();
-       textoCarro.setText("Buick Lacrosse 2021");
-       textoCarro.setFont(new Font(15));
-       textoCarro.setWrappingWidth(100);
-       
-       Text textoCarro2 = new Text();
-       textoCarro2.setText("Pointiac Firebird 2021");
-       textoCarro2.setFont(new Font(15));
-       textoCarro2.setWrappingWidth(100);
-       
-       Text textoCarro3 = new Text();
-       textoCarro3.setText("Oldsmovile Achieva 2021");
-       textoCarro3.setFont(new Font(15));
-       textoCarro3.setWrappingWidth(100);
-       
-       AnchorPane.setTopAnchor(carro1, 0.0);
-       AnchorPane.setTopAnchor(carro2, 90.0);
-       AnchorPane.setTopAnchor(carro3, 180.0);
-       AnchorPane.setLeftAnchor(textoCarro, 90.0);
-       AnchorPane.setTopAnchor(textoCarro, 30.0);
-       AnchorPane.setLeftAnchor(textoCarro2, 90.0);
-       AnchorPane.setTopAnchor(textoCarro2, 110.0);
-       AnchorPane.setLeftAnchor(textoCarro3, 90.0);
-       AnchorPane.setTopAnchor(textoCarro3, 200.0);
-       
-       vehiculos.getChildren().addAll(carro1,textoCarro, textoCarro2, carro2, carro3, textoCarro3);   
-   } 
-    
-    private void crearVehiculosToyota()
-   {
-       vehiculos.getChildren().clear();
-       Rectangle carro1 = new Rectangle(), carro2 = new Rectangle();
-       carro1.setWidth(80);
-       carro1.setHeight(80);
-       carro2.setWidth(80);
-       carro2.setHeight(80);
-       Text textoCarro = new Text();
-       textoCarro.setText("Toyota Etios 2021");
-       textoCarro.setFont(new Font(15));
-       textoCarro.setWrappingWidth(100);
-       
-       Text textoCarro2 = new Text();
-       textoCarro2.setText("Toyota Yarias 2021");
-       textoCarro2.setFont(new Font(15));
-       textoCarro2.setWrappingWidth(100);
-       
-       
-       
-       AnchorPane.setTopAnchor(carro1, 0.0);
-       AnchorPane.setTopAnchor(carro2, 90.0);
-       AnchorPane.setLeftAnchor(textoCarro, 90.0);
-       AnchorPane.setTopAnchor(textoCarro, 30.0);
-       AnchorPane.setLeftAnchor(textoCarro2, 90.0);
-       AnchorPane.setTopAnchor(textoCarro2, 110.0);
-       
-       
-       vehiculos.getChildren().addAll(carro1,textoCarro, textoCarro2, carro2);   
-   } 
-    
-    private void crearVehiculosMercedez()
-   {
-       vehiculos.getChildren().clear();
-       Rectangle carro1 = new Rectangle(), carro2 = new Rectangle();
-       carro1.setWidth(80);
-       carro1.setHeight(80);
-       carro2.setWidth(80);
-       carro2.setHeight(80);
-       Text textoCarro = new Text();
-       textoCarro.setText("M-Benz AMG 2021");
-       textoCarro.setFont(new Font(15));
-       textoCarro.setWrappingWidth(100);
-       
-       Text textoCarro2 = new Text();
-       textoCarro2.setText("C-300 Sport 2021");
-       textoCarro2.setFont(new Font(15));
-       textoCarro2.setWrappingWidth(100);
-       
-       
-       
-       AnchorPane.setTopAnchor(carro1, 0.0);
-       AnchorPane.setTopAnchor(carro2, 90.0);
-       AnchorPane.setLeftAnchor(textoCarro, 90.0);
-       AnchorPane.setTopAnchor(textoCarro, 30.0);
-       AnchorPane.setLeftAnchor(textoCarro2, 90.0);
-       AnchorPane.setTopAnchor(textoCarro2, 110.0);
-       
-       
-       vehiculos.getChildren().addAll(carro1,textoCarro, textoCarro2, carro2);   
-   } 
+            AnchorPane.setLeftAnchor(textoCarro, 180.0);
+            AnchorPane.setTopAnchor(textoCarro, 90.0);
+            vehiculos.getChildren().addAll(textoCarro);
+        }
 
+    }
+    
+    private void handlerBotonVehiculo(Button clickedButton)
+    {
+        // Envio a nueva página de vehiculo!
+        // T B D
+    }
     @FXML
     private void responder(ActionEvent event) {
         try {
