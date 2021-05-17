@@ -76,9 +76,10 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
     private ArrayList<Pais> PaisesActuales = new ArrayList<>();
     private ArrayList<Fabricante> FabricantesActuales = new ArrayList<>();
     private ArrayList<Vehiculo> VehiculosActuales = new ArrayList<>();
-    private final int VehiculosXPagina = 4;
+    private final int VehiculosXPagina = 3;
     private final String colorButton = "-fx-background-color: #DFDFE5", defaultImagePath = "imagenes/default-vehicle.png";
     private int ListaPagInicial = 0, ListaPagFinal = VehiculosXPagina - 1;
+    private int sizeMinusVxP = 0;
 
     
     @Override
@@ -272,8 +273,28 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
          if (!(clickedButton.getText().equals("Sig. Pagina")) || (clickedButton.getText().equals("Prev. Pagina")))
          {
              
-             this.ListaPagFinal = this.VehiculosXPagina - 1;
+             this.ListaPagFinal = this.VehiculosXPagina;
              this.ListaPagInicial = 0;
+             System.out.println(" Entro al null \n");
+         }
+         else if (clickedButton.getText().equals("Prev. Pagina"))
+         {
+             this.ListaPagInicial-=this.VehiculosXPagina;
+             this.ListaPagFinal-= this.VehiculosXPagina;
+         }
+         else
+         {
+             System.out.println(" Entro al Sig. Pagina, esta bien! \n");
+             this.sizeMinusVxP = (this.VehiculosActuales.size()) - this.ListaPagFinal;
+                  if (sizeMinusVxP < this.VehiculosXPagina )
+                  {
+                      this.ListaPagFinal = this.VehiculosActuales.size();
+                  }
+                  else
+                  {
+                      this.ListaPagFinal += this.VehiculosXPagina;
+                  }
+                  this.ListaPagInicial += this.VehiculosXPagina;
          }
    
          
@@ -306,7 +327,7 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
                  }
                  catch(IllegalArgumentException e) 
                  {
-                     System.out.printf("Entro al catch!\n");
+                     
                      miImage = new Image (this.defaultImagePath); //Este path debe de estar correcto.
                  }
                  FotoActual = new ImageView();
@@ -351,7 +372,24 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
                  this.vehiculos.getChildren().add (PaneList.get(contador));
                  contador++;
              }
-                //Creación de Botones de navegación de Página:
+                
+              if (this.ListaPagInicial > 0)
+              {
+                  Button lastPageButtn = new Button();
+                  //Creo el botón de Siguiente Página...
+                  lastPageButtn.setText("Prev. Pagina");
+                  lastPageButtn.setFont(new Font(fontSize/2));
+                  lastPageButtn.setStyle(this.colorButton);
+                  lastPageButtn.setPrefHeight(AnchorHeight / 4);
+                  lastPageButtn.setPrefWidth(AnchorHeight);
+                  lastPageButtn.setOnAction(this.ButtonHandlerMarca);
+                 
+                  AnchorPane.setBottomAnchor(lastPageButtn, offsetText);
+                  AnchorPane.setRightAnchor(lastPageButtn, AnchorHeight + offsetText*2);
+                  this.vehiculos.getChildren().add(lastPageButtn);
+                  
+              }
+              //Creación de Botones de navegación de Página:
               if (this.ListaPagFinal < this.VehiculosActuales.size() )
               {
                   
@@ -364,35 +402,10 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
                   nextPageButtn.setPrefWidth(AnchorHeight);
                   nextPageButtn.setOnAction(this.ButtonHandlerMarca);
                   //Re-defino los boundaries de la lista.
-                  if (((this.VehiculosActuales.size()) - this.ListaPagFinal) < this.VehiculosXPagina )
-                  {
-                      this.ListaPagFinal = this.VehiculosActuales.size();
-                  }
-                  else
-                  {
-                      this.ListaPagFinal += this.VehiculosXPagina;
-                  }
-                  this.ListaPagInicial += this.VehiculosXPagina;
+                  
                   AnchorPane.setBottomAnchor(nextPageButtn, offsetText);
                   AnchorPane.setRightAnchor(nextPageButtn, offsetText);
                   this.vehiculos.getChildren().add(nextPageButtn);
-                  
-              }
-              if (this.ListaPagInicial > 0)
-              {
-                  Button lastPageButtn = new Button();
-                  //Creo el botón de Siguiente Página...
-                  lastPageButtn.setText("Prev. Pagina");
-                  lastPageButtn.setFont(new Font(fontSize/2));
-                  lastPageButtn.setStyle(this.colorButton);
-                  lastPageButtn.setPrefHeight(AnchorHeight / 4);
-                  lastPageButtn.setPrefWidth(AnchorHeight);
-                  lastPageButtn.setOnAction(this.ButtonHandlerMarca);
-                  this.ListaPagInicial-=this.VehiculosXPagina;
-                  this.ListaPagFinal-= this.VehiculosXPagina;
-                  AnchorPane.setBottomAnchor(lastPageButtn, offsetText);
-                  AnchorPane.setRightAnchor(lastPageButtn, AnchorHeight + offsetText*2);
-                  this.vehiculos.getChildren().add(lastPageButtn);
                   
               }
                 
