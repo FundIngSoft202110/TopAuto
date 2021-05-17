@@ -28,6 +28,8 @@ import com.topauto.capaentidades.Imagen;
 import com.topauto.capanegocio.ControladorVehiculo;
 import com.topauto.capaentidades.enumerados.Region;
 import java.util.Locale;
+import javafx.geometry.Rectangle2D;
+import javafx.stage.Screen;
 
 
 public class ControladorEventosPaginaListadoVehiculos implements Initializable {
@@ -112,7 +114,7 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
                  @Override
                  public void handle (ActionEvent event)
                 {
-                    
+                    handlerBotonVehiculo((Button)event.getSource());
                 }
              };
     }    
@@ -341,7 +343,8 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
                  AnchorPane.setBottomAnchor(miBoton, 0.0);
                  //Creación de mi AnchorPane
                  PaneList.add(new AnchorPane());
-                 PaneList.get(contador).getChildren().addAll(FotoActual, miTextCar, miBoton);
+                 PaneList.get(contador).getChildren().add(miTextCar); //Mi text siempre es el primero
+                 PaneList.get(contador).getChildren().addAll(FotoActual, miBoton);
                  
                  //Posicion del AnchorPane en el Global
                  AnchorPane.setTopAnchor(PaneList.get(contador), AnchorHeight * contador);
@@ -414,20 +417,53 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
     private void handlerBotonVehiculo(Button clickedButton)
     {
         try {
+            Text TextLocal = new Text(); //Inicialización de Variable
+            try{
+            TextLocal = (Text)((AnchorPane)clickedButton.getParent()).getChildren().get(0);
+            System.out.printf(TextLocal.getText() + "\n"); //DEBUG - TODO: Erase
+            }
+            catch (NullPointerException e)
+            {
+                System.out.printf("DEBUG: Problemas con la acquisición del texto");
+            }
+            Vehiculo vehiculoAEnviar = new Vehiculo();
+            for (Vehiculo v: this.VehiculosActuales)
+            {
+                if (v.getModelo().equals(TextLocal.getText()))
+                {
+                    vehiculoAEnviar = v;
+                }
+            }
+            if ( vehiculoAEnviar.getId() != null)
+            {
+            //Si encontro el vehiculo, paso a la nueva escena:
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaVehiculoScene.fxml"));
-            
             Parent root = loader.load();
-            
-            ControladorEventosPaginaEscribirPregunta controlador = loader.getController();
-            //Toca pasar el dato del vehiculo
+            ControladorEventosPaginaVehiculo controlador = loader.getController();
+            controlador.setVehiculo(vehiculoAEnviar); //Envio mi vehiculo ...
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             
             stage.setScene(scene);
+            Screen screen = Screen.getPrimary(); //Get info from my screen!
+            Rectangle2D bounds = screen.getVisualBounds();
+            //Set visual bounds for MaximizedScreen:
+            stage.setX(bounds.getMinX());
+            stage.setY(bounds.getMinY());
+            stage.setWidth(bounds.getWidth());
+            stage.setHeight(bounds.getHeight());
+            //Adjust my code to the max boundaries of my screen.
+            stage.setMaximized(true); //Set it maximized
+            //Show my screen!
             stage.show();
                         
-            Stage myStage = (Stage) this.hazPregunta.getScene().getWindow();
+            Stage myStage = (Stage) this.botonContinente.getScene().getWindow();
             myStage.close();
+            }
+            else
+            {
+                System.out.println("DEGUB: El botón no esta asignado a ningun vehiculo");
+            }
             
         } catch (IOException ex) {
             Logger.getLogger(ControladorEventosPaginaListadoVehiculos.class.getName()).log(Level.SEVERE, null, ex);
@@ -446,6 +482,15 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
             Stage stage = new Stage();
             
             stage.setScene(scene);
+            Screen screen = Screen.getPrimary(); //Get info from my screen!
+            Rectangle2D bounds = screen.getVisualBounds();
+            //Set visual bounds for MaximizedScreen:
+            stage.setX(bounds.getMinX());
+            stage.setY(bounds.getMinY());
+            stage.setWidth(bounds.getWidth());
+            stage.setHeight(bounds.getHeight());
+            //Adjust my code to the max boundaries of my screen.
+            stage.setMaximized(true); //Set it maximized
             stage.show();
                         
             Stage myStage = (Stage) this.resPregunta.getScene().getWindow();
@@ -469,6 +514,15 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
             Stage stage = new Stage();
             
             stage.setScene(scene);
+            Screen screen = Screen.getPrimary(); //Get info from my screen!
+            Rectangle2D bounds = screen.getVisualBounds();
+            //Set visual bounds for MaximizedScreen:
+            stage.setX(bounds.getMinX());
+            stage.setY(bounds.getMinY());
+            stage.setWidth(bounds.getWidth());
+            stage.setHeight(bounds.getHeight());
+            //Adjust my code to the max boundaries of my screen.
+            stage.setMaximized(true); //Set it maximized
             stage.show();
                         
             Stage myStage = (Stage) this.hazPregunta.getScene().getWindow();
@@ -492,6 +546,15 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
             Stage stage = new Stage();
             
             stage.setScene(scene);
+            Screen screen = Screen.getPrimary(); //Get info from my screen!
+            Rectangle2D bounds = screen.getVisualBounds();
+            //Set visual bounds for MaximizedScreen:
+            stage.setX(bounds.getMinX());
+            stage.setY(bounds.getMinY());
+            stage.setWidth(bounds.getWidth());
+            stage.setHeight(bounds.getHeight());
+            //Adjust my code to the max boundaries of my screen.
+            stage.setMaximized(true); //Set it maximized
             stage.show();
                         
             Stage myStage = (Stage) this.hazReseña.getScene().getWindow();
@@ -516,6 +579,15 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
             stage.setTitle("Perfil Usuario");
             
             stage.setScene(scene);
+            Screen screen = Screen.getPrimary(); //Get info from my screen!
+            Rectangle2D bounds = screen.getVisualBounds();
+            //Set visual bounds for MaximizedScreen:
+            stage.setX(bounds.getMinX());
+            stage.setY(bounds.getMinY());
+            stage.setWidth(bounds.getWidth());
+            stage.setHeight(bounds.getHeight());
+            //Adjust my code to the max boundaries of my screen.
+            stage.setMaximized(true); //Set it maximized
             stage.show();
                         
             Stage myStage = (Stage) this.perfil.getScene().getWindow();
@@ -540,6 +612,15 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
             stage.setTitle("TopAuto");
             
             stage.setScene(scene);
+            Screen screen = Screen.getPrimary(); //Get info from my screen!
+            Rectangle2D bounds = screen.getVisualBounds();
+            //Set visual bounds for MaximizedScreen:
+            stage.setX(bounds.getMinX());
+            stage.setY(bounds.getMinY());
+            stage.setWidth(bounds.getWidth());
+            stage.setHeight(bounds.getHeight());
+            //Adjust my code to the max boundaries of my screen.
+            stage.setMaximized(true); //Set it maximized
             stage.show();
                         
             Stage myStage = (Stage) this.topAuto.getScene().getWindow();

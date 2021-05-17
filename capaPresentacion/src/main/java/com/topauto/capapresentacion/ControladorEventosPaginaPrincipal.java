@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,6 +19,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class ControladorEventosPaginaPrincipal implements Initializable {
@@ -150,6 +152,15 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
             Stage stage = new Stage();
             
             stage.setScene(scene);
+            Screen screen = Screen.getPrimary(); //Get info from my screen!
+            Rectangle2D bounds = screen.getVisualBounds();
+            //Set visual bounds for MaximizedScreen:
+            stage.setX(bounds.getMinX());
+            stage.setY(bounds.getMinY());
+            stage.setWidth(bounds.getWidth());
+            stage.setHeight(bounds.getHeight());
+            //Adjust my code to the max boundaries of my screen.
+            stage.setMaximized(true); //Set it maximized
             stage.show();
                         
             Stage myStage = (Stage) this.botonHazUnaPregunta.getScene().getWindow();
@@ -175,6 +186,15 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
             Stage stage = new Stage();
             
             stage.setScene(scene);
+            Screen screen = Screen.getPrimary(); //Get info from my screen!
+            Rectangle2D bounds = screen.getVisualBounds();
+            //Set visual bounds for MaximizedScreen:
+            stage.setX(bounds.getMinX());
+            stage.setY(bounds.getMinY());
+            stage.setWidth(bounds.getWidth());
+            stage.setHeight(bounds.getHeight());
+            //Adjust my code to the max boundaries of my screen.
+            stage.setMaximized(true); //Set it maximized
             stage.show();
                         
             Stage myStage = (Stage) this.botonHazUnaReseña.getScene().getWindow();
@@ -200,6 +220,15 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
             Stage stage = new Stage();
             
             stage.setScene(scene);
+            Screen screen = Screen.getPrimary(); //Get info from my screen!
+            Rectangle2D bounds = screen.getVisualBounds();
+            //Set visual bounds for MaximizedScreen:
+            stage.setX(bounds.getMinX());
+            stage.setY(bounds.getMinY());
+            stage.setWidth(bounds.getWidth());
+            stage.setHeight(bounds.getHeight());
+            //Adjust my code to the max boundaries of my screen.
+            stage.setMaximized(true); //Set it maximized
             stage.show();
                         
             Stage myStage = (Stage) this.botonHazUnaPregunta.getScene().getWindow();
@@ -232,6 +261,15 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
             Scene scene = new Scene(root);
             
             stage.setScene(scene);
+            Screen screen = Screen.getPrimary(); //Get info from my screen!
+            Rectangle2D bounds = screen.getVisualBounds();
+            //Set visual bounds for MaximizedScreen:
+            stage.setX(bounds.getMinX());
+            stage.setY(bounds.getMinY());
+            stage.setWidth(bounds.getWidth());
+            stage.setHeight(bounds.getHeight());
+            //Adjust my code to the max boundaries of my screen.
+            stage.setMaximized(true); //Set it maximized
             stage.show();
                         
             Stage myStage = (Stage) this.botonIngresarOPerfil.getScene().getWindow();
@@ -255,6 +293,15 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
             stage.setTitle("Perfil Usuario");
             
             stage.setScene(scene);
+            Screen screen = Screen.getPrimary(); //Get info from my screen!
+            Rectangle2D bounds = screen.getVisualBounds();
+            //Set visual bounds for MaximizedScreen:
+            stage.setX(bounds.getMinX());
+            stage.setY(bounds.getMinY());
+            stage.setWidth(bounds.getWidth());
+            stage.setHeight(bounds.getHeight());
+            //Adjust my code to the max boundaries of my screen.
+            stage.setMaximized(true); //Set it maximized
             stage.show();
                         
             Stage myStage = (Stage) this.botonIngresarOPerfil.getScene().getWindow();
@@ -284,6 +331,15 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
             stage.setTitle("TopAuto Vehiculos");
             
             stage.setScene(scene);
+            Screen screen = Screen.getPrimary(); //Get info from my screen!
+            Rectangle2D bounds = screen.getVisualBounds();
+            //Set visual bounds for MaximizedScreen:
+            stage.setX(bounds.getMinX());
+            stage.setY(bounds.getMinY());
+            stage.setWidth(bounds.getWidth());
+            stage.setHeight(bounds.getHeight());
+            //Adjust my code to the max boundaries of my screen.
+            stage.setMaximized(true); //Set it maximized
             stage.show();
                         
             Stage myStage = (Stage) this.botonIrAlListado.getScene().getWindow();
