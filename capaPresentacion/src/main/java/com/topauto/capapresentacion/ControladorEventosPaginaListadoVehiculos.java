@@ -413,8 +413,25 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
     
     private void handlerBotonVehiculo(Button clickedButton)
     {
-        // Envio a nueva página de vehiculo!
-        // T B D
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaVehiculoScene.fxml"));
+            
+            Parent root = loader.load();
+            
+            ControladorEventosPaginaEscribirPregunta controlador = loader.getController();
+            //Toca pasar el dato del vehiculo
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            
+            stage.setScene(scene);
+            stage.show();
+                        
+            Stage myStage = (Stage) this.hazPregunta.getScene().getWindow();
+            myStage.close();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(ControladorEventosPaginaListadoVehiculos.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     @FXML
     private void responder(ActionEvent event) {
