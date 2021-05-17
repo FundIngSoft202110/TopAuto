@@ -9,11 +9,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class ControladorEventosPaginaInicial implements Initializable {
@@ -37,7 +35,7 @@ public class ControladorEventosPaginaInicial implements Initializable {
             stage.setMaxHeight(500);
             stage.setTitle("Admin TopAuto");
             
-            ControladorEventosPaginaRegistro controlador = loader.getController();
+            ControladorEventosPaginaAdmin controlador = loader.getController();
             Parent root = loader.load();
             Scene scene = new Scene(root);
             
@@ -49,7 +47,7 @@ public class ControladorEventosPaginaInicial implements Initializable {
             myStage.close();
             
         } catch (IOException ex) {
-            Logger.getLogger(ControladorEventosPaginaListadoVehiculos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorEventosPaginaInicial.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -74,7 +72,7 @@ public class ControladorEventosPaginaInicial implements Initializable {
             myStage.close();
             
         } catch (IOException ex) {
-            Logger.getLogger(ControladorEventosPaginaListadoVehiculos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorEventosPaginaInicial.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
