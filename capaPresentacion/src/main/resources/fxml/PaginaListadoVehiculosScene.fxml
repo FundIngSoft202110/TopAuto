@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.paint.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="977.0" prefWidth="1366.0" style="-fx-background-color: FFFFFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topauto.capapresentacion.ControladorEventosPaginaListadoVehiculos">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="977.0" prefWidth="1366.0" style="-fx-background-color: FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topauto.capapresentacion.ControladorEventosPaginaListadoVehiculos">
    <children>
       <ScrollPane pannable="true" prefHeight="977.0" prefWidth="1366.0" style="-fx-background-color: FFFFFF;">
         <content>
@@ -77,16 +72,16 @@
                   <Line endX="1254.0" layoutX="98.0" layoutY="670.0" startX="-100.0" />
                   <AnchorPane fx:id="countries" layoutY="596.0" prefHeight="70.0" prefWidth="1350.0" />
                   <Line endX="1262.0" layoutX="104.0" layoutY="743.0" startX="-100.0" />
-                  <Button fx:id="botonAmerica" layoutX="120.0" layoutY="507.0" mnemonicParsing="false" onAction="#clickNorAmerica" prefHeight="74.0" prefWidth="284.0" style="-fx-background-color: FFFFFF;" text="America" textFill="#686868">
+                  <Button fx:id="botonContinente" layoutX="120.0" layoutY="507.0" mnemonicParsing="false" onAction="#clickContinent" prefHeight="74.0" prefWidth="284.0" style="-fx-background-color: FFFFFF;" text="America" textFill="#686868">
                      <font>
                         <Font name="Rockwell" size="20.0" />
                      </font></Button>
-                  <Button fx:id="botonEuropa" layoutX="558.0" layoutY="523.0" mnemonicParsing="false" onAction="#clickEuropa" prefHeight="57.0" prefWidth="284.0" style="-fx-background-color: FFFFFF;" text="Europa" textFill="#686868">
+                  <Button fx:id="botonContinente2" layoutX="558.0" layoutY="523.0" mnemonicParsing="false" onAction="#clickContinent" prefHeight="57.0" prefWidth="284.0" style="-fx-background-color: FFFFFF;" text="Europa" textFill="#686868">
                      <font>
                         <Font name="Rockwell" size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="botonAsia" layoutX="985.0" layoutY="523.0" mnemonicParsing="false" onAction="#clickAsia" prefHeight="57.0" prefWidth="284.0" style="-fx-background-color: FFFFFF;" text="Asia" textFill="#686868">
+                  <Button fx:id="botonContinente3" layoutX="985.0" layoutY="523.0" mnemonicParsing="false" onAction="#clickContinent" prefHeight="57.0" prefWidth="284.0" style="-fx-background-color: FFFFFF;" text="Asia" textFill="#686868">
                      <font>
                         <Font name="Rockwell" size="20.0" />
                      </font>

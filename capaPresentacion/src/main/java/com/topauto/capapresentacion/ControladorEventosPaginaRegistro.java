@@ -74,5 +74,4 @@ public class ControladorEventosPaginaRegistro implements Initializable {
             Logger.getLogger(ControladorEventosPaginaListadoVehiculos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
 }

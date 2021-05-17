@@ -118,4 +118,5 @@ public class Usuario {
         return new Usuario(this.nombre, this.userName, this.correo, this.descripcion, this.contrasenia, this.estaVerficado, 
                 this.publicaciones, this.foto, this.pais);
     }
+
 }

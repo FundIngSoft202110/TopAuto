@@ -111,8 +111,30 @@ public class ControladorPerfil {
     }
 
     public boolean acceder(String identificador, String contrasenia) {
-        //YERROOOOOOOOOOO
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //Yerro
+        try{
+            if(esCorreo(identificador) == true){
+                for(Usuario u : usuarios){
+                    if(u.getCorreo().equals(identificador) && u.getContrasenia().equals(contrasenia)){
+                        
+                        return true;
+                    }
+                }                
+            }
+            if(esCorreo(identificador) == false){
+                for(Usuario u : usuarios){
+                    if(u.getUserName().equals(identificador) && u.getContrasenia().equals(contrasenia)){
+                        
+                        return true;
+                    }
+                } 
+            }
+        }
+        catch(Exception e){
+            System.out.println("Ocurrio un error acceder.");
+        }
+        return false;
+        
     }
 
     public boolean registrarPerfil(Usuario usuario) {
@@ -148,10 +170,17 @@ public class ControladorPerfil {
         return false;
     }
 
-    public boolean modificarContraseña(String nueva) {
+    public boolean modificarContraseña(String identificador, String nueva) {
         //Yerro
         try{
-            return true;
+            for(Usuario u : usuarios){
+                if(u.getUserName().equals(identificador)){
+                    u.setContrasenia(nueva);
+                    if(persistenciaPerfil.persistirPerfilModificado(u) == true){
+                        return true;
+                    }
+                }
+            }
         }
         catch(Exception e){
             System.out.println("Ocurrio un error al modificar la contraseña.");

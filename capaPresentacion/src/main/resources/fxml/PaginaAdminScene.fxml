@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="473.0" maxWidth="840.0" minHeight="473.0" minWidth="840.0" prefHeight="473.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topauto.capapresentacion.ControladorEventosPaginaAdmin">
+   <children>
+      <ImageView fitHeight="482.0" fitWidth="847.0" layoutY="-1.0">
+         <image>
+            <Image url="@../imagenes/Fondo%20Tesla.jpg" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="326.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Top">
+         <font>
+            <Font name="Arial" size="50.0" />
+         </font>
+      </Text>
+      <Text fill="#c60404" layoutX="412.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Auto">
+         <font>
+            <Font name="Arial" size="50.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnVolver" layoutX="666.0" layoutY="416.0" mnemonicParsing="false" onAction="#regresar" opacity="0.9" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: #070707; -fx-border-color: #6DFF00;" text="Volver" textFill="WHITE" />
+      <TableView fx:id="tablaUsuarios" layoutX="80.0" layoutY="75.0" onMouseClicked="#seleccionar" prefHeight="277.0" prefWidth="680.0" style="-fx-border-color: GREEN;">
+        <columns>
+          <TableColumn fx:id="colNombre" editable="false" prefWidth="208.0" text="Nombre Completo" />
+          <TableColumn fx:id="colUsername" editable="false" prefWidth="147.0" text="Nombre de Usuario" />
+            <TableColumn fx:id="colCorreo" editable="false" prefWidth="216.0" text="Correo" />
+            <TableColumn fx:id="colClave" editable="false" prefWidth="107.0" text="Contraseña" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnEliminar" layoutX="474.0" layoutY="416.0" mnemonicParsing="false" onAction="#eliminar" opacity="0.9" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: #070707; -fx-border-color: #6DFF00;" text="Eliminar" textFill="WHITE" />
+      <Button fx:id="btnModificar" layoutX="285.0" layoutY="416.0" mnemonicParsing="false" onAction="#modificar" opacity="0.9" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: #070707; -fx-border-color: #6DFF00;" text="Modificar" textFill="WHITE" />
+      <Button fx:id="btnAgregar" layoutX="80.0" layoutY="416.0" mnemonicParsing="false" onAction="#agregar" opacity="0.9" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: #070707; -fx-border-color: #6DFF00;" text="Agregar" textFill="WHITE" />
+      <Text fill="GREEN" layoutX="80.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuarios">
+         <font>
+            <Font name="Arial" size="30.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtNombre" layoutX="80.0" layoutY="364.0" prefHeight="25.0" prefWidth="188.0" promptText="Nombre Completo" />
+      <TextField fx:id="txtUserName" layoutX="285.0" layoutY="364.0" prefHeight="25.0" prefWidth="140.0" promptText="Nombre de Usuario" />
+      <TextField fx:id="txtCorreo" layoutX="451.0" layoutY="364.0" prefHeight="25.0" prefWidth="188.0" promptText="Correo" />
+      <TextField fx:id="txtClave" layoutX="657.0" layoutY="364.0" prefHeight="25.0" prefWidth="103.0" promptText="Clave" />
+
+   </children>
+</AnchorPane>

@@ -20,8 +20,6 @@ TopAuto es una plataforma de reseñas de vehículos (aplicación web), que brind
    Estudiante de 7mo semestre de la universidad Javeriana. Daniel tiene conocimientos en lenguajes como C/C++ y Java. Ha trabajado con Python para análisis de datos y automatización de navegadores con Selenium. Le gusta mucho el desarrollo de videojuegos y tiene amplios conocimientos en C# para Unity. 
    
    Lenguaje favorito: C#
-
-   RAMOOOOOOOOOOO  
    
    Proyectos independientes realizados: 
    - Aplicación móvil para rutinas de entrenamiento
@@ -36,7 +34,6 @@ TopAuto es una plataforma de reseñas de vehículos (aplicación web), que brind
   ![image](https://user-images.githubusercontent.com/53922735/107678984-0750c880-6c6a-11eb-8f74-1d09b522a570.png)
   
   Estudiante de sexto semestre de Ingenieria de Sistemas en la Universidad Javeriana de Bogota. Maneja los lenguajes de programacion c, c++, java y progamacion de aplicaciones mobiles. Tambien, esta aprendiendo programacion en Python y perfeccionando programacion en java.
-  CONFIRMOOO
 
 ### Juan Pablo Amorocho
 
@@ -63,4 +60,3 @@ TopAuto es una plataforma de reseñas de vehículos (aplicación web), que brind
 
 ![SbImg](https://user-images.githubusercontent.com/78318752/107680914-729b9a00-6c6c-11eb-91ff-6e9b646321f2.jpeg)
 
-PROBADO POR MANUEL

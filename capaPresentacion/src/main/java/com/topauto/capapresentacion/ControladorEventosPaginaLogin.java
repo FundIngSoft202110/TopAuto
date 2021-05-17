@@ -32,12 +32,7 @@ public class ControladorEventosPaginaLogin implements Initializable {
     private Button btIngreso;
     @FXML
     private Button btRegistro;
-    
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-    }
-    
+        
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -45,6 +40,7 @@ public class ControladorEventosPaginaLogin implements Initializable {
 
     @FXML
     private void acceder(ActionEvent event) {
+        
     }
 
     @FXML
