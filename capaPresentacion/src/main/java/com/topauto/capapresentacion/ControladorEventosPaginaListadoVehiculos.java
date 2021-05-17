@@ -14,10 +14,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -28,6 +26,9 @@ import com.topauto.capaentidades.Vehiculo;
 import com.topauto.capaentidades.Fabricante;
 import com.topauto.capaentidades.Imagen;
 import com.topauto.capanegocio.ControladorVehiculo;
+import com.topauto.capaentidades.enumerados.Region;
+import java.util.Locale;
+
 
 public class ControladorEventosPaginaListadoVehiculos implements Initializable {
     
@@ -50,21 +51,14 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
     @FXML
     private Button perfil;
     @FXML
-    private TextField texto;
-    @FXML
     private Button topAuto;
     @FXML
-    private ImageView norAmerica;
+    private Button botonContinente; //Corresponde a America.
     @FXML
-    private Button botonContinente;
+    private Button botonContinente2; //Corresponde a Europa.
     @FXML
-    private Button botonContinente2;
-    @FXML
-    private Button botonContinente3;
-    @FXML
-    private Button botonPais;
-    @FXML
-    private Button botonVehiculo;
+    private Button botonContinente3; //Corresponde a Asia.
+
 
     
         //            EventHandlers - ActionEvents asignados a botones:
@@ -72,13 +66,17 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
     EventHandler<ActionEvent> ButtonHandlerMarca;
     EventHandler<ActionEvent> ButtonHandlerVehiculo;
     ControladorVehiculo ControllerDatos;
+ 
     
           //            Variables locales de la clase:
-    private ArrayList<Pais> MisPaises;
-    private ArrayList<Pais> PaisesActuales = new ArrayList<Pais>();
-    private ArrayList<Fabricante> FabricantesActuales = new ArrayList<Fabricante>();
-    private ArrayList<Vehiculo> VehiculosActuales = new ArrayList<Vehiculo>();
-    private final int VehiculosXPagina = 6;
+    //todo - variable obsoleta, al probar funcionalidad, borrar:
+    private ArrayList<Fabricante> MisFabricantes;
+    private ArrayList<Pais> PaisesActuales = new ArrayList<>();
+    private ArrayList<Fabricante> FabricantesActuales = new ArrayList<>();
+    private ArrayList<Vehiculo> VehiculosActuales = new ArrayList<>();
+    private final int VehiculosXPagina = 4;
+    private final String colorButton = "-fx-background-color: #DFDFE5", defaultImagePath = "imagenes/default-vehicle.png";
+    private int ListaPagInicial = 0, ListaPagFinal = VehiculosXPagina - 1;
 
     
     @Override
@@ -88,8 +86,7 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
      this.ControllerDatos = new ControladorVehiculo();
      ControllerDatos.descargarDatos();
      
-     
-     this.MisPaises = ControllerDatos.getPaises();
+     this.MisFabricantes = ControllerDatos.getFabricantes();
 
      
      //Creación de EventHandlers que se le asignaran a los botones creados:
@@ -106,6 +103,7 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
                  @Override
                  public void handle (ActionEvent event)
                 {
+                    
                     crearBotonesDeMarca((Button)event.getSource());
                 }
              };
@@ -114,7 +112,7 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
                  @Override
                  public void handle (ActionEvent event)
                 {
-                    crearBotonesDeMarca((Button)event.getSource());
+                    
                 }
              };
     }    
@@ -131,25 +129,49 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
     {
         
         //Borro los botones de anteriores busquedas, si hay:
+        //todo - No me esta realizando el clear - FIX:
         countries.getChildren().clear();
         marcas.getChildren().clear();
         vehiculos.getChildren().clear();
+        PaisesActuales.clear();
         
-        ArrayList<Button> but = new ArrayList<Button>();
+        ArrayList<Button> but = new ArrayList<>();
         double ButtonWidth, ButtonHeight;
         int cont = 0;
+        
+        boolean CountryExists = false;
         
         //Recibo el nombre del continente colocado...
         String nameContinent = clickedButton.getText();
         
         //Hay tres areas programadas estáticamente - América, Europa y Asia:
-        if(nameContinent.equals("America") || nameContinent.equals("Europa") || nameContinent.equals("Asia"))
+        //botonContinente = America, botonContinente2 = Europa, botonContinente3 = Asia
+        if(clickedButton.equals(this.botonContinente) || clickedButton.equals(this.botonContinente2) || clickedButton.equals(this.botonContinente3))
         {
-            for ( Pais v : this.MisPaises)
+            // Igualo mis Enumerados REGION equivalentes dependiendo del boton activado:
+            if ( clickedButton.equals(this.botonContinente)) nameContinent = Region.AMERICAS.toString();
+            else if (clickedButton.equals(this.botonContinente2)) nameContinent = Region.EUROPA.toString();
+            else if (clickedButton.equals(this.botonContinente3)) nameContinent = Region.ASIA.toString();
+            for ( Fabricante f : this.MisFabricantes)
             {
-                if(v.getNombre().equals(nameContinent))
+                
+                //getRegion() devuelve un enumerado, se convierte en un string y lo comparo con el anterior!
+                if(f.getRegion().toString().equals(nameContinent))
                 {
-                    this.PaisesActuales.add(v);
+                    //Por el diseño y por tiempo, toca implementar otro for dentro, aumentando la complejidad.
+                    if (! this.PaisesActuales.isEmpty())
+                    {
+                       for ( Pais p : this.PaisesActuales)
+                       {
+                          if ( p.equals(f.getPais()))
+                          {
+                              CountryExists = true;
+                          }
+                       }
+                    }
+                    if ( CountryExists == true)CountryExists = false;
+                    else this.PaisesActuales.add(f.getPais());
+
                 }
             }
             if(!this.PaisesActuales.isEmpty())
@@ -162,6 +184,7 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
                    but.get(cont).setPrefWidth(ButtonWidth);
                    but.get(cont).setPrefHeight(ButtonHeight);
                    but.get(cont).setText(v.getNombre());
+                   but.get(cont).setStyle(this.colorButton);
                    but.get(cont).setOnAction(this.ButtonHandlerPais);
                    AnchorPane.setLeftAnchor(but.get(cont), (double)(cont * ButtonWidth));
                    countries.getChildren().add(but.get(cont));
@@ -188,7 +211,7 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
     {
         marcas.getChildren().clear();
         vehiculos.getChildren().clear();
-        ArrayList<Button> ButtonList = new ArrayList<Button>();
+        ArrayList<Button> ButtonList = new ArrayList<>();
         double ButtonWidth, ButtonHeight;
         int Cont = 0;
         
@@ -213,9 +236,10 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
                 ButtonList.get(Cont).setPrefWidth(ButtonWidth);
                 ButtonList.get(Cont).setPrefHeight(ButtonHeight);
                 ButtonList.get(Cont).setText(f.getNombre());
+                ButtonList.get(Cont).setStyle(this.colorButton);
                 ButtonList.get(Cont).setOnAction(this.ButtonHandlerMarca);
                 AnchorPane.setLeftAnchor(ButtonList.get(Cont), (double)(Cont * ButtonWidth));
-                countries.getChildren().add(ButtonList.get(Cont));
+                marcas.getChildren().add(ButtonList.get(Cont));
                 Cont ++;
             }
         }
@@ -232,16 +256,24 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
     {
         // Declaracion de Datos:
         vehiculos.getChildren().clear();
-        ArrayList<AnchorPane> PaneList = new ArrayList<AnchorPane>();
+        ArrayList<AnchorPane> PaneList = new ArrayList<>();
         ImageView FotoActual;
         Image miImage;
         Imagen miImagen;
-        Text miTextCar = new Text();
-        Button miBoton = new Button();
+        Text miTextCar;
+        Button miBoton;
         double AnchorHeight = this.vehiculos.getPrefHeight() / VehiculosXPagina;
         double AnchorWidth = (5/6) * this.vehiculos.getPrefWidth(), offsetText = 10.0;
         int contador = 0, fontSize = 20;
         String nameMarca = clickedButton.getText();
+         
+         if (!(clickedButton.getText().equals("Sig. Pagina")) || (clickedButton.getText().equals("Prev. Pagina")))
+         {
+             
+             this.ListaPagFinal = this.VehiculosXPagina - 1;
+             this.ListaPagInicial = 0;
+         }
+   
          
          for( Fabricante v : this.FabricantesActuales)
          {
@@ -250,39 +282,63 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
                 this.VehiculosActuales = v.getVehiculos();
             }
          }
+         if (this.VehiculosActuales.size() < this.VehiculosXPagina)
+         {
+             this.ListaPagFinal = this.VehiculosActuales.size();
+         }
+         System.out.println(this.ListaPagInicial + " and " + this.ListaPagFinal + "\n");
          if (!this.VehiculosActuales.isEmpty())
          {
             //Crear Imagen, Texto y Boton por ahora.
             
-             for(Vehiculo v : this.VehiculosActuales)
+             for(Vehiculo v : this.VehiculosActuales.subList(this.ListaPagInicial, this.ListaPagFinal))
              {
                  //Extaigo el path de la imagen y creo mi variable tipo Image...
-                 miImagen = v.getFotos().get(0); //Como es un array de imagenes - Siempre acepta la primera.
-                 miImage = new Image(miImagen.getPath());
+                 miImagen = v.getFotos().get(0);
+                 miTextCar = new Text();
+                 miBoton = new Button();
+                 //Como es un array de imagenes - Siempre acepta la primera.
+                 try
+                 {
+                    miImage = new Image(miImagen.getPath());
+                 }
+                 catch(IllegalArgumentException e) 
+                 {
+                     System.out.printf("Entro al catch!\n");
+                     miImage = new Image (this.defaultImagePath); //Este path debe de estar correcto.
+                 }
                  FotoActual = new ImageView();
                  FotoActual.setImage(miImage);
                  FotoActual.setFitHeight(AnchorHeight);
-                 FotoActual.setFitWidth(AnchorWidth / 4); //Width de Foto : Width / 4
+                 FotoActual.setFitWidth(AnchorHeight); //Width de Foto : esCuadrado
                  //Extraigo el texto con el nombre del Vehiculo:
-                 miTextCar.setText(v.getModelo());
+                 if (v.getModelo().isEmpty())
+                 {
+                     miTextCar.setText("Name not specified.");
+                 }
+                 else miTextCar.setText(v.getModelo());
+                 
+                 
                  miTextCar.setFont(new Font(fontSize));
                  miTextCar.setWrappingWidth((((3 *AnchorWidth) / 4)) - offsetText); //Max Width de texto : 3/4 * Width - offset
                  //Creo el boton necesario:
                  miBoton.setText("Ver mas");
+                 miBoton.setFont(new Font(fontSize/2));
+                 miBoton.setStyle(this.colorButton);
                  miBoton.setOnAction(this.ButtonHandlerVehiculo); //Seteo mi action event!
                  miBoton.setPrefHeight(AnchorHeight / 4);
-                 miBoton.setPrefWidth(AnchorWidth / 4);
+                 miBoton.setPrefWidth(AnchorHeight);
                                   
                  //Añado a los tres elementos a su padre - Asumiendo que se posiciones desde un pivote central:
                   //Ajusto posicion de nuestra imagen:
-                 AnchorPane.setTopAnchor(FotoActual, AnchorHeight / 2);
-                 AnchorPane.setLeftAnchor(FotoActual, 0.0);
+                 AnchorPane.setTopAnchor(FotoActual, 0.0);
+                 AnchorPane.setLeftAnchor(FotoActual, offsetText);
                   //Ajusto posicion de nuestro texto:
-                 AnchorPane.setLeftAnchor(miTextCar, (AnchorWidth / 4) + offsetText);
-                 AnchorPane.setBottomAnchor(miTextCar, (double)fontSize / 2);
+                 AnchorPane.setLeftAnchor(miTextCar, (AnchorHeight + (offsetText * 2)));
+                 AnchorPane.setTopAnchor(miTextCar, 0.0);
                   //Ajusto posicion de nuestro boton de carro:
-                 AnchorPane.setLeftAnchor(miBoton, (AnchorWidth / 4) + offsetText);
-                 AnchorPane.setTopAnchor(miBoton, AnchorHeight / 8);
+                 AnchorPane.setLeftAnchor(miBoton, (AnchorHeight + (offsetText * 2)));
+                 AnchorPane.setBottomAnchor(miBoton, 0.0);
                  //Creación de mi AnchorPane
                  PaneList.add(new AnchorPane());
                  PaneList.get(contador).getChildren().addAll(FotoActual, miTextCar, miBoton);
@@ -292,6 +348,51 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
                  this.vehiculos.getChildren().add (PaneList.get(contador));
                  contador++;
              }
+                //Creación de Botones de navegación de Página:
+              if (this.ListaPagFinal < this.VehiculosActuales.size() )
+              {
+                  
+                  Button nextPageButtn = new Button();
+                  //Creo el botón de Siguiente Página...
+                  nextPageButtn.setText("Sig. Pagina");
+                  nextPageButtn.setFont(new Font(fontSize/2));
+                  nextPageButtn.setStyle(this.colorButton);
+                  nextPageButtn.setPrefHeight(AnchorHeight / 4);
+                  nextPageButtn.setPrefWidth(AnchorHeight);
+                  nextPageButtn.setOnAction(this.ButtonHandlerMarca);
+                  //Re-defino los boundaries de la lista.
+                  if (((this.VehiculosActuales.size()) - this.ListaPagFinal) < this.VehiculosXPagina )
+                  {
+                      this.ListaPagFinal = this.VehiculosActuales.size();
+                  }
+                  else
+                  {
+                      this.ListaPagFinal += this.VehiculosXPagina;
+                  }
+                  this.ListaPagInicial += this.VehiculosXPagina;
+                  AnchorPane.setBottomAnchor(nextPageButtn, offsetText);
+                  AnchorPane.setRightAnchor(nextPageButtn, offsetText);
+                  this.vehiculos.getChildren().add(nextPageButtn);
+                  
+              }
+              if (this.ListaPagInicial > 0)
+              {
+                  Button lastPageButtn = new Button();
+                  //Creo el botón de Siguiente Página...
+                  lastPageButtn.setText("Prev. Pagina");
+                  lastPageButtn.setFont(new Font(fontSize/2));
+                  lastPageButtn.setStyle(this.colorButton);
+                  lastPageButtn.setPrefHeight(AnchorHeight / 4);
+                  lastPageButtn.setPrefWidth(AnchorHeight);
+                  lastPageButtn.setOnAction(this.ButtonHandlerMarca);
+                  this.ListaPagInicial-=this.VehiculosXPagina;
+                  this.ListaPagFinal-= this.VehiculosXPagina;
+                  AnchorPane.setBottomAnchor(lastPageButtn, offsetText);
+                  AnchorPane.setRightAnchor(lastPageButtn, AnchorHeight + offsetText*2);
+                  this.vehiculos.getChildren().add(lastPageButtn);
+                  
+              }
+                
          }
         else
         {
