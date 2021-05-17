@@ -96,18 +96,65 @@ public class ControladorPerfil {
     }
 
     public boolean esCorreo(String cadena) {
-        //Castri
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //Castri (yerro)
+
+            try{
+                for(int n = 0; n < cadena.length (); n++){
+                char c = cadena.charAt (n); System.out.println (c);
+                    if(c == '@'){
+                        return true;
+                    }
+                }
+                String[] terminador = cadena.split(".");
+                if(terminador.equals("com")){
+                    return true;
+                }
+                if(terminador.equals("net")){
+                    return true;
+                }
+                if(terminador.equals("org")){
+                    return true;
+                }
+                return false;
+            }
+            catch(Exception e){
+                System.out.println("Ocurrio un error al verificar si es un correo.");
+            }
+            return false;        
     }
 
     public boolean validarCorreo(String correo) {
-        //Castri
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //Castri (yerro)
+        try{
+            for(Usuario u : usuarios){
+                if(u.getCorreo().equals(correo)){
+                    return true;
+                }
+            }
+            return false;
+                     
+        }
+        catch(Exception e){
+            System.out.println("Ocurrio un error al verificar el correo.");
+        }
+        return false; 
     }
 
     public boolean validarUserName(String username) {
-        //Castri
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //Castri (yerro)
+        try{
+            for(Usuario u : usuarios){
+                if(u.getUserName().equals(username)){
+                    return true;
+                }
+            }
+            return false;
+                     
+        }
+        catch(Exception e){
+            System.out.println("Ocurrio un error al verificar el correo.");
+        }
+        return false; 
     }
 
     public boolean acceder(String identificador, String contrasenia) {
