@@ -20,6 +20,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import com.topauto.capanegocio.ControladorPublicacion;
+import com.topauto.capaentidades.Pregunta;
+import com.topauto.capaentidades.Publicacion;
+import java.util.ArrayList;
 
 public class ControladorEventosPaginaListadoPreguntas implements Initializable {
     
@@ -40,6 +44,8 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
     private SplitPane paneVerticalPreguntas;
     
     private final String urlImage = "imagenes/panel_vehiculo_pregunta.png";
+    ArrayList<Pregunta> misPreguntas = new ArrayList<>();
+    
     
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
@@ -47,9 +53,14 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
     }
     
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) 
+    {
         setUpImages(); 
         pruebaStackPane();
+        //initializa preguntas:
+        ControladorPublicacion controladorLocal = new ControladorPublicacion();
+        controladorLocal.descargarDatos();
+        
     }
     /** setUpImages () - Privada:
      * En los Panes validos, les agrego mis imagenes guardadas localmente.
