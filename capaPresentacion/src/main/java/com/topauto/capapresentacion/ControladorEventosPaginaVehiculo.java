@@ -19,6 +19,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import com.topauto.capaentidades.Vehiculo;
 
 public class ControladorEventosPaginaVehiculo implements Initializable {
 
@@ -108,11 +109,18 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
     private TextField textFieldResenasOPreguntas;
     @FXML
     private Button botonPublicarResenaOPregunta;
+    
+    private Vehiculo miVehiculo;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    } 
+    
+    public void setVehiculo(Vehiculo miVehiculo)
+    {
+        this.miVehiculo = miVehiculo;
+    }
 
     @FXML
     private void clickTop(MouseEvent event) {
