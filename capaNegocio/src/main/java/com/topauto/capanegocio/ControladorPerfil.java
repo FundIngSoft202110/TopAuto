@@ -113,7 +113,6 @@ public class ControladorPerfil {
                 if(terminador.equals("org")){
                     return true;
                 }
-                return false;
             }
             catch(Exception e){
                 System.out.println("Ocurrio un error al verificar si es un correo.");

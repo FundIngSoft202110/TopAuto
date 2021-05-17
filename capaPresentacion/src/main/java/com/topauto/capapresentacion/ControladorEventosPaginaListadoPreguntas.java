@@ -14,6 +14,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.SplitPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -31,6 +34,12 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
     private AnchorPane countries;
     @FXML
     private Button topAuto;
+    @FXML
+    private AnchorPane paneImagenVehiculos;
+    @FXML
+    private SplitPane paneVerticalPreguntas;
+    
+    private final String urlImage = "imagenes/panel_vehiculo_pregunta.png";
     
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
@@ -39,9 +48,47 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        setUpImages(); 
+        pruebaStackPane();
+    }
+    /** setUpImages () - Privada:
+     * En los Panes validos, les agrego mis imagenes guardadas localmente.
+     * Depende que la variable local urlImage sea válida, en el caso que no, no coloca ninguna imagen.
+     */    
+    private void setUpImages()
+    {
+        Image localImagen;
+        try{
+        localImagen = new Image(this.urlImage);
+        ImageView fxmlImage = new ImageView();
+        fxmlImage.setImage(localImagen);
+        AnchorPane.setTopAnchor(fxmlImage, 0.0);
+        AnchorPane.setLeftAnchor(fxmlImage, 0.0);
+        this.paneImagenVehiculos.getChildren().add(fxmlImage);
+        }
+        catch(IllegalArgumentException e)
+        {
+            //En logger, comentar advertencia.
+           Logger.getLogger(ControladorEventosPaginaListadoPreguntas.class.getName()).log(Level.WARNING, "No pudo cargar imagen.", e);
 
+        }
+        
+
+        
+    }
+    //TEMP - Probar como funciona esta herda. - IT WORKS! Guirse con esto.
+    private void pruebaStackPane()
+    {
+        AnchorPane miAnchor1 = new AnchorPane();
+        AnchorPane miAnchor2 = new AnchorPane();
+        AnchorPane miAnchor3 = new AnchorPane(), miAnchor4 = new AnchorPane();
+        this.paneVerticalPreguntas.getItems().addAll(miAnchor1,miAnchor2, miAnchor3, miAnchor4);
+        //this.paneVerticalPreguntas.setDividerPositions(0.0f, 0.25f, 0.5f,0.75f);// IF i know the anchors.
+        this.paneVerticalPreguntas.setDividerPosition(0, 0.0f);
+        this.paneVerticalPreguntas.setDividerPosition(1, 0.25f);
+        this.paneVerticalPreguntas.setDividerPosition(2, 0.5f);
+        this.paneVerticalPreguntas.setDividerPosition(3, 0.75f);
+    }
     @FXML
     private void preguntar(ActionEvent event) {
         try {
