@@ -165,8 +165,35 @@ public class ControladorPublicacion {
     }
 
     public boolean puntuarPublicacion(String idPublicacion, boolean puntoEnContra) {
-        //Castri
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //Castri (yerro)
+        try{
+            if(puntoEnContra == true){
+                for(Publicacion p : publicaciones){
+                    if(p.getId().equals(idPublicacion)){
+                        p.setNumVotos(p.getNumVotos()-1);
+                        if(modificarPublicacion(p) == true){
+                            persistenciaPublicacion.persistirPublicacionModificada(p);
+                            return true;
+                        }
+                    }
+                }
+            }
+            else{
+                for(Publicacion p : publicaciones){
+                    if(p.getId().equals(idPublicacion)){
+                        p.setNumVotos(p.getNumVotos()+1);
+                        if(modificarPublicacion(p) == true){
+                            persistenciaPublicacion.persistirPublicacionModificada(p);
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println("Ocurrio un error al borrar la publicacion");
+        }
+        return false;
     }
     
 }
