@@ -165,7 +165,6 @@ public class ControladorPublicacion {
     }
 
     public boolean puntuarPublicacion(String idPublicacion, boolean puntoEnContra) {
-        //Castri (yerro)
         try{
             if(puntoEnContra == true){
                 for(Publicacion p : publicaciones){

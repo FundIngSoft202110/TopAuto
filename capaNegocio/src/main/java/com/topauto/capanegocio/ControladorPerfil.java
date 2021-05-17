@@ -96,8 +96,6 @@ public class ControladorPerfil {
     }
 
     public boolean esCorreo(String cadena) {
-        //Castri (yerro)
-
             try{
                 for(int n = 0; n < cadena.length (); n++){
                 char c = cadena.charAt (n); System.out.println (c);
@@ -120,7 +118,7 @@ public class ControladorPerfil {
             catch(Exception e){
                 System.out.println("Ocurrio un error al verificar si es un correo.");
             }
-            return false;        
+            return false;
     }
 
     public boolean validarCorreo(String correo) {
@@ -203,7 +201,7 @@ public class ControladorPerfil {
         //Se hace la búsqueda con el userName como criterio...
         try{
             for(Usuario u : usuarios){
-                if(u.getUserName() == usuario.getUserName()){
+                if(u.getUserName().equals(usuario.getUserName())){
                     int pos = usuarios.indexOf(u);
                     usuarios.set(pos, usuario);
                     return true;

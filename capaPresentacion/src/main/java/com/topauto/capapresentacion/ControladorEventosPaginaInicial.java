@@ -35,18 +35,19 @@ public class ControladorEventosPaginaInicial implements Initializable {
             stage.setMaxHeight(500);
             stage.setTitle("Admin TopAuto");
             
-            ControladorEventosPaginaRegistro controlador = loader.getController();
+            ControladorEventosPaginaAdmin controlador = loader.getController();
             Parent root = loader.load();
             Scene scene = new Scene(root);
             
             stage.setScene(scene);
+            
             stage.show();
                         
             Stage myStage = (Stage) this.btnAdmin.getScene().getWindow();
             myStage.close();
             
         } catch (IOException ex) {
-            Logger.getLogger(ControladorEventosPaginaListadoVehiculos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorEventosPaginaInicial.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -71,7 +72,7 @@ public class ControladorEventosPaginaInicial implements Initializable {
             myStage.close();
             
         } catch (IOException ex) {
-            Logger.getLogger(ControladorEventosPaginaListadoVehiculos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorEventosPaginaInicial.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

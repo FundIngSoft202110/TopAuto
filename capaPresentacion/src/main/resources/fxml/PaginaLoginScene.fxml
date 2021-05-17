@@ -21,10 +21,10 @@
          </image>
       </ImageView>
 
-      <Button fx:id="btIngreso" layoutX="599.0" layoutY="388.0" mnemonicParsing="false" onAction="#acceder" opacity="0.9" style="-fx-background-color: #070707; -fx-border-color: #6DFF00;" text="Ingresar" textFill="WHITE" />
-      <Button fx:id="btRegistro" layoutX="697.0" layoutY="388.0" mnemonicParsing="false" onAction="#registrar" opacity="0.9" style="-fx-background-color: #070707; -fx-border-color: #6DFF00;" text="Registrarse" textFill="WHITE" />
-      <TextField fx:id="txtUser" layoutX="76.0" layoutY="390.0" prefHeight="25.0" prefWidth="219.0" promptText="Usuario o correo" />
-      <TextField fx:id="txtClave" layoutX="341.0" layoutY="390.0" prefHeight="25.0" prefWidth="219.0" promptText="Contraseña" />
+      <Button fx:id="btIngreso" layoutX="641.0" layoutY="388.0" mnemonicParsing="false" onAction="#acceder" opacity="0.9" style="-fx-background-color: #070707; -fx-border-color: #6DFF00;" text="Ingresar" textFill="WHITE" />
+      <Button fx:id="btRegistro" layoutX="730.0" layoutY="388.0" mnemonicParsing="false" onAction="#registrar" opacity="0.9" style="-fx-background-color: #070707; -fx-border-color: #6DFF00;" text="Registrarse" textFill="WHITE" />
+      <TextField fx:id="txtUser" layoutX="150.0" layoutY="390.0" prefHeight="25.0" prefWidth="219.0" promptText="Usuario o correo" />
+      <TextField fx:id="txtClave" layoutX="405.0" layoutY="390.0" prefHeight="25.0" prefWidth="219.0" promptText="Contraseña" />
       <Text layoutX="326.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Top">
          <font>
             <Font name="Arial" size="50.0" />
@@ -35,6 +35,7 @@
             <Font name="Arial" size="50.0" />
          </font>
       </Text>
+      <Button fx:id="btInicial" layoutX="31.0" layoutY="388.0" mnemonicParsing="false" onAction="#inicio" opacity="0.9" style="-fx-background-color: #070707; -fx-border-color: #6DFF00;" text="Página Inicial" textFill="WHITE" />
 
    </children>
 </AnchorPane>
