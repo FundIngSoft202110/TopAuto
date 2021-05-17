@@ -60,7 +60,6 @@ public class ControladorEventosPaginaAdmin implements Initializable {
         controlPerfil.descargarDatos();
         
         for(Usuario u : controlPerfil.getUsuarios()){
-            System.out.println(u.getContrasenia());
             usuarios.add(u);
         }
         
@@ -145,7 +144,20 @@ public class ControladorEventosPaginaAdmin implements Initializable {
                 u.setCorreo(correo);
                 u.setContrasenia(clave);
                 
-                controlPerfil.modificarPerfil(u);
+                if(controlPerfil.modificarPerfil(u)){
+                    Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                    alerta.setHeaderText(null);
+                    alerta.setTitle("Exito");
+                    alerta.setContentText("El usuario ha sido actualizado.");
+                    alerta.showAndWait();
+                }
+                else{
+                    Alert alerta = new Alert(Alert.AlertType.ERROR);
+                    alerta.setHeaderText(null);
+                    alerta.setTitle("Error");
+                    alerta.setContentText("El usuario ya existe en el sistema.");
+                    alerta.showAndWait();
+                }
                 
                 this.tablaUsuarios.refresh();
             }else{
