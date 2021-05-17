@@ -78,7 +78,7 @@ public class ControladorVehiculo {
     public boolean crearVehiculo(Vehiculo vehiculo) {
         //Castri
         try{
-
+            persistenciaVehiculo.persistirNuevoVehiculo(vehiculo);
             return vehiculos.add(vehiculo);
 
         }

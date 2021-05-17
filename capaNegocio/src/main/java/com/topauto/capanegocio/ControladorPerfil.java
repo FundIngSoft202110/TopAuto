@@ -184,10 +184,8 @@ public class ControladorPerfil {
     public boolean registrarPerfil(Usuario usuario) {
         //Yerro
         try{
-            
-            if(persistenciaPerfil.persistirNuevoUsuario(usuario) == true){
-                return true;
-            }
+            persistenciaPerfil.persistirNuevoUsuario(usuario);
+            return true;           
         }
         catch(Exception e){
             System.out.println("Ocurrio un error al registrar el perfil");
@@ -221,9 +219,8 @@ public class ControladorPerfil {
             for(Usuario u : usuarios){
                 if(u.getUserName().equals(identificador)){
                     u.setContrasenia(nueva);
-                    if(persistenciaPerfil.persistirPerfilModificado(u) == true){
-                        return true;
-                    }
+                    persistenciaPerfil.persistirPerfilModificado(u);
+                    return true;
                 }
             }
         }
