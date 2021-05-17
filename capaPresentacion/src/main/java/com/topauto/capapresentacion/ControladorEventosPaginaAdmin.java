@@ -4,7 +4,6 @@ import com.topauto.capaentidades.Usuario;
 import com.topauto.capanegocio.ControladorPerfil;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,7 +27,7 @@ import javafx.stage.Stage;
 public class ControladorEventosPaginaAdmin implements Initializable {
     
     private ControladorPerfil controlPerfil = new ControladorPerfil();
-
+    private ObservableList<Usuario> usuarios = FXCollections.observableArrayList();
     @FXML
     private Button btnVolver;
     @FXML
@@ -41,8 +40,6 @@ public class ControladorEventosPaginaAdmin implements Initializable {
     private TableColumn<Usuario,String> colClave;
     @FXML
     private TableView<Usuario> tablaUsuarios;
-    
-    private ObservableList<Usuario> usuarios;
     @FXML
     private Button btnEliminar;
     @FXML
@@ -60,15 +57,20 @@ public class ControladorEventosPaginaAdmin implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.colNombre.setCellFactory(new PropertyValueFactory("nombre"));
-        this.colUsername.setCellFactory(new PropertyValueFactory("userName"));
-        this.colCorreo.setCellFactory(new PropertyValueFactory("correo"));
-        this.colClave.setCellFactory(new PropertyValueFactory("contrasenia"));
-        
         controlPerfil.descargarDatos();
-        ObservableList<Usuario> usuarios = FXCollections.observableArrayList(controlPerfil.getUsuarios());
-            
         
+        for(Usuario u : controlPerfil.getUsuarios()){
+            System.out.println(u.getContrasenia());
+            usuarios.add(u);
+        }
+        
+        this.colNombre.setCellValueFactory(new PropertyValueFactory<Usuario, String>("nombre"));
+        this.colUsername.setCellValueFactory(new PropertyValueFactory<Usuario, String>("userName"));
+        this.colCorreo.setCellValueFactory(new PropertyValueFactory<Usuario, String>("correo"));
+        this.colClave.setCellValueFactory(new PropertyValueFactory<Usuario, String>("contrasenia"));
+        
+        tablaUsuarios.setItems(usuarios);
+
     }    
 
     @FXML
@@ -143,6 +145,8 @@ public class ControladorEventosPaginaAdmin implements Initializable {
                 u.setCorreo(correo);
                 u.setContrasenia(clave);
                 
+                controlPerfil.modificarPerfil(u);
+                
                 this.tablaUsuarios.refresh();
             }else{
                 Alert alerta = new Alert(Alert.AlertType.ERROR);
@@ -161,23 +165,34 @@ public class ControladorEventosPaginaAdmin implements Initializable {
         String correo=this.txtCorreo.getText();
         String clave=this.txtClave.getText();
         
-        Usuario u=new Usuario(name,username,correo,clave,null);
-        
-        if(!this.usuarios.contains(u)){
-            this.usuarios.add(u);
-            this.tablaUsuarios.setItems(usuarios);
-        }else{
+        if(("".equals(name))||("".equals(username))||("".equals(correo))||("".equals(clave))){
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setHeaderText(null);
             alerta.setTitle("Error");
-            alerta.setContentText("El usuario ya existe en el sistema.");
+            alerta.setContentText("Todos los campos deben estar llenos.");
             alerta.showAndWait();
         }
+        else{
+            Usuario u=new Usuario(name,username,correo,clave,null);
+            this.usuarios.add(u);
+            this.tablaUsuarios.setItems(usuarios);
+            if(controlPerfil.registrarPerfil(u)){
+                this.usuarios.add(u);
+                this.tablaUsuarios.setItems(usuarios);
+            }else{
+                Alert alerta = new Alert(Alert.AlertType.ERROR);
+                alerta.setHeaderText(null);
+                alerta.setTitle("Error");
+                alerta.setContentText("Error para registrar usuario, verifique nuevamente");
+                alerta.showAndWait();
+            }
+        }
+        
+        
     }
 
     @FXML
     private void seleccionar(MouseEvent event) {
-        
         Usuario u = this.tablaUsuarios.getSelectionModel().getSelectedItem();
         if(u != null){
             this.txtNombre.setText(u.getNombre());
