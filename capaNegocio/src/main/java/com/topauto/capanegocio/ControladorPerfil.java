@@ -203,6 +203,7 @@ public class ControladorPerfil {
                 if(u.getUserName().equals(usuario.getUserName())){
                     int pos = usuarios.indexOf(u);
                     usuarios.set(pos, usuario);
+                    persistenciaPerfil.persistirPerfilModificado(usuario);
                     return true;
                 }
             }
