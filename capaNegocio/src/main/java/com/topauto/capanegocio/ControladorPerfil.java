@@ -96,8 +96,6 @@ public class ControladorPerfil {
     }
 
     public boolean esCorreo(String cadena) {
-         //Castri (yerro)
-
             try{
                 for(int n = 0; n < cadena.length (); n++){
                 char c = cadena.charAt (n); System.out.println (c);
