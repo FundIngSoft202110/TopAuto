@@ -1,8 +1,10 @@
 package com.topauto.capapresentacion;
 
 import com.topauto.capaentidades.Usuario;
+import com.topauto.capanegocio.ControladorPerfil;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,17 +26,19 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class ControladorEventosPaginaAdmin implements Initializable {
+    
+    private ControladorPerfil controlPerfil = new ControladorPerfil();
 
     @FXML
     private Button btnVolver;
     @FXML
-    private TableColumn colNombre;
+    private TableColumn<Usuario,String> colNombre;
     @FXML
-    private TableColumn colUsername;
+    private TableColumn<Usuario,String> colUsername;
     @FXML
-    private TableColumn colCorreo;
+    private TableColumn<Usuario,String> colCorreo;
     @FXML
-    private TableColumn colClave;
+    private TableColumn<Usuario,String> colClave;
     @FXML
     private TableView<Usuario> tablaUsuarios;
     
@@ -56,12 +60,15 @@ public class ControladorEventosPaginaAdmin implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        usuarios = FXCollections.observableArrayList();
+        this.colNombre.setCellFactory(new PropertyValueFactory("nombre"));
+        this.colUsername.setCellFactory(new PropertyValueFactory("userName"));
+        this.colCorreo.setCellFactory(new PropertyValueFactory("correo"));
+        this.colClave.setCellFactory(new PropertyValueFactory("contrasenia"));
         
-        this.colNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
-        this.colUsername.setCellValueFactory(new PropertyValueFactory("userName"));
-        this.colCorreo.setCellValueFactory(new PropertyValueFactory("correo"));
-        this.colClave.setCellValueFactory(new PropertyValueFactory("contrasenia"));
+        controlPerfil.descargarDatos();
+        ObservableList<Usuario> usuarios = FXCollections.observableArrayList(controlPerfil.getUsuarios());
+            
+        
     }    
 
     @FXML
@@ -84,7 +91,7 @@ public class ControladorEventosPaginaAdmin implements Initializable {
             myStage.close();
             
         } catch (IOException ex) {
-            Logger.getLogger(ControladorEventosPaginaListadoVehiculos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorEventosPaginaAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

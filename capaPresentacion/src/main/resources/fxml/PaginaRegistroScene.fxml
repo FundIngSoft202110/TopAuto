@@ -21,8 +21,8 @@
       </ImageView>
       <Button fx:id="btVolver" layoutX="405.0" layoutY="375.0" mnemonicParsing="false" onAction="#regresar" opacity="0.9" style="-fx-background-color: #070707; -fx-border-color: #6DFF00;" text="Volver" textFill="WHITE" />
       <Button fx:id="btRegistro" layoutX="292.0" layoutY="375.0" mnemonicParsing="false" onAction="#registrar" opacity="0.9" style="-fx-background-color: #070707; -fx-border-color: #6DFF00;" text="Registrarse" textFill="WHITE" />
-      <TextField layoutX="405.0" layoutY="148.0" prefHeight="25.0" prefWidth="219.0" promptText="Tu Nombre Aqui" />
-      <TextField layoutX="405.0" layoutY="192.0" prefHeight="25.0" prefWidth="219.0" promptText="username" />
+      <TextField fx:id="txtNombre" layoutX="405.0" layoutY="148.0" prefHeight="25.0" prefWidth="219.0" promptText="Tu Nombre Aqui" />
+      <TextField fx:id="txtUsername" layoutX="405.0" layoutY="192.0" prefHeight="25.0" prefWidth="219.0" promptText="username" />
       <Text layoutX="326.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Top">
          <font>
             <Font name="Arial" size="50.0" />
@@ -33,8 +33,8 @@
             <Font name="Arial" size="50.0" />
          </font>
       </Text>
-      <TextField layoutX="405.0" layoutY="236.0" prefHeight="25.0" prefWidth="219.0" promptText="Correo@example.com" />
-      <TextField layoutX="405.0" layoutY="279.0" prefHeight="25.0" prefWidth="219.0" promptText="password" />
+      <TextField fx:id="txtCorreo" layoutX="405.0" layoutY="236.0" prefHeight="25.0" prefWidth="219.0" promptText="Correo@example.com" />
+      <TextField fx:id="txtClave" layoutX="405.0" layoutY="279.0" prefHeight="25.0" prefWidth="219.0" promptText="password" />
       <Text fill="WHITE" fontSmoothingType="LCD" layoutX="215.0" layoutY="168.0" stroke="#0d0d0d" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre Completo">
          <font>
             <Font name="Baskerville Old Face" size="20.0" />
@@ -60,6 +60,6 @@
             <Font name="Baskerville Old Face" size="20.0" />
          </font>
       </Text>
-      <ChoiceBox layoutX="405.0" layoutY="325.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="listPaises" layoutX="405.0" layoutY="325.0" prefWidth="150.0" />
    </children>
 </AnchorPane>
