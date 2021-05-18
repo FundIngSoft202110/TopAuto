@@ -116,6 +116,7 @@
                               <Font name="Arial" size="13.0" />
                            </font>
                         </Button>
+                        <ImageView fx:id="pantallaImagenesVehiculo" fitHeight="290.0" fitWidth="612.0" layoutX="191.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true" />
                         <Text layoutX="14.0" layoutY="1932.0" strokeType="OUTSIDE" strokeWidth="0.0" text="top">
                            <font>
                               <Font name="Arial" size="42.0" />

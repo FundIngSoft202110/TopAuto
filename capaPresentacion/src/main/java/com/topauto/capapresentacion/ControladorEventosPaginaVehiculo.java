@@ -164,6 +164,7 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
             for (Imagen img : vehiculoCargar.getFotos()) {
                 if (img.getPath().contains("general.jpg")) {
                     Image miImagen = new Image (img.getPath());
+
                     this.pantallaImagenesVehiculo.setImage(miImagen);
                 }
             }
