@@ -158,6 +158,7 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
     //////////////////////own attributes//////////////////////////
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        this.botonIngresarOPerfil.setText("Ver Perfil");
         ArrayList<Vehiculo> maxVehiculos = new ArrayList<>();
         listaPublicacion = rPublicacion.descargarPublicaciones();
         listaVehiculos = rVehiculos.descargarVehiculos();
