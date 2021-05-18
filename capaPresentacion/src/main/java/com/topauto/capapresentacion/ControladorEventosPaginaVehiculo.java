@@ -52,14 +52,6 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
     @FXML
     private ImageView imagenUsuario;
     @FXML
-    private Pane paneImagenVehiculo;
-    @FXML
-    private Text preguntasPopulares12;
-    @FXML
-    private Text preguntasPopulares121;
-    @FXML
-    private Text preguntasPopulares122;
-    @FXML
     private Button botonImagenGeneral;
     @FXML
     private Button botonImagenFrente;
@@ -169,8 +161,9 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
         try {
             //Poner Imagen
             for (Imagen img : vehiculoCargar.getFotos()) {
-                if (img.getPath().equals("general.jpg")) {
-                    this.pantallaImagenesVehiculo.setId(img.getPath());
+                if (img.getPath().contains("general.jpg")) {
+                    Image miImagen = new Image(img.getPath());
+                    this.pantallaImagenesVehiculo.setImage(miImagen);
                 }
             }
         } catch (Exception e) {
@@ -194,7 +187,7 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
         this.cpCeroACien.setText(vehiculoCargar.getAccMax() + "");
         this.cpCargo.setText(vehiculoCargar.getMaxPasajeros() + "");
         this.cpPuertas.setText(vehiculoCargar.getNumPuertas() + "");
-         /*
+        /*
         if (vehiculoCargar.isTieneVidriosElectricos()) {
             caracteristicas = "Si Tiene Vidrios Electricos";
             this.carAd.add(caracteristicas);
@@ -409,8 +402,9 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
         try {
             //Poner Imagen
             for (Imagen img : vehiculoCargar.getFotos()) {
-                if (img.getPath().equals("general.jpg")) {
-                    this.pantallaImagenesVehiculo.setId(img.getPath());
+                if (img.getPath().contains("general.jpg")) {
+                    Image miImagen = new Image(img.getPath());
+                    this.pantallaImagenesVehiculo.setImage(miImagen);
                 }
             }
         } catch (Exception e) {
@@ -423,8 +417,9 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
         try {
             //Poner Imagen
             for (Imagen img : vehiculoCargar.getFotos()) {
-                if (img.getPath().equals("frente.jpg")) {
-                    this.pantallaImagenesVehiculo.setId(img.getPath());
+                if (img.getPath().contains("frente.jpg")) {
+                    Image miImagen = new Image(img.getPath());
+                    this.pantallaImagenesVehiculo.setImage(miImagen);
                 }
             }
         } catch (Exception e) {
@@ -437,8 +432,9 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
         try {
             //Poner Imagen
             for (Imagen img : vehiculoCargar.getFotos()) {
-                if (img.getPath().equals("lado.jpg")) {
-                    this.pantallaImagenesVehiculo.setId(img.getPath());
+                if (img.getPath().contains("lado.jpg")) {
+                    Image miImagen = new Image(img.getPath());
+                    this.pantallaImagenesVehiculo.setImage(miImagen);
                 }
             }
         } catch (Exception e) {
@@ -451,8 +447,9 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
         try {
             //Poner Imagen
             for (Imagen img : vehiculoCargar.getFotos()) {
-                if (img.getPath().equals("trasero.jpg")) {
-                    this.pantallaImagenesVehiculo.setId(img.getPath());
+                if (img.getPath().contains("trasero.jpg")) {
+                    Image miImagen = new Image(img.getPath());
+                    this.pantallaImagenesVehiculo.setImage(miImagen);
                 }
             }
         } catch (Exception e) {
@@ -465,8 +462,9 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
         try {
             //Poner Imagen
             for (Imagen img : vehiculoCargar.getFotos()) {
-                if (img.getPath().equals("motor.jpg")) {
-                    this.pantallaImagenesVehiculo.setId(img.getPath());
+                if (img.getPath().contains("motor.jpg")) {
+                    Image miImagen = new Image(img.getPath());
+                    this.pantallaImagenesVehiculo.setImage(miImagen);
                 }
             }
         } catch (Exception e) {
@@ -479,8 +477,9 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
         try {
             //Poner Imagen
             for (Imagen img : vehiculoCargar.getFotos()) {
-                if (img.getPath().equals("interior.jpg")) {
-                    this.pantallaImagenesVehiculo.setId(img.getPath());
+                if (img.getPath().contains("interior.jpg")) {
+                    Image miImagen = new Image(img.getPath());
+                    this.pantallaImagenesVehiculo.setImage(miImagen);
                 }
             }
         } catch (Exception e) {
