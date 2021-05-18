@@ -1,5 +1,6 @@
 package com.topauto.capapresentacion;
 
+import com.topauto.capaentidades.Usuario;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,6 +15,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -132,12 +135,36 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
     private Button botonVerTop5;
     @FXML
     private Button botonBuscar;
+    @FXML
+    private ImageView imagenUsuarioPerfil;
+    
+    private Usuario usuarioLogin;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
         
         
+    }
+    public void setUsuario (Usuario miUsuario)
+    {
+        usuarioLogin = miUsuario;
+        setUsuarioImage();
+    }
+    
+    private void setUsuarioImage()
+    {
+        Image miImagen;
+        try{
+        miImagen = new Image (this.usuarioLogin.getFoto().getPath());
+        this.imagenUsuarioPerfil.setImage(miImagen);
+        }
+        catch(IllegalArgumentException e)
+        {
+            miImagen = new Image("imagenes/perfil.png");
+            this.imagenUsuarioPerfil.setImage(miImagen);
+        }
+        this.textoNombreUsuario.setText(this.usuarioLogin.getUserName());
     }
 
     @FXML
@@ -149,6 +176,7 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
             Parent root = loader.load();
             
             ControladorEventosPaginaEscribirPregunta controlador = loader.getController();
+            controlador.setUsuario(usuarioLogin);
             
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -183,6 +211,7 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
             Parent root = loader.load();
             
             ControladorEventosPaginaEscribirResenia controlador = loader.getController();
+            controlador.setUsuario(usuarioLogin);
             
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -217,6 +246,7 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
             Parent root = loader.load();
             
             ControladorEventosPaginaListadoPreguntas controlador = loader.getController();
+            controlador.setUsuario(usuarioLogin);
             
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -317,7 +347,7 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
         
     }
 
-
+    //Pasa UsuarioLogin
     @FXML
     private void btnIrAlListado(ActionEvent event) {
         
@@ -327,6 +357,7 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
             Parent root = loader.load();
             
             ControladorEventosPaginaListadoVehiculos controlador = loader.getController();
+            controlador.setUsuario(usuarioLogin);
             
             Scene scene = new Scene(root);
             Stage stage = new Stage();

@@ -1,8 +1,10 @@
 package com.topauto.capapresentacion;
 
+import com.topauto.capaentidades.Usuario;
 import com.topauto.capanegocio.ControladorPerfil;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,50 +35,21 @@ public class ControladorEventosPaginaLogin implements Initializable {
     private TextField txtClave;
     @FXML
     private Button btInicial;
-        
+    
+    
+    private Usuario usuarioAEnviar;
+    private ArrayList<Usuario> misUsuarios;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         controlPerfil.descargarDatos();
+        misUsuarios = controlPerfil.getUsuarios();
     }    
 
     @FXML
     private void acceder(ActionEvent event) {
         String user = this.txtUser.getText();
         String clave = this.txtClave.getText();
-        boolean esDebug = false;
-        esDebug = true;
-        if (esDebug == true)
-        {
-            try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaPrincipalScene.fxml"));
-
-                    Parent root = loader.load();
-
-                    ControladorEventosPaginaPrincipal controlador = loader.getController();
-
-                    Scene scene = new Scene(root);
-                    Stage stage = new Stage();
-                    stage.setTitle("TopAuto");
-
-                    stage.setScene(scene);
-                    Screen screen = Screen.getPrimary(); //Get info from my screen!
-                    Rectangle2D bounds = screen.getVisualBounds();
-                    //Set visual bounds for MaximizedScreen:
-                    stage.setX(bounds.getMinX());
-                    stage.setY(bounds.getMinY());
-                    stage.setWidth(bounds.getWidth());
-                    stage.setHeight(bounds.getHeight());
-                    //Adjust my code to the max boundaries of my screen.
-                    stage.setMaximized(true); //Set it maximized
-                    stage.show();
-
-                    Stage myStage = (Stage) this.btIngreso.getScene().getWindow();
-                    myStage.close();
-
-                } catch (IOException ex) {
-                    Logger.getLogger(ControladorEventosPaginaListadoVehiculos.class.getName()).log(Level.SEVERE, null, ex);
-                }
-        }
+        
         
         if(("".equals(user))||("".equals(clave))){
             Alert alerta = new Alert(Alert.AlertType.ERROR);
@@ -91,6 +64,7 @@ public class ControladorEventosPaginaLogin implements Initializable {
                 alerta.setHeaderText(null);
                 alerta.setTitle("Exito");
                 alerta.setContentText("Acceso completado");
+                this.getUserList(user);
                 alerta.showAndWait();
                 
                 try {
@@ -99,6 +73,7 @@ public class ControladorEventosPaginaLogin implements Initializable {
                     Parent root = loader.load();
 
                     ControladorEventosPaginaPrincipal controlador = loader.getController();
+                    controlador.setUsuario(usuarioAEnviar);
 
                     Scene scene = new Scene(root);
                     Stage stage = new Stage();
@@ -132,7 +107,16 @@ public class ControladorEventosPaginaLogin implements Initializable {
             }
         }       
     }
-
+    private void getUserList(String Username)
+    {
+        for ( Usuario u : this.misUsuarios)
+        {
+            if (u.getUserName().equals(Username))
+            {
+                this.usuarioAEnviar = u;
+            }
+        }
+    }
     @FXML
     private void registrar(ActionEvent event) {
         try {

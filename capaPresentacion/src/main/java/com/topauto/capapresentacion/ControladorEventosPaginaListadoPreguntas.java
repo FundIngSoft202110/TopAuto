@@ -28,10 +28,10 @@ import com.topauto.capaentidades.Usuario;
 import java.util.ArrayList;
 import javafx.event.EventHandler;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 public class ControladorEventosPaginaListadoPreguntas implements Initializable {
     
-    private Label label;
     @FXML
     private Button hazPregunta;
     @FXML
@@ -39,11 +39,11 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
     @FXML
     private Button perfil;
     @FXML
-    private AnchorPane countries;
-    @FXML
     private Button topAuto;
     @FXML
     private AnchorPane paneImagenVehiculos;
+    @FXML
+    private Text textoNombreUsuario;
     @FXML
     private SplitPane paneVerticalPreguntas;
     @FXML
@@ -55,10 +55,44 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
     ArrayList<Pregunta> misPreguntas = new ArrayList<>();
     int noPreguntasMaxXPagina = 4;
     int minPreg = 0, maxPreg = noPreguntasMaxXPagina;
-    EventHandler<ActionEvent> HandlerResp, HandlerTurnPage;
+     private EventHandler<ActionEvent> HandlerResp;
+     private EventHandler<ActionEvent> HandlerTurnPage;
+     private Button sig, prev;
     
     private Usuario usuarioLogeado = new Usuario();
     
+    @Override
+    public void initialize(URL url, ResourceBundle rb) 
+    {
+        ArrayList<Publicacion> listaTotal;
+        setUpImages(); 
+        //initializa preguntas:
+        ControladorPublicacion controladorLocal = new ControladorPublicacion();
+        controladorLocal.descargarDatos();
+        listaTotal = controladorLocal.getPublicaciones();
+        this.misPreguntas = searchPreguntas(listaTotal); //Encuentro mis preguntas para usar.
+        handlePreguntasInit();
+        //Pass pagina TODO y Respuestas TODO.
+        this.HandlerResp = new EventHandler<ActionEvent>()
+             {
+                 @Override
+                 public void handle (ActionEvent event)
+                 {
+                     System.out.println("No Entra aca \n");
+                 }
+             };
+        
+        this.HandlerTurnPage = new EventHandler<ActionEvent>()
+             {
+                 @Override
+                 public void handle (ActionEvent event)
+                 {
+                     System.out.println("Entra aca \n");
+                     handleTurnPagePregunta((Button)(event.getSource()));
+                 }
+             };
+        
+    }
     private void handleTurnPagePregunta(Button button)
     {
         paneVerticalPreguntas.getItems().clear(); //Clear for reset purposes!
@@ -66,8 +100,10 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
         int contador = 0;
         boolean willSigPass = false, willPrevPass = false;
         String miOrigin;
+        System.out.println("Entra aca bien tambien?\n");
         if (button.getText().equals("Sig. Pagina"))
         {
+            
             maxPreg += this.noPreguntasMaxXPagina;
             minPreg += this.noPreguntasMaxXPagina;
         }
@@ -78,9 +114,11 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
         }
         if(minPreg < 0) //Just in case...
         {
+            System.out.println("No deberia de entrar aca");
             minPreg = 0;
             maxPreg = this.noPreguntasMaxXPagina;
         }
+        
         if (noPreguntas < maxPreg)
         {
             maxPreg = noPreguntas;
@@ -156,13 +194,15 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
     /**
      * Creates the buttons for Previous Page and Siguiente Page - Name dependand, do not change it.
      * @param isSigTrue //If it can create Siguiente button, do it
-     * @param isPrevTrue // If it can create Last button, do it
+     * @param isPrevTrue // If it can create Last button, do 
      */
     private void createButtonsPagina (boolean isSigTrue, boolean isPrevTrue)
     {
-        if ( isSigTrue)
+        panelPagina.getChildren().clear();
+       if ( isSigTrue)
         {
-            Button sig = new Button();
+            
+            sig = new Button();
             sig.setText("Sig. Pagina");
             sig.setStyle("-fx-background-color: #DFDFE5"); //White-ish Gray
             sig.setPrefSize(100, 40);
@@ -174,7 +214,7 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
         }
         if (isPrevTrue)
         {
-            Button prev = new Button();
+            prev = new Button();
             prev.setText("Prev. Pagina");
             prev.setStyle("-fx-background-color: #DFDFE5"); //White-ish Gray
             prev.setPrefSize(100, 40);
@@ -248,42 +288,12 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
             
     }
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) 
-    {
-        ArrayList<Publicacion> listaTotal;
-        setUpImages(); 
-        //initializa preguntas:
-        ControladorPublicacion controladorLocal = new ControladorPublicacion();
-        controladorLocal.descargarDatos();
-        listaTotal = controladorLocal.getPublicaciones();
-        this.misPreguntas = searchPreguntas(listaTotal); //Encuentro mis preguntas para usar.
-        handlePreguntasInit();
-        //setUsuarioImage();
-        //Pass pagina TODO y Respuestas TODO.
-        this.HandlerResp = new EventHandler<ActionEvent>()
-             {
-                 @Override
-                 public void handle (ActionEvent event)
-                 {
-                     //TODO - Function of respuesta!
-                 }
-             };
-        
-        this.HandlerTurnPage = new EventHandler<ActionEvent>()
-             {
-                 @Override
-                 public void handle (ActionEvent event)
-                 {
-                     handleTurnPagePregunta((Button)(event.getSource()));
-                 }
-             };
-        
-    }
+    
     
     public void setUsuario(Usuario miUsuario)
     {
         this.usuarioLogeado = miUsuario;
+        setUsuarioImage();
     }
     private void setUsuarioImage()
     {
@@ -297,6 +307,7 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
             miImagen = new Image("imagenes/perfil.png");
             this.imagenUsuario.setImage(miImagen);
         }
+        this.textoNombreUsuario.setText(this.usuarioLogeado.getUserName());
     }
     /** setUpImages () - Privada:
      * En los Panes validos, les agrego mis imagenes guardadas localmente.
@@ -346,6 +357,7 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
             Parent root = loader.load();
             
             ControladorEventosPaginaEscribirPregunta controlador = loader.getController();
+            controlador.setUsuario(this.usuarioLogeado);
             
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -378,6 +390,7 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
             Parent root = loader.load();
             
             ControladorEventosPaginaEscribirResenia controlador = loader.getController();
+            controlador.setUsuario(this.usuarioLogeado);
             
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -410,6 +423,7 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
             Parent root = loader.load();
             
             ControladorEventosPaginaPerfil controlador = loader.getController();
+            controlador.setUsuario(this.usuarioLogeado);
             
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -443,6 +457,7 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
             Parent root = loader.load();
             
             ControladorEventosPaginaPrincipal controlador = loader.getController();
+            controlador.setUsuario(this.usuarioLogeado);
             
             Scene scene = new Scene(root);
             Stage stage = new Stage();

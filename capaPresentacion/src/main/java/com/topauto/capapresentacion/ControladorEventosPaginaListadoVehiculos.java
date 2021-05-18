@@ -61,6 +61,10 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
     private Button botonContinente2; //Corresponde a Europa.
     @FXML
     private Button botonContinente3; //Corresponde a Asia.
+    @FXML
+    private ImageView imagenUsuario;
+    @FXML
+    private Text textoNombreUsuario;
 
 
     
@@ -124,6 +128,21 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
     public void setUsuario(Usuario miUsuario) 
     {
         this.miUsuario = miUsuario;
+        setUsuarioImage();
+    }
+    private void setUsuarioImage()
+    {
+        Image miImagen;
+        try{
+        miImagen = new Image (this.miUsuario.getFoto().getPath());
+        this.imagenUsuario.setImage(miImagen);
+        }
+        catch(IllegalArgumentException e)
+        {
+            miImagen = new Image("imagenes/perfil.png");
+            this.imagenUsuario.setImage(miImagen);
+        }
+        this.textoNombreUsuario.setText(this.miUsuario.getUserName());
     }
     // Ya que los botones de continentes son estáticos, no es necesario asignar un EventHandler dinamico:
     @FXML
@@ -497,6 +516,7 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
             Parent root = loader.load();
             
             ControladorEventosPaginaListadoPreguntas controlador = loader.getController();
+            controlador.setUsuario(miUsuario);
             
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -529,6 +549,7 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
             Parent root = loader.load();
             
             ControladorEventosPaginaEscribirPregunta controlador = loader.getController();
+            controlador.setUsuario(miUsuario);
             
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -561,7 +582,7 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
             Parent root = loader.load();
             
             ControladorEventosPaginaEscribirResenia controlador = loader.getController();
-            
+            controlador.setUsuario(miUsuario);
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             
@@ -593,6 +614,7 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
             Parent root = loader.load();
             
             ControladorEventosPaginaPerfil controlador = loader.getController();
+            controlador.setUsuario(miUsuario);
             
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -626,6 +648,7 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
             Parent root = loader.load();
             
             ControladorEventosPaginaPrincipal controlador = loader.getController();
+            controlador.setUsuario(miUsuario);
             
             Scene scene = new Scene(root);
             Stage stage = new Stage();
