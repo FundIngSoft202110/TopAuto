@@ -14,11 +14,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2000.0" prefWidth="1366.0" style="-fx-background-color: ffffff;" text="Buscar Vehiculo Por Barra De Busqueda" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topauto.capapresentacion.ControladorEventosPaginaVehiculo">
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: ffffff;" text="Buscar Vehiculo Por Barra De Busqueda" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topauto.capapresentacion.ControladorEventosPaginaVehiculo">
   <content>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
          <children>
-            <ScrollPane prefHeight="2000.0" prefWidth="1366.0">
+            <ScrollPane prefHeight="768.0" prefWidth="1366.0">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2000.0" prefWidth="1351.0" style="-fx-background-color: ffffff;">
                      <children>
@@ -264,6 +264,65 @@
                                  </font>
                               </Text>
                               <Text fill="WHITE" layoutX="10.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Puertas" textAlignment="CENTER" wrappingWidth="162.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                        <VBox layoutX="546.0" layoutY="516.0" prefHeight="221.0" prefWidth="165.0" style="-fx-border-color: #c90000;">
+                           <children>
+                              <Text fx:id="cpMarca" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" textAlignment="CENTER" wrappingWidth="164.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="cpModelo" layoutX="10.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" textAlignment="CENTER" wrappingWidth="163.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="cpMotor" layoutX="10.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" textAlignment="CENTER" wrappingWidth="164.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="cpTransmision" layoutX="10.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" textAlignment="CENTER" wrappingWidth="163.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="cpFrenos" layoutX="10.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" textAlignment="CENTER" wrappingWidth="164.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="cpVelocidadMaxima" layoutX="10.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" textAlignment="CENTER" wrappingWidth="163.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="cpHorsePower" layoutX="10.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" textAlignment="CENTER" wrappingWidth="163.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="cpDireccion" layoutX="10.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" textAlignment="CENTER" wrappingWidth="163.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="cpCeroACien" layoutX="10.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" textAlignment="CENTER" wrappingWidth="163.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="cpCargo" layoutX="10.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" textAlignment="CENTER" wrappingWidth="162.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="cpPuertas" layoutX="11.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" textAlignment="CENTER" wrappingWidth="162.13671875">
                                  <font>
                                     <Font name="Arial Bold" size="17.0" />
                                  </font>

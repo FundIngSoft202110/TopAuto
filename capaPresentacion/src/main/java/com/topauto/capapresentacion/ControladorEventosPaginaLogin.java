@@ -121,7 +121,7 @@ public class ControladorEventosPaginaLogin implements Initializable {
         {
             if (u.getUserName().equals(Username) || u.getCorreo().equals(Username))
             {
-                this.usuarioAEnviar = u;
+            this.usuarioAEnviar = u;
             }
         }
     }
