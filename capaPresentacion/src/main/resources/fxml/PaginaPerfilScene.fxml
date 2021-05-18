@@ -64,8 +64,22 @@
                      <children>
                         <SplitPane dividerPositions="0.5003706449221645" prefHeight="64.0" prefWidth="1351.0">
                           <items>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="837.0" />
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <Button fx:id="butResenias" layoutY="-2.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="673.0" style="-fx-background-color: ffffff;" text="Reseñas">
+                                       <font>
+                                          <Font name="Arial Bold" size="27.0" />
+                                       </font>
+                                    </Button>
+                                 </children></AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="837.0">
+                                 <children>
+                                    <Button fx:id="butPreguntas" mnemonicParsing="false" onAction="#setPreguntas" prefHeight="66.0" prefWidth="673.0" style="-fx-background-color: ffffff;" text="Preguntas">
+                                       <font>
+                                          <Font name="Arial Bold" size="27.0" />
+                                       </font>
+                                    </Button>
+                                 </children></AnchorPane>
                           </items>
                         </SplitPane>
                      </children>
@@ -127,6 +141,11 @@
                      </font>
                   </Label>
                   <TextArea fx:id="descripcion" layoutX="425.0" layoutY="369.0" prefHeight="181.0" prefWidth="517.0" />
+                  <SplitPane fx:id="paneGeneral" layoutX="-2.0" layoutY="627.0" orientation="VERTICAL" prefHeight="339.0" prefWidth="1353.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="256.0" prefWidth="1183.0" />
+                    </items>
+                  </SplitPane>
                </children>
             </AnchorPane>
          </content>
