@@ -161,35 +161,18 @@ public class ControladorEventosPaginaAdmin implements Initializable {
             Usuario aux=new Usuario(name,username,correo,null,clave,true, new ArrayList<Publicacion>(),imagen, pais);
 
             if(!this.usuarios.contains(aux)){
-                
-<<<<<<< HEAD
                 if(controlPerfil.modificarPerfil(u)){
                     Alert alerta = new Alert(Alert.AlertType.INFORMATION);
                     alerta.setHeaderText(null);
                     alerta.setTitle("Exito");
                     alerta.setContentText("El usuario ha sido actualizado.");
-=======
-                if(controlPerfil.modificarPerfil(aux)){
-                    u.setNombre(name);
-                    u.setUserName(username);
-                    u.setCorreo(correo);
-                    u.setContrasenia(clave);
-                    Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-                    alerta.setHeaderText(null);
-                    alerta.setTitle("Exito");
-                    alerta.setContentText("El usuario ha sido modificado");
->>>>>>> 11826d836c05ae67b7184ee2465030b12cdfbd4c
                     alerta.showAndWait();
                 }
                 else{
                     Alert alerta = new Alert(Alert.AlertType.ERROR);
                     alerta.setHeaderText(null);
                     alerta.setTitle("Error");
-<<<<<<< HEAD
-                    alerta.setContentText("El usuario ya existe en el sistema.");
-=======
                     alerta.setContentText("No se pudo modificar el usuario");
->>>>>>> 11826d836c05ae67b7184ee2465030b12cdfbd4c
                     alerta.showAndWait();
                 }
                 
