@@ -130,6 +130,8 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
     private Button botonVerTop4;
     @FXML
     private Button botonVerTop5;
+    @FXML
+    private Button botonBuscar;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -369,6 +371,10 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
 
     @FXML
     private void btnVerTop5(ActionEvent event) {
+    }
+
+    @FXML
+    private void btnBuscar(ActionEvent event) {
     }
     
 }
