@@ -26,7 +26,8 @@ public class Fabricante {
         return nombre;
     }
 
-    public Region getRegion() {
+    public Region getRegion() 
+    {
         return region;
     }
 

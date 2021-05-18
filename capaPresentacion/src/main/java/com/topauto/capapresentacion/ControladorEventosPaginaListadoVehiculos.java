@@ -25,6 +25,7 @@ import com.topauto.capaentidades.Pais;
 import com.topauto.capaentidades.Vehiculo;
 import com.topauto.capaentidades.Fabricante;
 import com.topauto.capaentidades.Imagen;
+import com.topauto.capaentidades.Usuario;
 import com.topauto.capanegocio.ControladorVehiculo;
 import com.topauto.capaentidades.enumerados.Region;
 import java.util.Locale;
@@ -79,7 +80,8 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
     private final int VehiculosXPagina = 3;
     private final String colorButton = "-fx-background-color: #DFDFE5", defaultImagePath = "imagenes/default-vehicle.png";
     private int ListaPagInicial = 0, ListaPagFinal = VehiculosXPagina - 1;
-    private int sizeMinusVxP = 0;
+    private int sizeMinusVxP = 0;  
+    private Usuario miUsuario;
 
     
     @Override
@@ -118,7 +120,11 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
                     handlerBotonVehiculo((Button)event.getSource());
                 }
              };
-    }    
+    }
+    public void setUsuario(Usuario miUsuario) 
+    {
+        this.miUsuario = miUsuario;
+    }
     // Ya que los botones de continentes son estáticos, no es necesario asignar un EventHandler dinamico:
     @FXML
     private void clickContinent(ActionEvent event)
@@ -453,6 +459,7 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaVehiculoScene.fxml"));
             Parent root = loader.load();
             ControladorEventosPaginaVehiculo controlador = loader.getController();
+            controlador.setUsuario(miUsuario);
             controlador.setVehiculo(vehiculoAEnviar); //Envio mi vehiculo ...
             Scene scene = new Scene(root);
             Stage stage = new Stage();

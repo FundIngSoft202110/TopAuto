@@ -43,6 +43,40 @@ public class ControladorEventosPaginaLogin implements Initializable {
     private void acceder(ActionEvent event) {
         String user = this.txtUser.getText();
         String clave = this.txtClave.getText();
+        boolean esDebug = false;
+        esDebug = true;
+        if (esDebug == true)
+        {
+            try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaPrincipalScene.fxml"));
+
+                    Parent root = loader.load();
+
+                    ControladorEventosPaginaPrincipal controlador = loader.getController();
+
+                    Scene scene = new Scene(root);
+                    Stage stage = new Stage();
+                    stage.setTitle("TopAuto");
+
+                    stage.setScene(scene);
+                    Screen screen = Screen.getPrimary(); //Get info from my screen!
+                    Rectangle2D bounds = screen.getVisualBounds();
+                    //Set visual bounds for MaximizedScreen:
+                    stage.setX(bounds.getMinX());
+                    stage.setY(bounds.getMinY());
+                    stage.setWidth(bounds.getWidth());
+                    stage.setHeight(bounds.getHeight());
+                    //Adjust my code to the max boundaries of my screen.
+                    stage.setMaximized(true); //Set it maximized
+                    stage.show();
+
+                    Stage myStage = (Stage) this.btIngreso.getScene().getWindow();
+                    myStage.close();
+
+                } catch (IOException ex) {
+                    Logger.getLogger(ControladorEventosPaginaListadoVehiculos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        }
         
         if(("".equals(user))||("".equals(clave))){
             Alert alerta = new Alert(Alert.AlertType.ERROR);

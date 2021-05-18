@@ -1,5 +1,6 @@
 package com.topauto.capapresentacion;
 
+import com.topauto.capaentidades.Usuario;
 import com.topauto.capaentidades.Imagen;
 import com.topauto.capaentidades.Vehiculo;
 import java.io.IOException;
@@ -131,6 +132,8 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
     //////////////////////own attributes//////////////////////////
     
     private Vehiculo miVehiculo;
+    
+    private Usuario miUsuario;
 
     private ArrayList<Vehiculo> listaVehiculos;
     
@@ -197,6 +200,11 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
     {
         this.miVehiculo = vehiculoCargar;
         
+    }
+    
+    public void setUsuario (Usuario miUsuario)
+    {
+        this.miUsuario = miUsuario;
     }
 
     @FXML
