@@ -1,5 +1,6 @@
 package com.topauto.capapresentacion;
 
+import com.topauto.capaentidades.Usuario;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,6 +15,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -30,6 +34,11 @@ public class ControladorEventosPaginaEscribirResenia implements Initializable {
     private Button topAuto;
     @FXML
     private Button hazPregunta;
+    @FXML
+    private ImageView imagenUsuario;
+    @FXML
+    private Text textoNombreUsuario;
+    private Usuario miUsuario;
     
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
@@ -40,6 +49,26 @@ public class ControladorEventosPaginaEscribirResenia implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    public void setUsuario(Usuario miUsuario) 
+    {
+        this.miUsuario = miUsuario;
+        setUsuarioImage();
+    }
+    private void setUsuarioImage()
+    {
+        Image miImagen;
+        try{
+        miImagen = new Image (this.miUsuario.getFoto().getPath());
+        this.imagenUsuario.setImage(miImagen);
+        }
+        catch(IllegalArgumentException e)
+        {
+            miImagen = new Image("imagenes/perfil.png");
+            this.imagenUsuario.setImage(miImagen);
+        }
+        this.textoNombreUsuario.setText(this.miUsuario.getUserName());
+    }
 
     @FXML
     private void responder(ActionEvent event) {
@@ -49,6 +78,7 @@ public class ControladorEventosPaginaEscribirResenia implements Initializable {
             Parent root = loader.load();
             
             ControladorEventosPaginaListadoPreguntas controlador = loader.getController();
+            controlador.setUsuario(miUsuario);
             
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -81,6 +111,7 @@ public class ControladorEventosPaginaEscribirResenia implements Initializable {
             Parent root = loader.load();
             
             ControladorEventosPaginaPerfil controlador = loader.getController();
+            controlador.setUsuario(miUsuario);
             
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -114,6 +145,7 @@ public class ControladorEventosPaginaEscribirResenia implements Initializable {
             Parent root = loader.load();
             
             ControladorEventosPaginaPrincipal controlador = loader.getController();
+            controlador.setUsuario(miUsuario);
             
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -147,6 +179,7 @@ public class ControladorEventosPaginaEscribirResenia implements Initializable {
             Parent root = loader.load();
             
             ControladorEventosPaginaEscribirPregunta controlador = loader.getController();
+            controlador.setUsuario(miUsuario);
             
             Scene scene = new Scene(root);
             Stage stage = new Stage();
