@@ -24,6 +24,7 @@ import javafx.stage.Stage;
 public class ControladorEventosPaginaLogin implements Initializable {
     
     ControladorPerfil controlPerfil = new ControladorPerfil();
+    Usuario usuario = new Usuario();
     
     @FXML
     private Button btIngreso;
@@ -47,11 +48,11 @@ public class ControladorEventosPaginaLogin implements Initializable {
 
     @FXML
     private void acceder(ActionEvent event) {
-        String user = this.txtUser.getText();
+        String username = this.txtUser.getText();
         String clave = this.txtClave.getText();
         
         
-        if(("".equals(user))||("".equals(clave))){
+        if(("".equals(username))||("".equals(clave))){
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setHeaderText(null);
             alerta.setTitle("Error");
@@ -59,12 +60,19 @@ public class ControladorEventosPaginaLogin implements Initializable {
             alerta.showAndWait();
         }
         else{
-            if(controlPerfil.acceder(user, clave)){
+            if(controlPerfil.acceder(username, clave)){
+                
+                for(Usuario u : controlPerfil.getUsuarios()){
+                    if(u.getUserName().equals(username)){
+                        this.usuario=u;
+                    }
+                }
+                
                 Alert alerta = new Alert(Alert.AlertType.INFORMATION);
                 alerta.setHeaderText(null);
                 alerta.setTitle("Exito");
                 alerta.setContentText("Acceso completado");
-                this.getUserList(user);
+                this.getUserList(username);
                 alerta.showAndWait();
                 
                 try {
@@ -159,7 +167,7 @@ public class ControladorEventosPaginaLogin implements Initializable {
             stage.setScene(scene);
             stage.show();
                         
-            Stage myStage = (Stage) this.btRegistro.getScene().getWindow();
+            Stage myStage = (Stage) this.btInicial.getScene().getWindow();
             myStage.close();
             
         } catch (IOException ex) {
