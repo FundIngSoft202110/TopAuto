@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="977.0" prefWidth="1366.0" style="-fx-background-color: FFFFFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topauto.capapresentacion.ControladorEventosPaginaPerfil">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="977.0" prefWidth="1366.0" style="-fx-background-color: FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topauto.capapresentacion.ControladorEventosPaginaPerfil">
    <children>
       <ScrollPane pannable="true" prefHeight="977.0" prefWidth="1366.0" style="-fx-background-color: FFFFFF;">
          <content>
             <AnchorPane prefHeight="1500.0" prefWidth="1367.0" style="-fx-background-color: FFFFFF;">
                <children>
-                  <Button layoutX="1136.0" layoutY="23.0" mnemonicParsing="false" style="-fx-background-color: FFFFFF;" text="Nombre de Usuario" textFill="#00000080">
-                     <font>
-                        <Font name="Rockwell" size="20.0" />
-                     </font>
-                  </Button>
-                  <ImageView fitHeight="68.0" fitWidth="63.0" layoutX="1086.0" layoutY="3.0" preserveRatio="true">
+                  <ImageView fx:id="imagenUsuario" fitHeight="68.0" fitWidth="63.0" layoutX="1086.0" layoutY="3.0" preserveRatio="true">
                      <image>
                         <Image url="@../imagenes/perfil.JPG" />
                      </image>
@@ -55,51 +54,11 @@
                         </LinearGradient>
                      </textFill>
                   </Button>
-                  <ImageView fitHeight="266.0" fitWidth="274.0" layoutX="96.0" layoutY="138.0" preserveRatio="true" smooth="false">
+                  <ImageView fx:id="imagenUsuario2" fitHeight="266.0" fitWidth="274.0" layoutX="93.0" layoutY="148.0" preserveRatio="true" smooth="false">
                      <image>
                         <Image url="@../imagenes/perfil.png" />
                      </image>
                   </ImageView>
-                  <Text layoutX="420.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre Completo" wrappingWidth="419.20806884765625">
-                     <font>
-                        <Font name="Arial" size="50.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="421.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="username" wrappingWidth="147.20806884765625">
-                     <font>
-                        <Font name="Arial Italic" size="30.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="421.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#" wrappingWidth="25.874725341796875">
-                     <font>
-                        <Font name="Arial Italic" size="30.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="448.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="reseñas" wrappingWidth="147.20806884765625">
-                     <font>
-                        <Font name="Arial Italic" size="30.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="616.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#" wrappingWidth="25.874725341796875">
-                     <font>
-                        <Font name="Arial Italic" size="30.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="641.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="preguntas" wrappingWidth="147.20806884765625">
-                     <font>
-                        <Font name="Arial Italic" size="30.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="420.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="pais" wrappingWidth="147.20806884765625">
-                     <font>
-                        <Font name="Arial Italic" size="30.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="422.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripcion" wrappingWidth="541.874755859375">
-                     <font>
-                        <Font name="Arial Italic" size="30.0" />
-                     </font>
-                  </Text>
                   <Line endX="1366.0" fill="#00000080" layoutX="-5.0" layoutY="557.0" stroke="#00000080" />
                   <AnchorPane fx:id="countries" layoutY="559.0" prefHeight="70.0" prefWidth="1350.0">
                      <children>
@@ -112,6 +71,62 @@
                      </children>
                   </AnchorPane>
                   <Line endX="1366.0" fill="#00000080" layoutX="-1.0" layoutY="625.0" stroke="#00000080" />
+                  <Text fx:id="textoNombreUsuario" layoutX="1174.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" wrappingWidth="109.341796875">
+                     <font>
+                        <Font name="Arial Bold" size="17.0" />
+                     </font>
+                  </Text>
+                  <Label fx:id="labelNombreUsuario" layoutX="417.0" layoutY="138.0" text="UserName">
+                     <font>
+                        <Font name="Arial Bold" size="46.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="417.0" layoutY="191.0" text="Name: ">
+                     <font>
+                        <Font name="Arial Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="417.0" layoutY="221.0" text="Pais: ">
+                     <font>
+                        <Font name="Arial Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="417.0" layoutY="251.0" text="# de Reseñas hechas:">
+                     <font>
+                        <Font name="Arial Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="417.0" layoutY="281.0" text="# de Preguntas hechas:">
+                     <font>
+                        <Font name="Arial Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="574.0" layoutY="319.0" text="Descripcion:">
+                     <font>
+                        <Font name="Arial Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelNombre" layoutX="496.0" layoutY="192.0" text="-N/A-">
+                     <font>
+                        <Font name="Arial" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelPais" layoutX="479.0" layoutY="221.0" text="-default-">
+                     <font>
+                        <Font name="Arial" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelNoResenias" layoutX="682.0" layoutY="251.0" text="-N/A-">
+                     <font>
+                        <Font name="Arial" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelNoPreguntas" layoutX="698.0" layoutY="281.0" text="-N/A-">
+                     <font>
+                        <Font name="Arial" size="25.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="descripcion" layoutX="425.0" layoutY="369.0" prefHeight="181.0" prefWidth="517.0" />
                </children>
             </AnchorPane>
          </content>

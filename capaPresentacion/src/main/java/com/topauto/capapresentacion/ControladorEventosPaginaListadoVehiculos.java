@@ -25,6 +25,7 @@ import com.topauto.capaentidades.Pais;
 import com.topauto.capaentidades.Vehiculo;
 import com.topauto.capaentidades.Fabricante;
 import com.topauto.capaentidades.Imagen;
+import com.topauto.capaentidades.Usuario;
 import com.topauto.capanegocio.ControladorVehiculo;
 import com.topauto.capaentidades.enumerados.Region;
 import java.util.Locale;
@@ -60,6 +61,10 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
     private Button botonContinente2; //Corresponde a Europa.
     @FXML
     private Button botonContinente3; //Corresponde a Asia.
+    @FXML
+    private ImageView imagenUsuario;
+    @FXML
+    private Text textoNombreUsuario;
 
 
     
@@ -79,7 +84,8 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
     private final int VehiculosXPagina = 3;
     private final String colorButton = "-fx-background-color: #DFDFE5", defaultImagePath = "imagenes/default-vehicle.png";
     private int ListaPagInicial = 0, ListaPagFinal = VehiculosXPagina - 1;
-    private int sizeMinusVxP = 0;
+    private int sizeMinusVxP = 0;  
+    private Usuario miUsuario;
 
     
     @Override
@@ -118,7 +124,26 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
                     handlerBotonVehiculo((Button)event.getSource());
                 }
              };
-    }    
+    }
+    public void setUsuario(Usuario miUsuario) 
+    {
+        this.miUsuario = miUsuario;
+        setUsuarioImage();
+    }
+    private void setUsuarioImage()
+    {
+        Image miImagen;
+        try{
+        miImagen = new Image (this.miUsuario.getFoto().getPath());
+        this.imagenUsuario.setImage(miImagen);
+        }
+        catch(IllegalArgumentException e)
+        {
+            miImagen = new Image("imagenes/perfil.png");
+            this.imagenUsuario.setImage(miImagen);
+        }
+        this.textoNombreUsuario.setText(this.miUsuario.getUserName());
+    }
     // Ya que los botones de continentes son estáticos, no es necesario asignar un EventHandler dinamico:
     @FXML
     private void clickContinent(ActionEvent event)
@@ -453,6 +478,7 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaVehiculoScene.fxml"));
             Parent root = loader.load();
             ControladorEventosPaginaVehiculo controlador = loader.getController();
+            controlador.setUsuario(miUsuario);
             controlador.setVehiculo(vehiculoAEnviar); //Envio mi vehiculo ...
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -490,6 +516,7 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
             Parent root = loader.load();
             
             ControladorEventosPaginaListadoPreguntas controlador = loader.getController();
+            controlador.setUsuario(miUsuario);
             
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -522,6 +549,7 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
             Parent root = loader.load();
             
             ControladorEventosPaginaEscribirPregunta controlador = loader.getController();
+            controlador.setUsuario(miUsuario);
             
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -554,7 +582,7 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
             Parent root = loader.load();
             
             ControladorEventosPaginaEscribirResenia controlador = loader.getController();
-            
+            controlador.setUsuario(miUsuario);
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             
@@ -586,6 +614,7 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
             Parent root = loader.load();
             
             ControladorEventosPaginaPerfil controlador = loader.getController();
+            controlador.setUsuario(miUsuario);
             
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -619,6 +648,7 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
             Parent root = loader.load();
             
             ControladorEventosPaginaPrincipal controlador = loader.getController();
+            controlador.setUsuario(miUsuario);
             
             Scene scene = new Scene(root);
             Stage stage = new Stage();

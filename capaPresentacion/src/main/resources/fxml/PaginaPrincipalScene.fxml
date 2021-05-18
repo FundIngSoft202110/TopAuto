@@ -11,6 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+
 <AnchorPane style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topauto.capapresentacion.ControladorEventosPaginaPrincipal">
    <children>
       <ScrollPane prefHeight="768.0" prefWidth="1366.0">
@@ -52,7 +53,6 @@
                         <Font name="Arial" size="13.0" />
                      </font>
                   </Button>
-                  <Pane fx:id="imagenUsuario" layoutX="1165.0" layoutY="6.0" prefHeight="53.0" prefWidth="52.0" style="-fx-border-color: b20000;" />
                   <VBox fx:id="vboxMasPopulares" layoutX="334.0" layoutY="638.0" prefHeight="696.0" prefWidth="685.0" style="-fx-border-color: b20000;">
                      <children>
                         <AnchorPane fx:id="vboxLosMasPopulares" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: b20000;">
@@ -282,6 +282,7 @@
                         <Font name="Arial Bold Italic" size="17.0" />
                      </font>
                   </Text>
+                  <ImageView fx:id="imagenUsuarioPerfil" fitHeight="56.0" fitWidth="63.0" layoutX="1172.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
          </content>

@@ -1,8 +1,10 @@
 package com.topauto.capapresentacion;
 
+import com.topauto.capaentidades.Usuario;
 import com.topauto.capanegocio.ControladorPerfil;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,16 +35,21 @@ public class ControladorEventosPaginaLogin implements Initializable {
     private TextField txtClave;
     @FXML
     private Button btInicial;
-        
+    
+    
+    private Usuario usuarioAEnviar;
+    private ArrayList<Usuario> misUsuarios;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         controlPerfil.descargarDatos();
+        misUsuarios = controlPerfil.getUsuarios();
     }    
 
     @FXML
     private void acceder(ActionEvent event) {
         String user = this.txtUser.getText();
         String clave = this.txtClave.getText();
+        
         
         if(("".equals(user))||("".equals(clave))){
             Alert alerta = new Alert(Alert.AlertType.ERROR);
@@ -57,6 +64,7 @@ public class ControladorEventosPaginaLogin implements Initializable {
                 alerta.setHeaderText(null);
                 alerta.setTitle("Exito");
                 alerta.setContentText("Acceso completado");
+                this.getUserList(user);
                 alerta.showAndWait();
                 
                 try {
@@ -65,6 +73,7 @@ public class ControladorEventosPaginaLogin implements Initializable {
                     Parent root = loader.load();
 
                     ControladorEventosPaginaPrincipal controlador = loader.getController();
+                    controlador.setUsuario(usuarioAEnviar);
 
                     Scene scene = new Scene(root);
                     Stage stage = new Stage();
@@ -98,7 +107,16 @@ public class ControladorEventosPaginaLogin implements Initializable {
             }
         }       
     }
-
+    private void getUserList(String Username)
+    {
+        for ( Usuario u : this.misUsuarios)
+        {
+            if (u.getUserName().equals(Username))
+            {
+                this.usuarioAEnviar = u;
+            }
+        }
+    }
     @FXML
     private void registrar(ActionEvent event) {
         try {
