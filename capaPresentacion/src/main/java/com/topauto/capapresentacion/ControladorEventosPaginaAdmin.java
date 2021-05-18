@@ -151,39 +151,36 @@ public class ControladorEventosPaginaAdmin implements Initializable {
             String clave=this.txtClave.getText();
             Pais pais=new Pais();
             Imagen imagen = new Imagen();
-            imagen.setPath("");
+            ArrayList<Publicacion> publicaciones =new ArrayList<Publicacion>();
             for(Usuario us:controlPerfil.getUsuarios()){
                 if(username.equals(us.getUserName())){
                     pais=us.getPais();
+                    imagen = us.getFoto();
+                    publicaciones = us.getPublicaciones();
                 }
             }
 
-            Usuario aux=new Usuario(name,username,correo,null,clave,true, new ArrayList<Publicacion>(),imagen, pais);
+            Usuario aux=new Usuario(name,username,correo,null,clave,true, publicaciones,imagen, pais);
 
-            if(!this.usuarios.contains(aux)){
-                if(controlPerfil.modificarPerfil(u)){
-                    Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-                    alerta.setHeaderText(null);
-                    alerta.setTitle("Exito");
-                    alerta.setContentText("El usuario ha sido actualizado.");
-                    alerta.showAndWait();
-                }
-                else{
-                    Alert alerta = new Alert(Alert.AlertType.ERROR);
-                    alerta.setHeaderText(null);
-                    alerta.setTitle("Error");
-                    alerta.setContentText("No se pudo modificar el usuario");
-                    alerta.showAndWait();
-                }
-                
-                this.tablaUsuarios.refresh();
-            }else{
+            if(controlPerfil.modificarPerfil(aux)){
+                Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                alerta.setHeaderText(null);
+                alerta.setTitle("Exito");
+                alerta.setContentText("El usuario ha sido actualizado.");
+                alerta.showAndWait();
+                this.usuarios.remove(u);
+                this.usuarios.add(aux);
+                this.tablaUsuarios.setItems(usuarios);
+                controlPerfil.descargarDatos();
+            }
+            else{
                 Alert alerta = new Alert(Alert.AlertType.ERROR);
                 alerta.setHeaderText(null);
                 alerta.setTitle("Error");
-                alerta.setContentText("El usuario ya existe en el sistema.");
+                alerta.setContentText("No se pudo modificar el usuario");
                 alerta.showAndWait();
             }
+            this.tablaUsuarios.refresh();
         }
     }
 
@@ -197,7 +194,7 @@ public class ControladorEventosPaginaAdmin implements Initializable {
         String country = "Colombia";
         Pais pais= new Pais();
         Imagen imagen = new Imagen();
-        imagen.setPath("");
+        imagen.setPath("/imagenes/perfil.jpg");
         
         for(Usuario us:controlPerfil.getUsuarios()){
             if(country.equals(us.getPais().getNombre())){

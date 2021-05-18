@@ -93,7 +93,7 @@ public class ControladorEventosPaginaRegistro implements Initializable {
         String contrasenia = this.txtClave.getText();
         String country = this.listPaises.getValue();
         Imagen imagen = new Imagen();
-        imagen.setPath("");
+        imagen.setPath("/imagenes/perfil.jpg");
         
         if(("".equals(nombre))||("".equals(username))||("".equals(correo))||("".equals(contrasenia))||("".equals(listPaises.getValue()))){
             Alert alerta = new Alert(Alert.AlertType.ERROR);
