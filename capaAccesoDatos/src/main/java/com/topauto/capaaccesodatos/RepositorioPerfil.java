@@ -75,6 +75,17 @@ public class RepositorioPerfil {
         return false;
     }
     
+    public boolean borrarUsuario(String username){
+        try(MongoClient mongoClient = MongoClients.create(ConstantesConexion.CONNECTION_STRING)){
+            MongoCollection<Document> coleccionUsuario = mongoClient.getDatabase("entities").getCollection("usuario");
+            if(coleccionUsuario.deleteOne(eq("username", username)) != null)
+                {
+                return true;
+                }
+        }
+        return false;
+    }
+    
     public boolean persistirPerfilModificado(Usuario usuario){
         try(MongoClient mongoClient = MongoClients.create(ConstantesConexion.CONNECTION_STRING)){
             MongoCollection<Document> coleccionUsuario = mongoClient.getDatabase("entities").getCollection("usuario");

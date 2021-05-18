@@ -14,10 +14,13 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.scene.control.TextArea;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -39,11 +42,17 @@ public class ControladorEventosPaginaEscribirResenia implements Initializable {
     @FXML
     private Text textoNombreUsuario;
     private Usuario miUsuario;
-    
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-    }
+    private ChoiceBox<?> boxMarca;
+    @FXML
+    private ChoiceBox<?> boxModelo;
+    @FXML
+    private TextArea txtContenido;
+    @FXML
+    private ChoiceBox<?> boxPuntuacion;
+    @FXML
+    private CheckBox checkBox;
+    @FXML
+    private Button btReseña;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -202,5 +211,9 @@ public class ControladorEventosPaginaEscribirResenia implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(ControladorEventosPaginaListadoVehiculos.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void reseñar(ActionEvent event) {
     }
 }
