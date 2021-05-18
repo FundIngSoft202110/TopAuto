@@ -13,7 +13,7 @@
 
 <AnchorPane style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topauto.capapresentacion.ControladorEventosPaginaPrincipal">
    <children>
-      <ScrollPane prefHeight="2000.0" prefWidth="1366.0">
+      <ScrollPane prefHeight="768.0" prefWidth="1366.0">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1500.0" prefWidth="1351.0" style="-fx-background-color: ffffff;">
                <children>
