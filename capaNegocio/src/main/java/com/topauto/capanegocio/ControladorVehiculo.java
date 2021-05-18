@@ -78,7 +78,7 @@ public class ControladorVehiculo {
     public boolean crearVehiculo(Vehiculo vehiculo) {
         //Castri
         try{
-
+            persistenciaVehiculo.persistirNuevoVehiculo(vehiculo);
             return vehiculos.add(vehiculo);
 
         }
@@ -97,6 +97,7 @@ public class ControladorVehiculo {
                 if(v.getId().equals(vehiculo.getId())){
                     int pos = vehiculos.indexOf(v);
                     vehiculos.set(pos, vehiculo);
+                    persistenciaVehiculo.persistirVehiculoModificado(vehiculo);
                     return true;
                 }
             }
@@ -114,6 +115,7 @@ public class ControladorVehiculo {
             for(Vehiculo v : vehiculos){
                 if(v.getId().equals(idVehiculo)){
                     vehiculos.remove(vehiculos.indexOf(v));
+                    persistenciaVehiculo.borrarVehiculo(idVehiculo);
                     return true;
                 }
             }

@@ -182,19 +182,36 @@ public class ControladorPerfil {
     }
 
     public boolean registrarPerfil(Usuario usuario) {
+        boolean retorno = false;
         //Yerro
         try{
-            
-            if(persistenciaPerfil.persistirNuevoUsuario(usuario) == true){
-                return true;
-            }
+            persistenciaPerfil.persistirNuevoUsuario(usuario);
+            retorno= true;           
         }
         catch(Exception e){
             System.out.println("Ocurrio un error al registrar el perfil");
         }
-        return false;
+        return retorno;
     }
 
+    public boolean borrarUsuario(String username) {
+        //Castri
+        try{
+            for(Usuario u : usuarios){
+                if(u.getUserName().equals(username)){
+                    usuarios.remove(usuarios.indexOf(u));
+                    persistenciaPerfil.borrarUsuario(username);
+                    return true;
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println("No se ha podido borrar el usuario");
+        }
+
+        return false;
+    }
+    
     public boolean modificarPerfil(Usuario usuario) {
         //Castri
         //Se hace la búsqueda con el userName como criterio...
@@ -203,6 +220,7 @@ public class ControladorPerfil {
                 if(u.getUserName().equals(usuario.getUserName())){
                     int pos = usuarios.indexOf(u);
                     usuarios.set(pos, usuario);
+                    persistenciaPerfil.persistirPerfilModificado(usuario);
                     return true;
                 }
             }
@@ -220,9 +238,8 @@ public class ControladorPerfil {
             for(Usuario u : usuarios){
                 if(u.getUserName().equals(identificador)){
                     u.setContrasenia(nueva);
-                    if(persistenciaPerfil.persistirPerfilModificado(u) == true){
-                        return true;
-                    }
+                    persistenciaPerfil.persistirPerfilModificado(u);
+                    return true;
                 }
             }
         }

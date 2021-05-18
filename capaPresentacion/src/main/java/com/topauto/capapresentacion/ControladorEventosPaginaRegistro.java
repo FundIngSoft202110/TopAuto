@@ -1,6 +1,8 @@
 package com.topauto.capapresentacion;
 
+import com.topauto.capaentidades.Imagen;
 import com.topauto.capaentidades.Pais;
+import com.topauto.capaentidades.Publicacion;
 import com.topauto.capaentidades.Usuario;
 import com.topauto.capanegocio.ControladorPerfil;
 import com.topauto.capanegocio.ControladorVehiculo;
@@ -89,6 +91,9 @@ public class ControladorEventosPaginaRegistro implements Initializable {
         String username = this.txtUsername.getText();
         String correo = this.txtCorreo.getText();
         String contrasenia = this.txtClave.getText();
+        String country = this.listPaises.getValue();
+        Imagen imagen = new Imagen();
+        imagen.setPath("");
         
         if(("".equals(nombre))||("".equals(username))||("".equals(correo))||("".equals(contrasenia))||("".equals(listPaises.getValue()))){
             Alert alerta = new Alert(Alert.AlertType.ERROR);
@@ -98,9 +103,22 @@ public class ControladorEventosPaginaRegistro implements Initializable {
             alerta.showAndWait();
         }
         else{
-            Usuario usuario = new Usuario();
+            Pais pais=new Pais();
+            for(Pais p:controlCarro.getPaises()){
+                if(country.equals(p.getNombre())){
+                    pais=p;
+                }
+            }
             
-            if(!controlPerfil.getUsuarios().contains(usuario)){
+            Usuario usuario = new Usuario(nombre,username,correo,"",contrasenia,true, new ArrayList<Publicacion>(),imagen, pais);
+            boolean encontro=false;
+            for(Usuario u : controlPerfil.getUsuarios()){
+                if((username.equals(u.getUserName())||(correo.equals(u.getCorreo())))){
+                    encontro=true;
+                }
+            }
+            
+            if(encontro==false){
                 if(controlPerfil.registrarPerfil(usuario)){
                     Alert alerta = new Alert(Alert.AlertType.INFORMATION);
                     alerta.setHeaderText(null);
