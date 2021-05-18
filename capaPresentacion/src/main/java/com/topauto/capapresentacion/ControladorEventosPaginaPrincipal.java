@@ -286,6 +286,12 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
 
     @FXML
     private void btnIngresar(ActionEvent event) {
+        
+        if(this.usuarioLogin!=null){
+            this.botonIngresarOPerfil.setText("Ver Perfil");
+        }else{
+            this.botonIngresarOPerfil.setText("Ingresar");
+        }
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaPerfilScene.fxml"));

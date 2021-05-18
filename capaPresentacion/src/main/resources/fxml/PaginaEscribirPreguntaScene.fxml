@@ -96,6 +96,11 @@
                         <Font size="15.0" />
                      </font>
                   </CheckBox>
+                  <Text fx:id="textoNombreUsuario" layoutX="1152.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" wrappingWidth="109.341796875">
+                     <font>
+                        <Font name="Arial Bold" size="17.0" />
+                     </font>
+                  </Text>
                </children>
             </AnchorPane>
          </content>

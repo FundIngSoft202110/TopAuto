@@ -49,6 +49,7 @@ public class ControladorEventosPaginaEscribirPregunta implements Initializable {
     private Button topAuto;
     @FXML
     private ImageView imagenUsuario;
+    @FXML
     private Text textoNombreUsuario;
     private Usuario miUsuario;
     @FXML

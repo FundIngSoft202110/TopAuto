@@ -37,6 +37,7 @@ public class ControladorEventosPaginaEscribirResenia implements Initializable {
     private Button hazPregunta;
     @FXML
     private ImageView imagenUsuario;
+    @FXML
     private Text textoNombreUsuario;
     private Usuario miUsuario;
     @FXML
