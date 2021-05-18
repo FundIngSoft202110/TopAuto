@@ -32,16 +32,14 @@ public class ControladorEventosPaginaEscribirResenia implements Initializable {
     @FXML
     private Button perfil;
     @FXML
-    private Button usuario;
-    @FXML
     private Button topAuto;
     @FXML
     private Button hazPregunta;
     @FXML
     private ImageView imagenUsuario;
-    @FXML
     private Text textoNombreUsuario;
     private Usuario miUsuario;
+    @FXML
     private ChoiceBox<?> boxMarca;
     @FXML
     private ChoiceBox<?> boxModelo;
