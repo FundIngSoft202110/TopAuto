@@ -182,17 +182,36 @@ public class ControladorPerfil {
     }
 
     public boolean registrarPerfil(Usuario usuario) {
+        boolean retorno = false;
         //Yerro
         try{
             persistenciaPerfil.persistirNuevoUsuario(usuario);
-            return true;           
+            retorno= true;           
         }
         catch(Exception e){
             System.out.println("Ocurrio un error al registrar el perfil");
         }
-        return false;
+        return retorno;
     }
 
+    public boolean borrarUsuario(String username) {
+        //Castri
+        try{
+            for(Usuario u : usuarios){
+                if(u.getUserName().equals(username)){
+                    usuarios.remove(usuarios.indexOf(u));
+                    persistenciaPerfil.borrarUsuario(username);
+                    return true;
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println("No se ha podido borrar el usuario");
+        }
+
+        return false;
+    }
+    
     public boolean modificarPerfil(Usuario usuario) {
         //Castri
         //Se hace la búsqueda con el userName como criterio...

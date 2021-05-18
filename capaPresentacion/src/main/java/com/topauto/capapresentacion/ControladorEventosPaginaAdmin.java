@@ -1,9 +1,13 @@
 package com.topauto.capapresentacion;
 
+import com.topauto.capaentidades.Imagen;
+import com.topauto.capaentidades.Pais;
+import com.topauto.capaentidades.Publicacion;
 import com.topauto.capaentidades.Usuario;
 import com.topauto.capanegocio.ControladorPerfil;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -60,7 +64,6 @@ public class ControladorEventosPaginaAdmin implements Initializable {
         controlPerfil.descargarDatos();
         
         for(Usuario u : controlPerfil.getUsuarios()){
-            System.out.println(u.getContrasenia());
             usuarios.add(u);
         }
         
@@ -109,14 +112,24 @@ public class ControladorEventosPaginaAdmin implements Initializable {
             alerta.showAndWait();
         }
         else{
-            this.usuarios.remove(u);
-            this.tablaUsuarios.refresh();
+            if(controlPerfil.borrarUsuario(u.getUserName())){
+                this.usuarios.remove(u);
+                this.tablaUsuarios.refresh();
+
+                Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                alerta.setHeaderText(null);
+                alerta.setTitle("Exito");
+                alerta.setContentText("Usuario eliminado correctamente.");
+                alerta.showAndWait();
+            }
+            else{
+                Alert alerta = new Alert(Alert.AlertType.ERROR);
+                alerta.setHeaderText(null);
+                alerta.setTitle("Error");
+                alerta.setContentText("Usuario no se pudo eliminar");
+                alerta.showAndWait();
+            }
             
-            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-            alerta.setHeaderText(null);
-            alerta.setTitle("Alerta");
-            alerta.setContentText("Usuario eliminado correctamente.");
-            alerta.showAndWait();
         }
     }
 
@@ -136,16 +149,37 @@ public class ControladorEventosPaginaAdmin implements Initializable {
             String username=this.txtUserName.getText();
             String correo=this.txtCorreo.getText();
             String clave=this.txtClave.getText();
+            Pais pais=new Pais();
+            Imagen imagen = new Imagen();
+            imagen.setPath("");
+            for(Usuario us:controlPerfil.getUsuarios()){
+                if(username.equals(us.getUserName())){
+                    pais=us.getPais();
+                }
+            }
 
-            Usuario aux=new Usuario(name,username,correo,clave,null);
+            Usuario aux=new Usuario(name,username,correo,null,clave,true, new ArrayList<Publicacion>(),imagen, pais);
 
             if(!this.usuarios.contains(aux)){
-                u.setNombre(name);
-                u.setUserName(username);
-                u.setCorreo(correo);
-                u.setContrasenia(clave);
                 
-                controlPerfil.modificarPerfil(u);
+                if(controlPerfil.modificarPerfil(aux)){
+                    u.setNombre(name);
+                    u.setUserName(username);
+                    u.setCorreo(correo);
+                    u.setContrasenia(clave);
+                    Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                    alerta.setHeaderText(null);
+                    alerta.setTitle("Exito");
+                    alerta.setContentText("El usuario ha sido modificado");
+                    alerta.showAndWait();
+                }
+                else{
+                    Alert alerta = new Alert(Alert.AlertType.ERROR);
+                    alerta.setHeaderText(null);
+                    alerta.setTitle("Error");
+                    alerta.setContentText("No se pudo modificar el usuario");
+                    alerta.showAndWait();
+                }
                 
                 this.tablaUsuarios.refresh();
             }else{
@@ -160,10 +194,22 @@ public class ControladorEventosPaginaAdmin implements Initializable {
 
     @FXML
     private void agregar(ActionEvent event) {
+        
         String name=this.txtNombre.getText();
         String username=this.txtUserName.getText();
         String correo=this.txtCorreo.getText();
         String clave=this.txtClave.getText();
+        String country = "Colombia";
+        Pais pais= new Pais();
+        Imagen imagen = new Imagen();
+        imagen.setPath("");
+        
+        for(Usuario us:controlPerfil.getUsuarios()){
+            if(country.equals(us.getPais().getNombre())){
+                pais=us.getPais();
+            }
+        }
+        
         
         if(("".equals(name))||("".equals(username))||("".equals(correo))||("".equals(clave))){
             Alert alerta = new Alert(Alert.AlertType.ERROR);
@@ -173,22 +219,39 @@ public class ControladorEventosPaginaAdmin implements Initializable {
             alerta.showAndWait();
         }
         else{
-            Usuario u=new Usuario(name,username,correo,clave,null);
-            this.usuarios.add(u);
-            this.tablaUsuarios.setItems(usuarios);
-            if(controlPerfil.registrarPerfil(u)){
-                this.usuarios.add(u);
+            Usuario u=new Usuario(name,username,correo,null,clave,true, new ArrayList<Publicacion>(),imagen, pais);
+            boolean encontro=false;
+            for(Usuario us : controlPerfil.getUsuarios()){
+                if((username.equals(us.getUserName())||(correo.equals(us.getCorreo())))){
+                    encontro=true;
+                }
+            }
+            if(encontro==false){
                 this.tablaUsuarios.setItems(usuarios);
+                if(controlPerfil.registrarPerfil(u)){
+                    this.usuarios.add(u);
+                    this.tablaUsuarios.setItems(usuarios);
+                    Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                    alerta.setHeaderText(null);
+                    alerta.setTitle("Exito");
+                    alerta.setContentText("Usuario agregado correctamente");
+                    alerta.showAndWait();
+                    controlPerfil.descargarDatos();
+                }else{
+                    Alert alerta = new Alert(Alert.AlertType.ERROR);
+                    alerta.setHeaderText(null);
+                    alerta.setTitle("Error");
+                    alerta.setContentText("Error para registrar usuario, verifique nuevamente");
+                    alerta.showAndWait();
+                }
             }else{
                 Alert alerta = new Alert(Alert.AlertType.ERROR);
                 alerta.setHeaderText(null);
                 alerta.setTitle("Error");
                 alerta.setContentText("Error para registrar usuario, verifique nuevamente");
                 alerta.showAndWait();
-            }
+            }            
         }
-        
-        
     }
 
     @FXML

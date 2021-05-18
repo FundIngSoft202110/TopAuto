@@ -55,6 +55,28 @@
                         </LinearGradient>
                      </textFill>
                   </Button>
+                  <Text layoutX="146.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Escribir pregunta">
+                     <font>
+                        <Font name="Arial" size="45.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="153.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titulo de la pregunta:">
+                     <font>
+                        <Font name="Arial" size="20.0" />
+                     </font>
+                  </Text>
+                  <TextField layoutX="155.0" layoutY="294.0" prefHeight="25.0" prefWidth="325.0" />
+                  <Text layoutX="154.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pregunta:">
+                     <font>
+                        <Font name="Arial" size="20.0" />
+                     </font>
+                  </Text>
+                  <TextArea layoutX="155.0" layoutY="372.0" prefHeight="200.0" prefWidth="1028.0" />
+                  <ImageView fitHeight="224.0" fitWidth="436.0" layoutX="707.0" layoutY="136.0" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/ferrari.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
          </content>
