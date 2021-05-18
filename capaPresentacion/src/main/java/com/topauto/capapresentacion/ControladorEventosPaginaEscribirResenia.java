@@ -13,7 +13,10 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -30,6 +33,18 @@ public class ControladorEventosPaginaEscribirResenia implements Initializable {
     private Button topAuto;
     @FXML
     private Button hazPregunta;
+    @FXML
+    private ChoiceBox<?> boxMarca;
+    @FXML
+    private ChoiceBox<?> boxModelo;
+    @FXML
+    private TextArea txtContenido;
+    @FXML
+    private ChoiceBox<?> boxPuntuacion;
+    @FXML
+    private CheckBox checkBox;
+    @FXML
+    private Button btReseña;
     
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
@@ -169,5 +184,9 @@ public class ControladorEventosPaginaEscribirResenia implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(ControladorEventosPaginaListadoVehiculos.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void reseñar(ActionEvent event) {
     }
 }

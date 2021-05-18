@@ -65,18 +65,34 @@
                         <Font name="Arial" size="20.0" />
                      </font>
                   </Text>
-                  <TextField layoutX="155.0" layoutY="294.0" prefHeight="25.0" prefWidth="325.0" />
+                  <TextField fx:id="txtTitulo" layoutX="155.0" layoutY="294.0" prefHeight="25.0" prefWidth="325.0" />
                   <Text layoutX="154.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pregunta:">
                      <font>
                         <Font name="Arial" size="20.0" />
                      </font>
                   </Text>
-                  <TextArea layoutX="155.0" layoutY="372.0" prefHeight="200.0" prefWidth="1028.0" />
+                  <TextArea fx:id="txtContenido" layoutX="155.0" layoutY="372.0" prefHeight="200.0" prefWidth="1028.0" />
                   <ImageView fitHeight="224.0" fitWidth="436.0" layoutX="707.0" layoutY="136.0" preserveRatio="true">
                      <image>
                         <Image url="@../imagenes/ferrari.png" />
                      </image>
                   </ImageView>
+                  <Text layoutX="154.0" layoutY="613.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tags (separado con comas):">
+                     <font>
+                        <Font name="Arial" size="20.0" />
+                     </font>
+                  </Text>
+                  <TextArea fx:id="txtTags" layoutX="154.0" layoutY="627.0" prefHeight="67.0" prefWidth="1030.0" />
+                  <CheckBox fx:id="checkBox" layoutX="155.0" layoutY="728.0" mnemonicParsing="false" text="Al subir una pregunta acepto los términos de condición y privacidad de la página frente a la moderación, manejo de preguntas e interacciones sociales.">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </CheckBox>
+                  <Button fx:id="btPregunta" layoutX="659.0" layoutY="785.0" mnemonicParsing="false" onAction="#preguntar" text="Crear pregunta">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
          </content>
