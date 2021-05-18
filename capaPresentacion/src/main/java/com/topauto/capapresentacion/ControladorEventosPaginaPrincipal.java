@@ -199,6 +199,7 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
             Parent root = loader.load();
 
             ControladorEventosPaginaEscribirPregunta controlador = loader.getController();
+            controlador.setUsuario(usuarioLogin);
 
             controlador.setUsuario(usuarioLogin);
             Scene scene = new Scene(root);
