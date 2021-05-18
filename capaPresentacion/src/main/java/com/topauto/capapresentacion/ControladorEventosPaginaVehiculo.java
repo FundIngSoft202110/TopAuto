@@ -1,5 +1,6 @@
 package com.topauto.capapresentacion;
 
+import com.topauto.capaentidades.Usuario;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -113,6 +114,8 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
     private Button botonPublicarResenaOPregunta;
     
     private Vehiculo miVehiculo;
+    
+    private Usuario miUsuario;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -122,6 +125,11 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
     public void setVehiculo(Vehiculo miVehiculo)
     {
         this.miVehiculo = miVehiculo;
+    }
+    
+    public void setUsuario (Usuario miUsuario)
+    {
+        this.miUsuario = miUsuario;
     }
 
     @FXML
