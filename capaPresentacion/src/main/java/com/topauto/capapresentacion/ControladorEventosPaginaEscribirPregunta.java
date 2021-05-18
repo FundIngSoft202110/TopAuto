@@ -49,8 +49,9 @@ public class ControladorEventosPaginaEscribirPregunta implements Initializable {
     private Button topAuto;
     @FXML
     private ImageView imagenUsuario;
+    @FXML
     private Text textoNombreUsuario;
-    private Usuario miUsuario;
+    
     @FXML
     private Button btPregunta;
     @FXML
@@ -61,6 +62,7 @@ public class ControladorEventosPaginaEscribirPregunta implements Initializable {
     private TextField txtTags;
     @FXML
     private CheckBox checkBox;
+    private Usuario miUsuario;
     
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
