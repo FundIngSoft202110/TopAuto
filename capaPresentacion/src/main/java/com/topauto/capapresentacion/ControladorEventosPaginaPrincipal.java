@@ -1,6 +1,5 @@
 package com.topauto.capapresentacion;
 
-
 import com.topauto.capaentidades.Publicacion;
 import com.topauto.capaentidades.Resenia;
 import com.topauto.capaentidades.Vehiculo;
@@ -45,8 +44,6 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
     @FXML
     private Button botonIngresarOPerfil;
     @FXML
-    private Pane imagenUsuario;
-    @FXML
     private VBox vboxMasPopulares;
     @FXML
     private AnchorPane vboxLosMasPopulares;
@@ -63,10 +60,6 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
     @FXML
     private Text preguntasPopulares11;
     @FXML
-    private Text origenPopulares1;
-    @FXML
-    private Text tipoAutoPopulares1;
-    @FXML
     private Pane imagenPopulares2;
     @FXML
     private Text modeloPopulares2;
@@ -74,10 +67,6 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
     private Text resenasPopulares2;
     @FXML
     private Text preguntasPopulares2;
-    @FXML
-    private Text origenPopulares2;
-    @FXML
-    private Text tipoAutoPopulares2;
     @FXML
     private Pane imagenPopulares3;
     @FXML
@@ -87,10 +76,6 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
     @FXML
     private Text preguntasPopulares3;
     @FXML
-    private Text origenPopulares3;
-    @FXML
-    private Text tipoAutoPopulares3;
-    @FXML
     private Pane imagenPopulares4;
     @FXML
     private Text modeloPopulares4;
@@ -99,10 +84,6 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
     @FXML
     private Text preguntasPopulares4;
     @FXML
-    private Text origenPopulares4;
-    @FXML
-    private Text tipoAutoPopulares4;
-    @FXML
     private Pane imagenPopulares5;
     @FXML
     private Text modeloPopulares5;
@@ -110,10 +91,6 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
     private Text resenasPopulares5;
     @FXML
     private Text preguntasPopulares5;
-    @FXML
-    private Text origenPopulares5;
-    @FXML
-    private Text tipoAutoPopulares5;
     @FXML
     private Pane imagenFondo;
     @FXML
@@ -144,48 +121,61 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
     private Button botonBuscar;
     @FXML
     private ImageView imagenUsuarioPerfil;
-    
+
     private Usuario usuarioLogin;
 
     //////////////////////own attributes//////////////////////////
-    
     private ArrayList<Vehiculo> listaVehiculos;
-    
+
     private ArrayList<Resenia> listaResenia;
-    
+
     com.topauto.capaaccesodatos.RepositorioPublicacion rPublicacion = new com.topauto.capaaccesodatos.RepositorioPublicacion();
     com.topauto.capaaccesodatos.RepositorioVehiculo rVehiculos = new com.topauto.capaaccesodatos.RepositorioVehiculo();
-    
+
     private ArrayList<Publicacion> listaPublicaciones;
-    
+    @FXML
+    private Text motorPopulares1;
+    @FXML
+    private Text transmisionPopulares1;
+    @FXML
+    private Text motorPopulares2;
+    @FXML
+    private Text transmisionPopulares2;
+    @FXML
+    private Text motorPopulares3;
+    @FXML
+    private Text transmisionPopulares3;
+    @FXML
+    private Text motorPopulares4;
+    @FXML
+    private Text transmisionPopulares4;
+    @FXML
+    private Text motorPopulares5;
+    @FXML
+    private Text transmisionPopulares5;
+
     //////////////////////own attributes//////////////////////////
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        
-        
+
     }
-    public void setUsuario (Usuario miUsuario)
-    {
+
+    public void setUsuario(Usuario miUsuario) {
         usuarioLogin = miUsuario;
         setUsuarioImage();
     }
-    
-    private void setUsuarioImage()
-    {
+
+    private void setUsuarioImage() {
         Image miImagen;
-        try{
-        miImagen = new Image (this.usuarioLogin.getFoto().getPath());
-        this.imagenUsuarioPerfil.setImage(miImagen);
-        }
-        catch(IllegalArgumentException e)
-        {
+        try {
+            miImagen = new Image(this.usuarioLogin.getFoto().getPath());
+            this.imagenUsuarioPerfil.setImage(miImagen);
+        } catch (IllegalArgumentException e) {
             miImagen = new Image("imagenes/perfil.png");
             this.imagenUsuarioPerfil.setImage(miImagen);
         }
         this.textoNombreUsuario.setText(this.usuarioLogin.getUserName());
     }
-
 
     @FXML
     private void btnHazUnaPregunta(ActionEvent event) {
@@ -297,72 +287,35 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
     @FXML
     private void btnIngresar(ActionEvent event) {
 
-        String nombreBoton = this.botonIngresarOPerfil.getText();
-        if ("Ingresar".equals(nombreBoton)) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaPerfilScene.fxml"));
 
-            try {
+            Parent root = loader.load();
 
-                Stage stage = new Stage();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaLoginScene.fxml"));
-                stage.setMaxWidth(840);
-                stage.setMaxHeight(500);
-                stage.setTitle("TopAuto Login");
+            ControladorEventosPaginaPerfil controlador = loader.getController();
+            controlador.setUsuario(this.usuarioLogin);
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("Perfil Usuario");
 
-                ControladorEventosPaginaLogin controlador = loader.getController();
-                Parent root = loader.load();
-                Scene scene = new Scene(root);
+            stage.setScene(scene);
+            Screen screen = Screen.getPrimary(); //Get info from my screen!
+            Rectangle2D bounds = screen.getVisualBounds();
+            //Set visual bounds for MaximizedScreen:
+            stage.setX(bounds.getMinX());
+            stage.setY(bounds.getMinY());
+            stage.setWidth(bounds.getWidth());
+            stage.setHeight(bounds.getHeight());
+            //Adjust my code to the max boundaries of my screen.
+            stage.setMaximized(true); //Set it maximized
+            stage.show();
 
-                stage.setScene(scene);
-                Screen screen = Screen.getPrimary(); //Get info from my screen!
-                Rectangle2D bounds = screen.getVisualBounds();
-                //Set visual bounds for MaximizedScreen:
-                stage.setX(bounds.getMinX());
-                stage.setY(bounds.getMinY());
-                stage.setWidth(bounds.getWidth());
-                stage.setHeight(bounds.getHeight());
-                //Adjust my code to the max boundaries of my screen.
-                stage.setMaximized(true); //Set it maximized
-                stage.show();
+            Stage myStage = (Stage) this.botonIngresarOPerfil.getScene().getWindow();
+            myStage.close();
 
-                Stage myStage = (Stage) this.botonIngresarOPerfil.getScene().getWindow();
-                myStage.close();
-
-            } catch (IOException ex) {
-                Logger.getLogger(ControladorEventosPaginaListadoVehiculos.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        } else {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaPerfilScene.fxml"));
-
-                Parent root = loader.load();
-
-                ControladorEventosPaginaPerfil controlador = loader.getController();
-
-                Scene scene = new Scene(root);
-                Stage stage = new Stage();
-                stage.setTitle("Perfil Usuario");
-
-                stage.setScene(scene);
-                Screen screen = Screen.getPrimary(); //Get info from my screen!
-                Rectangle2D bounds = screen.getVisualBounds();
-                //Set visual bounds for MaximizedScreen:
-                stage.setX(bounds.getMinX());
-                stage.setY(bounds.getMinY());
-                stage.setWidth(bounds.getWidth());
-                stage.setHeight(bounds.getHeight());
-                //Adjust my code to the max boundaries of my screen.
-                stage.setMaximized(true); //Set it maximized
-                stage.show();
-
-                Stage myStage = (Stage) this.botonIngresarOPerfil.getScene().getWindow();
-                myStage.close();
-
-            } catch (IOException ex) {
-                Logger.getLogger(ControladorEventosPaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        } catch (IOException ex) {
+            Logger.getLogger(ControladorEventosPaginaPerfil.class.getName()).log(Level.SEVERE, null, ex);
         }
-
 
     }
 
@@ -434,7 +387,7 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
         listaVehiculos = rVehiculos.descargarVehiculos();
         //Se busca si lo escrito en la barra de búsqueda coincide con marca o modelo y se redirige a la primera coincidencia
         for (int i = 0; i < listaVehiculos.size(); i++) {
-            if ((listaVehiculos.get(i).getMarca().getNombre().indexOf(texto) != -1) || (listaVehiculos.get(i).getModelo().indexOf(texto) != -1)) {
+            if ((listaVehiculos.get(i).getMarca().getNombre().contains(texto)) || (listaVehiculos.get(i).getModelo().contains(texto))) {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaVehiculoScene.fxml"));
                     Parent root = loader.load();
@@ -442,7 +395,7 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
                     controlador.setVehiculo(listaVehiculos.get(i)); //Envio mi vehiculo ...
                     Scene scene = new Scene(root);
                     Stage stage = new Stage();
-                    
+
                     stage.setScene(scene);
                     Screen screen = Screen.getPrimary(); //Get info from my screen!
                     Rectangle2D bounds = screen.getVisualBounds();
@@ -455,17 +408,14 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
                     stage.setMaximized(true); //Set it maximized
                     //Show my screen!
                     stage.show();
-                    
+
                     Stage myStage = (Stage) this.botonBuscar.getScene().getWindow();
                     myStage.close();
                 } catch (IOException ex) {
                     Logger.getLogger(ControladorEventosPaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } else {
-                this.barraDeBusqueda.setText("No se encontro ningun vehiculo con ese criterio");
             }
         }
-
     }
 
 }
