@@ -50,7 +50,7 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
     @FXML
     private Button botonIngresarOPerfil;
     @FXML
-    private Pane imagenUsuario;
+    private ImageView imagenUsuario;
     @FXML
     private Pane paneImagenVehiculo;
     @FXML
@@ -185,15 +185,15 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
         //Caracteristicas Principales
         this.cpMarca.setText(vehiculoCargar.getMarca().getNombre());
         this.cpModelo.setText(vehiculoCargar.getModelo());
-        //this.cpMotor.setText(vehiculoCargar.getMotor().name());
-        //this.cpTransmision.setText(vehiculoCargar.getTransmision().name());
-        //this.cpFrenos.setText(vehiculoCargar.getFrenos().name());
+        this.cpMotor.setText(vehiculoCargar.getMotor().name());
+        this.cpTransmision.setText(vehiculoCargar.getTransmision().name());
+        this.cpFrenos.setText(vehiculoCargar.getFrenos().name());
         this.cpVelocidadMaxima.setText(vehiculoCargar.getVelMax() + "");
         this.cpHorsePower.setText(vehiculoCargar.getPotencia() + "");
-        //this.cpDireccion.setText(vehiculoCargar.getDireccion().name());
+        this.cpDireccion.setText(vehiculoCargar.getDireccion().name());
         this.cpCeroACien.setText(vehiculoCargar.getAccMax() + "");
         this.cpCargo.setText(vehiculoCargar.getMaxPasajeros() + "");
-        //this.cpPuertas.setText(vehiculoCargar.getNumPuertas() + "");
+        this.cpPuertas.setText(vehiculoCargar.getNumPuertas() + "");
          /*
         if (vehiculoCargar.isTieneVidriosElectricos()) {
             caracteristicas = "Si Tiene Vidrios Electricos";
@@ -215,6 +215,21 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
     public void setUsuario (Usuario miUsuario)
     {
         this.miUsuario = miUsuario;
+        setUsuarioImage();
+    }
+    private void setUsuarioImage()
+    {
+        Image miImagen;
+        try{
+        miImagen = new Image (this.miUsuario.getFoto().getPath());
+        this.imagenUsuario.setImage(miImagen);
+        }
+        catch(IllegalArgumentException e)
+        {
+            miImagen = new Image("imagenes/perfil.png");
+            this.imagenUsuario.setImage(miImagen);
+        }
+        this.textoNombreUsuario.setText(this.miUsuario.getUserName());
     }
 
     @FXML
@@ -225,6 +240,7 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
             Parent root = loader.load();
 
             ControladorEventosPaginaPrincipal controlador = loader.getController();
+            controlador.setUsuario(miUsuario);
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -258,6 +274,7 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
             Parent root = loader.load();
 
             ControladorEventosPaginaPrincipal controlador = loader.getController();
+            controlador.setUsuario(miUsuario);
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -295,6 +312,7 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
             Parent root = loader.load();
 
             ControladorEventosPaginaEscribirResenia controlador = loader.getController();
+            controlador.setUsuario(miUsuario);
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -327,6 +345,7 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
             Parent root = loader.load();
 
             ControladorEventosPaginaListadoPreguntas controlador = loader.getController();
+            controlador.setUsuario(miUsuario);
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -359,6 +378,7 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
             Parent root = loader.load();
 
             ControladorEventosPaginaPerfil controlador = loader.getController();
+            controlador.setUsuario(miUsuario);
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();

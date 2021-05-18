@@ -87,7 +87,7 @@
                   <TextArea fx:id="txtContenido" layoutX="154.0" layoutY="367.0" prefHeight="218.0" prefWidth="996.0" />
                   <TextField fx:id="txtTitulo" layoutX="155.0" layoutY="291.0" prefHeight="25.0" prefWidth="249.0" />
                   <TextField fx:id="txtTags" layoutX="153.0" layoutY="623.0" prefHeight="77.0" prefWidth="995.0" />
-                  <CheckBox fx:id="checkBox" layoutX="140.0" layoutY="735.0" mnemonicParsing="false" text="Al subir una pregunta acepto los términos de condición y privacidad de la página frente a lamoderación, manejo de preguntas e interacciones sociales.">
+                  <CheckBox fx:id="checkBox" layoutX="140.0" layoutY="735.0" mnemonicParsing="false" text="Al subir una pregunta acepto los términos de condición y privacidad de la página frente a la moderación, manejo de preguntas e interacciones sociales.">
                      <font>
                         <Font size="15.0" />
                      </font>
