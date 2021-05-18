@@ -403,12 +403,14 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
         //Se carga la lista de vehículos de la base de datos
         String texto;
         texto = this.barraDeBusqueda.getText();
+        boolean encontro = false;
 
         listaVehiculos = rVehiculos.descargarVehiculos();
         //Se busca si lo escrito en la barra de búsqueda coincide con marca o modelo y se redirige a la primera coincidencia
         for (int i = 0; i < listaVehiculos.size(); i++) {
             if ((listaVehiculos.get(i).getMarca().getNombre().toLowerCase().contains(texto.toLowerCase())) || (listaVehiculos.get(i).getModelo().toLowerCase().contains(texto.toLowerCase()))) {
                 try {
+                    encontro=true;
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaVehiculoScene.fxml"));
                     Parent root = loader.load();
                     ControladorEventosPaginaVehiculo controlador = loader.getController();
@@ -435,6 +437,10 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
                     Logger.getLogger(ControladorEventosPaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+        }
+        if(encontro==false)
+        {
+            this.barraDeBusqueda.setText("No se encontro ningun vehiculo con los criterios de busqueda");
         }
     }
 
