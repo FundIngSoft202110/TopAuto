@@ -1,5 +1,6 @@
 package com.topauto.capapresentacion;
 
+import com.topauto.capaentidades.PRrelacionada;
 import com.topauto.capaentidades.Publicacion;
 import com.topauto.capaentidades.Resenia;
 import com.topauto.capaentidades.Vehiculo;
@@ -127,7 +128,7 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
     //////////////////////own attributes//////////////////////////
     private ArrayList<Vehiculo> listaVehiculos;
 
-    private ArrayList<Resenia> listaResenia;
+    private ArrayList<Publicacion> listaPublicacion;
 
     com.topauto.capaaccesodatos.RepositorioPublicacion rPublicacion = new com.topauto.capaaccesodatos.RepositorioPublicacion();
     com.topauto.capaaccesodatos.RepositorioVehiculo rVehiculos = new com.topauto.capaaccesodatos.RepositorioVehiculo();
@@ -157,7 +158,19 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
     //////////////////////own attributes//////////////////////////
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        this.botonIngresarOPerfil.setText("Ver Perfil");
+        ArrayList<Vehiculo> maxVehiculos = new ArrayList<>();
+        listaPublicacion = rPublicacion.descargarPublicaciones();
+        listaVehiculos = rVehiculos.descargarVehiculos();
+        
+        for(Publicacion auxP: listaPublicacion)
+        {
+            if(auxP instanceof PRrelacionada)
+            {
+                maxVehiculos.add(((PRrelacionada) auxP).getVehiculo());
+            }
+        }
+        
     }
 
     public void setUsuario(Usuario miUsuario) {
@@ -186,6 +199,7 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
             Parent root = loader.load();
 
             ControladorEventosPaginaEscribirPregunta controlador = loader.getController();
+            controlador.setUsuario(usuarioLogin);
 
             controlador.setUsuario(usuarioLogin);
             Scene scene = new Scene(root);
@@ -389,12 +403,14 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
         //Se carga la lista de vehículos de la base de datos
         String texto;
         texto = this.barraDeBusqueda.getText();
+        boolean encontro = false;
 
         listaVehiculos = rVehiculos.descargarVehiculos();
         //Se busca si lo escrito en la barra de búsqueda coincide con marca o modelo y se redirige a la primera coincidencia
         for (int i = 0; i < listaVehiculos.size(); i++) {
-            if ((listaVehiculos.get(i).getMarca().getNombre().contains(texto)) || (listaVehiculos.get(i).getModelo().contains(texto))) {
+            if ((listaVehiculos.get(i).getMarca().getNombre().toLowerCase().contains(texto.toLowerCase())) || (listaVehiculos.get(i).getModelo().toLowerCase().contains(texto.toLowerCase()))) {
                 try {
+                    encontro=true;
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaVehiculoScene.fxml"));
                     Parent root = loader.load();
                     ControladorEventosPaginaVehiculo controlador = loader.getController();
@@ -421,6 +437,10 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
                     Logger.getLogger(ControladorEventosPaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+        }
+        if(encontro==false)
+        {
+            this.barraDeBusqueda.setText("No se encontro ningun vehiculo con los criterios de busqueda");
         }
     }
 

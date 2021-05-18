@@ -71,7 +71,7 @@ public class ControladorEventosPaginaEscribirPregunta implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        controlPublicacion.descargarDatos();
     }   
     
         public void setUsuario(Usuario miUsuario) 
@@ -277,7 +277,6 @@ public class ControladorEventosPaginaEscribirPregunta implements Initializable {
             ArrayList<String> tags = new ArrayList<>();
             String tg[] = this.txtTags.getText().split(",");
             tags.addAll(Arrays.asList(tg));
-            Usuario usuario = new Usuario();
             
             ArrayList<Publicacion> publicaciones=controlPublicacion.getPublicaciones();
             ArrayList<Integer> preguntasGenerales=new ArrayList<>();
@@ -294,7 +293,7 @@ public class ControladorEventosPaginaEscribirPregunta implements Initializable {
                 }
             }
             
-            PRgeneral pregunta = new PRgeneral(tags,"PRG"+(max++),this.txtTitulo.getText(),this.txtContenido.getText(),new Date(), usuario);
+            PRgeneral pregunta = new PRgeneral(tags,"PRG"+(max++),this.txtTitulo.getText(),this.txtContenido.getText(),new Date(), this.miUsuario);
             
             if(controlPublicacion.crearPublicacion(pregunta)){
                 Alert alerta = new Alert(Alert.AlertType.INFORMATION);

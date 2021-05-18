@@ -11,10 +11,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topauto.capapresentacion.ControladorEventosPaginaPrincipal">
    <children>
-      <ScrollPane prefHeight="768.0" prefWidth="1366.0">
+      <ScrollPane prefHeight="2000.0" prefWidth="1366.0">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1500.0" prefWidth="1351.0" style="-fx-background-color: ffffff;">
                <children>
@@ -83,12 +82,12 @@
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="origenPopulares1" layoutX="282.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Origen" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                              <Text fx:id="motorPopulares1" layoutX="282.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Motor" textAlignment="CENTER" wrappingWidth="99.23974609375">
                                  <font>
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="tipoAutoPopulares1" layoutX="398.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo de Auto" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                              <Text fx:id="transmisionPopulares1" layoutX="398.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transmision" textAlignment="CENTER" wrappingWidth="99.23974609375">
                                  <font>
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
@@ -114,12 +113,12 @@
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="origenPopulares2" layoutX="282.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Origen" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                              <Text fx:id="motorPopulares2" layoutX="282.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Motor" textAlignment="CENTER" wrappingWidth="99.23974609375">
                                  <font>
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="tipoAutoPopulares2" layoutX="398.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo de Auto" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                              <Text fx:id="transmisionPopulares2" layoutX="398.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transmision" textAlignment="CENTER" wrappingWidth="99.23974609375">
                                  <font>
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
@@ -145,12 +144,12 @@
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="origenPopulares3" layoutX="277.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Origen" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                              <Text fx:id="motorPopulares3" layoutX="277.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Motor" textAlignment="CENTER" wrappingWidth="99.23974609375">
                                  <font>
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="tipoAutoPopulares3" layoutX="393.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo de Auto" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                              <Text fx:id="transmisionPopulares3" layoutX="393.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transmision" textAlignment="CENTER" wrappingWidth="99.23974609375">
                                  <font>
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
@@ -176,12 +175,12 @@
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="origenPopulares4" layoutX="279.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Origen" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                              <Text fx:id="motorPopulares4" layoutX="279.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Motor" textAlignment="CENTER" wrappingWidth="99.23974609375">
                                  <font>
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="tipoAutoPopulares4" layoutX="395.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo de Auto" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                              <Text fx:id="transmisionPopulares4" layoutX="395.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transmision" textAlignment="CENTER" wrappingWidth="99.23974609375">
                                  <font>
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
@@ -207,12 +206,12 @@
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="origenPopulares5" layoutX="275.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Origen" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                              <Text fx:id="motorPopulares5" layoutX="275.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Motor" textAlignment="CENTER" wrappingWidth="99.23974609375">
                                  <font>
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="tipoAutoPopulares5" layoutX="391.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo de Auto" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                              <Text fx:id="transmisionPopulares5" layoutX="391.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transmision" textAlignment="CENTER" wrappingWidth="99.23974609375">
                                  <font>
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
