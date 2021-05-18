@@ -1,5 +1,6 @@
 package com.topauto.capapresentacion;
 
+import com.topauto.capaentidades.Usuario;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,12 +31,19 @@ public class ControladorEventosPaginaPerfil implements Initializable {
     private Button topAuto;
     @FXML
     private AnchorPane countries;
+    
+    private Usuario usuarioLogeado = new Usuario();
 
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    public void setUsuario(Usuario user)
+    {
+        this.usuarioLogeado = user;
+    }
 
     @FXML
     private void responder(ActionEvent event) {
