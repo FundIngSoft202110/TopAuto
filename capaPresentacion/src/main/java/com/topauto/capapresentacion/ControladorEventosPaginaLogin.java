@@ -72,7 +72,7 @@ public class ControladorEventosPaginaLogin implements Initializable {
                 alerta.setHeaderText(null);
                 alerta.setTitle("Exito");
                 alerta.setContentText("Acceso completado");
-                this.getUserList(user);
+                this.getUserList(username);
                 alerta.showAndWait();
                 
                 try {

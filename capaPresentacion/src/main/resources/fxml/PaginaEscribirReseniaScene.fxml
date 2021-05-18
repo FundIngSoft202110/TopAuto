@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
@@ -11,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="977.0" prefWidth="1366.0" style="-fx-background-color: FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topauto.capapresentacion.ControladorEventosPaginaEscribirResenia">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="977.0" prefWidth="1366.0" style="-fx-background-color: FFFFFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topauto.capapresentacion.ControladorEventosPaginaEscribirResenia">
    <children>
       <ScrollPane pannable="true" prefHeight="977.0" prefWidth="1366.0" style="-fx-background-color: FFFFFF;">
          <content>
@@ -56,13 +63,11 @@
                         <Font name="Arial" size="45.0" />
                      </font>
                   </Text>
-                  <ChoiceBox fx:id="boxMarca" layoutX="143.0" layoutY="267.0" prefHeight="25.0" prefWidth="186.0" />
                   <Text layoutX="143.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marca:">
                      <font>
                         <Font name="Arial" size="20.0" />
                      </font>
                   </Text>
-                  <ChoiceBox fx:id="boxModelo" layoutX="448.0" layoutY="267.0" prefHeight="25.0" prefWidth="186.0" />
                   <Text layoutX="450.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modelo">
                      <font>
                         <Font name="Arial" size="20.0" />
@@ -73,18 +78,11 @@
                         <Font name="Arial" size="20.0" />
                      </font>
                   </Text>
-                  <TextArea fx:id="txtContenido" layoutX="141.0" layoutY="357.0" prefHeight="200.0" prefWidth="1028.0" />
                   <Text layoutX="141.0" layoutY="595.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Puntuación:">
                      <font>
                         <Font name="Arial" size="20.0" />
                      </font>
                   </Text>
-                  <ChoiceBox fx:id="boxPuntuacion" layoutX="140.0" layoutY="607.0" prefHeight="25.0" prefWidth="186.0" />
-                  <CheckBox fx:id="checkBox" layoutX="140.0" layoutY="657.0" mnemonicParsing="false" text="Al subir una pregunta acepto los términos de condición y privacidad de la página frente a la moderación, manejo de preguntas e interacciones sociales.">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </CheckBox>
                   <Button fx:id="btReseña" layoutX="1061.0" layoutY="597.0" mnemonicParsing="false" onAction="#reseñar" text="Crear Reseña">
                      <font>
                         <Font size="15.0" />
@@ -95,6 +93,20 @@
                         <Image url="@../imagenes/bugatti.png" />
                      </image>
                   </ImageView>
+                  <ChoiceBox fx:id="boxMarca" layoutX="142.0" layoutY="278.0" prefHeight="25.0" prefWidth="190.0" />
+                  <ChoiceBox fx:id="boxModelo" layoutX="453.0" layoutY="277.0" prefHeight="25.0" prefWidth="190.0" />
+                  <ChoiceBox fx:id="boxPuntuacion" layoutX="142.0" layoutY="607.0" prefHeight="25.0" prefWidth="190.0" />
+                  <TextArea fx:id="txtContenido" layoutX="143.0" layoutY="353.0" prefHeight="218.0" prefWidth="996.0" />
+                  <CheckBox fx:id="checkBox" layoutX="133.0" layoutY="661.0" mnemonicParsing="false" text="Al subir una pregunta acepto los términos de condición y privacidad de la página frente a la moderación, manejo de preguntas e interacciones sociales.">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </CheckBox>
+                  <Text fx:id="textoNombreUsuario" layoutX="1150.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" wrappingWidth="109.341796875">
+                     <font>
+                        <Font name="Arial Bold" size="17.0" />
+                     </font>
+                  </Text>
                </children>
             </AnchorPane>
          </content>

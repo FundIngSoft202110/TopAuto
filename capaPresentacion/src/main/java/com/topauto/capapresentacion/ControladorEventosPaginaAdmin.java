@@ -161,16 +161,11 @@ public class ControladorEventosPaginaAdmin implements Initializable {
             Usuario aux=new Usuario(name,username,correo,null,clave,true, new ArrayList<Publicacion>(),imagen, pais);
 
             if(!this.usuarios.contains(aux)){
-                
-                if(controlPerfil.modificarPerfil(aux)){
-                    u.setNombre(name);
-                    u.setUserName(username);
-                    u.setCorreo(correo);
-                    u.setContrasenia(clave);
+                if(controlPerfil.modificarPerfil(u)){
                     Alert alerta = new Alert(Alert.AlertType.INFORMATION);
                     alerta.setHeaderText(null);
                     alerta.setTitle("Exito");
-                    alerta.setContentText("El usuario ha sido modificado");
+                    alerta.setContentText("El usuario ha sido actualizado.");
                     alerta.showAndWait();
                 }
                 else{

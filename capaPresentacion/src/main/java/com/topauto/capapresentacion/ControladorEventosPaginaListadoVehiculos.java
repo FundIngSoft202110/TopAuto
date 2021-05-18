@@ -458,7 +458,6 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
             Text TextLocal = new Text(); //Inicialización de Variable
             try{
             TextLocal = (Text)((AnchorPane)clickedButton.getParent()).getChildren().get(0);
-            System.out.printf(TextLocal.getText() + "\n"); //DEBUG - TODO: Erase
             }
             catch (NullPointerException e)
             {
@@ -469,10 +468,11 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
             {
                 if (v.getModelo().equals(TextLocal.getText()))
                 {
-                    vehiculoAEnviar = v;
+                     vehiculoAEnviar = v;
+                     
                 }
             }
-            if ( vehiculoAEnviar.getId() != null)
+            if ( !vehiculoAEnviar.getModelo().isEmpty())
             {
             //Si encontro el vehiculo, paso a la nueva escena:
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaVehiculoScene.fxml"));

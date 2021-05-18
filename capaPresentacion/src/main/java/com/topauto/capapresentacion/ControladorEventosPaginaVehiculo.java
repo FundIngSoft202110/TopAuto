@@ -50,7 +50,7 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
     @FXML
     private Button botonIngresarOPerfil;
     @FXML
-    private Pane imagenUsuario;
+    private ImageView imagenUsuario;
     @FXML
     private Pane paneImagenVehiculo;
     @FXML
@@ -146,6 +146,26 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
     //////////////////////////////////////////////////////////////
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //Estos tambien votan error!
+         try{
+        this.colCaracteristicasAdicionales.setCellValueFactory(new PropertyValueFactory("Caracteristicas Adicionales"));
+        this.colUsuarioPregRes.setCellValueFactory(new PropertyValueFactory("Usuario"));
+        this.colDescripcionPregRes.setCellValueFactory(new PropertyValueFactory("Descripcion"));
+         }
+         catch (NullPointerException e)
+         {
+             System.out.println( "Si, se puteo aca...\n");
+         }
+    }
+    
+    public void setVehiculo(Vehiculo miVehiculo)
+    {
+        this.vehiculoCargar = miVehiculo;
+        setCarVehiculo();
+        
+    }
+    private void setCarVehiculo ()
+    {
         try {
             //Poner Imagen
             for (Imagen img : vehiculoCargar.getFotos()) {
@@ -156,7 +176,8 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
-
+        
+        
         this.textNombreVehiculo.setText(vehiculoCargar.getModelo());
         this.progressBarVelocidadMaxima.setProgress((vehiculoCargar.getVelMax()) / 500);
         this.progressBarAceleracionMaxima.setProgress(((vehiculoCargar.getAccMax() / 18) - 1) * -1);
@@ -173,12 +194,7 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
         this.cpCeroACien.setText(vehiculoCargar.getAccMax() + "");
         this.cpCargo.setText(vehiculoCargar.getMaxPasajeros() + "");
         this.cpPuertas.setText(vehiculoCargar.getNumPuertas() + "");
-
-        //Caracteristicas Adicionales
-        this.colCaracteristicasAdicionales.setCellValueFactory(new PropertyValueFactory("Caracteristicas Adicionales"));
-        this.colUsuarioPregRes.setCellValueFactory(new PropertyValueFactory("Usuario"));
-        this.colDescripcionPregRes.setCellValueFactory(new PropertyValueFactory("Descripcion"));
-
+         /*
         if (vehiculoCargar.isTieneVidriosElectricos()) {
             caracteristicas = "Si Tiene Vidrios Electricos";
             this.carAd.add(caracteristicas);
@@ -193,18 +209,27 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
             caracteristicas = "No Tiene Aire Acondicionado";
             this.carAd.add(caracteristicas);
         }
-
-    }
-    
-    public void setVehiculo(Vehiculo miVehiculo)
-    {
-        this.miVehiculo = vehiculoCargar;
+        */
         
     }
-    
     public void setUsuario (Usuario miUsuario)
     {
         this.miUsuario = miUsuario;
+        setUsuarioImage();
+    }
+    private void setUsuarioImage()
+    {
+        Image miImagen;
+        try{
+        miImagen = new Image (this.miUsuario.getFoto().getPath());
+        this.imagenUsuario.setImage(miImagen);
+        }
+        catch(IllegalArgumentException e)
+        {
+            miImagen = new Image("imagenes/perfil.png");
+            this.imagenUsuario.setImage(miImagen);
+        }
+        this.textoNombreUsuario.setText(this.miUsuario.getUserName());
     }
 
     @FXML
@@ -215,6 +240,7 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
             Parent root = loader.load();
 
             ControladorEventosPaginaPrincipal controlador = loader.getController();
+            controlador.setUsuario(miUsuario);
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -248,6 +274,7 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
             Parent root = loader.load();
 
             ControladorEventosPaginaPrincipal controlador = loader.getController();
+            controlador.setUsuario(miUsuario);
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -285,6 +312,7 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
             Parent root = loader.load();
 
             ControladorEventosPaginaEscribirResenia controlador = loader.getController();
+            controlador.setUsuario(miUsuario);
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -317,6 +345,7 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
             Parent root = loader.load();
 
             ControladorEventosPaginaListadoPreguntas controlador = loader.getController();
+            controlador.setUsuario(miUsuario);
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -349,6 +378,7 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
             Parent root = loader.load();
 
             ControladorEventosPaginaPerfil controlador = loader.getController();
+            controlador.setUsuario(miUsuario);
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();

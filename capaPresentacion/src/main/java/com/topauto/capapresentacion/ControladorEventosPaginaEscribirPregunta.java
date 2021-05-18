@@ -46,13 +46,22 @@ public class ControladorEventosPaginaEscribirPregunta implements Initializable {
     @FXML
     private Button perfil;
     @FXML
-    private Button usuario;
-    @FXML
     private Button topAuto;
     @FXML
     private ImageView imagenUsuario;
     @FXML
     private Text textoNombreUsuario;
+    
+    @FXML
+    private Button btPregunta;
+    @FXML
+    private TextArea txtContenido;
+    @FXML
+    private TextField txtTitulo;
+    @FXML
+    private TextField txtTags;
+    @FXML
+    private CheckBox checkBox;
     private Usuario miUsuario;
     
     private void handleButtonAction(ActionEvent event) {
