@@ -26,8 +26,8 @@ import com.topauto.capaentidades.Pregunta;
 import com.topauto.capaentidades.Publicacion;
 import com.topauto.capaentidades.Usuario;
 import java.util.ArrayList;
+import javafx.event.EventHandler;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 
 public class ControladorEventosPaginaListadoPreguntas implements Initializable {
     
@@ -48,15 +48,75 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
     private SplitPane paneVerticalPreguntas;
     @FXML
     private ImageView imagenUsuario;
+    @FXML
+    private AnchorPane panelPagina;
     
     private final String urlImage = "imagenes/panel_vehiculo_pregunta.png";
     ArrayList<Pregunta> misPreguntas = new ArrayList<>();
     int noPreguntasMaxXPagina = 4;
     int minPreg = 0, maxPreg = noPreguntasMaxXPagina;
+    EventHandler<ActionEvent> HandlerResp, HandlerTurnPage;
     
     private Usuario usuarioLogeado = new Usuario();
     
-    
+    private void handleTurnPagePregunta(Button button)
+    {
+        paneVerticalPreguntas.getItems().clear(); //Clear for reset purposes!
+        int noPreguntas = misPreguntas.size();
+        int contador = 0;
+        boolean willSigPass = false, willPrevPass = false;
+        String miOrigin;
+        if (button.getText().equals("Sig. Pagina"))
+        {
+            maxPreg += this.noPreguntasMaxXPagina;
+            minPreg += this.noPreguntasMaxXPagina;
+        }
+        else if (button.getText().equals("Prev. Pagina"))
+        {
+            maxPreg -= this.noPreguntasMaxXPagina;
+            minPreg -= this.noPreguntasMaxXPagina;
+        }
+        if(minPreg < 0) //Just in case...
+        {
+            minPreg = 0;
+            maxPreg = this.noPreguntasMaxXPagina;
+        }
+        if (noPreguntas < maxPreg)
+        {
+            maxPreg = noPreguntas;
+        }
+        
+        AnchorPane localAPane;
+        float incrementPerDivision = 1.0f / (float) noPreguntasMaxXPagina;
+       
+        for (Pregunta p : misPreguntas.subList(minPreg, maxPreg))
+        {
+            
+            if (p instanceof PRrelacionada)
+            {
+                miOrigin = ((PRrelacionada)p).getVehiculo().getModelo();
+            }
+            else
+            {
+                miOrigin = "General";
+            }
+            localAPane = setUpAnchorPane( p.getPropietario().getUserName(), p.getDescripcion(), p.getTitulo(),
+                    p.getFecha().toString(), miOrigin);
+
+            this.paneVerticalPreguntas.getItems().add(localAPane);
+            this.paneVerticalPreguntas.setDividerPosition(contador, (float)contador * incrementPerDivision);
+            contador++; 
+        }
+        if (noPreguntas > maxPreg)
+        {
+            willSigPass = true;
+        }
+        if (minPreg > 0)
+        {
+            willPrevPass = true;
+        }
+        createButtonsPagina (willSigPass, willPrevPass);
+    }
     private void handlePreguntasInit() 
     {
         paneVerticalPreguntas.getItems().clear(); //Clear for reset purposes!
@@ -88,29 +148,101 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
             this.paneVerticalPreguntas.setDividerPosition(contador, (float)contador * incrementPerDivision);
             contador++; 
         }
+        if (noPreguntas > maxPreg)
+        {
+            createButtonsPagina ( true ,false);
+        }
+    }
+    /**
+     * Creates the buttons for Previous Page and Siguiente Page - Name dependand, do not change it.
+     * @param isSigTrue //If it can create Siguiente button, do it
+     * @param isPrevTrue // If it can create Last button, do it
+     */
+    private void createButtonsPagina (boolean isSigTrue, boolean isPrevTrue)
+    {
+        if ( isSigTrue)
+        {
+            Button sig = new Button();
+            sig.setText("Sig. Pagina");
+            sig.setStyle("-fx-background-color: #DFDFE5"); //White-ish Gray
+            sig.setPrefSize(100, 40);
+            sig.setFont(new Font(15));
+            sig.setOnAction(this.HandlerTurnPage);
+            AnchorPane.setTopAnchor(sig, 0.0);
+            AnchorPane.setRightAnchor(sig,0.0);
+            this.panelPagina.getChildren().add(sig);
+        }
+        if (isPrevTrue)
+        {
+            Button prev = new Button();
+            prev.setText("Prev. Pagina");
+            prev.setStyle("-fx-background-color: #DFDFE5"); //White-ish Gray
+            prev.setPrefSize(100, 40);
+            prev.setFont(new Font(15));
+            prev.setOnAction(this.HandlerTurnPage);
+            AnchorPane.setTopAnchor(prev, 0.0);
+            AnchorPane.setLeftAnchor(prev,0.0);
+            this.panelPagina.getChildren().add(prev);
+        }
     }
     
     private AnchorPane setUpAnchorPane(String miUsername, String miDescripcion, String miTitulo, String miFecha, String miOrigin)
     {
         AnchorPane localAPane = new AnchorPane();
-        Label owner = new Label(), contents = new Label(), titulo = new Label(), fecha = new Label();
+        Label owner = new Label(), contents = new Label(), titulo = new Label();
         Label origin = new Label();
+        Button respButton = new Button();
         double offset = 10.0;
         double anchorPanesHeight = this.paneVerticalPreguntas.getPrefHeight() / this.noPreguntasMaxXPagina;
         double anchorPanesWidth = this.paneVerticalPreguntas.getPrefWidth();
         
-        owner.setText(miUsername); //El usuario que le pertenece
+        owner.setText("By " + miUsername + " - " + miFecha); //El usuario que le pertenece
         contents.setText(miDescripcion);
         titulo.setText(miTitulo);
-        fecha.setText(miFecha);
         origin.setText(miOrigin);
+        //Contenido - MiddeWay:
         contents.setPrefWidth(anchorPanesWidth - offset);
         contents.setPrefHeight(anchorPanesHeight - offset);
-        contents.setFont(new Font(20)); 
+        contents.setFont(new Font(15)); 
         contents.setWrapText(true);
-        AnchorPane.setTopAnchor(contents, (anchorPanesHeight / 2)- offset);
+        AnchorPane.setTopAnchor(contents, (anchorPanesHeight / 2)- offset*3);
         AnchorPane.setLeftAnchor(contents, offset);
-        localAPane.getChildren().add(contents);
+        
+        // Owner y Fecha - Bottom Middle
+        owner.setPrefWidth(anchorPanesWidth);
+        owner.setPrefHeight(20);
+        owner.setFont(new Font(14)); 
+        owner.setWrapText(false);
+        AnchorPane.setBottomAnchor(owner, 0.0);
+        AnchorPane.setLeftAnchor(owner, 0.0);
+        
+        //Origen - Top Corner:
+        origin.setPrefWidth(anchorPanesWidth - offset);
+        origin.setPrefHeight(20);
+        origin.setFont(new Font(15)); 
+        origin.setWrapText(true);
+        AnchorPane.setTopAnchor(origin, 0.0);
+        AnchorPane.setLeftAnchor(origin, 0.0);
+        
+        //Titulo - Top middle
+        titulo.setPrefHeight(20);
+        titulo.setPrefWidth((2*anchorPanesWidth)/3);
+        titulo.setFont(new Font(15)); 
+        titulo.setWrapText(true);
+        AnchorPane.setTopAnchor(titulo, 0.0);
+        AnchorPane.setLeftAnchor(titulo, anchorPanesWidth/3);
+        
+        //Titulo - Boton Respuesta 
+        respButton.setText("Responder");
+        respButton.setStyle("-fx-background-color: #DFDFE5"); //White-ish Gray
+        respButton.setPrefSize(100, 40);
+        respButton.setFont(new Font(15));
+        respButton.setOnAction(HandlerResp);
+        AnchorPane.setBottomAnchor(respButton, 0.0);
+        AnchorPane.setRightAnchor(respButton,0.0);
+        
+        
+        localAPane.getChildren().addAll(origin, titulo, contents, owner, respButton);
         return localAPane;
             
             
@@ -129,6 +261,23 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
         handlePreguntasInit();
         //setUsuarioImage();
         //Pass pagina TODO y Respuestas TODO.
+        this.HandlerResp = new EventHandler<ActionEvent>()
+             {
+                 @Override
+                 public void handle (ActionEvent event)
+                 {
+                     //TODO - Function of respuesta!
+                 }
+             };
+        
+        this.HandlerTurnPage = new EventHandler<ActionEvent>()
+             {
+                 @Override
+                 public void handle (ActionEvent event)
+                 {
+                     handleTurnPagePregunta((Button)(event.getSource()));
+                 }
+             };
         
     }
     
