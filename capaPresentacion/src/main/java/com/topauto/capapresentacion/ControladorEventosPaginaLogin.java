@@ -119,7 +119,7 @@ public class ControladorEventosPaginaLogin implements Initializable {
     {
         for ( Usuario u : this.misUsuarios)
         {
-            if (u.getUserName().equals(Username))
+            if (u.getUserName().equals(Username) || u.getCorreo().equals(Username))
             {
                 this.usuarioAEnviar = u;
             }
