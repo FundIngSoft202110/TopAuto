@@ -43,7 +43,7 @@ public class ControladorPublicacionTest {
     /**
      * Test of getPersistenciaPublicacion method, of class ControladorPublicacion.
      */
-    @Test
+   /* @Test
     public void testGetPersistenciaPublicacion() {
         System.out.println("getPersistenciaPublicacion");
         ControladorPublicacion instance = new ControladorPublicacion();
@@ -52,12 +52,12 @@ public class ControladorPublicacionTest {
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
-    }
+    }*/
 
     /**
      * Test of getPublicaciones method, of class ControladorPublicacion.
      */
-    @Test
+  /*  @Test
     public void testGetPublicaciones() {
         System.out.println("getPublicaciones");
         ControladorPublicacion instance = new ControladorPublicacion();
@@ -66,12 +66,12 @@ public class ControladorPublicacionTest {
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
-    }
+    }*/
 
     /**
      * Test of setPersistenciaPublicacion method, of class ControladorPublicacion.
      */
-    @Test
+   /* @Test
     public void testSetPersistenciaPublicacion() {
         System.out.println("setPersistenciaPublicacion");
         RepositorioPublicacion persistenciaPublicacion = null;
@@ -79,12 +79,12 @@ public class ControladorPublicacionTest {
         instance.setPersistenciaPublicacion(persistenciaPublicacion);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
-    }
+    }*/
 
     /**
      * Test of setPublicaciones method, of class ControladorPublicacion.
      */
-    @Test
+  /*  @Test
     public void testSetPublicaciones() {
         System.out.println("setPublicaciones");
         ArrayList<Publicacion> publicaciones = null;
@@ -92,12 +92,12 @@ public class ControladorPublicacionTest {
         instance.setPublicaciones(publicaciones);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
-    }
+    }*/
 
     /**
      * Test of descargarDatos method, of class ControladorPublicacion.
      */
-    @Test
+   /* @Test
     public void testDescargarDatos() {
         System.out.println("descargarDatos");
         ControladorPublicacion instance = new ControladorPublicacion();
@@ -106,7 +106,7 @@ public class ControladorPublicacionTest {
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
-    }
+    }*/
 
     /**
      * Test of crearPublicacion method, of class ControladorPublicacion.

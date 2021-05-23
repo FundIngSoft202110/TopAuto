@@ -45,7 +45,7 @@ public class ControladorVehiculoTest {
     /**
      * Test of getPersistenciaVehiculo method, of class ControladorVehiculo.
      */
-    @Test
+   /* @Test
     public void testGetPersistenciaVehiculo() {
         System.out.println("getPersistenciaVehiculo");
         ControladorVehiculo instance = new ControladorVehiculo();
@@ -54,12 +54,12 @@ public class ControladorVehiculoTest {
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
-    }
+    }*/
 
     /**
      * Test of getVehiculos method, of class ControladorVehiculo.
      */
-    @Test
+    /*@Test
     public void testGetVehiculos() {
         System.out.println("getVehiculos");
         ControladorVehiculo instance = new ControladorVehiculo();
@@ -68,12 +68,12 @@ public class ControladorVehiculoTest {
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
-    }
+    }*/
 
     /**
      * Test of getFabricantes method, of class ControladorVehiculo.
      */
-    @Test
+   /* @Test
     public void testGetFabricantes() {
         System.out.println("getFabricantes");
         ControladorVehiculo instance = new ControladorVehiculo();
@@ -82,12 +82,12 @@ public class ControladorVehiculoTest {
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
-    }
+    }*/
 
     /**
      * Test of getPaises method, of class ControladorVehiculo.
      */
-    @Test
+    /*@Test
     public void testGetPaises() {
         System.out.println("getPaises");
         ControladorVehiculo instance = new ControladorVehiculo();
@@ -96,12 +96,12 @@ public class ControladorVehiculoTest {
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
-    }
+    }*/
 
     /**
      * Test of setPersistenciaVehiculo method, of class ControladorVehiculo.
      */
-    @Test
+   /* @Test
     public void testSetPersistenciaVehiculo() {
         System.out.println("setPersistenciaVehiculo");
         RepositorioVehiculo persistenciaVehiculo = null;
@@ -109,12 +109,12 @@ public class ControladorVehiculoTest {
         instance.setPersistenciaVehiculo(persistenciaVehiculo);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
-    }
+    }*/
 
     /**
      * Test of setVehiculos method, of class ControladorVehiculo.
      */
-    @Test
+    /*@Test
     public void testSetVehiculos() {
         System.out.println("setVehiculos");
         ArrayList<Vehiculo> vehiculos = null;
@@ -122,12 +122,12 @@ public class ControladorVehiculoTest {
         instance.setVehiculos(vehiculos);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
-    }
+    }*/
 
     /**
      * Test of setFabricantes method, of class ControladorVehiculo.
      */
-    @Test
+    /*@Test
     public void testSetFabricantes() {
         System.out.println("setFabricantes");
         ArrayList<Fabricante> fabricantes = null;
@@ -135,12 +135,12 @@ public class ControladorVehiculoTest {
         instance.setFabricantes(fabricantes);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
-    }
+    }*/
 
     /**
      * Test of setPaises method, of class ControladorVehiculo.
      */
-    @Test
+   /* @Test
     public void testSetPaises() {
         System.out.println("setPaises");
         ArrayList<Pais> paises = null;
@@ -148,7 +148,7 @@ public class ControladorVehiculoTest {
         instance.setPaises(paises);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
-    }
+    }*/
 
     /**
      * Test of descargarDatos method, of class ControladorVehiculo.
