@@ -1,8 +1,10 @@
 package com.topauto.capapresentacion;
 
+import com.topauto.capaentidades.Usuario;
 import com.topauto.capanegocio.ControladorPerfil;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +24,7 @@ import javafx.stage.Stage;
 public class ControladorEventosPaginaLogin implements Initializable {
     
     ControladorPerfil controlPerfil = new ControladorPerfil();
+    Usuario usuario = new Usuario();
     
     @FXML
     private Button btIngreso;
@@ -33,18 +36,23 @@ public class ControladorEventosPaginaLogin implements Initializable {
     private TextField txtClave;
     @FXML
     private Button btInicial;
-        
+    
+    
+    private Usuario usuarioAEnviar;
+    private ArrayList<Usuario> misUsuarios;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         controlPerfil.descargarDatos();
+        misUsuarios = controlPerfil.getUsuarios();
     }    
 
     @FXML
     private void acceder(ActionEvent event) {
-        String user = this.txtUser.getText();
+        String username = this.txtUser.getText();
         String clave = this.txtClave.getText();
         
-        if(("".equals(user))||("".equals(clave))){
+        
+        if(("".equals(username))||("".equals(clave))){
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setHeaderText(null);
             alerta.setTitle("Error");
@@ -52,11 +60,19 @@ public class ControladorEventosPaginaLogin implements Initializable {
             alerta.showAndWait();
         }
         else{
-            if(controlPerfil.acceder(user, clave)){
+            if(controlPerfil.acceder(username, clave)){
+                
+                for(Usuario u : controlPerfil.getUsuarios()){
+                    if(u.getUserName().equals(username)){
+                        this.usuario=u;
+                    }
+                }
+                
                 Alert alerta = new Alert(Alert.AlertType.INFORMATION);
                 alerta.setHeaderText(null);
                 alerta.setTitle("Exito");
                 alerta.setContentText("Acceso completado");
+                this.getUserList(username);
                 alerta.showAndWait();
                 
                 try {
@@ -65,6 +81,7 @@ public class ControladorEventosPaginaLogin implements Initializable {
                     Parent root = loader.load();
 
                     ControladorEventosPaginaPrincipal controlador = loader.getController();
+                    controlador.setUsuario(usuarioAEnviar);
 
                     Scene scene = new Scene(root);
                     Stage stage = new Stage();
@@ -98,7 +115,16 @@ public class ControladorEventosPaginaLogin implements Initializable {
             }
         }       
     }
-
+    private void getUserList(String Username)
+    {
+        for ( Usuario u : this.misUsuarios)
+        {
+            if (u.getUserName().equals(Username) || u.getCorreo().equals(Username))
+            {
+            this.usuarioAEnviar = u;
+            }
+        }
+    }
     @FXML
     private void registrar(ActionEvent event) {
         try {
@@ -141,7 +167,7 @@ public class ControladorEventosPaginaLogin implements Initializable {
             stage.setScene(scene);
             stage.show();
                         
-            Stage myStage = (Stage) this.btRegistro.getScene().getWindow();
+            Stage myStage = (Stage) this.btInicial.getScene().getWindow();
             myStage.close();
             
         } catch (IOException ex) {

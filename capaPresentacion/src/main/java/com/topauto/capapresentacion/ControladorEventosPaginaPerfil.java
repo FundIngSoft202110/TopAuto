@@ -1,7 +1,11 @@
 package com.topauto.capapresentacion;
 
+import com.topauto.capaentidades.Pregunta;
+import com.topauto.capaentidades.Publicacion;
+import com.topauto.capaentidades.Usuario;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,7 +17,13 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -30,12 +40,76 @@ public class ControladorEventosPaginaPerfil implements Initializable {
     private Button topAuto;
     @FXML
     private AnchorPane countries;
+    @FXML
+    private ImageView imagenUsuario;
+    @FXML
+    private ImageView imagenUsuario2;
+    @FXML
+    private Text textoNombreUsuario;
+    @FXML
+    private Label labelNombreUsuario;
+    @FXML
+    private Label labelNombre;
+    @FXML
+    private Label labelPais;
+    @FXML
+    private Label labelNoResenias;
+    @FXML
+    private Label labelNoPreguntas;
+    @FXML
+    private TextArea descripcion;
+    private Usuario usuarioLogeado = new Usuario();
 
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    private void setUsuarioDatos()
+    {
+        
+    }
+    public void setUsuario(Usuario miUsuario)
+    {
+        this.usuarioLogeado = miUsuario;
+        setUsuarioImage();
+    }
+    private void setUsuarioImage()
+    {
+        ArrayList<Publicacion> misPub;
+        int misPubN = 0, misPregN = 0;
+        Image miImagen;
+        try{
+        miImagen = new Image (this.usuarioLogeado.getFoto().getPath());
+        this.imagenUsuario.setImage(miImagen);
+        this.imagenUsuario2.setImage(miImagen);
+        }
+        catch(IllegalArgumentException e)
+        {
+            miImagen = new Image("imagenes/perfil.png");
+            this.imagenUsuario.setImage(miImagen);
+            this.imagenUsuario2.setImage(miImagen);
+        }
+        this.textoNombreUsuario.setText(
+                this.usuarioLogeado.getUserName());
+        this.labelNombreUsuario.setText(this.usuarioLogeado.getUserName());
+        this.labelPais.setText(this.usuarioLogeado.getPais().getNombre());
+        this.descripcion.setText(this.usuarioLogeado.getDescripcion());
+        misPub = this.usuarioLogeado.getPublicaciones();
+        for (Publicacion p : misPub)
+        {
+            if ( p instanceof Pregunta)
+            {
+                misPregN++;
+            }
+            else
+            {
+                misPubN++;
+            }
+        }
+        this.labelNoPreguntas.setText(String.valueOf(misPregN));
+        this.labelNoResenias.setText(String.valueOf(misPubN));
+    }
 
     @FXML
     private void responder(ActionEvent event) {
@@ -45,6 +119,7 @@ public class ControladorEventosPaginaPerfil implements Initializable {
             Parent root = loader.load();
             
             ControladorEventosPaginaListadoPreguntas controlador = loader.getController();
+            controlador.setUsuario(usuarioLogeado);
             
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -77,6 +152,7 @@ public class ControladorEventosPaginaPerfil implements Initializable {
             Parent root = loader.load();
             
             ControladorEventosPaginaEscribirPregunta controlador = loader.getController();
+            controlador.setUsuario(usuarioLogeado);
             
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -109,6 +185,7 @@ public class ControladorEventosPaginaPerfil implements Initializable {
             Parent root = loader.load();
             
             ControladorEventosPaginaEscribirResenia controlador = loader.getController();
+            controlador.setUsuario(usuarioLogeado);
             
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -141,6 +218,7 @@ public class ControladorEventosPaginaPerfil implements Initializable {
             Parent root = loader.load();
             
             ControladorEventosPaginaPrincipal controlador = loader.getController();
+            controlador.setUsuario(usuarioLogeado);
             
             Scene scene = new Scene(root);
             Stage stage = new Stage();
