@@ -40,64 +40,7 @@ public class ControladorPerfilTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of getPersistenciaPerfil method, of class ControladorPerfil.
-     */
-    /*@Test
-    public void testGetPersistenciaPerfil() {
-        System.out.println("getPersistenciaPerfil");
-        ControladorPerfil instance = new ControladorPerfil();
-        RepositorioPerfil expResult = null;
-        RepositorioPerfil result = instance.getPersistenciaPerfil();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }*/
-
-    /**
-     * Test of getUsuarios method, of class ControladorPerfil.
-     */
-    /*@Test
-    public void testGetUsuarios() {
-        System.out.println("getUsuarios");
-        ControladorPerfil instance = new ControladorPerfil();
-        ArrayList<Usuario> expResult = null;
-        ArrayList<Usuario> result = instance.getUsuarios();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }*/
-
-    /**
-     * Test of setPersistenciaPerfil method, of class ControladorPerfil.
-     */
-    /*@Test
-    public void testSetPersistenciaPerfil() {
-        System.out.println("setPersistenciaPerfil");
-        RepositorioPerfil persistenciaPerfil = null;
-        ControladorPerfil instance = new ControladorPerfil();
-        instance.setPersistenciaPerfil(persistenciaPerfil);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }*/
-
-    /**
-     * Test of setUsuarios method, of class ControladorPerfil.
-     */
-    /*@Test
-    public void testSetUsuarios() {
-        System.out.println("setUsuarios");
-        ArrayList<Usuario> usuarios = null;
-        ControladorPerfil instance = new ControladorPerfil();
-        instance.setUsuarios(usuarios);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }*/
-
-    /**
-     * Test of descargarDatos method, of class ControladorPerfil.
-     */
-  /*  @Test
+ /*  @Test
     public void testDescargarDatos() {
         System.out.println("descargarDatos");
         ControladorPerfil instance = new ControladorPerfil();
@@ -116,11 +59,8 @@ public class ControladorPerfilTest {
         System.out.println("esCorreo");
         String cadena = "richfonpan@yahoo.com";
         ControladorPerfil instance = new ControladorPerfil();
-        //boolean expResult = true;
         boolean result = instance.esCorreo(cadena);
-        assertTrue(result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test failed");
+        assertTrue(cadena+" es correo", result);
     }
 
     /**
@@ -130,12 +70,10 @@ public class ControladorPerfilTest {
     public void testValidarCorreo() {
         System.out.println("validarCorreo");
         String correo = "richfonpan@yahoo.com";
-        ControladorPerfil pr = new ControladorPerfil();
-        boolean expResult = true;
-        boolean result = pr.validarCorreo(correo);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test failed");
+        ControladorPerfil instance = new ControladorPerfil();
+        boolean result = instance.validarCorreo(correo);
+        assertTrue(correo+" es valido", result);
+  
     }
 
     /**
@@ -146,11 +84,9 @@ public class ControladorPerfilTest {
         System.out.println("validarUserName");
         String username = "richfon";
         ControladorPerfil instance = new ControladorPerfil();
-        boolean expResult = true;
+      //  boolean expResult = true;
         boolean result = instance.validarUserName(username);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test failed");
+        assertTrue("funciono", result);
     }
 
     /**
@@ -159,14 +95,11 @@ public class ControladorPerfilTest {
     @Test
     public void testAcceder() {
         System.out.println("acceder");
-        String identificador = "";
-        String contrasenia = "";
+        String identificador = "richfon";
+        String contrasenia = "richfon123";
         ControladorPerfil instance = new ControladorPerfil();
-        boolean expResult = false;
         boolean result = instance.acceder(identificador, contrasenia);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue("funciono", result);
     }
 
     /**
@@ -177,11 +110,8 @@ public class ControladorPerfilTest {
         System.out.println("registrarPerfil");
         Usuario usuario = null;
         ControladorPerfil instance = new ControladorPerfil();
-        boolean expResult = false;
         boolean result = instance.registrarPerfil(usuario);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue("se registro", result);      
     }
 
     /**
@@ -192,11 +122,9 @@ public class ControladorPerfilTest {
         System.out.println("modificarPerfil");
         Usuario usuario = null;
         ControladorPerfil instance = new ControladorPerfil();
-        boolean expResult = false;
         boolean result = instance.modificarPerfil(usuario);
-        assertEquals(expResult, result);
+        assertTrue("Modifico", result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -205,14 +133,10 @@ public class ControladorPerfilTest {
     @Test
     public void testModificarContraseña() {
         System.out.println("modificarContrase\u00f1a");
-        String identificador = "";
-        String nueva = "";
+        String identificador = "ramo";
+        String nueva = "ramo124";
         ControladorPerfil instance = new ControladorPerfil();
-        boolean expResult = false;
         boolean result = instance.modificarContraseña(identificador, nueva);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue("se modifico", result);
     }
-    
 }
