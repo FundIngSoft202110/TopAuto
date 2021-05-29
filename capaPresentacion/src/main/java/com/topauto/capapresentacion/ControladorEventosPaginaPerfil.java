@@ -44,7 +44,7 @@ public class ControladorEventosPaginaPerfil implements Initializable {
     @FXML
     private Button topAuto;
     @FXML
-    private Button butPreguntas;
+    private Button butPreguntas, btnAceptar, btnEditar, btnCambioContrasenia;
     @FXML
     private Button butResenias;
     @FXML
@@ -57,8 +57,7 @@ public class ControladorEventosPaginaPerfil implements Initializable {
     private Text textoNombreUsuario;
     @FXML
     private Label labelNombreUsuario;
-    @FXML
-    private Label labelNombre;
+    
     @FXML
     private Label labelPais;
     @FXML
@@ -68,7 +67,14 @@ public class ControladorEventosPaginaPerfil implements Initializable {
     @FXML
     private TextArea descripcion;
     @FXML
+    private TextField contraseniaActual;
+    @FXML
+    private TextField contraseniaNuevo;
+    @FXML
+    private AnchorPane parentContrasenia;
+    @FXML
     private SplitPane paneGeneral;
+    
     private Usuario usuarioLogeado = new Usuario();
     ArrayList<Publicacion> misPublicaciones = new ArrayList<>();
     ArrayList<Pregunta> misPreguntas = new ArrayList<>();
@@ -78,7 +84,7 @@ public class ControladorEventosPaginaPerfil implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+       resetCamps();
     } 
     @FXML
     private void setPreguntas(ActionEvent event)
@@ -108,6 +114,30 @@ public class ControladorEventosPaginaPerfil implements Initializable {
             contador++; 
         }
          
+    }
+    private void resetCamps()
+    {
+        descripcion.setEditable(false);
+        descripcion.setStyle("-fx-background-color: #FFFFFF");
+        this.btnAceptar.setDisable(true);
+        this.btnAceptar.setVisible(false);
+        this.btnEditar.setDisable(false);
+        this.btnEditar.setVisible(true);
+    }
+    @FXML
+    private void editCamps(ActionEvent event)
+    {
+        descripcion.setEditable(true);
+        descripcion.setStyle(null);
+        this.btnAceptar.setDisable(false);
+        this.btnAceptar.setVisible(true);
+        this.btnEditar.setDisable(true);
+        this.btnEditar.setVisible(false);
+    }
+    @FXML
+    private void acceptChanges(ActionEvent event)
+    {
+        resetCamps();
     }
      private AnchorPane setUpAnchorPane(String miUsername, String miDescripcion, String miTitulo, String miFecha, String miOrigin)
     {
