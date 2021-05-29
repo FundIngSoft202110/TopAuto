@@ -160,9 +160,11 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
     {
         try {
             //Poner Imagen
+            
             for (Imagen img : vehiculoCargar.getFotos()) {
                 if (img.getPath().contains("general.jpg")) {
-                    Image miImagen = new Image(img.getPath());
+                    Image miImagen = new Image (img.getPath());
+
                     this.pantallaImagenesVehiculo.setImage(miImagen);
                 }
             }
@@ -173,7 +175,7 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
         
         this.textNombreVehiculo.setText(vehiculoCargar.getModelo());
         this.progressBarVelocidadMaxima.setProgress((vehiculoCargar.getVelMax()) / 500);
-        this.progressBarAceleracionMaxima.setProgress(((vehiculoCargar.getAccMax() / 18) - 1) * -1);
+        this.progressBarAceleracionMaxima.setProgress(((vehiculoCargar.getAccMax() / 150) - 1) * -1);
 
         //Caracteristicas Principales
         this.cpMarca.setText(vehiculoCargar.getMarca().getNombre());

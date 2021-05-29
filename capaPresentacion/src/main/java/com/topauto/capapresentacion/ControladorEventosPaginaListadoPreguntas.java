@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,7 +27,6 @@ import com.topauto.capaentidades.Pregunta;
 import com.topauto.capaentidades.Publicacion;
 import com.topauto.capaentidades.Usuario;
 import java.util.ArrayList;
-import javafx.event.EventHandler;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
@@ -53,7 +53,7 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
     
     private final String urlImage = "imagenes/panel_vehiculo_pregunta.png";
     ArrayList<Pregunta> misPreguntas = new ArrayList<>();
-    int noPreguntasMaxXPagina = 4;
+    int noPreguntasMaxXPagina = 5;
     int minPreg = 0, maxPreg = noPreguntasMaxXPagina;
      private EventHandler<ActionEvent> HandlerResp;
      private EventHandler<ActionEvent> HandlerTurnPage;
@@ -100,7 +100,6 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
         int contador = 0;
         boolean willSigPass = false, willPrevPass = false;
         String miOrigin;
-        System.out.println("Entra aca bien tambien?\n");
         if (button.getText().equals("Sig. Pagina"))
         {
             
