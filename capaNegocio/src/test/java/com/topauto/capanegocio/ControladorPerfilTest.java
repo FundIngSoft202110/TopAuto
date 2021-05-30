@@ -62,6 +62,18 @@ public class ControladorPerfilTest {
         boolean result = instance.esCorreo(cadena);
         assertTrue(cadena+" es correo", result);
     }
+    
+    /**
+     * Test of esCorreo method, of class ControladorPerfil.
+     */
+    @Test
+    public void testEsCorreo2() {
+        System.out.println("esCorreo");
+        String cadena = "richfonpan";
+        ControladorPerfil instance = new ControladorPerfil();
+        boolean result = instance.esCorreo(cadena);
+        assertTrue(cadena+" es correo", !result);
+    }
 
     /**
      * Test of validarCorreo method, of class ControladorPerfil.
@@ -134,7 +146,7 @@ public class ControladorPerfilTest {
     public void testModificarContraseña() {
         System.out.println("modificarContrase\u00f1a");
         String identificador = "ramo";
-        String nueva = "ramo124";
+            String nueva = "ramo124";
         ControladorPerfil instance = new ControladorPerfil();
         boolean result = instance.modificarContraseña(identificador, nueva);
         assertTrue("se modifico", result);

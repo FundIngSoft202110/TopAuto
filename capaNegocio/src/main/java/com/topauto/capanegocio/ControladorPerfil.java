@@ -97,21 +97,22 @@ public class ControladorPerfil {
 
     public boolean esCorreo(String cadena) {
             try{
+                boolean correo =false;
                 for(int n = 0; n < cadena.length (); n++){
                 char c = cadena.charAt (n); System.out.println (c);
                     if(c == '@'){
-                        return true;
+                        correo = true;
                     }
                 }
                 String[] terminador = cadena.split(".");
                 if(terminador.equals("com")){
-                    return true;
+                    correo = true;
                 }
                 if(terminador.equals("net")){
-                    return true;
+                    correo = true;
                 }
                 if(terminador.equals("org")){
-                    return true;
+                    correo = true;
                 }
             }
             catch(Exception e){
