@@ -5,12 +5,18 @@
  */
 package com.topauto.capapresentacion;
 
-import javafx.fxml.Initializable;
+import com.topauto.capaentidades.Publicacion;
+import javafx.scene.control.Button;
 
 /**
  *
  * @author USER
  */
-public abstract class absControladorPagResp implements Initializable {
-    
+public class structResButton {
+    public structResButton()
+    {
+        
+    }
+    public Publicacion pub;
+    public Button miButton;
 }
