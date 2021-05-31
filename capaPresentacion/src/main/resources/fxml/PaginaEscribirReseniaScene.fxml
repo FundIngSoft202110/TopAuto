@@ -93,7 +93,6 @@
                         <Image url="@../imagenes/bugatti.png" />
                      </image>
                   </ImageView>
-                  <ChoiceBox fx:id="boxMarca" layoutX="142.0" layoutY="278.0" prefHeight="25.0" prefWidth="190.0" />
                   <ChoiceBox fx:id="boxModelo" layoutX="453.0" layoutY="277.0" prefHeight="25.0" prefWidth="190.0" />
                   <ChoiceBox fx:id="boxPuntuacion" layoutX="142.0" layoutY="607.0" prefHeight="25.0" prefWidth="190.0" />
                   <TextArea fx:id="txtContenido" layoutX="143.0" layoutY="353.0" prefHeight="218.0" prefWidth="996.0" />
@@ -107,6 +106,7 @@
                         <Font name="Arial Bold" size="17.0" />
                      </font>
                   </Text>
+                  <ComboBox fx:id="boxMarca" layoutX="144.0" layoutY="277.0" onAction="#seleccionar" prefHeight="25.0" prefWidth="203.0" />
                </children>
             </AnchorPane>
          </content>
