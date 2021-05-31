@@ -114,6 +114,5 @@ public class ControladorPublicacionTest {
         ControladorPublicacion instance = new ControladorPublicacion();
         boolean result = instance.puntuarPublicacion(idPublicacion, puntoEnContra);
         assertTrue("Se puntuo", result);
-    }
-    
+    }   
 }

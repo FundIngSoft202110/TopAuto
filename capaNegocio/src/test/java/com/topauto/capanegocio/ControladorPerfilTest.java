@@ -67,12 +67,12 @@ public class ControladorPerfilTest {
      * Test of esCorreo method, of class ControladorPerfil.
      */
     @Test
-    public void testEsCorreo2() {
-        System.out.println("esCorreo");
+    public void testNoEsCorreo() {
+        System.out.println("No esCorreo");
         String cadena = "richfonpan";
         ControladorPerfil instance = new ControladorPerfil();
         boolean result = instance.esCorreo(cadena);
-        assertTrue(cadena+" es correo", !result);
+        assertTrue(!result);
     }
 
     /**
@@ -85,7 +85,6 @@ public class ControladorPerfilTest {
         ControladorPerfil instance = new ControladorPerfil();
         boolean result = instance.validarCorreo(correo);
         assertTrue(correo+" es valido", result);
-  
     }
 
     /**
@@ -96,7 +95,6 @@ public class ControladorPerfilTest {
         System.out.println("validarUserName");
         String username = "richfon";
         ControladorPerfil instance = new ControladorPerfil();
-      //  boolean expResult = true;
         boolean result = instance.validarUserName(username);
         assertTrue("funciono", result);
     }
@@ -136,7 +134,6 @@ public class ControladorPerfilTest {
         ControladorPerfil instance = new ControladorPerfil();
         boolean result = instance.modificarPerfil(usuario);
         assertTrue("Modifico", result);
-        // TODO review the generated test code and remove the default call to fail.
     }
 
     /**
@@ -150,5 +147,19 @@ public class ControladorPerfilTest {
         ControladorPerfil instance = new ControladorPerfil();
         boolean result = instance.modificarContraseña(identificador, nueva);
         assertTrue("se modifico", result);
+    }
+    /**
+     * Test of borrarUsuario method, of class ControladorPerfil.
+     */
+    @Test
+    public void testBorrarUsuario() {
+        System.out.println("borrarUsuario");
+        String username = "";
+        ControladorPerfil instance = new ControladorPerfil();
+        boolean expResult = false;
+        boolean result = instance.borrarUsuario(username);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 }

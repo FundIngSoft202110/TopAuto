@@ -17,7 +17,7 @@ import org.junit.runners.Suite;
  * @author Richard Fonseca
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({com.topauto.capanegocio.ControladorVehiculoTest.class, com.topauto.capanegocio.ControladorPerfilTest.class, com.topauto.capanegocio.ControladorPublicacionTest.class})
+@Suite.SuiteClasses({ControladorPublicacionTest.class, ControladorPerfilTest.class})
 public class CapanegocioSuite {
 
     @BeforeClass
