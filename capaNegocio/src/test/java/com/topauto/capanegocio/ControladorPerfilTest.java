@@ -60,21 +60,34 @@ public class ControladorPerfilTest {
         String cadena = "richfonpan@yahoo.com";
         ControladorPerfil instance = new ControladorPerfil();
         boolean result = instance.esCorreo(cadena);
-        assertTrue(cadena+" es correo", result);
+        assertEquals(true, result);
     }
-    
-    /**
-     * Test of esCorreo method, of class ControladorPerfil.
-     */
+
     @Test
     public void testNoEsCorreo() {
         System.out.println("No esCorreo");
         String cadena = "richfonpan";
         ControladorPerfil instance = new ControladorPerfil();
         boolean result = instance.esCorreo(cadena);
-        assertTrue(!result);
+        assertEquals(false,result);
     }
-
+    
+    @Test
+    public void testEsCorreoNuevo() {
+        System.out.println("EsCorreo no registrado");
+        String cadena = "r2d2@hotmail.com";
+        ControladorPerfil instance = new ControladorPerfil();
+        boolean result = instance.esCorreo(cadena);
+        assertEquals(true,result);
+    }
+        @Test
+    public void testEsCorreoVacio() {
+        System.out.println("EsCorreo vacio");
+        String cadena = "";
+        ControladorPerfil instance = new ControladorPerfil();
+        boolean result = instance.esCorreo(cadena);
+        assertEquals(false,result);
+    }
     /**
      * Test of validarCorreo method, of class ControladorPerfil.
      */
@@ -84,7 +97,7 @@ public class ControladorPerfilTest {
         String correo = "richfonpan@yahoo.com";
         ControladorPerfil instance = new ControladorPerfil();
         boolean result = instance.validarCorreo(correo);
-        assertTrue(correo+" es valido", result);
+        assertEquals(true, result);
     }
 
     /**

@@ -114,6 +114,7 @@ public class ControladorPerfil {
                 if(terminador.equals("org")){
                     correo = true;
                 }
+                return correo;
             }
             catch(Exception e){
                 System.out.println("Ocurrio un error al verificar si es un correo.");
@@ -125,12 +126,11 @@ public class ControladorPerfil {
         //Castri (yerro)
         try{
             for(Usuario u : usuarios){
-                if(u.getCorreo().equals(correo)){
-                    return true;
+                if(u.getCorreo() == null ? correo == null : u.getCorreo().equals(correo)){
+                  return true;                    
                 }
             }
-            return false;
-                     
+            return false;    
         }
         catch(Exception e){
             System.out.println("Ocurrio un error al verificar el correo.");
