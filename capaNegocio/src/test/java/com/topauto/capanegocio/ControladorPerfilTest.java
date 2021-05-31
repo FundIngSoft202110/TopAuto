@@ -61,15 +61,14 @@ public class ControladorPerfilTest {
         ControladorPerfil instance = new ControladorPerfil();
         boolean result = instance.esCorreo(cadena);
         assertTrue(cadena+" es correo", result);
-        fail("error");
     }
-   
+    
     /**
      * Test of esCorreo method, of class ControladorPerfil.
      */
     @Test
     public void testEsCorreo2() {
-        System.out.println(" no esCorreo");
+        System.out.println("esCorreo");
         String cadena = "richfonpan";
         ControladorPerfil instance = new ControladorPerfil();
         boolean result = instance.esCorreo(cadena);
@@ -84,9 +83,9 @@ public class ControladorPerfilTest {
         System.out.println("validarCorreo");
         String correo = "richfonpan@yahoo.com";
         ControladorPerfil instance = new ControladorPerfil();
-        instance.descargarDatos();
         boolean result = instance.validarCorreo(correo);
         assertTrue(correo+" es valido", result);
+  
     }
 
     /**
@@ -97,7 +96,7 @@ public class ControladorPerfilTest {
         System.out.println("validarUserName");
         String username = "richfon";
         ControladorPerfil instance = new ControladorPerfil();
-        instance.descargarDatos();
+      //  boolean expResult = true;
         boolean result = instance.validarUserName(username);
         assertTrue("funciono", result);
     }
@@ -111,7 +110,6 @@ public class ControladorPerfilTest {
         String identificador = "richfon";
         String contrasenia = "richfon123";
         ControladorPerfil instance = new ControladorPerfil();
-        instance.descargarDatos();
         boolean result = instance.acceder(identificador, contrasenia);
         assertTrue("funciono", result);
     }
@@ -122,9 +120,8 @@ public class ControladorPerfilTest {
     @Test
     public void testRegistrarPerfil() {
         System.out.println("registrarPerfil");
-        Usuario usuario = new Usuario("Arturo", "R2", "r2d2@gmail.com", "R2123" );
+        Usuario usuario = null;
         ControladorPerfil instance = new ControladorPerfil();
-        instance.descargarDatos();
         boolean result = instance.registrarPerfil(usuario);
         assertTrue("se registro", result);      
     }
@@ -137,9 +134,9 @@ public class ControladorPerfilTest {
         System.out.println("modificarPerfil");
         Usuario usuario = null;
         ControladorPerfil instance = new ControladorPerfil();
-        instance.descargarDatos();
         boolean result = instance.modificarPerfil(usuario);
         assertTrue("Modifico", result);
+        // TODO review the generated test code and remove the default call to fail.
     }
 
     /**
@@ -147,11 +144,10 @@ public class ControladorPerfilTest {
      */
     @Test
     public void testModificarContraseña() {
-        System.out.println("modificarContrasenia");
+        System.out.println("modificarContrase\u00f1a");
         String identificador = "ramo";
             String nueva = "ramo124";
         ControladorPerfil instance = new ControladorPerfil();
-        instance.descargarDatos();
         boolean result = instance.modificarContraseña(identificador, nueva);
         assertTrue("se modifico", result);
     }
