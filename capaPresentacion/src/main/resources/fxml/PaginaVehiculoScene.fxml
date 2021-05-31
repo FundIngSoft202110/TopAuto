@@ -3,8 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.ImageView?>
@@ -25,16 +23,6 @@
                         <VBox layoutX="546.0" layoutY="516.0" prefHeight="221.0" prefWidth="165.0" style="-fx-border-color: #c90000;">
                            <children>
                               <Text fx:id="cpMarca" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Marca" textAlignment="CENTER" wrappingWidth="164.13671875">
-                                 <font>
-                                    <Font name="Arial Bold" size="17.0" />
-                                 </font>
-                              </Text>
-                              <Text fx:id="cpModelo" fill="#2f0707" layoutX="10.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modelo" textAlignment="CENTER" wrappingWidth="163.13671875">
-                                 <font>
-                                    <Font name="Arial Bold" size="17.0" />
-                                 </font>
-                              </Text>
-                              <Text fx:id="cpMotor" fill="#110101" layoutX="10.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Año" textAlignment="CENTER" wrappingWidth="164.13671875">
                                  <font>
                                     <Font name="Arial Bold" size="17.0" />
                                  </font>
@@ -180,33 +168,23 @@
                               </Text>
                            </children>
                         </Pane>
-                        <Text fx:id="textNombreVehiculo" layoutX="819.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="442.13671875">
+                        <Text fx:id="textNombreVehiculo" layoutX="814.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vehiculo" textAlignment="CENTER" wrappingWidth="510.13671875">
                            <font>
-                              <Font name="Arial Bold Italic" size="34.0" />
+                              <Font name="Arial Bold Italic" size="25.0" />
                            </font>
                         </Text>
-                        <Text layoutX="972.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="reseñas" wrappingWidth="107.13671875">
-                           <font>
-                              <Font name="Arial" size="20.0" />
-                           </font>
-                        </Text>
-                        <Text fx:id="textNumeroReseñas" layoutX="840.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="107.13671875">
-                           <font>
-                              <Font name="Arial Bold" size="20.0" />
-                           </font>
-                        </Text>
-                        <Text layoutX="821.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Velocidad Maxima" wrappingWidth="153.13671875">
+                        <Text layoutX="821.0" layoutY="366.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Velocidad Maxima" wrappingWidth="153.13671875">
                            <font>
                               <Font name="Arial Bold" size="17.0" />
                            </font>
                         </Text>
-                        <Text layoutX="821.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aceleracion Maxima" wrappingWidth="165.13671875">
+                        <Text layoutX="821.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aceleracion Maxima" wrappingWidth="165.13671875">
                            <font>
                               <Font name="Arial Bold" size="17.0" />
                            </font>
                         </Text>
-                        <ProgressBar fx:id="progressBarVelocidadMaxima" layoutX="1026.0" layoutY="238.0" prefWidth="200.0" progress="0.0" />
-                        <ProgressBar fx:id="progressBarAceleracionMaxima" layoutX="1026.0" layoutY="272.0" prefWidth="200.0" progress="0.0" />
+                        <ProgressBar fx:id="progressBarVelocidadMaxima" layoutX="1026.0" layoutY="351.0" prefWidth="200.0" progress="0.0" style="-fx-background-color: #c90000; -fx-border-color: d5cdcd;" />
+                        <ProgressBar fx:id="progressBarAceleracionMaxima" layoutX="1026.0" layoutY="385.0" prefWidth="200.0" progress="0.0" style="-fx-background-color: #c90000; -fx-border-color: d5cdcd;" />
                         <Text layoutX="497.0" layoutY="469.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Caracteristicas Principales" textAlignment="CENTER" wrappingWidth="454.13671875">
                            <font>
                               <Font name="Arial Bold" size="35.0" />
@@ -335,7 +313,11 @@
                               <Font name="Arial Bold" size="35.0" />
                            </font>
                         </Text>
-                        <VBox fx:id="vBoxConsigueTuVehiculoEn" layoutX="380.0" layoutY="823.0" prefHeight="370.0" prefWidth="666.0" style="-fx-border-color: #c90000;" />
+                        <VBox fx:id="vBoxConsigueTuVehiculoEn" layoutX="380.0" layoutY="823.0" prefHeight="400.0" prefWidth="670.0" style="-fx-border-color: #c90000;">
+                           <children>
+                              <ImageView fx:id="imgVendedorA1" fitHeight="199.0" fitWidth="669.0" onMouseClicked="#clkVA1" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imgVendedorA2" fitHeight="199.0" fitWidth="669.0" layoutX="11.0" layoutY="11.0" onMouseClicked="#clkVA2" pickOnBounds="true" preserveRatio="true" />
+                           </children></VBox>
                         <Button fx:id="botonPreguntas" layoutX="295.0" layoutY="1242.0" mnemonicParsing="false" onAction="#btnPreguntas" prefHeight="84.0" prefWidth="420.0" style="-fx-background-color: ffffff; -fx-border-color: d5cdcd;" text="Preguntas">
                            <font>
                               <Font name="Arial Bold" size="44.0" />
@@ -346,16 +328,6 @@
                               <Font name="Arial Bold" size="44.0" />
                            </font>
                         </Button>
-                        <ScrollPane layoutX="295.0" layoutY="1396.0" prefHeight="412.0" prefWidth="840.0" style="-fx-border-color: d5cdcd;">
-                           <content>
-                              <TableView fx:id="tablePregRes" prefHeight="408.0" prefWidth="836.0" style="-fx-background-color: ffffff; -fx-border-color: #c90000;">
-                                <columns>
-                                  <TableColumn fx:id="colUsuarioPregRes" prefWidth="132.0" style="-fx-background-color: #c90000; -fx-border-color: #c90000;" text="Usuario" />
-                                  <TableColumn fx:id="colDescripcionPregRes" prefWidth="701.0" style="-fx-background-color: #c90000; -fx-border-color: #c90000;" text="Descripcion" />
-                                </columns>
-                              </TableView>
-                           </content>
-                        </ScrollPane>
                         <AnchorPane layoutX="295.0" layoutY="1326.0" prefHeight="71.0" prefWidth="840.0" style="-fx-border-color: d5cdcd;">
                            <children>
                               <TextField fx:id="textFieldResenasOPreguntas" layoutX="8.0" layoutY="10.0" prefHeight="49.0" prefWidth="691.0" style="-fx-border-color: #c90000;" />
@@ -366,13 +338,34 @@
                               </Button>
                            </children>
                         </AnchorPane>
-                        <TableView fx:id="tableCaracteristicasAdicionales" layoutX="714.0" layoutY="516.0" prefHeight="221.0" prefWidth="307.0" style="-fx-background-color: ffffff; -fx-border-color: #c90000;">
-                          <columns>
-                            <TableColumn fx:id="colCaracteristicasAdicionales" prefWidth="304.0" resizable="false" style="-fx-background-color: #c90000;" text="Caracteristicas Adicionales" />
-                          </columns>
-                        </TableView>
                         <ImageView fx:id="imagenUsuario" fitHeight="61.0" fitWidth="65.0" layoutX="1167.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="pantallaImagenesVehiculo" fitHeight="290.0" fitWidth="612.0" layoutX="199.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true" />
+                        <AnchorPane layoutX="714.0" layoutY="516.0" prefHeight="22.0" prefWidth="342.0" style="-fx-background-color: #c90000;">
+                           <children>
+                              <Text fill="WHITE" layoutX="53.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Caracteristicas Adicionales" textAlignment="CENTER" wrappingWidth="236.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                        <VBox layoutX="715.0" layoutY="538.0" prefHeight="199.0" prefWidth="341.0" style="-fx-border-color: #c90000;">
+                           <children>
+                              <Text fx:id="textTieneVidriosElectricos" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" textAlignment="CENTER" wrappingWidth="337.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="textTieneAireAcondicionado" layoutX="10.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A" textAlignment="CENTER" wrappingWidth="338.13671875">
+                                 <font>
+                                    <Font name="Arial Bold" size="17.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                        <ImageView fx:id="imgOrganizacionA1" fitHeight="50.0" fitWidth="210.0" layoutX="830.0" layoutY="178.0" onMouseClicked="#clkOA1" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgOrganizacionA2" fitHeight="50.0" fitWidth="210.0" layoutX="946.0" layoutY="276.0" onMouseClicked="#clkOA2" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgOrganizacionA3" fitHeight="50.0" fitWidth="210.0" layoutX="1072.0" layoutY="180.0" onMouseClicked="#clkOA3" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </AnchorPane>
               </content>

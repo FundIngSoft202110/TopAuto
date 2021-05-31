@@ -30,7 +30,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import com.topauto.capaentidades.Vehiculo;
+import java.net.URISyntaxException;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.control.ScrollPane;
 import javafx.stage.Screen;
 
 public class ControladorEventosPaginaVehiculo implements Initializable {
@@ -72,8 +74,6 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
     @FXML
     private Text textNombreVehiculo;
     @FXML
-    private Text textNumeroReseñas;
-    @FXML
     private ProgressBar progressBarVelocidadMaxima;
     @FXML
     private ProgressBar progressBarAceleracionMaxima;
@@ -83,15 +83,8 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
     private Text cpModelo;
     @FXML
     private ImageView pantallaImagenesVehiculo;
-    @FXML
-    private TableView<String> tableCaracteristicasAdicionales;
-    @FXML
     private TableColumn colCaracteristicasAdicionales;
-    @FXML
-    private TableView<?> tablePregRes;
-    @FXML
     private TableColumn colUsuarioPregRes;
-    @FXML
     private TableColumn colDescripcionPregRes;
     @FXML
     private Text cpMotor;
@@ -134,20 +127,25 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
     private String caracteristicas;
 
     private ObservableList<String> carAd;
+    @FXML
+    private ImageView imgVendedorA1;
+    @FXML
+    private ImageView imgVendedorA2;
+    @FXML
+    private Text textTieneVidriosElectricos;
+    @FXML
+    private Text textTieneAireAcondicionado;
+    @FXML
+    private ImageView imgOrganizacionA1;
+    @FXML
+    private ImageView imgOrganizacionA2;
+    @FXML
+    private ImageView imgOrganizacionA3;
 
     //////////////////////////////////////////////////////////////
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //Estos tambien votan error!
-         try{
-        this.colCaracteristicasAdicionales.setCellValueFactory(new PropertyValueFactory("Caracteristicas Adicionales"));
-        this.colUsuarioPregRes.setCellValueFactory(new PropertyValueFactory("Usuario"));
-        this.colDescripcionPregRes.setCellValueFactory(new PropertyValueFactory("Descripcion"));
-         }
-         catch (NullPointerException e)
-         {
-             System.out.println( "Si, se puteo aca...\n");
-         }
+        
     }
     
     public void setVehiculo(Vehiculo miVehiculo)
@@ -172,9 +170,27 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
             System.out.println("Error: " + e.getMessage());
         }
         
+        //Poner Imagen Vendedores Asociados
         
-        this.textNombreVehiculo.setText(vehiculoCargar.getModelo());
-        this.progressBarVelocidadMaxima.setProgress((vehiculoCargar.getVelMax()) / 500);
+        Image imagenA1 = new Image(vehiculoCargar.getVendedoresAsociados().get(0).getLogo().getPath());
+        Image imagenA2 = new Image(vehiculoCargar.getVendedoresAsociados().get(1).getLogo().getPath());
+        this.imgVendedorA1.setImage(imagenA1);
+        this.imgVendedorA2.setImage(imagenA2);
+        
+        //Poner Imagen Organizaciones Asociadas
+        
+        Image imagenO1 = new Image(vehiculoCargar.getOrgAsociadas().get(0).getLogo().getPath());
+        Image imagenO2 = new Image(vehiculoCargar.getOrgAsociadas().get(1).getLogo().getPath());
+        Image imagenO3 = new Image(vehiculoCargar.getOrgAsociadas().get(2).getLogo().getPath());
+        this.imgOrganizacionA1.setImage(imagenO1);
+        this.imgOrganizacionA2.setImage(imagenO2);
+        this.imgOrganizacionA3.setImage(imagenO3);
+   
+        
+        //Poner barras de progreso
+        
+        this.textNombreVehiculo.setText(vehiculoCargar.getMarca().getNombre()+ " - "+vehiculoCargar.getModelo());
+        this.progressBarVelocidadMaxima.setProgress((vehiculoCargar.getVelMax()) / 350);
         this.progressBarAceleracionMaxima.setProgress(((vehiculoCargar.getAccMax() / 150) - 1) * -1);
 
         //Caracteristicas Principales
@@ -189,28 +205,27 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
         this.cpCeroACien.setText(vehiculoCargar.getAccMax() + "");
         this.cpCargo.setText(vehiculoCargar.getMaxPasajeros() + "");
         this.cpPuertas.setText(vehiculoCargar.getNumPuertas() + "");
-        /*
-        if (vehiculoCargar.isTieneVidriosElectricos()) {
-            caracteristicas = "Si Tiene Vidrios Electricos";
-            this.carAd.add(caracteristicas);
-        } else {
-            caracteristicas = "No Tiene Vidrios Electricos";
-            this.carAd.add(caracteristicas);
+        
+        //Caracteristicas Adicionales
+        if(vehiculoCargar.isTieneAireAcondicionado())
+        {
+            this.textTieneAireAcondicionado.setText("Cuenta con Aire Acondicionado");
+        }else{
+            this.textTieneAireAcondicionado.setText("No Cuenta con Aire Acondicionado");
         }
-        if (vehiculoCargar.isTieneAireAcondicionado()) {
-            caracteristicas = "Si Tiene Aire Acondicionado";
-            this.carAd.add(caracteristicas);
-        } else {
-            caracteristicas = "No Tiene Aire Acondicionado";
-            this.carAd.add(caracteristicas);
+        if(vehiculoCargar.isTieneVidriosElectricos())
+        {
+            this.textTieneVidriosElectricos.setText("Cuenta con Vidrios Electricos");
+        }else{
+            this.textTieneVidriosElectricos.setText("No Cuenta con Vidrios Electricos");
         }
-        */
         
     }
     public void setUsuario (Usuario miUsuario)
     {
         this.miUsuario = miUsuario;
         setUsuarioImage();
+        this.botonIngresarOPerfil.setText("Ver Perfil");
     }
     private void setUsuarioImage()
     {
@@ -500,6 +515,96 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
 
     @FXML
     private void btnPublicarResenaOPregunta(ActionEvent event) {
+    }
+
+    @FXML
+    private void clkVA1(MouseEvent event) {
+        
+        if(java.awt.Desktop.isDesktopSupported()){
+            java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
+            
+            if(desktop.isSupported(java.awt.Desktop.Action.BROWSE)){
+                try{
+                    java.net.URI uri = new java.net.URI("https://www.tucarro.com.co/");
+                    desktop.browse(uri);
+                }catch(URISyntaxException | IOException ex){
+                    System.out.println("Error: "+ex.getMessage());
+                }
+            }
+        }
+        
+    }
+
+    @FXML
+    private void clkOA1(MouseEvent event) {
+        
+        if(java.awt.Desktop.isDesktopSupported()){
+            java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
+            
+            if(desktop.isSupported(java.awt.Desktop.Action.BROWSE)){
+                try{
+                    java.net.URI uri = new java.net.URI(vehiculoCargar.getOrgAsociadas().get(0).getLink());
+                    desktop.browse(uri);
+                }catch(URISyntaxException | IOException ex){
+                    System.out.println("Error: "+ex.getMessage());
+                }
+            }
+        }
+        
+    }
+
+    @FXML
+    private void clkOA2(MouseEvent event) {
+        
+        if(java.awt.Desktop.isDesktopSupported()){
+            java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
+            
+            if(desktop.isSupported(java.awt.Desktop.Action.BROWSE)){
+                try{
+                    java.net.URI uri = new java.net.URI(vehiculoCargar.getOrgAsociadas().get(1).getLink());
+                    desktop.browse(uri);
+                }catch(URISyntaxException | IOException ex){
+                    System.out.println("Error: "+ex.getMessage());
+                }
+            }
+        }
+        
+    }
+
+    @FXML
+    private void clkOA3(MouseEvent event) {
+        
+        if(java.awt.Desktop.isDesktopSupported()){
+            java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
+            
+            if(desktop.isSupported(java.awt.Desktop.Action.BROWSE)){
+                try{
+                    java.net.URI uri = new java.net.URI(vehiculoCargar.getOrgAsociadas().get(2).getLink());
+                    desktop.browse(uri);
+                }catch(URISyntaxException | IOException ex){
+                    System.out.println("Error: "+ex.getMessage());
+                }
+            }
+        }
+        
+    }
+
+    @FXML
+    private void clkVA2(MouseEvent event) {
+        
+        if(java.awt.Desktop.isDesktopSupported()){
+            java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
+            
+            if(desktop.isSupported(java.awt.Desktop.Action.BROWSE)){
+                try{
+                    java.net.URI uri = new java.net.URI("https://www.carroya.com//");
+                    desktop.browse(uri);
+                }catch(URISyntaxException | IOException ex){
+                    System.out.println("Error: "+ex.getMessage());
+                }
+            }
+        }
+        
     }
 
 }
