@@ -90,7 +90,7 @@ public class ControladorEventosPaginaEscribirResenia implements Initializable {
         boxMarca.setItems(listaMarcas);
         
         ObservableList<String> puntaje;
-        puntaje = FXCollections.observableArrayList("1","2","3","4","5");
+        puntaje = FXCollections.observableArrayList("1","2","3","4","5","6","7","8","9","10");
         boxPuntuacion.setItems(puntaje);
     }    
     

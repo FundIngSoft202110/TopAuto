@@ -126,7 +126,7 @@ public class RepositorioPublicacion {
                         .append("comentarios", publicacion.getComentarios())
                         .append("propietario", publicacion.getPropietario().getUserName())
                         .append("idVehiculo", ((Resenia)publicacion).getVehiculo().getId())
-                        .append("puntuacion", ((Resenia)publicacion).getPuntuacion())) != null)
+                        .append("puntuacion", (double) ((Resenia)publicacion).getPuntuacion())) != null)
                 {
                     return true;
                 }
