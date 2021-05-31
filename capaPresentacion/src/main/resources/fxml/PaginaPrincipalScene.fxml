@@ -15,7 +15,7 @@
    <children>
       <ScrollPane prefHeight="768.0" prefWidth="1366.0">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1500.0" prefWidth="1351.0" style="-fx-background-color: ffffff;">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1450.0" prefWidth="1351.0" style="-fx-background-color: ffffff;">
                <children>
                   <Text layoutX="14.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="top">
                      <font>
@@ -85,17 +85,30 @@
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="motorPopulares1" layoutX="282.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Motor" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                              <Text fx:id="motorPopulares1" layoutX="282.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Motor" textAlignment="CENTER" wrappingWidth="99.23974609375">
                                  <font>
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="transmisionPopulares1" layoutX="398.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transmision" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                              <Text fx:id="transmisionPopulares1" layoutX="410.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transmision" textAlignment="CENTER" wrappingWidth="99.23974609375">
                                  <font>
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
                               </Text>
-                              <Button fx:id="botonVerTop1" layoutX="570.0" layoutY="55.0" mnemonicParsing="false" onAction="#btnVerTop1" text="Ver Vehiculo" />
+                              <Button fx:id="botonVerTop1" layoutX="580.0" layoutY="56.0" mnemonicParsing="false" onAction="#btnVerTop1" style="-fx-background-color: #c90000;" text="Ver Vehiculo" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font></Button>
+                              <Text fx:id="marcaPopulares1" layoutX="282.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marca" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                                 <font>
+                                    <Font name="Arial Bold Italic" size="12.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="velMaxPopulares1" layoutX="410.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VelMax" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                                 <font>
+                                    <Font name="Arial Bold Italic" size="12.0" />
+                                 </font>
+                              </Text>
                            </children>
                         </AnchorPane>
                         <AnchorPane layoutX="11.0" layoutY="11.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: b20000;">
@@ -119,17 +132,30 @@
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="motorPopulares2" layoutX="282.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Motor" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                              <Text fx:id="motorPopulares2" layoutX="282.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Motor" textAlignment="CENTER" wrappingWidth="99.23974609375">
                                  <font>
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="transmisionPopulares2" layoutX="398.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transmision" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                              <Text fx:id="transmisionPopulares2" layoutX="408.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transmision" textAlignment="CENTER" wrappingWidth="99.23974609375">
                                  <font>
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
                               </Text>
-                              <Button fx:id="botonVerTop2" layoutX="572.0" layoutY="57.0" mnemonicParsing="false" onAction="#btnVerTop2" text="Ver Vehiculo" />
+                              <Button fx:id="botonVerTop2" layoutX="580.0" layoutY="59.0" mnemonicParsing="false" onAction="#btnVerTop2" style="-fx-background-color: #c90000;" text="Ver Vehiculo" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font></Button>
+                              <Text fx:id="marcaPopulares2" layoutX="282.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marca" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                                 <font>
+                                    <Font name="Arial Bold Italic" size="12.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="velMaxPopulares2" layoutX="408.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VelMax" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                                 <font>
+                                    <Font name="Arial Bold Italic" size="12.0" />
+                                 </font>
+                              </Text>
                            </children>
                         </AnchorPane>
                         <AnchorPane layoutX="11.0" layoutY="211.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: b20000;">
@@ -158,12 +184,25 @@
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="transmisionPopulares3" layoutX="393.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transmision" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                              <Text fx:id="transmisionPopulares3" layoutX="413.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transmision" textAlignment="CENTER" wrappingWidth="99.23974609375">
                                  <font>
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
                               </Text>
-                              <Button fx:id="botonVerTop3" layoutX="572.0" layoutY="62.0" mnemonicParsing="false" onAction="#btnVerTop3" text="Ver Vehiculo" />
+                              <Button fx:id="botonVerTop3" layoutX="580.0" layoutY="58.0" mnemonicParsing="false" onAction="#btnVerTop3" style="-fx-background-color: #c90000;" text="Ver Vehiculo" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font></Button>
+                              <Text fx:id="marcaPopulares3" layoutX="277.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marca" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                                 <font>
+                                    <Font name="Arial Bold Italic" size="12.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="velMaxPopulares3" layoutX="410.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VelMax" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                                 <font>
+                                    <Font name="Arial Bold Italic" size="12.0" />
+                                 </font>
+                              </Text>
                            </children>
                         </AnchorPane>
                         <AnchorPane layoutX="11.0" layoutY="411.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: b20000;">
@@ -187,17 +226,30 @@
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="motorPopulares4" layoutX="279.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Motor" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                              <Text fx:id="motorPopulares4" layoutX="275.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Motor" textAlignment="CENTER" wrappingWidth="99.23974609375">
                                  <font>
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="transmisionPopulares4" layoutX="395.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transmision" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                              <Text fx:id="transmisionPopulares4" layoutX="412.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transmision" textAlignment="CENTER" wrappingWidth="99.23974609375">
                                  <font>
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
                               </Text>
-                              <Button fx:id="botonVerTop4" layoutX="576.0" layoutY="62.0" mnemonicParsing="false" onAction="#btnVerTop4" text="Ver Vehiculo" />
+                              <Button fx:id="botonVerTop4" layoutX="580.0" layoutY="58.0" mnemonicParsing="false" onAction="#btnVerTop4" style="-fx-background-color: #c90000;" text="Ver Vehiculo" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font></Button>
+                              <Text fx:id="marcaPopulares4" layoutX="275.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marca" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                                 <font>
+                                    <Font name="Arial Bold Italic" size="12.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="velMaxPopulares4" layoutX="412.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VelMax" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                                 <font>
+                                    <Font name="Arial Bold Italic" size="12.0" />
+                                 </font>
+                              </Text>
                            </children>
                         </AnchorPane>
                         <AnchorPane layoutX="11.0" layoutY="531.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: b20000;">
@@ -226,12 +278,25 @@
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="transmisionPopulares5" layoutX="391.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transmision" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                              <Text fx:id="transmisionPopulares5" layoutX="411.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transmision" textAlignment="CENTER" wrappingWidth="99.23974609375">
                                  <font>
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
                               </Text>
-                              <Button fx:id="botonVerTop5" layoutX="567.0" layoutY="57.0" mnemonicParsing="false" onAction="#btnVerTop5" text="Ver Vehiculo" />
+                              <Button fx:id="botonVerTop5" layoutX="580.0" layoutY="58.0" mnemonicParsing="false" onAction="#btnVerTop5" style="-fx-background-color: #c90000;" text="Ver Vehiculo" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="12.0" />
+                                 </font></Button>
+                              <Text fx:id="marcaPopulares5" layoutX="275.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marca" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                                 <font>
+                                    <Font name="Arial Bold Italic" size="12.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="velMaxPopulares5" layoutX="411.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VelMax" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                                 <font>
+                                    <Font name="Arial Bold Italic" size="12.0" />
+                                 </font>
+                              </Text>
                            </children>
                         </AnchorPane>
                      </children>
@@ -276,7 +341,7 @@
                         </Button>
                      </children>
                   </Pane>
-                  <Text fx:id="textoLosMasPopulares" layoutX="497.0" layoutY="611.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Los Mas Populares">
+                  <Text fx:id="textoLosMasPopulares" layoutX="528.0" layoutY="612.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recomendados">
                      <font>
                         <Font name="Arial" size="42.0" />
                      </font>

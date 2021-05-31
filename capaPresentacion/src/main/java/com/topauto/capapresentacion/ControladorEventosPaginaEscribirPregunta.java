@@ -1,5 +1,6 @@
 package com.topauto.capapresentacion;
 
+import com.topauto.capaentidades.Comentario;
 import com.topauto.capaentidades.Usuario;
 import com.topauto.capaentidades.PRgeneral;
 import com.topauto.capaentidades.Publicacion;
@@ -279,21 +280,16 @@ public class ControladorEventosPaginaEscribirPregunta implements Initializable {
             tags.addAll(Arrays.asList(tg));
             
             ArrayList<Publicacion> publicaciones=controlPublicacion.getPublicaciones();
-            ArrayList<Integer> preguntasGenerales=new ArrayList<>();
+            ArrayList<Comentario> comentarios= new ArrayList<>();
+            int count=0;
             
             for(Publicacion p : publicaciones){
                if(p.getId().contains("PRG")){
-                   preguntasGenerales.add(Integer.parseInt(p.getId().substring(3)));
+                   count++;
                }
-            }           
-            int max=0;
-            for (int i = 0; i < preguntasGenerales.size(); i++) {
-                if (preguntasGenerales.get(i) > max) {
-                    max = preguntasGenerales.get(i);
-                }
             }
             
-            PRgeneral pregunta = new PRgeneral(tags,"PRG"+(max++),this.txtTitulo.getText(),this.txtContenido.getText(),new Date(), this.miUsuario);
+            PRgeneral pregunta = new PRgeneral(tags,"PRG10"+count,this.txtTitulo.getText(),this.txtContenido.getText(),new Date(),0,0,this.miUsuario,comentarios);
             
             if(controlPublicacion.crearPublicacion(pregunta)){
                 Alert alerta = new Alert(Alert.AlertType.INFORMATION);
