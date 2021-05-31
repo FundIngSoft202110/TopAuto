@@ -109,7 +109,7 @@ public class ControladorPerfilTest {
         String username = "richfon";
         ControladorPerfil instance = new ControladorPerfil();
         boolean result = instance.validarUserName(username);
-        assertTrue("funciono", result);
+        assertEquals(true, result);
     }
 
     /**
@@ -122,7 +122,7 @@ public class ControladorPerfilTest {
         String contrasenia = "richfon123";
         ControladorPerfil instance = new ControladorPerfil();
         boolean result = instance.acceder(identificador, contrasenia);
-        assertTrue("funciono", result);
+        assertEquals(true, result);
     }
 
     /**
@@ -134,7 +134,7 @@ public class ControladorPerfilTest {
         Usuario usuario = null;
         ControladorPerfil instance = new ControladorPerfil();
         boolean result = instance.registrarPerfil(usuario);
-        assertTrue("se registro", result);      
+        assertEquals(true, result);      
     }
 
     /**
@@ -146,7 +146,7 @@ public class ControladorPerfilTest {
         Usuario usuario = null;
         ControladorPerfil instance = new ControladorPerfil();
         boolean result = instance.modificarPerfil(usuario);
-        assertTrue("Modifico", result);
+        assertEquals(true, result);
     }
 
     /**
@@ -156,10 +156,10 @@ public class ControladorPerfilTest {
     public void testModificarContraseña() {
         System.out.println("modificarContrase\u00f1a");
         String identificador = "ramo";
-            String nueva = "ramo124";
+            String nueva = "ramo123";//
         ControladorPerfil instance = new ControladorPerfil();
         boolean result = instance.modificarContraseña(identificador, nueva);
-        assertTrue("se modifico", result);
+        assertEquals(true, result);
     }
     /**
      * Test of borrarUsuario method, of class ControladorPerfil.
