@@ -38,6 +38,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -73,10 +74,13 @@ public class ControladorEventosPaginaEscribirResenia implements Initializable {
     private CheckBox checkBox;
     @FXML
     private Button btReseña;
+    @FXML
+    private TextField txtTitulo;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         controlCarro.descargarDatos();
+        controlPublicacion.descargarDatos();
         ObservableList<String> listaMarcas;
         ArrayList<String> marcas = new ArrayList<>();
         for(Fabricante f : controlCarro.getFabricantes()){
@@ -246,7 +250,7 @@ public class ControladorEventosPaginaEscribirResenia implements Initializable {
 
     @FXML
     private void reseñar(ActionEvent event) {
-        if((!this.checkBox.isSelected())||("".equals(this.boxMarca.getValue()))||("".equals(this.boxModelo.getValue()))||("".equals(this.txtContenido.getText()))){
+        if((!this.checkBox.isSelected())||("".equals(this.txtTitulo.getText()))||("".equals(this.boxMarca.getValue()))||("".equals(this.boxModelo.getValue()))||("".equals(this.txtContenido.getText()))){
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setHeaderText(null);
             alerta.setTitle("Error");
@@ -255,6 +259,7 @@ public class ControladorEventosPaginaEscribirResenia implements Initializable {
         }else{
             
             ArrayList<Publicacion> publicaciones=controlPublicacion.getPublicaciones();
+            ArrayList<Comentario> comentarios= new ArrayList<>();
             int count=0;
             
             for(Publicacion p : publicaciones){
@@ -262,7 +267,14 @@ public class ControladorEventosPaginaEscribirResenia implements Initializable {
                    count++;
                }
             }
-            Resenia reseña = new Resenia();
+            Vehiculo vehiculo= new Vehiculo();
+            for(Vehiculo v: controlCarro.getVehiculos()){
+                if(v.getModelo().equals(this.boxModelo.getValue())){
+                    vehiculo = v;
+                }
+            }
+            
+            Resenia reseña = new Resenia(Integer.parseInt(this.boxPuntuacion.getValue()),vehiculo,"RES10"+count,this.txtTitulo.getText(),this.txtContenido.getText(),new Date(),0,0,this.miUsuario,comentarios);
             
             if(controlPublicacion.crearPublicacion(reseña)){
                 Alert alerta = new Alert(Alert.AlertType.INFORMATION);
@@ -274,6 +286,7 @@ public class ControladorEventosPaginaEscribirResenia implements Initializable {
                 this.boxMarca.setValue("");
                 this.boxModelo.setValue("");
                 this.boxPuntuacion.setValue("");
+                this.txtTitulo.setText("");
             }else{
                 Alert alerta = new Alert(Alert.AlertType.ERROR);
                 alerta.setHeaderText(null);

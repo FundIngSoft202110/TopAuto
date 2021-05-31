@@ -73,7 +73,7 @@
                         <Font name="Arial" size="20.0" />
                      </font>
                   </Text>
-                  <Text layoutX="139.0" layoutY="344.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción:">
+                  <Text layoutX="143.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción:">
                      <font>
                         <Font name="Arial" size="20.0" />
                      </font>
@@ -95,7 +95,7 @@
                   </ImageView>
                   <ChoiceBox fx:id="boxModelo" layoutX="453.0" layoutY="277.0" prefHeight="25.0" prefWidth="190.0" />
                   <ChoiceBox fx:id="boxPuntuacion" layoutX="142.0" layoutY="607.0" prefHeight="25.0" prefWidth="190.0" />
-                  <TextArea fx:id="txtContenido" layoutX="143.0" layoutY="353.0" prefHeight="218.0" prefWidth="996.0" />
+                  <TextArea fx:id="txtContenido" layoutX="143.0" layoutY="406.0" prefHeight="165.0" prefWidth="996.0" />
                   <CheckBox fx:id="checkBox" layoutX="133.0" layoutY="661.0" mnemonicParsing="false" text="Al subir una pregunta acepto los términos de condición y privacidad de la página frente a la moderación, manejo de preguntas e interacciones sociales.">
                      <font>
                         <Font size="15.0" />
@@ -107,6 +107,12 @@
                      </font>
                   </Text>
                   <ComboBox fx:id="boxMarca" layoutX="144.0" layoutY="277.0" onAction="#seleccionar" prefHeight="25.0" prefWidth="203.0" />
+                  <Text layoutX="139.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titulo:">
+                     <font>
+                        <Font name="Arial" size="20.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="txtTitulo" layoutX="142.0" layoutY="339.0" prefHeight="25.0" prefWidth="403.0" />
                </children>
             </AnchorPane>
          </content>
