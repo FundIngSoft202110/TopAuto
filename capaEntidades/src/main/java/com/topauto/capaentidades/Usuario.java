@@ -29,6 +29,13 @@ public class Usuario {
         this.pais = pais;
     }
 
+    public Usuario(String nombre, String userName, String correo, String contrasenia) {
+        this.nombre = nombre;
+        this.userName = userName;
+        this.correo = correo;
+        this.contrasenia = contrasenia;
+    }
+
     public Usuario(String nombre, String userName, String correo, String contrasenia, Pais pais) {
         this.nombre = nombre;
         this.userName = userName;
