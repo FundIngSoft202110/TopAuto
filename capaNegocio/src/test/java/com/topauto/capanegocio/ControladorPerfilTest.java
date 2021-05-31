@@ -61,6 +61,7 @@ public class ControladorPerfilTest {
         ControladorPerfil instance = new ControladorPerfil();
         boolean result = instance.esCorreo(cadena);
         assertTrue(cadena+" es correo", result);
+        fail("error");
     }
    
     /**
@@ -83,6 +84,7 @@ public class ControladorPerfilTest {
         System.out.println("validarCorreo");
         String correo = "richfonpan@yahoo.com";
         ControladorPerfil instance = new ControladorPerfil();
+        instance.descargarDatos();
         boolean result = instance.validarCorreo(correo);
         assertTrue(correo+" es valido", result);
     }
@@ -95,6 +97,7 @@ public class ControladorPerfilTest {
         System.out.println("validarUserName");
         String username = "richfon";
         ControladorPerfil instance = new ControladorPerfil();
+        instance.descargarDatos();
         boolean result = instance.validarUserName(username);
         assertTrue("funciono", result);
     }
@@ -108,6 +111,7 @@ public class ControladorPerfilTest {
         String identificador = "richfon";
         String contrasenia = "richfon123";
         ControladorPerfil instance = new ControladorPerfil();
+        instance.descargarDatos();
         boolean result = instance.acceder(identificador, contrasenia);
         assertTrue("funciono", result);
     }
@@ -120,6 +124,7 @@ public class ControladorPerfilTest {
         System.out.println("registrarPerfil");
         Usuario usuario = new Usuario("Arturo", "R2", "r2d2@gmail.com", "R2123" );
         ControladorPerfil instance = new ControladorPerfil();
+        instance.descargarDatos();
         boolean result = instance.registrarPerfil(usuario);
         assertTrue("se registro", result);      
     }
@@ -132,6 +137,7 @@ public class ControladorPerfilTest {
         System.out.println("modificarPerfil");
         Usuario usuario = null;
         ControladorPerfil instance = new ControladorPerfil();
+        instance.descargarDatos();
         boolean result = instance.modificarPerfil(usuario);
         assertTrue("Modifico", result);
     }
@@ -143,8 +149,9 @@ public class ControladorPerfilTest {
     public void testModificarContraseña() {
         System.out.println("modificarContrasenia");
         String identificador = "ramo";
-        String nueva = "ramo124";
+            String nueva = "ramo124";
         ControladorPerfil instance = new ControladorPerfil();
+        instance.descargarDatos();
         boolean result = instance.modificarContraseña(identificador, nueva);
         assertTrue("se modifico", result);
     }
