@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -64,8 +65,22 @@
                      <children>
                         <SplitPane dividerPositions="0.5003706449221645" prefHeight="64.0" prefWidth="1351.0">
                           <items>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="837.0" />
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <Button fx:id="butResenias" layoutY="-2.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="673.0" style="-fx-background-color: ffffff;" text="Reseñas">
+                                       <font>
+                                          <Font name="Arial Bold" size="27.0" />
+                                       </font>
+                                    </Button>
+                                 </children></AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="837.0">
+                                 <children>
+                                    <Button fx:id="butPreguntas" mnemonicParsing="false" onAction="#setPreguntas" prefHeight="66.0" prefWidth="673.0" style="-fx-background-color: ffffff;" text="Preguntas">
+                                       <font>
+                                          <Font name="Arial Bold" size="27.0" />
+                                       </font>
+                                    </Button>
+                                 </children></AnchorPane>
                           </items>
                         </SplitPane>
                      </children>
@@ -126,7 +141,43 @@
                         <Font name="Arial" size="25.0" />
                      </font>
                   </Label>
-                  <TextArea fx:id="descripcion" layoutX="425.0" layoutY="369.0" prefHeight="181.0" prefWidth="517.0" />
+                  <TextArea fx:id="descripcion" layoutX="425.0" layoutY="369.0" prefHeight="181.0" prefWidth="517.0" style="-fx-background-color: 808080;" text="miD" />
+                  <SplitPane fx:id="paneGeneral" layoutX="-2.0" layoutY="627.0" orientation="VERTICAL" prefHeight="339.0" prefWidth="1353.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="256.0" prefWidth="1183.0" />
+                    </items>
+                  </SplitPane>
+                  <Button fx:id="btnEditar" layoutX="949.0" layoutY="505.0" mnemonicParsing="false" onAction="#editCamps" prefHeight="45.0" prefWidth="176.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #191919;" text="Editar Perfil">
+                     <font>
+                        <Font name="Arial Black" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnAceptar" layoutX="949.0" layoutY="505.0" mnemonicParsing="false" onAction="#acceptChanges" prefHeight="45.0" prefWidth="176.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #191919;" text="Aceptar">
+                     <font>
+                        <Font name="Arial Black" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnCambioContrasenia" layoutX="949.0" layoutY="467.0" mnemonicParsing="false" style="-fx-background-color: #FFFFFF; -fx-border-color: #191919;" text="Editar Contraseña">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </Button>
+                  <AnchorPane fx:id="parentContrasenia" layoutX="958.0" layoutY="251.0" prefHeight="200.0" prefWidth="316.0">
+                     <children>
+                        <Label layoutY="29.0" text="Contraseña Nueva: ">
+                           <font>
+                              <Font name="Arial Bold" size="19.0" />
+                           </font>
+                        </Label>
+                        <Label layoutY="100.0" text="Contraseña Actual: ">
+                           <font>
+                              <Font name="Arial Bold" size="19.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="contraseniaNueva" layoutX="15.0" layoutY="60.0" prefHeight="25.0" prefWidth="234.0" />
+                        <TextField fx:id="contraseniaActual" layoutX="15.0" layoutY="136.0" prefHeight="25.0" prefWidth="234.0" />
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
          </content>

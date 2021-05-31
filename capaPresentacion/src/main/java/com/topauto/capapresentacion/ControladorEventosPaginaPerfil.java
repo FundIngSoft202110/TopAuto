@@ -18,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -26,7 +27,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-
+import com.topauto.capanegocio.ControladorPublicacion;
+import com.topauto.capaentidades.Publicacion;
+import com.topauto.capaentidades.Pregunta;
+import com.topauto.capaentidades.PRrelacionada;
+import javafx.scene.text.Font;
 
 public class ControladorEventosPaginaPerfil implements Initializable {
 
@@ -39,6 +44,10 @@ public class ControladorEventosPaginaPerfil implements Initializable {
     @FXML
     private Button topAuto;
     @FXML
+    private Button butPreguntas, btnAceptar, btnEditar, btnCambioContrasenia;
+    @FXML
+    private Button butResenias;
+    @FXML
     private AnchorPane countries;
     @FXML
     private ImageView imagenUsuario;
@@ -48,8 +57,7 @@ public class ControladorEventosPaginaPerfil implements Initializable {
     private Text textoNombreUsuario;
     @FXML
     private Label labelNombreUsuario;
-    @FXML
-    private Label labelNombre;
+    
     @FXML
     private Label labelPais;
     @FXML
@@ -58,17 +66,134 @@ public class ControladorEventosPaginaPerfil implements Initializable {
     private Label labelNoPreguntas;
     @FXML
     private TextArea descripcion;
+    @FXML
+    private TextField contraseniaActual;
+    @FXML
+    private TextField contraseniaNuevo;
+    @FXML
+    private AnchorPane parentContrasenia;
+    @FXML
+    private SplitPane paneGeneral;
+    
     private Usuario usuarioLogeado = new Usuario();
+    ArrayList<Publicacion> misPublicaciones = new ArrayList<>();
+    ArrayList<Pregunta> misPreguntas = new ArrayList<>();
+    int datosXPane = 4;
+    int minPreg = 0, maxPreg = datosXPane;
 
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    private void setUsuarioDatos()
+       resetCamps();
+    } 
+    @FXML
+    private void setPreguntas(ActionEvent event)
     {
-        
+         this.paneGeneral.getItems().clear();
+         float incrementPerDivision = 1.0f / (float) this.datosXPane;
+         String miOrigin;
+         AnchorPane localAPane;
+         int contador = 0;
+         if ( misPreguntas.size()< maxPreg) maxPreg = misPreguntas.size();
+         for (Pregunta p : misPreguntas.subList(minPreg, maxPreg))
+        {
+            
+            if (p instanceof PRrelacionada)
+            {
+                miOrigin = ((PRrelacionada)p).getVehiculo().getModelo();
+            }
+            else
+            {
+                miOrigin = "General";
+            }
+            localAPane = setUpAnchorPane( p.getPropietario().getUserName(), p.getDescripcion(), p.getTitulo(),
+                    p.getFecha().toString(), miOrigin);
+
+            this.paneGeneral.getItems().add(localAPane);
+            this.paneGeneral.setDividerPosition(contador, (float)contador * incrementPerDivision);
+            contador++; 
+        }
+         
     }
+    private void resetCamps()
+    {
+        descripcion.setEditable(false);
+        descripcion.setStyle("-fx-background-color: #FFFFFF");
+        this.btnAceptar.setDisable(true);
+        this.btnAceptar.setVisible(false);
+        this.btnEditar.setDisable(false);
+        this.btnEditar.setVisible(true);
+    }
+    @FXML
+    private void editCamps(ActionEvent event)
+    {
+        descripcion.setEditable(true);
+        descripcion.setStyle(null);
+        this.btnAceptar.setDisable(false);
+        this.btnAceptar.setVisible(true);
+        this.btnEditar.setDisable(true);
+        this.btnEditar.setVisible(false);
+    }
+    @FXML
+    private void acceptChanges(ActionEvent event)
+    {
+        resetCamps();
+    }
+     private AnchorPane setUpAnchorPane(String miUsername, String miDescripcion, String miTitulo, String miFecha, String miOrigin)
+    {
+        AnchorPane localAPane = new AnchorPane();
+        Label owner = new Label(), contents = new Label(), titulo = new Label();
+        Label origin = new Label();
+        double offset = 10.0;
+        double anchorPanesHeight = this.paneGeneral.getPrefHeight() / this.datosXPane;
+        double anchorPanesWidth = this.paneGeneral.getPrefWidth();
+        
+        owner.setText("By " + miUsername + " - " + miFecha); //El usuario que le pertenece
+        contents.setText(miDescripcion);
+        titulo.setText(miTitulo);
+        origin.setText(miOrigin);
+        //Contenido - MiddeWay:
+        contents.setPrefWidth(anchorPanesWidth - offset);
+        contents.setPrefHeight(anchorPanesHeight - offset);
+        contents.setFont(new Font(15)); 
+        contents.setWrapText(true);
+        AnchorPane.setTopAnchor(contents, (anchorPanesHeight / 2)- offset*3);
+        AnchorPane.setLeftAnchor(contents, offset);
+        
+        // Owner y Fecha - Bottom Middle
+        owner.setPrefWidth(anchorPanesWidth);
+        owner.setPrefHeight(20);
+        owner.setFont(new Font(14)); 
+        owner.setWrapText(false);
+        AnchorPane.setBottomAnchor(owner, 0.0);
+        AnchorPane.setLeftAnchor(owner, 0.0);
+        
+        //Origen - Top Corner:
+        origin.setPrefWidth(anchorPanesWidth - offset);
+        origin.setPrefHeight(20);
+        origin.setFont(new Font(15)); 
+        origin.setWrapText(true);
+        AnchorPane.setTopAnchor(origin, 0.0);
+        AnchorPane.setLeftAnchor(origin, 0.0);
+        
+        //Titulo - Top middle
+        titulo.setPrefHeight(20);
+        titulo.setPrefWidth((2*anchorPanesWidth)/3);
+        titulo.setFont(new Font(15)); 
+        titulo.setWrapText(true);
+        AnchorPane.setTopAnchor(titulo, 0.0);
+        AnchorPane.setLeftAnchor(titulo, anchorPanesWidth/3);
+        
+
+        
+        
+        localAPane.getChildren().addAll(origin, titulo, contents, owner);
+        return localAPane;
+            
+            
+    }
+     
+     
     public void setUsuario(Usuario miUsuario)
     {
         this.usuarioLogeado = miUsuario;
@@ -96,11 +221,14 @@ public class ControladorEventosPaginaPerfil implements Initializable {
         this.labelPais.setText(this.usuarioLogeado.getPais().getNombre());
         this.descripcion.setText(this.usuarioLogeado.getDescripcion());
         misPub = this.usuarioLogeado.getPublicaciones();
+        this.misPublicaciones= this.usuarioLogeado.getPublicaciones();
         for (Publicacion p : misPub)
         {
             if ( p instanceof Pregunta)
             {
+                
                 misPregN++;
+                this.misPreguntas.add((Pregunta)p);
             }
             else
             {

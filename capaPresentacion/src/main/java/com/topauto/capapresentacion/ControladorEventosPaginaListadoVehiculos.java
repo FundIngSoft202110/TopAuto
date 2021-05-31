@@ -309,7 +309,6 @@ public class ControladorEventosPaginaListadoVehiculos implements Initializable {
          }
          else
          {
-             System.out.println(" Entro al Sig. Pagina, esta bien! \n");
              this.sizeMinusVxP = (this.VehiculosActuales.size()) - this.ListaPagFinal;
                   if (sizeMinusVxP < this.VehiculosXPagina )
                   {

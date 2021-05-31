@@ -123,7 +123,7 @@ public class ControladorPublicacion {
             }
         }
         catch(Exception e){
-            System.out.println("Ocurrio un error al modificar la publicacion");
+            System.out.println("Ocurrio un error al modificar la publicacion " + e.toString());
         }
         return false;
     }

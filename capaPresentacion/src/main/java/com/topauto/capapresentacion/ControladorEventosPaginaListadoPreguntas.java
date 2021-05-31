@@ -1,5 +1,6 @@
 package com.topauto.capapresentacion;
 
+import com.topauto.capaentidades.PRgeneral;
 import com.topauto.capaentidades.PRrelacionada;
 import java.io.IOException;
 import java.net.URL;
@@ -7,6 +8,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -25,8 +27,8 @@ import com.topauto.capanegocio.ControladorPublicacion;
 import com.topauto.capaentidades.Pregunta;
 import com.topauto.capaentidades.Publicacion;
 import com.topauto.capaentidades.Usuario;
+import static java.lang.Math.abs;
 import java.util.ArrayList;
-import javafx.event.EventHandler;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
@@ -53,11 +55,12 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
     
     private final String urlImage = "imagenes/panel_vehiculo_pregunta.png";
     ArrayList<Pregunta> misPreguntas = new ArrayList<>();
-    int noPreguntasMaxXPagina = 4;
+    int  noPreguntasMaxXPagina =  2, noPreguntasParaMax = noPreguntasMaxXPagina;
     int minPreg = 0, maxPreg = noPreguntasMaxXPagina;
-     private EventHandler<ActionEvent> HandlerResp;
-     private EventHandler<ActionEvent> HandlerTurnPage;
-     private Button sig, prev;
+    EventHandler<ActionEvent> HandlerResp;
+    EventHandler<ActionEvent> HandlerTurnPage;
+    private ArrayList<structPregButton> preguntasActuales = new ArrayList<>();
+    private Button sig, prev;
     
     private Usuario usuarioLogeado = new Usuario();
     
@@ -71,14 +74,14 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
         controladorLocal.descargarDatos();
         listaTotal = controladorLocal.getPublicaciones();
         this.misPreguntas = searchPreguntas(listaTotal); //Encuentro mis preguntas para usar.
-        handlePreguntasInit();
+        
         //Pass pagina TODO y Respuestas TODO.
         this.HandlerResp = new EventHandler<ActionEvent>()
              {
                  @Override
                  public void handle (ActionEvent event)
                  {
-                     System.out.println("No Entra aca \n");
+                     handlerGoToResp((Button)(event.getSource()));
                  }
              };
         
@@ -92,25 +95,75 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
                  }
              };
         
+        handlePreguntasInit();
+        System.out.print (this.misPreguntas.get(0).getComentarios().get(0).toString()); 
+    }
+    private void handlerGoToResp(Button button)
+    {
+        for ( structPregButton p : this.preguntasActuales)
+        {
+            
+                
+            if (p.miButton.getId().equals(button.getId()))
+            {
+                try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaRespuestasPregunta.fxml"));
+            
+            Parent root = loader.load();
+            
+            ControladorEventosPaginaRespuestaPreguntas controlador = loader.getController();
+            controlador.setUsuario(this.usuarioLogeado);
+            controlador.setPregunta(p.preguntas);
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("ResponderPreguntas");
+            
+            stage.setScene(scene);
+            Screen screen = Screen.getPrimary(); //Get info from my screen!
+            Rectangle2D bounds = screen.getVisualBounds();
+            //Set visual bounds for MaximizedScreen:
+            stage.setX(bounds.getMinX());
+            stage.setY(bounds.getMinY());
+            stage.setWidth(bounds.getWidth());
+            stage.setHeight(bounds.getHeight());
+            //Adjust my code to the max boundaries of my screen.
+            stage.setMaximized(true); //Set it maximized
+            stage.show();
+                        
+            Stage myStage = (Stage) this.topAuto.getScene().getWindow();
+            myStage.close();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(ControladorEventosPaginaListadoVehiculos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                break; //Break outta the loop
+            }
+            
+            
+             
+        }
+        
     }
     private void handleTurnPagePregunta(Button button)
     {
         paneVerticalPreguntas.getItems().clear(); //Clear for reset purposes!
+        this.preguntasActuales.clear();
+        
         int noPreguntas = misPreguntas.size();
         int contador = 0;
         boolean willSigPass = false, willPrevPass = false;
-        String miOrigin;
-        System.out.println("Entra aca bien tambien?\n");
+        String miOrigin = "";
         if (button.getText().equals("Sig. Pagina"))
         {
             
-            maxPreg += this.noPreguntasMaxXPagina;
+            maxPreg += this.noPreguntasParaMax;
             minPreg += this.noPreguntasMaxXPagina;
         }
         else if (button.getText().equals("Prev. Pagina"))
         {
-            maxPreg -= this.noPreguntasMaxXPagina;
+            maxPreg -= this.noPreguntasParaMax;
             minPreg -= this.noPreguntasMaxXPagina;
+            noPreguntasParaMax = this.noPreguntasMaxXPagina;
         }
         if(minPreg < 0) //Just in case...
         {
@@ -119,16 +172,23 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
             maxPreg = this.noPreguntasMaxXPagina;
         }
         
-        if (noPreguntas < maxPreg)
+        if (noPreguntas < maxPreg && button.getText().equals("Sig. Pagina"))
         {
-            maxPreg = noPreguntas;
+            noPreguntasParaMax = abs(noPreguntas - (maxPreg - noPreguntasMaxXPagina));
+            maxPreg = noPreguntas;  
         }
-        
+        else if(noPreguntas < maxPreg)
+        {
+            maxPreg = noPreguntas;  
+        }
+              
+       System.out.print("Pagina desde ->" + String.valueOf(minPreg) + " hasta " + String.valueOf(maxPreg) + "\n");
         AnchorPane localAPane;
         float incrementPerDivision = 1.0f / (float) noPreguntasMaxXPagina;
-       
+  
         for (Pregunta p : misPreguntas.subList(minPreg, maxPreg))
         {
+            structPregButton structLocal = new structPregButton();
             
             if (p instanceof PRrelacionada)
             {
@@ -139,8 +199,11 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
                 miOrigin = "General";
             }
             localAPane = setUpAnchorPane( p.getPropietario().getUserName(), p.getDescripcion(), p.getTitulo(),
-                    p.getFecha().toString(), miOrigin);
-
+                    p.getFecha().toString(), miOrigin, contador);
+            structLocal.miButton=(Button)localAPane.getChildren().get(4);
+            structLocal.preguntas = p; //ERROR
+            
+            this.preguntasActuales.add(structLocal);
             this.paneVerticalPreguntas.getItems().add(localAPane);
             this.paneVerticalPreguntas.setDividerPosition(contador, (float)contador * incrementPerDivision);
             contador++; 
@@ -158,6 +221,7 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
     private void handlePreguntasInit() 
     {
         paneVerticalPreguntas.getItems().clear(); //Clear for reset purposes!
+        
         int noPreguntas = misPreguntas.size();
         int contador = 0;
         String miOrigin;
@@ -170,7 +234,7 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
        
         for (Pregunta p : misPreguntas.subList(minPreg, maxPreg))
         {
-            
+            structPregButton structLocal = new structPregButton();
             if (p instanceof PRrelacionada)
             {
                 miOrigin = ((PRrelacionada)p).getVehiculo().getModelo();
@@ -180,8 +244,11 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
                 miOrigin = "General";
             }
             localAPane = setUpAnchorPane( p.getPropietario().getUserName(), p.getDescripcion(), p.getTitulo(),
-                    p.getFecha().toString(), miOrigin);
+                    p.getFecha().toString(), miOrigin, contador);
 
+            structLocal.miButton=(Button)localAPane.getChildren().get(4);
+            structLocal.preguntas = p;
+            this.preguntasActuales.add(structLocal);
             this.paneVerticalPreguntas.getItems().add(localAPane);
             this.paneVerticalPreguntas.setDividerPosition(contador, (float)contador * incrementPerDivision);
             contador++; 
@@ -226,16 +293,17 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
         }
     }
     
-    private AnchorPane setUpAnchorPane(String miUsername, String miDescripcion, String miTitulo, String miFecha, String miOrigin)
+    private AnchorPane setUpAnchorPane(String miUsername, String miDescripcion, String miTitulo, String miFecha, String miOrigin, int cont)
     {
         AnchorPane localAPane = new AnchorPane();
         Label owner = new Label(), contents = new Label(), titulo = new Label();
         Label origin = new Label();
         Button respButton = new Button();
         double offset = 10.0;
+
         double anchorPanesHeight = this.paneVerticalPreguntas.getPrefHeight() / this.noPreguntasMaxXPagina;
         double anchorPanesWidth = this.paneVerticalPreguntas.getPrefWidth();
-        
+
         owner.setText("By " + miUsername + " - " + miFecha); //El usuario que le pertenece
         contents.setText(miDescripcion);
         titulo.setText(miTitulo);
@@ -274,9 +342,11 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
         
         //Titulo - Boton Respuesta 
         respButton.setText("Responder");
+        respButton.setId("");
         respButton.setStyle("-fx-background-color: #DFDFE5"); //White-ish Gray
         respButton.setPrefSize(100, 40);
         respButton.setFont(new Font(15));
+        respButton.setId(String.valueOf(cont));
         respButton.setOnAction(HandlerResp);
         AnchorPane.setBottomAnchor(respButton, 0.0);
         AnchorPane.setRightAnchor(respButton,0.0);
