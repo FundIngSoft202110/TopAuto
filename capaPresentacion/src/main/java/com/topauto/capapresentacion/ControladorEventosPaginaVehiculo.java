@@ -1,7 +1,9 @@
 package com.topauto.capapresentacion;
 
+import com.topauto.capaentidades.Comentario;
 import com.topauto.capaentidades.Usuario;
 import com.topauto.capaentidades.Imagen;
+import com.topauto.capaentidades.PRgeneral;
 import com.topauto.capaentidades.PRrelacionada;
 import com.topauto.capaentidades.Pregunta;
 import com.topauto.capaentidades.Publicacion;
@@ -38,8 +40,11 @@ import com.topauto.capanegocio.ControladorPerfil;
 import com.topauto.capanegocio.ControladorPublicacion;
 import static java.lang.Math.abs;
 import java.net.URISyntaxException;
+import java.util.Arrays;
+import java.util.Date;
 import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
@@ -122,11 +127,6 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
     private Button botonPreguntas;
     @FXML
     private Button botonResenas;
-    @FXML
-    private TextField textFieldResenasOPreguntas;
-    @FXML
-    private Button botonPublicarResenaOPregunta;
-    //////////////////////own attributes//////////////////////////
     
     private Vehiculo miVehiculo;
     
@@ -166,6 +166,10 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
     boolean isPreguntaOpen = false, hitNextPage = false, hitLastPage = false;
     ArrayList<Resenia> misPublicaciones = new ArrayList<>();
     ArrayList<PRrelacionada> misPreguntas = new ArrayList<>();
+    @FXML
+    private TextField txtPregunta;
+    @FXML
+    private Button btPreguntar;
     
 
     //////////////////////////////////////////////////////////////
@@ -922,9 +926,6 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
 
     
 
-    @FXML
-    private void btnPublicarResenaOPregunta(ActionEvent event) {
-    }
 
     @FXML
     private void clkVA1(MouseEvent event) {
@@ -1011,6 +1012,49 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
                 }catch(URISyntaxException | IOException ex){
                     System.out.println("Error: "+ex.getMessage());
                 }
+            }
+        }
+        
+    }
+
+    @FXML
+    private void preguntar(ActionEvent event) {
+        if(("".equals(this.txtPregunta.getText()))){
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setHeaderText(null);
+            alerta.setTitle("Error");
+            alerta.setContentText("Debe introducir su pregunta");
+            alerta.showAndWait();
+        }else{
+            
+            ArrayList<Publicacion> publicaciones=controladorPub.getPublicaciones();
+            ArrayList<Comentario> comentarios= new ArrayList<>();
+            int count=0;
+            
+            for(Publicacion p : publicaciones){
+               if(p.getId().contains("PRA")){
+                   count++;
+               }
+            }
+            
+            PRrelacionada pregunta = new PRrelacionada(this.vehiculoCargar,"PRA10"+count, "Pregunta",this.txtPregunta.getText(),new Date(),0,0,this.miUsuario,comentarios);
+            
+            if(controladorPub.crearPublicacion(pregunta)){
+                this.miUsuario.getPublicaciones().add(pregunta);
+                Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                alerta.setHeaderText(null);
+                alerta.setTitle("Exito");
+                alerta.setContentText("Pregunta realizada");
+                alerta.showAndWait();
+                this.txtPregunta.setText("");
+                setCarVehiculo();
+                showPreguntasOnScreen();
+            }else{
+                Alert alerta = new Alert(Alert.AlertType.ERROR);
+                alerta.setHeaderText(null);
+                alerta.setTitle("Error");
+                alerta.setContentText("Error al generar la pregunta");
+                alerta.showAndWait();
             }
         }
         
