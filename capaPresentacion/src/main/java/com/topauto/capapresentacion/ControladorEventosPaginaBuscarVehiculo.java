@@ -1,13 +1,8 @@
 package com.topauto.capapresentacion;
 
 import com.topauto.capaentidades.Imagen;
-import com.topauto.capaentidades.PRrelacionada;
-import com.topauto.capaentidades.Publicacion;
-import com.topauto.capaentidades.Resenia;
-import com.topauto.capaentidades.Vehiculo;
-
 import com.topauto.capaentidades.Usuario;
-
+import com.topauto.capaentidades.Vehiculo;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -27,9 +22,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -47,11 +39,23 @@ public class ControladorEventosPaginaBuscarVehiculo implements Initializable {
     @FXML
     private Button botonIngresarOPerfil;
     @FXML
+    private Text textoLosMasPopulares;
+    @FXML
+    private Text preguntasPopulares123;
+    @FXML
     private ImageView imagenUsuarioPerfil;
+    @FXML
+    private ImageView imgVehiculosEncontrados;
+    @FXML
+    private Button botonAnterior;
+    @FXML
+    private Button botonSiguiente;
+    @FXML
+    private Text textVehiculoEncontrado;
+    @FXML
+    private Button topAuto;
 
-    private Usuario usuarioLogin;
-
-    //////////////////////own attributes//////////////////////////
+    //////////////////////////Atr Propios////////////////////////
     private ArrayList<Vehiculo> listaVehiculos;
 
     private ArrayList<Vehiculo> encontrados = new ArrayList<>();
@@ -59,31 +63,51 @@ public class ControladorEventosPaginaBuscarVehiculo implements Initializable {
     com.topauto.capaaccesodatos.RepositorioVehiculo rVehiculos = new com.topauto.capaaccesodatos.RepositorioVehiculo();
 
     String palabraClave;
+
     int numVehiculos;
+
     int posicion;
 
-    /////////////////////////////////////////////////////////////
+    private Usuario miUsuario;
+    private Button botonTopAuto;
     @FXML
-    private ImageView imgVehiculosEncontrados;
+    private Button botonBuscar;
     @FXML
-    private Button botonAnterior;
+    private TextField textPalabraClave;
+    private Button botonImagenCarro;
     @FXML
-    private Text textVehiculoEncontrado;
-    @FXML
-    private Button topAuto;
-    @FXML
-    private Text textoLosMasPopulares;
-    @FXML
-    private Text preguntasPopulares123;
-    @FXML
-    private Button botonSiguiente;
+    private Button botonVerVehiculo;
 
-    //////////////////////own attributes//////////////////////////
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.botonIngresarOPerfil.setText("Ver Perfil");
 
         listaVehiculos = rVehiculos.descargarVehiculos();
+
+    }
+
+    public void setPalabraClave(String miPalabra) {
+        this.palabraClave = miPalabra;
+        this.posicion = 0;
+    }
+
+    public void setUsuario(Usuario miUsuario) {
+        this.miUsuario = miUsuario;
+        setUsuarioImage();
+    }
+
+    private void setUsuarioImage() {
+        Image miImagen;
+        try {
+            miImagen = new Image(this.miUsuario.getFoto().getPath());
+            this.imagenUsuarioPerfil.setImage(miImagen);
+        } catch (IllegalArgumentException e) {
+            miImagen = new Image("imagenes/perfil.png");
+            this.imagenUsuarioPerfil.setImage(miImagen);
+        }
+        this.textoNombreUsuario.setText(this.miUsuario.getUserName());
+    }
+
+    void setResultadoBusqueda() {
 
         //Buscar Vehiculos asociados con el criterio de busqueda
         for (int i = 0; i < listaVehiculos.size(); i++) {
@@ -102,40 +126,49 @@ public class ControladorEventosPaginaBuscarVehiculo implements Initializable {
                 for (Imagen img : encontrados.get(posicion).getFotos()) {
                     if (img.getPath().contains("general.jpg")) {
                         Image miImagen = new Image(img.getPath());
+
+                        this.textVehiculoEncontrado.setText(encontrados.get(posicion).getMarca().getNombre() + " - " + encontrados.get(posicion).getModelo());
                         
-                        this.textVehiculoEncontrado.setText(encontrados.get(posicion).getMarca().getNombre()+" - "+encontrados.get(posicion).getModelo());
-                        this.imgVehiculosEncontrados.setImage(miImagen); 
+                        this.imgVehiculosEncontrados.setImage(miImagen);
+                        
+                        if (miImagen != null) {
+                            double w = 0;
+                            double h = 0;
+
+                            double ratioX = imgVehiculosEncontrados.getFitWidth() / miImagen.getWidth();
+                            double ratioY = imgVehiculosEncontrados.getFitHeight() / miImagen.getHeight();
+
+                            double reducCoeff = 0;
+                            if (ratioX >= ratioY) {
+                                reducCoeff = ratioY;
+                            } else {
+                                reducCoeff = ratioX;
+                            }
+
+                            w = miImagen.getWidth() * reducCoeff;
+                            h = miImagen.getHeight() * reducCoeff;
+
+                            imgVehiculosEncontrados.setX((imgVehiculosEncontrados.getFitWidth() - w) / 2);
+                            imgVehiculosEncontrados.setY((imgVehiculosEncontrados.getFitHeight() - h) / 2);
+
+                        }
                     }
                 }
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());
             }
         } else {
-            this.textVehiculoEncontrado.setText("No se encontro el vehiculo solicitado");
+            try {
+                Image miVehiculoDefault;
+                this.textVehiculoEncontrado.setText("No se encontro el vehiculo solicitado");
+                miVehiculoDefault = new Image("imagenes/default-vehicle.png");
+                this.imgVehiculosEncontrados.setImage(miVehiculoDefault);
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+
         }
 
-    }
-
-    public void setPalabraClave(String miPalabra) {
-        this.palabraClave = miPalabra;
-        this.posicion = 0;
-    }
-
-    public void setUsuario(Usuario miUsuario) {
-        usuarioLogin = miUsuario;
-        setUsuarioImage();
-    }
-
-    private void setUsuarioImage() {
-        Image miImagen;
-        try {
-            miImagen = new Image(this.usuarioLogin.getFoto().getPath());
-            this.imagenUsuarioPerfil.setImage(miImagen);
-        } catch (IllegalArgumentException e) {
-            miImagen = new Image("imagenes/perfil.png");
-            this.imagenUsuarioPerfil.setImage(miImagen);
-        }
-        this.textoNombreUsuario.setText(this.usuarioLogin.getUserName());
     }
 
     @FXML
@@ -147,9 +180,9 @@ public class ControladorEventosPaginaBuscarVehiculo implements Initializable {
             Parent root = loader.load();
 
             ControladorEventosPaginaEscribirPregunta controlador = loader.getController();
-            controlador.setUsuario(usuarioLogin);
+            controlador.setUsuario(miUsuario);
 
-            controlador.setUsuario(usuarioLogin);
+            controlador.setUsuario(miUsuario);
             Scene scene = new Scene(root);
             Stage stage = new Stage();
 
@@ -183,8 +216,7 @@ public class ControladorEventosPaginaBuscarVehiculo implements Initializable {
             Parent root = loader.load();
 
             ControladorEventosPaginaEscribirResenia controlador = loader.getController();
-
-            controlador.setUsuario(usuarioLogin);
+            controlador.setUsuario(miUsuario);
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -205,7 +237,7 @@ public class ControladorEventosPaginaBuscarVehiculo implements Initializable {
             myStage.close();
 
         } catch (IOException ex) {
-            Logger.getLogger(ControladorEventosPaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorEventosPaginaEscribirResenia.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -219,8 +251,7 @@ public class ControladorEventosPaginaBuscarVehiculo implements Initializable {
             Parent root = loader.load();
 
             ControladorEventosPaginaListadoPreguntas controlador = loader.getController();
-
-            controlador.setUsuario(usuarioLogin);
+            controlador.setUsuario(miUsuario);
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -237,11 +268,11 @@ public class ControladorEventosPaginaBuscarVehiculo implements Initializable {
             stage.setMaximized(true); //Set it maximized
             stage.show();
 
-            Stage myStage = (Stage) this.botonHazUnaPregunta.getScene().getWindow();
+            Stage myStage = (Stage) this.botonRespondePreguntas.getScene().getWindow();
             myStage.close();
 
         } catch (IOException ex) {
-            Logger.getLogger(ControladorEventosPaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorEventosPaginaListadoPreguntas.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -249,19 +280,14 @@ public class ControladorEventosPaginaBuscarVehiculo implements Initializable {
     @FXML
     private void btnIngresar(ActionEvent event) {
 
-        if (this.usuarioLogin != null) {
-            this.botonIngresarOPerfil.setText("Ver Perfil");
-        } else {
-            this.botonIngresarOPerfil.setText("Ingresar");
-        }
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaPerfilScene.fxml"));
 
             Parent root = loader.load();
 
             ControladorEventosPaginaPerfil controlador = loader.getController();
-            controlador.setUsuario(this.usuarioLogin);
+            controlador.setUsuario(miUsuario);
+
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setTitle("Perfil Usuario");
@@ -289,12 +315,12 @@ public class ControladorEventosPaginaBuscarVehiculo implements Initializable {
 
     @FXML
     private void clkImgVehiculoEncontrado(MouseEvent event) {
-        
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaVehiculoScene.fxml"));
             Parent root = loader.load();
             ControladorEventosPaginaVehiculo controlador = loader.getController();
-            controlador.setUsuario(usuarioLogin);
+            controlador.setUsuario(miUsuario);
             controlador.setVehiculo(encontrados.get(posicion)); //Envio mi vehiculo ...
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -311,34 +337,35 @@ public class ControladorEventosPaginaBuscarVehiculo implements Initializable {
             stage.setMaximized(true); //Set it maximized
             //Show my screen!
             stage.show();
-            stage.close();
+
+            Stage myStage = (Stage) this.imgVehiculosEncontrados.getScene().getWindow();
+            myStage.close();
         } catch (IOException ex) {
             Logger.getLogger(ControladorEventosPaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     @FXML
     private void btnAnterior(ActionEvent event) {
-        
+
         posicion--;
-        if(this.posicion>=0)
-        {
+        if (this.posicion >= 0) {
             try {
                 //Poner Imagen
 
                 for (Imagen img : encontrados.get(posicion).getFotos()) {
                     if (img.getPath().contains("general.jpg")) {
                         Image miImagen = new Image(img.getPath());
-                        
-                        this.textVehiculoEncontrado.setText(encontrados.get(posicion).getMarca().getNombre()+" - "+encontrados.get(posicion).getModelo());
+
+                        this.textVehiculoEncontrado.setText(encontrados.get(posicion).getMarca().getNombre() + " - " + encontrados.get(posicion).getModelo());
                         this.imgVehiculosEncontrados.setImage(miImagen);
                     }
                 }
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());
             }
-        }else{
+        } else {
             posicion--;
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
@@ -346,30 +373,29 @@ public class ControladorEventosPaginaBuscarVehiculo implements Initializable {
             alert.setContentText("Llego al inicio de la lista de vehiculos encontrados");
             alert.showAndWait();
         }
-        
+
     }
 
     @FXML
     private void btnSiguiente(ActionEvent event) {
-        
+
         posicion++;
-        if(this.posicion<this.numVehiculos)
-        {
+        if (this.posicion < this.numVehiculos) {
             try {
                 //Poner Imagen
 
                 for (Imagen img : encontrados.get(posicion).getFotos()) {
                     if (img.getPath().contains("general.jpg")) {
                         Image miImagen = new Image(img.getPath());
-                        
-                        this.textVehiculoEncontrado.setText(encontrados.get(posicion).getMarca().getNombre()+" - "+encontrados.get(posicion).getModelo());
+
+                        this.textVehiculoEncontrado.setText(encontrados.get(posicion).getMarca().getNombre() + " - " + encontrados.get(posicion).getModelo());
                         this.imgVehiculosEncontrados.setImage(miImagen);
                     }
                 }
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());
             }
-        }else{
+        } else {
             posicion--;
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
@@ -377,19 +403,18 @@ public class ControladorEventosPaginaBuscarVehiculo implements Initializable {
             alert.setContentText("Llego al ultimo vehiculo encontrado");
             alert.showAndWait();
         }
-        
+
     }
 
     @FXML
-    private void menu(ActionEvent event) {
-        
+    private void btnTopAuto(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaPrincipalScene.fxml"));
 
             Parent root = loader.load();
 
             ControladorEventosPaginaPrincipal controlador = loader.getController();
-            controlador.setUsuario(usuarioLogin);
+            controlador.setUsuario(miUsuario);
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -413,7 +438,54 @@ public class ControladorEventosPaginaBuscarVehiculo implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(ControladorEventosPaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+    }
+
+    @FXML
+    private void btnBuscar(ActionEvent event) {
+        if (this.textPalabraClave.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Barra Vacia");
+            alert.setContentText("Ingrese primero una palabra clave a buscar");
+            alert.showAndWait();
+        } else {
+            this.palabraClave = textPalabraClave.getText();
+            this.numVehiculos = 0;
+            this.posicion = 0;
+            this.encontrados.clear();
+            setResultadoBusqueda();
+        }
+    }
+
+    @FXML
+    private void btnVerVehiculo(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaVehiculoScene.fxml"));
+            Parent root = loader.load();
+            ControladorEventosPaginaVehiculo controlador = loader.getController();
+            controlador.setUsuario(miUsuario);
+            controlador.setVehiculo(encontrados.get(posicion)); //Envio mi vehiculo ...
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+
+            stage.setScene(scene);
+            Screen screen = Screen.getPrimary(); //Get info from my screen!
+            Rectangle2D bounds = screen.getVisualBounds();
+            //Set visual bounds for MaximizedScreen:
+            stage.setX(bounds.getMinX());
+            stage.setY(bounds.getMinY());
+            stage.setWidth(bounds.getWidth());
+            stage.setHeight(bounds.getHeight());
+            //Adjust my code to the max boundaries of my screen.
+            stage.setMaximized(true); //Set it maximized
+            //Show my screen!
+            stage.show();
+
+            Stage myStage = (Stage) this.botonVerVehiculo.getScene().getWindow();
+            myStage.close();
+        } catch (IOException ex) {
+            Logger.getLogger(ControladorEventosPaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }
