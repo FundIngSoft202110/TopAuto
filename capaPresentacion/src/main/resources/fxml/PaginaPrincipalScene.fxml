@@ -2,6 +2,10 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -99,12 +103,12 @@
                                  <font>
                                     <Font name="Arial Bold" size="12.0" />
                                  </font></Button>
-                              <Text fx:id="marcaPopulares1" layoutX="282.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marca" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                              <Text layoutX="282.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo De Motor" textAlignment="CENTER" wrappingWidth="99.23974609375">
                                  <font>
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="velMaxPopulares1" layoutX="410.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VelMax" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                              <Text layoutX="410.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transmision" textAlignment="CENTER" wrappingWidth="99.23974609375">
                                  <font>
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
@@ -146,12 +150,12 @@
                                  <font>
                                     <Font name="Arial Bold" size="12.0" />
                                  </font></Button>
-                              <Text fx:id="marcaPopulares2" layoutX="282.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marca" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                              <Text layoutX="282.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo De Motor" textAlignment="CENTER" wrappingWidth="99.23974609375">
                                  <font>
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="velMaxPopulares2" layoutX="408.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VelMax" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                              <Text layoutX="408.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transmision" textAlignment="CENTER" wrappingWidth="99.23974609375">
                                  <font>
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
@@ -193,12 +197,12 @@
                                  <font>
                                     <Font name="Arial Bold" size="12.0" />
                                  </font></Button>
-                              <Text fx:id="marcaPopulares3" layoutX="277.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marca" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                              <Text layoutX="277.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo De Motor" textAlignment="CENTER" wrappingWidth="99.23974609375">
                                  <font>
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="velMaxPopulares3" layoutX="410.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VelMax" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                              <Text layoutX="410.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transmision" textAlignment="CENTER" wrappingWidth="99.23974609375">
                                  <font>
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
@@ -240,12 +244,12 @@
                                  <font>
                                     <Font name="Arial Bold" size="12.0" />
                                  </font></Button>
-                              <Text fx:id="marcaPopulares4" layoutX="275.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marca" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                              <Text layoutX="275.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo De Motor" textAlignment="CENTER" wrappingWidth="99.23974609375">
                                  <font>
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="velMaxPopulares4" layoutX="412.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VelMax" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                              <Text layoutX="412.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transmision" textAlignment="CENTER" wrappingWidth="99.23974609375">
                                  <font>
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
@@ -287,12 +291,12 @@
                                  <font>
                                     <Font name="Arial Bold" size="12.0" />
                                  </font></Button>
-                              <Text fx:id="marcaPopulares5" layoutX="275.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marca" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                              <Text layoutX="275.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo De Motor" textAlignment="CENTER" wrappingWidth="99.23974609375">
                                  <font>
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="velMaxPopulares5" layoutX="411.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VelMax" textAlignment="CENTER" wrappingWidth="99.23974609375">
+                              <Text layoutX="411.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transmision" textAlignment="CENTER" wrappingWidth="99.23974609375">
                                  <font>
                                     <Font name="Arial Bold Italic" size="12.0" />
                                  </font>

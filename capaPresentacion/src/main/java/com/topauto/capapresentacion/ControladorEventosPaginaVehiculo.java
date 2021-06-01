@@ -563,6 +563,28 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
                     Image miImagen = new Image (img.getPath());
 
                     this.pantallaImagenesVehiculo.setImage(miImagen);
+                    
+                    if (miImagen != null) {
+                            double w = 0;
+                            double h = 0;
+
+                            double ratioX = pantallaImagenesVehiculo.getFitWidth() / miImagen.getWidth();
+                            double ratioY = pantallaImagenesVehiculo.getFitHeight() / miImagen.getHeight();
+
+                            double reducCoeff = 0;
+                            if (ratioX >= ratioY) {
+                                reducCoeff = ratioY;
+                            } else {
+                                reducCoeff = ratioX;
+                            }
+
+                            w = miImagen.getWidth() * reducCoeff;
+                            h = miImagen.getHeight() * reducCoeff;
+
+                            pantallaImagenesVehiculo.setX((pantallaImagenesVehiculo.getFitWidth() - w) / 2);
+                            pantallaImagenesVehiculo.setY((pantallaImagenesVehiculo.getFitHeight() - h) / 2);
+
+                        }
                 }
             }
         } catch (Exception e) {
@@ -574,7 +596,49 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
         Image imagenA1 = new Image(vehiculoCargar.getVendedoresAsociados().get(0).getLogo().getPath());
         Image imagenA2 = new Image(vehiculoCargar.getVendedoresAsociados().get(1).getLogo().getPath());
         this.imgVendedorA1.setImage(imagenA1);
+        if (imagenA1 != null) {
+                            double w = 0;
+                            double h = 0;
+
+                            double ratioX = imgVendedorA1.getFitWidth() / imagenA1.getWidth();
+                            double ratioY = imgVendedorA1.getFitHeight() / imagenA1.getHeight();
+
+                            double reducCoeff = 0;
+                            if (ratioX >= ratioY) {
+                                reducCoeff = ratioY;
+                            } else {
+                                reducCoeff = ratioX;
+                            }
+
+                            w = imagenA1.getWidth() * reducCoeff;
+                            h = imagenA1.getHeight() * reducCoeff;
+
+                            imgVendedorA1.setX((imgVendedorA1.getFitWidth() - w) / 2);
+                            imgVendedorA1.setY((imgVendedorA1.getFitHeight() - h) / 2);
+
+                        }
         this.imgVendedorA2.setImage(imagenA2);
+        if (imagenA2 != null) {
+                            double w = 0;
+                            double h = 0;
+
+                            double ratioX = imgVendedorA2.getFitWidth() / imagenA2.getWidth();
+                            double ratioY = imgVendedorA2.getFitHeight() / imagenA2.getHeight();
+
+                            double reducCoeff = 0;
+                            if (ratioX >= ratioY) {
+                                reducCoeff = ratioY;
+                            } else {
+                                reducCoeff = ratioX;
+                            }
+
+                            w = imagenA2.getWidth() * reducCoeff;
+                            h = imagenA2.getHeight() * reducCoeff;
+
+                            imgVendedorA2.setX((imgVendedorA2.getFitWidth() - w) / 2);
+                            imgVendedorA2.setY((imgVendedorA2.getFitHeight() - h) / 2);
+
+                        }
         
         //Poner Imagen Organizaciones Asociadas
         
@@ -728,6 +792,36 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
 
     @FXML
     private void btnHazUnaPregunta(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaEscribirPreguntaScene.fxml"));
+
+            Parent root = loader.load();
+
+            ControladorEventosPaginaEscribirPregunta controlador = loader.getController();
+            controlador.setUsuario(miUsuario);
+
+            controlador.setUsuario(miUsuario);
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+
+            stage.setScene(scene);
+            Screen screen = Screen.getPrimary(); //Get info from my screen!
+            Rectangle2D bounds = screen.getVisualBounds();
+            //Set visual bounds for MaximizedScreen:
+            stage.setX(bounds.getMinX());
+            stage.setY(bounds.getMinY());
+            stage.setWidth(bounds.getWidth());
+            stage.setHeight(bounds.getHeight());
+            //Adjust my code to the max boundaries of my screen.
+            stage.setMaximized(true); //Set it maximized
+            stage.show();
+
+            Stage myStage = (Stage) this.botonHazUnaPregunta.getScene().getWindow();
+            myStage.close();
+
+        } catch (IOException ex) {
+            Logger.getLogger(ControladorEventosPaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
@@ -838,6 +932,28 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
                 if (img.getPath().contains("general.jpg")) {
                     Image miImagen = new Image(img.getPath());
                     this.pantallaImagenesVehiculo.setImage(miImagen);
+                    
+                    if (miImagen != null) {
+                            double w = 0;
+                            double h = 0;
+
+                            double ratioX = pantallaImagenesVehiculo.getFitWidth() / miImagen.getWidth();
+                            double ratioY = pantallaImagenesVehiculo.getFitHeight() / miImagen.getHeight();
+
+                            double reducCoeff = 0;
+                            if (ratioX >= ratioY) {
+                                reducCoeff = ratioY;
+                            } else {
+                                reducCoeff = ratioX;
+                            }
+
+                            w = miImagen.getWidth() * reducCoeff;
+                            h = miImagen.getHeight() * reducCoeff;
+
+                            pantallaImagenesVehiculo.setX((pantallaImagenesVehiculo.getFitWidth() - w) / 2);
+                            pantallaImagenesVehiculo.setY((pantallaImagenesVehiculo.getFitHeight() - h) / 2);
+
+                        }
                 }
             }
         } catch (Exception e) {
@@ -853,6 +969,28 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
                 if (img.getPath().contains("frente.jpg")) {
                     Image miImagen = new Image(img.getPath());
                     this.pantallaImagenesVehiculo.setImage(miImagen);
+                    
+                    if (miImagen != null) {
+                            double w = 0;
+                            double h = 0;
+
+                            double ratioX = pantallaImagenesVehiculo.getFitWidth() / miImagen.getWidth();
+                            double ratioY = pantallaImagenesVehiculo.getFitHeight() / miImagen.getHeight();
+
+                            double reducCoeff = 0;
+                            if (ratioX >= ratioY) {
+                                reducCoeff = ratioY;
+                            } else {
+                                reducCoeff = ratioX;
+                            }
+
+                            w = miImagen.getWidth() * reducCoeff;
+                            h = miImagen.getHeight() * reducCoeff;
+
+                            pantallaImagenesVehiculo.setX((pantallaImagenesVehiculo.getFitWidth() - w) / 2);
+                            pantallaImagenesVehiculo.setY((pantallaImagenesVehiculo.getFitHeight() - h) / 2);
+
+                        }
                 }
             }
         } catch (Exception e) {
@@ -868,6 +1006,28 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
                 if (img.getPath().contains("lado.jpg")) {
                     Image miImagen = new Image(img.getPath());
                     this.pantallaImagenesVehiculo.setImage(miImagen);
+                    
+                    if (miImagen != null) {
+                            double w = 0;
+                            double h = 0;
+
+                            double ratioX = pantallaImagenesVehiculo.getFitWidth() / miImagen.getWidth();
+                            double ratioY = pantallaImagenesVehiculo.getFitHeight() / miImagen.getHeight();
+
+                            double reducCoeff = 0;
+                            if (ratioX >= ratioY) {
+                                reducCoeff = ratioY;
+                            } else {
+                                reducCoeff = ratioX;
+                            }
+
+                            w = miImagen.getWidth() * reducCoeff;
+                            h = miImagen.getHeight() * reducCoeff;
+
+                            pantallaImagenesVehiculo.setX((pantallaImagenesVehiculo.getFitWidth() - w) / 2);
+                            pantallaImagenesVehiculo.setY((pantallaImagenesVehiculo.getFitHeight() - h) / 2);
+
+                        }
                 }
             }
         } catch (Exception e) {
@@ -883,6 +1043,28 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
                 if (img.getPath().contains("trasero.jpg")) {
                     Image miImagen = new Image(img.getPath());
                     this.pantallaImagenesVehiculo.setImage(miImagen);
+                    
+                    if (miImagen != null) {
+                            double w = 0;
+                            double h = 0;
+
+                            double ratioX = pantallaImagenesVehiculo.getFitWidth() / miImagen.getWidth();
+                            double ratioY = pantallaImagenesVehiculo.getFitHeight() / miImagen.getHeight();
+
+                            double reducCoeff = 0;
+                            if (ratioX >= ratioY) {
+                                reducCoeff = ratioY;
+                            } else {
+                                reducCoeff = ratioX;
+                            }
+
+                            w = miImagen.getWidth() * reducCoeff;
+                            h = miImagen.getHeight() * reducCoeff;
+
+                            pantallaImagenesVehiculo.setX((pantallaImagenesVehiculo.getFitWidth() - w) / 2);
+                            pantallaImagenesVehiculo.setY((pantallaImagenesVehiculo.getFitHeight() - h) / 2);
+
+                        }
                 }
             }
         } catch (Exception e) {
@@ -898,6 +1080,28 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
                 if (img.getPath().contains("motor.jpg")) {
                     Image miImagen = new Image(img.getPath());
                     this.pantallaImagenesVehiculo.setImage(miImagen);
+                    
+                    if (miImagen != null) {
+                            double w = 0;
+                            double h = 0;
+
+                            double ratioX = pantallaImagenesVehiculo.getFitWidth() / miImagen.getWidth();
+                            double ratioY = pantallaImagenesVehiculo.getFitHeight() / miImagen.getHeight();
+
+                            double reducCoeff = 0;
+                            if (ratioX >= ratioY) {
+                                reducCoeff = ratioY;
+                            } else {
+                                reducCoeff = ratioX;
+                            }
+
+                            w = miImagen.getWidth() * reducCoeff;
+                            h = miImagen.getHeight() * reducCoeff;
+
+                            pantallaImagenesVehiculo.setX((pantallaImagenesVehiculo.getFitWidth() - w) / 2);
+                            pantallaImagenesVehiculo.setY((pantallaImagenesVehiculo.getFitHeight() - h) / 2);
+
+                        }
                 }
             }
         } catch (Exception e) {
@@ -913,6 +1117,28 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
                 if (img.getPath().contains("interior.jpg")) {
                     Image miImagen = new Image(img.getPath());
                     this.pantallaImagenesVehiculo.setImage(miImagen);
+                    
+                    if (miImagen != null) {
+                            double w = 0;
+                            double h = 0;
+
+                            double ratioX = pantallaImagenesVehiculo.getFitWidth() / miImagen.getWidth();
+                            double ratioY = pantallaImagenesVehiculo.getFitHeight() / miImagen.getHeight();
+
+                            double reducCoeff = 0;
+                            if (ratioX >= ratioY) {
+                                reducCoeff = ratioY;
+                            } else {
+                                reducCoeff = ratioX;
+                            }
+
+                            w = miImagen.getWidth() * reducCoeff;
+                            h = miImagen.getHeight() * reducCoeff;
+
+                            pantallaImagenesVehiculo.setX((pantallaImagenesVehiculo.getFitWidth() - w) / 2);
+                            pantallaImagenesVehiculo.setY((pantallaImagenesVehiculo.getFitHeight() - h) / 2);
+
+                        }
                 }
             }
         } catch (Exception e) {

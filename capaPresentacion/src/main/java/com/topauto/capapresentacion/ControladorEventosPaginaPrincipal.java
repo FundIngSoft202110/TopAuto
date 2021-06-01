@@ -21,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -133,6 +134,8 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
 
     private ArrayList<Vehiculo> top5 = new ArrayList<>();
 
+    String palabraClave;
+
     com.topauto.capaaccesodatos.RepositorioPublicacion rPublicacion = new com.topauto.capaaccesodatos.RepositorioPublicacion();
     com.topauto.capaaccesodatos.RepositorioVehiculo rVehiculos = new com.topauto.capaaccesodatos.RepositorioVehiculo();
 
@@ -167,26 +170,8 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
     private ImageView imgt4;
     @FXML
     private ImageView imgt5;
-    @FXML
     private Text marcaPopulares1;
-    @FXML
     private Text velMaxPopulares1;
-    @FXML
-    private Text marcaPopulares2;
-    @FXML
-    private Text velMaxPopulares2;
-    @FXML
-    private Text marcaPopulares3;
-    @FXML
-    private Text velMaxPopulares3;
-    @FXML
-    private Text marcaPopulares4;
-    @FXML
-    private Text velMaxPopulares4;
-    @FXML
-    private Text marcaPopulares5;
-    @FXML
-    private Text velMaxPopulares5;
 
     //////////////////////own attributes//////////////////////////
     @Override
@@ -219,8 +204,27 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
             if (img.getPath().contains("general.jpg")) {
                 Image miImagen = new Image(img.getPath());
                 this.imgt1.setImage(miImagen);
-                this.velMaxPopulares1.setText("Vel Max: " + top5.get(0).getVelMax() + "");
-                this.marcaPopulares1.setText(top5.get(0).getMarca().getNombre());
+                if (miImagen != null) {
+                            double w = 0;
+                            double h = 0;
+
+                            double ratioX = imgt1.getFitWidth() / miImagen.getWidth();
+                            double ratioY = imgt1.getFitHeight() / miImagen.getHeight();
+
+                            double reducCoeff = 0;
+                            if (ratioX >= ratioY) {
+                                reducCoeff = ratioY;
+                            } else {
+                                reducCoeff = ratioX;
+                            }
+
+                            w = miImagen.getWidth() * reducCoeff;
+                            h = miImagen.getHeight() * reducCoeff;
+
+                            imgt1.setX((imgt1.getFitWidth() - w) / 2);
+                            imgt1.setY((imgt1.getFitHeight() - h) / 2);
+
+                        }
                 this.modeloPopulares1.setText(top5.get(0).getModelo());
                 this.motorPopulares1.setText(top5.get(0).getMotor().name());
                 this.transmisionPopulares1.setText(top5.get(0).getTransmision().name());
@@ -230,8 +234,27 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
             if (img.getPath().contains("general.jpg")) {
                 Image miImagen = new Image(img.getPath());
                 this.imgt2.setImage(miImagen);
-                this.velMaxPopulares1.setText("Vel Max: " + top5.get(1).getVelMax() + "");
-                this.marcaPopulares1.setText(top5.get(1).getMarca().getNombre());
+                if (miImagen != null) {
+                            double w = 0;
+                            double h = 0;
+
+                            double ratioX = imgt2.getFitWidth() / miImagen.getWidth();
+                            double ratioY = imgt2.getFitHeight() / miImagen.getHeight();
+
+                            double reducCoeff = 0;
+                            if (ratioX >= ratioY) {
+                                reducCoeff = ratioY;
+                            } else {
+                                reducCoeff = ratioX;
+                            }
+
+                            w = miImagen.getWidth() * reducCoeff;
+                            h = miImagen.getHeight() * reducCoeff;
+
+                            imgt2.setX((imgt2.getFitWidth() - w) / 2);
+                            imgt2.setY((imgt2.getFitHeight() - h) / 2);
+
+                        }
                 this.modeloPopulares2.setText(top5.get(1).getModelo());
                 this.motorPopulares2.setText(top5.get(1).getMotor().name());
                 this.transmisionPopulares2.setText(top5.get(1).getTransmision().name());
@@ -241,8 +264,27 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
             if (img.getPath().contains("general.jpg")) {
                 Image miImagen = new Image(img.getPath());
                 this.imgt3.setImage(miImagen);
-                this.velMaxPopulares1.setText("Vel Max: " + top5.get(2).getVelMax() + "");
-                this.marcaPopulares1.setText(top5.get(2).getMarca().getNombre());
+                if (miImagen != null) {
+                            double w = 0;
+                            double h = 0;
+
+                            double ratioX = imgt3.getFitWidth() / miImagen.getWidth();
+                            double ratioY = imgt3.getFitHeight() / miImagen.getHeight();
+
+                            double reducCoeff = 0;
+                            if (ratioX >= ratioY) {
+                                reducCoeff = ratioY;
+                            } else {
+                                reducCoeff = ratioX;
+                            }
+
+                            w = miImagen.getWidth() * reducCoeff;
+                            h = miImagen.getHeight() * reducCoeff;
+
+                            imgt3.setX((imgt3.getFitWidth() - w) / 2);
+                            imgt3.setY((imgt3.getFitHeight() - h) / 2);
+
+                        }
                 this.modeloPopulares3.setText(top5.get(2).getModelo());
                 this.motorPopulares3.setText(top5.get(2).getMotor().name());
                 this.transmisionPopulares3.setText(top5.get(2).getTransmision().name());
@@ -252,8 +294,27 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
             if (img.getPath().contains("general.jpg")) {
                 Image miImagen = new Image(img.getPath());
                 this.imgt4.setImage(miImagen);
-                this.velMaxPopulares1.setText("Vel Max: " + top5.get(3).getVelMax() + "");
-                this.marcaPopulares1.setText(top5.get(3).getMarca().getNombre());
+                if (miImagen != null) {
+                            double w = 0;
+                            double h = 0;
+
+                            double ratioX = imgt4.getFitWidth() / miImagen.getWidth();
+                            double ratioY = imgt4.getFitHeight() / miImagen.getHeight();
+
+                            double reducCoeff = 0;
+                            if (ratioX >= ratioY) {
+                                reducCoeff = ratioY;
+                            } else {
+                                reducCoeff = ratioX;
+                            }
+
+                            w = miImagen.getWidth() * reducCoeff;
+                            h = miImagen.getHeight() * reducCoeff;
+
+                            imgt4.setX((imgt4.getFitWidth() - w) / 2);
+                            imgt4.setY((imgt4.getFitHeight() - h) / 2);
+
+                        }
                 this.modeloPopulares4.setText(top5.get(3).getModelo());
                 this.motorPopulares4.setText(top5.get(3).getMotor().name());
                 this.transmisionPopulares4.setText(top5.get(3).getTransmision().name());
@@ -263,8 +324,27 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
             if (img.getPath().contains("general.jpg")) {
                 Image miImagen = new Image(img.getPath());
                 this.imgt5.setImage(miImagen);
-                this.velMaxPopulares1.setText("Vel Max: " + top5.get(4).getVelMax() + "");
-                this.marcaPopulares1.setText(top5.get(4).getMarca().getNombre());
+                if (miImagen != null) {
+                            double w = 0;
+                            double h = 0;
+
+                            double ratioX = imgt5.getFitWidth() / miImagen.getWidth();
+                            double ratioY = imgt5.getFitHeight() / miImagen.getHeight();
+
+                            double reducCoeff = 0;
+                            if (ratioX >= ratioY) {
+                                reducCoeff = ratioY;
+                            } else {
+                                reducCoeff = ratioX;
+                            }
+
+                            w = miImagen.getWidth() * reducCoeff;
+                            h = miImagen.getHeight() * reducCoeff;
+
+                            imgt5.setX((imgt5.getFitWidth() - w) / 2);
+                            imgt5.setY((imgt5.getFitHeight() - h) / 2);
+
+                        }
                 this.modeloPopulares5.setText(top5.get(4).getModelo());
                 this.motorPopulares5.setText(top5.get(4).getMotor().name());
                 this.transmisionPopulares5.setText(top5.get(4).getTransmision().name());
@@ -649,40 +729,80 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
 
     @FXML
     private void btnBuscar(ActionEvent event) {
+        if (this.barraDeBusqueda.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Barra Vacia");
+            alert.setContentText("Ingrese primero una palabra clave a buscar");
+            alert.showAndWait();
+        } else {
+            try {
+                palabraClave = this.barraDeBusqueda.getText();
+                System.out.println("Palabra Clave: "+this.palabraClave);
+                
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaBuscarVehiculoScene.fxml"));
 
-        //Se carga la lista de vehículos de la base de datos
-        String texto;
-        texto = this.barraDeBusqueda.getText();
-        boolean encontro = false;
+                Parent root = loader.load();
+                
+                ControladorEventosPaginaBuscarVehiculo controlador = loader.getController();
+                
+                controlador.setPalabraClave(palabraClave);
+                controlador.setUsuario(usuarioLogin);
+                controlador.setResultadoBusqueda();
+                                
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
 
-        listaVehiculos = rVehiculos.descargarVehiculos();
-        //Se busca si lo escrito en la barra de búsqueda coincide con marca o modelo y se redirige a la primera coincidencia
-        for (int i = 0; i < listaVehiculos.size(); i++) {
-            if ((listaVehiculos.get(i).getMarca().getNombre().toLowerCase().contains(texto.toLowerCase())) || (listaVehiculos.get(i).getModelo().toLowerCase().contains(texto.toLowerCase()))) {
-                try {
-                    encontro = true;
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaBuscarVehiculoScene.fxml"));
-                    Parent root = loader.load();
-                    ControladorEventosPaginaBuscarVehiculo controlador = loader.getController();
-                    controlador.setUsuario(usuarioLogin);
-                    controlador.setPalabraClave(texto);
-                    Scene scene = new Scene(root);
-                    Stage stage = new Stage();
+                stage.setScene(scene);
+                Screen screen = Screen.getPrimary(); //Get info from my screen!
+                Rectangle2D bounds = screen.getVisualBounds();
+                //Set visual bounds for MaximizedScreen:
+                stage.setX(bounds.getMinX());
+                stage.setY(bounds.getMinY());
+                stage.setWidth(bounds.getWidth());
+                stage.setHeight(bounds.getHeight());
+                //Adjust my code to the max boundaries of my screen.
+                stage.setMaximized(true); //Set it maximized
+                stage.show();
 
-                    stage.setScene(scene);
-                    Screen screen = Screen.getPrimary(); //Get info from my screen!
-                    Rectangle2D bounds = screen.getVisualBounds();
-                    stage.show();
+                Stage myStage = (Stage) this.botonBuscar.getScene().getWindow();
+                myStage.close();
 
-                    Stage myStage = (Stage) this.botonBuscar.getScene().getWindow();
-                    myStage.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(ControladorEventosPaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            } catch (IOException ex) {
+                Logger.getLogger(ControladorEventosPaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (encontro == false) {
-            this.barraDeBusqueda.setText("No se encontro ningun vehiculo con los criterios de busqueda");
+
+    }
+
+    private void btnBotonNuevo(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaEscribirPreguntaScene.fxml"));
+
+            Parent root = loader.load();
+
+            ControladorEventosPaginaEscribirPregunta controlador = loader.getController();
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+
+            stage.setScene(scene);
+            Screen screen = Screen.getPrimary(); //Get info from my screen!
+            Rectangle2D bounds = screen.getVisualBounds();
+            //Set visual bounds for MaximizedScreen:
+            stage.setX(bounds.getMinX());
+            stage.setY(bounds.getMinY());
+            stage.setWidth(bounds.getWidth());
+            stage.setHeight(bounds.getHeight());
+            //Adjust my code to the max boundaries of my screen.
+            stage.setMaximized(true); //Set it maximized
+            stage.show();
+
+            Stage myStage = (Stage) this.botonHazUnaPregunta.getScene().getWindow();
+            myStage.close();
+
+        } catch (IOException ex) {
+            Logger.getLogger(ControladorEventosPaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
