@@ -91,11 +91,6 @@
                         <Font name="Arial Bold" size="17.0" />
                      </font>
                   </Text>
-                  <Label fx:id="labelNombreUsuario" layoutX="417.0" layoutY="138.0" text="UserName">
-                     <font>
-                        <Font name="Arial Bold" size="46.0" />
-                     </font>
-                  </Label>
                   <Label layoutX="417.0" layoutY="191.0" text="Name: ">
                      <font>
                         <Font name="Arial Bold" size="25.0" />
@@ -121,26 +116,6 @@
                         <Font name="Arial Bold" size="36.0" />
                      </font>
                   </Label>
-                  <Label fx:id="labelNombre" layoutX="496.0" layoutY="192.0" text="-N/A-">
-                     <font>
-                        <Font name="Arial" size="25.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="labelPais" layoutX="479.0" layoutY="221.0" text="-default-">
-                     <font>
-                        <Font name="Arial" size="25.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="labelNoResenias" layoutX="682.0" layoutY="251.0" text="-N/A-">
-                     <font>
-                        <Font name="Arial" size="25.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="labelNoPreguntas" layoutX="698.0" layoutY="281.0" text="-N/A-">
-                     <font>
-                        <Font name="Arial" size="25.0" />
-                     </font>
-                  </Label>
                   <TextArea fx:id="descripcion" layoutX="425.0" layoutY="369.0" prefHeight="181.0" prefWidth="517.0" style="-fx-background-color: 808080;" text="miD" />
                   <SplitPane fx:id="paneGeneral" layoutX="-2.0" layoutY="627.0" orientation="VERTICAL" prefHeight="339.0" prefWidth="1353.0">
                     <items>
@@ -157,7 +132,7 @@
                         <Font name="Arial Black" size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnCambioContrasenia" layoutX="949.0" layoutY="467.0" mnemonicParsing="false" style="-fx-background-color: #FFFFFF; -fx-border-color: #191919;" text="Editar Contraseña">
+                  <Button fx:id="btnCambioContrasenia" layoutX="949.0" layoutY="467.0" mnemonicParsing="false" onAction="#makeContraseniaEditable" style="-fx-background-color: #FFFFFF; -fx-border-color: #191919;" text="Editar Contraseña">
                      <font>
                         <Font name="Arial Black" size="12.0" />
                      </font>
@@ -174,10 +149,55 @@
                               <Font name="Arial Bold" size="19.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="contraseniaNueva" layoutX="15.0" layoutY="60.0" prefHeight="25.0" prefWidth="234.0" />
+                        <TextField fx:id="contraseniaNuevo" layoutX="15.0" layoutY="60.0" prefHeight="25.0" prefWidth="234.0" />
                         <TextField fx:id="contraseniaActual" layoutX="15.0" layoutY="136.0" prefHeight="25.0" prefWidth="234.0" />
                      </children>
                   </AnchorPane>
+                  <TextField fx:id="labelNombre" layoutX="500.0" layoutY="194.0" prefHeight="26.0" prefWidth="173.0" promptText="Nombre" text="&lt;N/A&gt;">
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="labelPais" layoutX="500.0" layoutY="224.0" prefHeight="26.0" prefWidth="173.0" text="&lt;N/A&gt;">
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="labelNoResenias" layoutX="704.0" layoutY="255.0" text="&lt;N/A&gt;">
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="labelNoPreguntas" layoutX="704.0" layoutY="285.0" text="&lt;N/A&gt;">
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="labelNombreUsuario" layoutX="500.0" layoutY="161.0" prefHeight="26.0" prefWidth="173.0" promptText="Nombre" text="&lt;N/A&gt;">
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="368.0" layoutY="159.0" text="Username:">
+                     <font>
+                        <Font name="Arial Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelAcceptC" layoutX="949.0" layoutY="482.0" text="Datos Cambiados Correctamente!" textFill="#1ea415">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelDenyC" layoutX="949.0" layoutY="482.0" text="Contraseña Actual incorrecta o Contraseña nueva invalida!" textFill="#a31540">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelDenyC1" layoutX="949.0" layoutY="482.0" text="Uno o mas Campos en blanco o Usuario ya existente!" textFill="#a31540">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </content>

@@ -186,7 +186,7 @@ public class ControladorEventosPaginaRespuestaPreguntas implements Initializable
                 commentBody.setPrefHeight(anchorPaneHeight - offset*2);
                 commentBody.setFont(new Font(12)); 
                 commentBody.setWrapText(true);
-                AnchorPane.setTopAnchor(commentBody, (anchorPaneHeight / 2)- offset*3);
+                AnchorPane.setTopAnchor(commentBody,  offset*3);
                 AnchorPane.setLeftAnchor(commentBody, offset);
                 //---------------------------------------------
                 commentDate.setPrefWidth(anchorPaneWidth);
