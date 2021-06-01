@@ -130,7 +130,7 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
     private ArrayList<Vehiculo> listaVehiculos;
 
     private ArrayList<Publicacion> listaPublicacion;
-    
+
     private ArrayList<Vehiculo> top5 = new ArrayList<>();
 
     com.topauto.capaaccesodatos.RepositorioPublicacion rPublicacion = new com.topauto.capaaccesodatos.RepositorioPublicacion();
@@ -167,14 +167,34 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
     private ImageView imgt4;
     @FXML
     private ImageView imgt5;
+    @FXML
+    private Text marcaPopulares1;
+    @FXML
+    private Text velMaxPopulares1;
+    @FXML
+    private Text marcaPopulares2;
+    @FXML
+    private Text velMaxPopulares2;
+    @FXML
+    private Text marcaPopulares3;
+    @FXML
+    private Text velMaxPopulares3;
+    @FXML
+    private Text marcaPopulares4;
+    @FXML
+    private Text velMaxPopulares4;
+    @FXML
+    private Text marcaPopulares5;
+    @FXML
+    private Text velMaxPopulares5;
 
     //////////////////////own attributes//////////////////////////
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.botonIngresarOPerfil.setText("Ver Perfil");
-        
+
         listaVehiculos = rVehiculos.descargarVehiculos();
-        
+
         /*
         ArrayList<Vehiculo> maxVehiculos = new ArrayList<>();
         listaPublicacion = rPublicacion.descargarPublicaciones();
@@ -186,63 +206,70 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
                 maxVehiculos.add(((PRrelacionada) auxP).getVehiculo());
             }
         }*/
-        
         int pos;
-        int cont=0;
-        while(cont<5)
-        {
-            pos=(int) (Math.random()*(listaVehiculos.size()));
-            if(!top5.contains(listaVehiculos.get(pos)))
-            {
+        int cont = 0;
+        while (cont < 5) {
+            pos = (int) (Math.random() * (listaVehiculos.size()));
+            if (!top5.contains(listaVehiculos.get(pos))) {
                 top5.add(listaVehiculos.get(pos));
                 cont++;
             }
         }
         for (Imagen img : top5.get(0).getFotos()) {
-                if (img.getPath().contains("general.jpg")) {
-                    Image miImagen = new Image(img.getPath());
-                    this.imgt1.setImage(miImagen);
-                    this.modeloPopulares1.setText(top5.get(0).getModelo());
-                    this.motorPopulares1.setText(top5.get(0).getMotor().name());
-                    this.transmisionPopulares1.setText(top5.get(0).getTransmision().name());
-                }
-            }       
+            if (img.getPath().contains("general.jpg")) {
+                Image miImagen = new Image(img.getPath());
+                this.imgt1.setImage(miImagen);
+                this.velMaxPopulares1.setText("Vel Max: " + top5.get(0).getVelMax() + "");
+                this.marcaPopulares1.setText(top5.get(0).getMarca().getNombre());
+                this.modeloPopulares1.setText(top5.get(0).getModelo());
+                this.motorPopulares1.setText(top5.get(0).getMotor().name());
+                this.transmisionPopulares1.setText(top5.get(0).getTransmision().name());
+            }
+        }
         for (Imagen img : top5.get(1).getFotos()) {
-                if (img.getPath().contains("general.jpg")) {
-                    Image miImagen = new Image(img.getPath());
-                    this.imgt2.setImage(miImagen);
-                    this.modeloPopulares2.setText(top5.get(1).getModelo());
-                    this.motorPopulares2.setText(top5.get(1).getMotor().name());
-                    this.transmisionPopulares2.setText(top5.get(1).getTransmision().name());
-                }
-            } 
+            if (img.getPath().contains("general.jpg")) {
+                Image miImagen = new Image(img.getPath());
+                this.imgt2.setImage(miImagen);
+                this.velMaxPopulares1.setText("Vel Max: " + top5.get(1).getVelMax() + "");
+                this.marcaPopulares1.setText(top5.get(1).getMarca().getNombre());
+                this.modeloPopulares2.setText(top5.get(1).getModelo());
+                this.motorPopulares2.setText(top5.get(1).getMotor().name());
+                this.transmisionPopulares2.setText(top5.get(1).getTransmision().name());
+            }
+        }
         for (Imagen img : top5.get(2).getFotos()) {
-                if (img.getPath().contains("general.jpg")) {
-                    Image miImagen = new Image(img.getPath());
-                    this.imgt3.setImage(miImagen);
-                    this.modeloPopulares3.setText(top5.get(2).getModelo());
-                    this.motorPopulares3.setText(top5.get(2).getMotor().name());
-                    this.transmisionPopulares3.setText(top5.get(2).getTransmision().name());
-                }
-            } 
+            if (img.getPath().contains("general.jpg")) {
+                Image miImagen = new Image(img.getPath());
+                this.imgt3.setImage(miImagen);
+                this.velMaxPopulares1.setText("Vel Max: " + top5.get(2).getVelMax() + "");
+                this.marcaPopulares1.setText(top5.get(2).getMarca().getNombre());
+                this.modeloPopulares3.setText(top5.get(2).getModelo());
+                this.motorPopulares3.setText(top5.get(2).getMotor().name());
+                this.transmisionPopulares3.setText(top5.get(2).getTransmision().name());
+            }
+        }
         for (Imagen img : top5.get(3).getFotos()) {
-                if (img.getPath().contains("general.jpg")) {
-                    Image miImagen = new Image(img.getPath());
-                    this.imgt4.setImage(miImagen);
-                    this.modeloPopulares4.setText(top5.get(3).getModelo());
-                    this.motorPopulares4.setText(top5.get(3).getMotor().name());
-                    this.transmisionPopulares4.setText(top5.get(3).getTransmision().name());
-                }
-            } 
+            if (img.getPath().contains("general.jpg")) {
+                Image miImagen = new Image(img.getPath());
+                this.imgt4.setImage(miImagen);
+                this.velMaxPopulares1.setText("Vel Max: " + top5.get(3).getVelMax() + "");
+                this.marcaPopulares1.setText(top5.get(3).getMarca().getNombre());
+                this.modeloPopulares4.setText(top5.get(3).getModelo());
+                this.motorPopulares4.setText(top5.get(3).getMotor().name());
+                this.transmisionPopulares4.setText(top5.get(3).getTransmision().name());
+            }
+        }
         for (Imagen img : top5.get(4).getFotos()) {
-                if (img.getPath().contains("general.jpg")) {
-                    Image miImagen = new Image(img.getPath());
-                    this.imgt5.setImage(miImagen);
-                    this.modeloPopulares5.setText(top5.get(4).getModelo());
-                    this.motorPopulares5.setText(top5.get(4).getMotor().name());
-                    this.transmisionPopulares5.setText(top5.get(4).getTransmision().name());
-                }
-            } 
+            if (img.getPath().contains("general.jpg")) {
+                Image miImagen = new Image(img.getPath());
+                this.imgt5.setImage(miImagen);
+                this.velMaxPopulares1.setText("Vel Max: " + top5.get(4).getVelMax() + "");
+                this.marcaPopulares1.setText(top5.get(4).getMarca().getNombre());
+                this.modeloPopulares5.setText(top5.get(4).getModelo());
+                this.motorPopulares5.setText(top5.get(4).getMotor().name());
+                this.transmisionPopulares5.setText(top5.get(4).getTransmision().name());
+            }
+        }
     }
 
     public void setUsuario(Usuario miUsuario) {
@@ -372,10 +399,10 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
 
     @FXML
     private void btnIngresar(ActionEvent event) {
-        
-        if(this.usuarioLogin!=null){
+
+        if (this.usuarioLogin != null) {
             this.botonIngresarOPerfil.setText("Ver Perfil");
-        }else{
+        } else {
             this.botonIngresarOPerfil.setText("Ingresar");
         }
 
@@ -451,162 +478,167 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
 
     @FXML
     private void btnVerTop1(ActionEvent event) {
-        
+
         try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaVehiculoScene.fxml"));
-                    Parent root = loader.load();
-                    ControladorEventosPaginaVehiculo controlador = loader.getController();
-                    controlador.setVehiculo(top5.get(0)); //Envio mi vehiculo ...
-                    Scene scene = new Scene(root);
-                    Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaVehiculoScene.fxml"));
+            Parent root = loader.load();
+            ControladorEventosPaginaVehiculo controlador = loader.getController();
+            controlador.setUsuario(usuarioLogin);
+            controlador.setVehiculo(top5.get(0)); //Envio mi vehiculo ...
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
 
-                    stage.setScene(scene);
-                    Screen screen = Screen.getPrimary(); //Get info from my screen!
-                    Rectangle2D bounds = screen.getVisualBounds();
-                    //Set visual bounds for MaximizedScreen:
-                    stage.setX(bounds.getMinX());
-                    stage.setY(bounds.getMinY());
-                    stage.setWidth(bounds.getWidth());
-                    stage.setHeight(bounds.getHeight());
-                    //Adjust my code to the max boundaries of my screen.
-                    stage.setMaximized(true); //Set it maximized
-                    //Show my screen!
-                    stage.show();
+            stage.setScene(scene);
+            Screen screen = Screen.getPrimary(); //Get info from my screen!
+            Rectangle2D bounds = screen.getVisualBounds();
+            //Set visual bounds for MaximizedScreen:
+            stage.setX(bounds.getMinX());
+            stage.setY(bounds.getMinY());
+            stage.setWidth(bounds.getWidth());
+            stage.setHeight(bounds.getHeight());
+            //Adjust my code to the max boundaries of my screen.
+            stage.setMaximized(true); //Set it maximized
+            //Show my screen!
+            stage.show();
 
-                    Stage myStage = (Stage) this.botonVerTop1.getScene().getWindow();
-                    myStage.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(ControladorEventosPaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                }
-        
+            Stage myStage = (Stage) this.botonVerTop1.getScene().getWindow();
+            myStage.close();
+        } catch (IOException ex) {
+            Logger.getLogger(ControladorEventosPaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     @FXML
     private void btnVerTop2(ActionEvent event) {
-        
-         try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaVehiculoScene.fxml"));
-                    Parent root = loader.load();
-                    ControladorEventosPaginaVehiculo controlador = loader.getController();
-                    controlador.setVehiculo(top5.get(1)); //Envio mi vehiculo ...
-                    Scene scene = new Scene(root);
-                    Stage stage = new Stage();
 
-                    stage.setScene(scene);
-                    Screen screen = Screen.getPrimary(); //Get info from my screen!
-                    Rectangle2D bounds = screen.getVisualBounds();
-                    //Set visual bounds for MaximizedScreen:
-                    stage.setX(bounds.getMinX());
-                    stage.setY(bounds.getMinY());
-                    stage.setWidth(bounds.getWidth());
-                    stage.setHeight(bounds.getHeight());
-                    //Adjust my code to the max boundaries of my screen.
-                    stage.setMaximized(true); //Set it maximized
-                    //Show my screen!
-                    stage.show();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaVehiculoScene.fxml"));
+            Parent root = loader.load();
+            ControladorEventosPaginaVehiculo controlador = loader.getController();
+            controlador.setUsuario(usuarioLogin);
+            controlador.setVehiculo(top5.get(1)); //Envio mi vehiculo ...
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
 
-                    Stage myStage = (Stage) this.botonVerTop2.getScene().getWindow();
-                    myStage.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(ControladorEventosPaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                }
-        
+            stage.setScene(scene);
+            Screen screen = Screen.getPrimary(); //Get info from my screen!
+            Rectangle2D bounds = screen.getVisualBounds();
+            //Set visual bounds for MaximizedScreen:
+            stage.setX(bounds.getMinX());
+            stage.setY(bounds.getMinY());
+            stage.setWidth(bounds.getWidth());
+            stage.setHeight(bounds.getHeight());
+            //Adjust my code to the max boundaries of my screen.
+            stage.setMaximized(true); //Set it maximized
+            //Show my screen!
+            stage.show();
+
+            Stage myStage = (Stage) this.botonVerTop2.getScene().getWindow();
+            myStage.close();
+        } catch (IOException ex) {
+            Logger.getLogger(ControladorEventosPaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     @FXML
     private void btnVerTop3(ActionEvent event) {
-        
-         try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaVehiculoScene.fxml"));
-                    Parent root = loader.load();
-                    ControladorEventosPaginaVehiculo controlador = loader.getController();
-                    controlador.setVehiculo(top5.get(2)); //Envio mi vehiculo ...
-                    Scene scene = new Scene(root);
-                    Stage stage = new Stage();
 
-                    stage.setScene(scene);
-                    Screen screen = Screen.getPrimary(); //Get info from my screen!
-                    Rectangle2D bounds = screen.getVisualBounds();
-                    //Set visual bounds for MaximizedScreen:
-                    stage.setX(bounds.getMinX());
-                    stage.setY(bounds.getMinY());
-                    stage.setWidth(bounds.getWidth());
-                    stage.setHeight(bounds.getHeight());
-                    //Adjust my code to the max boundaries of my screen.
-                    stage.setMaximized(true); //Set it maximized
-                    //Show my screen!
-                    stage.show();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaVehiculoScene.fxml"));
+            Parent root = loader.load();
+            ControladorEventosPaginaVehiculo controlador = loader.getController();
+            controlador.setUsuario(usuarioLogin);
+            controlador.setVehiculo(top5.get(2)); //Envio mi vehiculo ...
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
 
-                    Stage myStage = (Stage) this.botonVerTop3.getScene().getWindow();
-                    myStage.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(ControladorEventosPaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                }
-        
+            stage.setScene(scene);
+            Screen screen = Screen.getPrimary(); //Get info from my screen!
+            Rectangle2D bounds = screen.getVisualBounds();
+            //Set visual bounds for MaximizedScreen:
+            stage.setX(bounds.getMinX());
+            stage.setY(bounds.getMinY());
+            stage.setWidth(bounds.getWidth());
+            stage.setHeight(bounds.getHeight());
+            //Adjust my code to the max boundaries of my screen.
+            stage.setMaximized(true); //Set it maximized
+            //Show my screen!
+            stage.show();
+
+            Stage myStage = (Stage) this.botonVerTop3.getScene().getWindow();
+            myStage.close();
+        } catch (IOException ex) {
+            Logger.getLogger(ControladorEventosPaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     @FXML
     private void btnVerTop4(ActionEvent event) {
-        
-         try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaVehiculoScene.fxml"));
-                    Parent root = loader.load();
-                    ControladorEventosPaginaVehiculo controlador = loader.getController();
-                    controlador.setVehiculo(top5.get(3)); //Envio mi vehiculo ...
-                    Scene scene = new Scene(root);
-                    Stage stage = new Stage();
 
-                    stage.setScene(scene);
-                    Screen screen = Screen.getPrimary(); //Get info from my screen!
-                    Rectangle2D bounds = screen.getVisualBounds();
-                    //Set visual bounds for MaximizedScreen:
-                    stage.setX(bounds.getMinX());
-                    stage.setY(bounds.getMinY());
-                    stage.setWidth(bounds.getWidth());
-                    stage.setHeight(bounds.getHeight());
-                    //Adjust my code to the max boundaries of my screen.
-                    stage.setMaximized(true); //Set it maximized
-                    //Show my screen!
-                    stage.show();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaVehiculoScene.fxml"));
+            Parent root = loader.load();
+            ControladorEventosPaginaVehiculo controlador = loader.getController();
+            controlador.setUsuario(usuarioLogin);
+            controlador.setVehiculo(top5.get(3)); //Envio mi vehiculo ...
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
 
-                    Stage myStage = (Stage) this.botonVerTop4.getScene().getWindow();
-                    myStage.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(ControladorEventosPaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                }
-        
+            stage.setScene(scene);
+            Screen screen = Screen.getPrimary(); //Get info from my screen!
+            Rectangle2D bounds = screen.getVisualBounds();
+            //Set visual bounds for MaximizedScreen:
+            stage.setX(bounds.getMinX());
+            stage.setY(bounds.getMinY());
+            stage.setWidth(bounds.getWidth());
+            stage.setHeight(bounds.getHeight());
+            //Adjust my code to the max boundaries of my screen.
+            stage.setMaximized(true); //Set it maximized
+            //Show my screen!
+            stage.show();
+
+            Stage myStage = (Stage) this.botonVerTop4.getScene().getWindow();
+            myStage.close();
+        } catch (IOException ex) {
+            Logger.getLogger(ControladorEventosPaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     @FXML
     private void btnVerTop5(ActionEvent event) {
-        
-         try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaVehiculoScene.fxml"));
-                    Parent root = loader.load();
-                    ControladorEventosPaginaVehiculo controlador = loader.getController();
-                    controlador.setVehiculo(top5.get(4)); //Envio mi vehiculo ...
-                    Scene scene = new Scene(root);
-                    Stage stage = new Stage();
 
-                    stage.setScene(scene);
-                    Screen screen = Screen.getPrimary(); //Get info from my screen!
-                    Rectangle2D bounds = screen.getVisualBounds();
-                    //Set visual bounds for MaximizedScreen:
-                    stage.setX(bounds.getMinX());
-                    stage.setY(bounds.getMinY());
-                    stage.setWidth(bounds.getWidth());
-                    stage.setHeight(bounds.getHeight());
-                    //Adjust my code to the max boundaries of my screen.
-                    stage.setMaximized(true); //Set it maximized
-                    //Show my screen!
-                    stage.show();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaVehiculoScene.fxml"));
+            Parent root = loader.load();
+            ControladorEventosPaginaVehiculo controlador = loader.getController();
+            controlador.setUsuario(usuarioLogin);
+            controlador.setVehiculo(top5.get(4)); //Envio mi vehiculo ...
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
 
-                    Stage myStage = (Stage) this.botonVerTop5.getScene().getWindow();
-                    myStage.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(ControladorEventosPaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                }
-        
+            stage.setScene(scene);
+            Screen screen = Screen.getPrimary(); //Get info from my screen!
+            Rectangle2D bounds = screen.getVisualBounds();
+            //Set visual bounds for MaximizedScreen:
+            stage.setX(bounds.getMinX());
+            stage.setY(bounds.getMinY());
+            stage.setWidth(bounds.getWidth());
+            stage.setHeight(bounds.getHeight());
+            //Adjust my code to the max boundaries of my screen.
+            stage.setMaximized(true); //Set it maximized
+            //Show my screen!
+            stage.show();
+
+            Stage myStage = (Stage) this.botonVerTop5.getScene().getWindow();
+            myStage.close();
+        } catch (IOException ex) {
+            Logger.getLogger(ControladorEventosPaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     @FXML
@@ -622,25 +654,18 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
         for (int i = 0; i < listaVehiculos.size(); i++) {
             if ((listaVehiculos.get(i).getMarca().getNombre().toLowerCase().contains(texto.toLowerCase())) || (listaVehiculos.get(i).getModelo().toLowerCase().contains(texto.toLowerCase()))) {
                 try {
-                    encontro=true;
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaVehiculoScene.fxml"));
+                    encontro = true;
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaBuscarVehiculoScene.fxml"));
                     Parent root = loader.load();
-                    ControladorEventosPaginaVehiculo controlador = loader.getController();
-                    controlador.setVehiculo(listaVehiculos.get(i)); //Envio mi vehiculo ...
+                    ControladorEventosPaginaBuscarVehiculo controlador = loader.getController();
+                    controlador.setUsuario(usuarioLogin);
+                    controlador.setPalabraClave(texto);
                     Scene scene = new Scene(root);
                     Stage stage = new Stage();
 
                     stage.setScene(scene);
                     Screen screen = Screen.getPrimary(); //Get info from my screen!
                     Rectangle2D bounds = screen.getVisualBounds();
-                    //Set visual bounds for MaximizedScreen:
-                    stage.setX(bounds.getMinX());
-                    stage.setY(bounds.getMinY());
-                    stage.setWidth(bounds.getWidth());
-                    stage.setHeight(bounds.getHeight());
-                    //Adjust my code to the max boundaries of my screen.
-                    stage.setMaximized(true); //Set it maximized
-                    //Show my screen!
                     stage.show();
 
                     Stage myStage = (Stage) this.botonBuscar.getScene().getWindow();
@@ -650,8 +675,7 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
                 }
             }
         }
-        if(encontro==false)
-        {
+        if (encontro == false) {
             this.barraDeBusqueda.setText("No se encontro ningun vehiculo con los criterios de busqueda");
         }
     }

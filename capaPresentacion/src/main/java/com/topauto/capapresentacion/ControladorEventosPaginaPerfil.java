@@ -31,6 +31,9 @@ import com.topauto.capanegocio.ControladorPublicacion;
 import com.topauto.capaentidades.Publicacion;
 import com.topauto.capaentidades.Pregunta;
 import com.topauto.capaentidades.PRrelacionada;
+import com.topauto.capaentidades.Pais;
+import com.topauto.capanegocio.ControladorPerfil;
+import javafx.event.EventHandler;
 import javafx.scene.text.Font;
 
 public class ControladorEventosPaginaPerfil implements Initializable {
@@ -55,15 +58,19 @@ public class ControladorEventosPaginaPerfil implements Initializable {
     private ImageView imagenUsuario2;
     @FXML
     private Text textoNombreUsuario;
+    // -- Editable text fields of Usuario
     @FXML
-    private Label labelNombreUsuario;
-    
+    private TextField labelNombreUsuario;
     @FXML
-    private Label labelPais;
+    private TextField labelNombre;
     @FXML
-    private Label labelNoResenias;
+    private TextField labelPais;
     @FXML
-    private Label labelNoPreguntas;
+    private TextField labelNoResenias;
+    @FXML
+    private TextField labelNoPreguntas;
+    @FXML
+    private Label labelAcceptC, labelDenyC, labelDenyC1;
     @FXML
     private TextArea descripcion;
     @FXML
@@ -75,20 +82,54 @@ public class ControladorEventosPaginaPerfil implements Initializable {
     @FXML
     private SplitPane paneGeneral;
     
+    private ControladorPerfil controladorPerfil = new ControladorPerfil();
+    private ControladorPublicacion controladorPub = new ControladorPublicacion();
     private Usuario usuarioLogeado = new Usuario();
     ArrayList<Publicacion> misPublicaciones = new ArrayList<>();
     ArrayList<Pregunta> misPreguntas = new ArrayList<>();
     int datosXPane = 4;
     int minPreg = 0, maxPreg = datosXPane;
+    EventHandler <ActionEvent> HandlerEraseElement, HandlerEditElement;
+    ArrayList<structPregButton> listCurrQuestionsDelete = new ArrayList<>();
+    ArrayList<structResButton> listCurrPubsDelete = new ArrayList<>();
+    ArrayList<structPregButton> listCurrQuestionsEdit = new ArrayList<>();
+    ArrayList<structResButton> listCurrPubsEdit = new ArrayList<>();
+    boolean isPreguntaOpen = false;
 
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       resetCamps();
+        changeAllLabels(false);
+        controladorPerfil.descargarDatos();
+        controladorPub.descargarDatos();
+        resetCamps();
+        this.HandlerEraseElement = new EventHandler<ActionEvent>()
+             {
+                 @Override
+                 public void handle (ActionEvent event)
+                 {
+                     deleteElement((Button)event.getSource());
+                 }
+             };
+        this.HandlerEditElement = new EventHandler<ActionEvent>()
+             {
+                 @Override
+                 public void handle (ActionEvent event)
+                 {
+                     editElement((Button)event.getSource());
+                 }
+             };
     } 
     @FXML
     private void setPreguntas(ActionEvent event)
     {
+         showPreguntasOnScreen();
+
+    }
+    private void showPreguntasOnScreen()
+    {
+        this.isPreguntaOpen = true;
+         changeAllLabels(false);
          this.paneGeneral.getItems().clear();
          float incrementPerDivision = 1.0f / (float) this.datosXPane;
          String miOrigin;
@@ -97,6 +138,7 @@ public class ControladorEventosPaginaPerfil implements Initializable {
          if ( misPreguntas.size()< maxPreg) maxPreg = misPreguntas.size();
          for (Pregunta p : misPreguntas.subList(minPreg, maxPreg))
         {
+            structPregButton localStructD = new structPregButton();
             
             if (p instanceof PRrelacionada)
             {
@@ -107,39 +149,21 @@ public class ControladorEventosPaginaPerfil implements Initializable {
                 miOrigin = "General";
             }
             localAPane = setUpAnchorPane( p.getPropietario().getUserName(), p.getDescripcion(), p.getTitulo(),
-                    p.getFecha().toString(), miOrigin);
+                    p.getFecha().toString(), miOrigin, contador);
+            //Button DELETE is on location 4, Button EDIT is on location 5
+            localStructD.preguntas = p;
+            localStructD.miButton = (Button)localAPane.getChildren().get(4);
+            this.listCurrQuestionsDelete.add(localStructD);
+            localStructD.miButton = (Button)localAPane.getChildren().get(5);
+            this.listCurrQuestionsEdit.add(localStructD);
+            //Add my elements to the structures for easy comparison ^^
 
             this.paneGeneral.getItems().add(localAPane);
             this.paneGeneral.setDividerPosition(contador, (float)contador * incrementPerDivision);
             contador++; 
         }
-         
     }
-    private void resetCamps()
-    {
-        descripcion.setEditable(false);
-        descripcion.setStyle("-fx-background-color: #FFFFFF");
-        this.btnAceptar.setDisable(true);
-        this.btnAceptar.setVisible(false);
-        this.btnEditar.setDisable(false);
-        this.btnEditar.setVisible(true);
-    }
-    @FXML
-    private void editCamps(ActionEvent event)
-    {
-        descripcion.setEditable(true);
-        descripcion.setStyle(null);
-        this.btnAceptar.setDisable(false);
-        this.btnAceptar.setVisible(true);
-        this.btnEditar.setDisable(true);
-        this.btnEditar.setVisible(false);
-    }
-    @FXML
-    private void acceptChanges(ActionEvent event)
-    {
-        resetCamps();
-    }
-     private AnchorPane setUpAnchorPane(String miUsername, String miDescripcion, String miTitulo, String miFecha, String miOrigin)
+     private AnchorPane setUpAnchorPane(String miUsername, String miDescripcion, String miTitulo, String miFecha, String miOrigin, int contador)
     {
         AnchorPane localAPane = new AnchorPane();
         Label owner = new Label(), contents = new Label(), titulo = new Label();
@@ -184,14 +208,261 @@ public class ControladorEventosPaginaPerfil implements Initializable {
         AnchorPane.setTopAnchor(titulo, 0.0);
         AnchorPane.setLeftAnchor(titulo, anchorPanesWidth/3);
         
+        //Delete Button
+        Button delete = new Button();
+        delete.setText("X");
+        delete.setStyle("-fx-background-color: #CB3234"); //Set RED
+        delete.setOnAction(this.HandlerEraseElement);
+        delete.setFont(new Font(15));
+        delete.setPrefSize(20, 20);
+        delete.setId(String.valueOf(contador)); //Set ID
+        AnchorPane.setBottomAnchor(delete,0.0);
+        AnchorPane.setRightAnchor(delete, offset);
+        
+        //Edit Button
+        Button edit = new Button();
+        edit.setText("edit");
+        edit.setStyle("-fx-background-color: #00913f"); //GREEN
+        edit.setOnAction(HandlerEditElement);
+        edit.setFont(new Font(10));
+        edit.setPrefSize(50, 20);
+        edit.setId(String.valueOf(contador)); //Set ID
+        AnchorPane.setTopAnchor(edit, 0.0);
+        AnchorPane.setRightAnchor(edit, offset);
 
         
         
-        localAPane.getChildren().addAll(origin, titulo, contents, owner);
+        localAPane.getChildren().addAll(origin, titulo, contents, owner, delete, edit);
         return localAPane;
             
             
     }
+    /**
+     * 
+     * @param isTrue If the labels should be turn on
+     */
+    private void changeAllLabels(boolean isTrue)
+    {
+        this.labelAcceptC.setVisible(isTrue);
+        this.labelDenyC.setVisible(isTrue);
+        this.labelDenyC1.setVisible(isTrue);
+
+    }
+    private void resetCamps()
+    {
+        //Block Fields so you can't edit them:
+        descripcion.setEditable(false);
+        descripcion.setStyle("-fx-background-color: #FFFFFF");
+        this.labelNoPreguntas.setEditable(false);
+        this.labelNoPreguntas.setStyle("-fx-background-color: #FFFFFF");
+        this.labelNoResenias.setEditable(false);
+        this.labelNoResenias.setStyle("-fx-background-color: #FFFFFF");
+        this.labelNombreUsuario.setEditable(false);
+        this.labelNombreUsuario.setStyle("-fx-background-color: #FFFFFF");
+        this.labelNombre.setEditable(false);
+        this.labelNombre.setStyle("-fx-background-color: #FFFFFF");
+        this.labelPais.setEditable(false);
+        this.labelPais.setStyle("-fx-background-color: #FFFFFF");
+        // -------------------------------------
+        // Adjust buttons to match a non-Edit view:
+        this.btnAceptar.setDisable(true);
+        this.btnAceptar.setVisible(false);
+        this.btnCambioContrasenia.setDisable(true);
+        this.btnCambioContrasenia.setVisible(false);
+        this.btnEditar.setDisable(false);
+        this.btnEditar.setVisible(true);
+        // -------------------------------------
+        // Make it so the Change Password fields are not visible or usable:
+        this.parentContrasenia.setVisible(false);
+        this.parentContrasenia.setDisable(true);
+        // -------------------------------------
+    }
+    private void makeEditableCamps()
+    {
+        //Make it so you can write in fields:
+        descripcion.setEditable(true);
+        descripcion.setStyle(null);
+        this.labelNombreUsuario.setEditable(true);
+        this.labelNombreUsuario.setStyle(null);
+        this.labelNombre.setEditable(true);
+        this.labelNombre.setStyle(null);
+        this.labelPais.setEditable(true);
+        this.labelPais.setStyle(null);
+        // -------------------------------------
+        
+        this.btnAceptar.setDisable(false);
+        this.btnAceptar.setVisible(true);
+        this.btnCambioContrasenia.setDisable(false);
+        this.btnCambioContrasenia.setVisible(true);
+        this.btnEditar.setDisable(true);
+        this.btnEditar.setVisible(false);
+    }
+    
+    @FXML
+    private void editCamps(ActionEvent event)
+    {
+        makeEditableCamps();
+        changeAllLabels(false);
+    }
+    @FXML
+    private void acceptChanges(ActionEvent event)
+    {
+        //save values to database.
+        //if could:
+        saveTextFieldValuesToDB();
+         
+         resetCamps();
+
+    }
+    @FXML
+    private void makeContraseniaEditable (ActionEvent event)
+    {
+        this.btnCambioContrasenia.setDisable(true);
+        this.btnCambioContrasenia.setVisible(false); //Deactivate this button!
+        
+        this.parentContrasenia.setVisible(true);
+        this.parentContrasenia.setDisable(false);
+        
+        
+    }
+    private boolean saveTextFieldValuesToDB()
+    {
+        // FALTA CORREO
+        boolean isValid, cambioContrasenia = false;
+        // Check for blank spaces or valid password or username
+        if (!this.labelNombre.getText().isEmpty() && !this.labelNombreUsuario.getText().isEmpty() && !this.labelPais.getText().isEmpty())
+        {
+            if (this.parentContrasenia.isVisible())
+            {
+                if(this.contraseniaActual.getText().isEmpty() && this.contraseniaNuevo.getText().isEmpty())
+                {
+                    isValid = false;
+                    this.labelDenyC1.setVisible(true);
+                }
+                else
+                {
+                    if (this.contraseniaActual.getText().equals(this.usuarioLogeado.getContrasenia()))
+                    {
+                        if(this.contraseniaNuevo.getText().length() > 4)
+                        {
+                            if (!this.contraseniaNuevo.getText().contains(" ") || !this.contraseniaNuevo.getText().contains("\n") || !this.contraseniaNuevo.getText().contains("\t"))
+                            {
+                                isValid = true;
+                                cambioContrasenia = true;
+                            }
+                            else
+                            {
+                                isValid = false;
+                                this.labelDenyC.setVisible(true);
+                            }
+                        }
+                        else
+                        {
+                            isValid = false;
+                            this.labelDenyC.setVisible(true);
+                        }
+                        
+                    }
+                    else
+                    {
+                        isValid = false;
+                        this.labelDenyC.setVisible(true);
+                    }
+                }
+            }
+            else if(searchValidUsername(this.labelNombreUsuario.getText()))
+            {
+                isValid = true;
+                
+            }
+            else
+            {
+                isValid = false;
+                this.labelDenyC1.setVisible(true);
+            }
+        }
+        else
+        {
+            isValid = false;
+            this.labelDenyC1.setVisible(true);
+        }
+        
+        if (isValid == true)
+        {
+            this.usuarioLogeado.setUserName(this.labelNombreUsuario.getText());
+            if (!this.labelPais.getText().equals(this.usuarioLogeado.getPais().getNombre()))
+            {
+            this.usuarioLogeado.setPais(new Pais (this.labelPais.getText()));
+            }
+            this.usuarioLogeado.setDescripcion(descripcion.getText());
+            this.usuarioLogeado.setNombre(this.labelNombre.getText());
+            if (cambioContrasenia == true)
+            {
+                this.usuarioLogeado.setContrasenia(this.contraseniaNuevo.getText());
+            }
+            this.controladorPerfil.modificarPerfil(usuarioLogeado);  
+            this.labelAcceptC.setVisible(true);
+            
+        }
+        this.contraseniaNuevo.clear();
+        this.contraseniaActual.clear();
+        return isValid;
+    
+    }
+    private boolean searchValidUsername(String toComp)
+    {
+        boolean answer = true;
+        for (Usuario f : this.controladorPerfil.getUsuarios())
+        {
+            if (f.getUserName().equals(toComp))
+            {
+                answer = false;
+            }
+        }
+        if (toComp.contains(" ") || toComp.contains("\n") || toComp.contains("\t"))
+        {
+            answer = false;
+        }
+        if (toComp.equals(this.usuarioLogeado.getUserName())) //if username wasn't changed.
+        {
+            answer = true;
+        }
+        return answer;
+    }
+    private void deleteElement(Button button)
+    {
+
+        if (isPreguntaOpen)
+        {
+            for ( structPregButton p : this.listCurrQuestionsDelete)
+            {
+                if (p.miButton.getId().equals(button.getId()))
+                {
+                    System.out.print("va a borrar: "+ p.preguntas.getTitulo() + " \n");
+                    this.controladorPub.borrarPublicacion(p.preguntas.getId());
+                }
+            }
+
+        }
+        else
+        {
+            for ( structResButton p : this.listCurrPubsDelete)
+            {
+                if (p.miButton.getId().equals(button.getId()))
+                {
+
+                    this.controladorPub.borrarPublicacion(p.pub.getId());
+                }
+            }
+        }
+        refreshPubs();
+        showPreguntasOnScreen();
+    }
+    private void editElement(Button button)
+    {
+        button.setText("OK");
+    }
+    
      
      
     public void setUsuario(Usuario miUsuario)
@@ -218,27 +489,46 @@ public class ControladorEventosPaginaPerfil implements Initializable {
         this.textoNombreUsuario.setText(
                 this.usuarioLogeado.getUserName());
         this.labelNombreUsuario.setText(this.usuarioLogeado.getUserName());
+        this.labelNombre.setText(this.usuarioLogeado.getNombre());
         this.labelPais.setText(this.usuarioLogeado.getPais().getNombre());
         this.descripcion.setText(this.usuarioLogeado.getDescripcion());
         misPub = this.usuarioLogeado.getPublicaciones();
-        this.misPublicaciones= this.usuarioLogeado.getPublicaciones();
         for (Publicacion p : misPub)
         {
             if ( p instanceof Pregunta)
             {
-                
                 misPregN++;
                 this.misPreguntas.add((Pregunta)p);
             }
-            else
+            else if (p instanceof Publicacion)
             {
+                misPublicaciones.add(p);
                 misPubN++;
             }
         }
         this.labelNoPreguntas.setText(String.valueOf(misPregN));
         this.labelNoResenias.setText(String.valueOf(misPubN));
     }
-
+    private void refreshPubs()
+    {
+        this.misPreguntas.clear();
+        this.misPublicaciones.clear();
+        ArrayList<Publicacion> misPub;
+        misPub = this.usuarioLogeado.getPublicaciones();
+        for (Publicacion p : misPub)
+        {
+            if ( p instanceof Pregunta)
+            {
+                
+                this.misPreguntas.add((Pregunta)p);
+            }
+            else if (p instanceof Publicacion)
+            {
+                misPublicaciones.add(p);
+                
+            }
+        }
+    }
     @FXML
     private void responder(ActionEvent event) {
         try {
