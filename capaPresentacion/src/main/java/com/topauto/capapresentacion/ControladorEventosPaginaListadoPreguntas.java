@@ -55,7 +55,7 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
     
     private final String urlImage = "imagenes/panel_vehiculo_pregunta.png";
     ArrayList<Pregunta> misPreguntas = new ArrayList<>();
-    int  noPreguntasMaxXPagina =  2, noPreguntasParaMax = noPreguntasMaxXPagina;
+    int  noPreguntasMaxXPagina =  3, noPreguntasParaMax = noPreguntasMaxXPagina;
     int minPreg = 0, maxPreg = noPreguntasMaxXPagina;
     EventHandler<ActionEvent> HandlerResp;
     EventHandler<ActionEvent> HandlerTurnPage;
@@ -146,6 +146,9 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
     }
     private void handleTurnPagePregunta(Button button)
     {
+        int localDatXPane = this.noPreguntasMaxXPagina;
+        double anchorPanesHeight = this.paneVerticalPreguntas.getPrefHeight() / this.noPreguntasMaxXPagina;
+        double anchorPanesWidth = this.paneVerticalPreguntas.getPrefWidth();
         paneVerticalPreguntas.getItems().clear(); //Clear for reset purposes!
         this.preguntasActuales.clear();
         
@@ -207,6 +210,7 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
             this.paneVerticalPreguntas.getItems().add(localAPane);
             this.paneVerticalPreguntas.setDividerPosition(contador, (float)contador * incrementPerDivision);
             contador++; 
+             localDatXPane--;
         }
         if (noPreguntas > maxPreg)
         {
@@ -216,6 +220,17 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
         {
             willPrevPass = true;
         }
+        if (localDatXPane > 0)
+         {
+             for (int i = localDatXPane; i>0;i--)
+             {
+                 localAPane = new AnchorPane();
+                 localAPane.setPrefSize(anchorPanesWidth, anchorPanesHeight);
+                 this.paneVerticalPreguntas.getItems().add(localAPane);
+                 this.paneVerticalPreguntas.setDividerPosition(contador, (float)contador * incrementPerDivision);
+                 contador++;
+             }
+         }
         createButtonsPagina (willSigPass, willPrevPass);
     }
     private void handlePreguntasInit() 
@@ -224,6 +239,9 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
         
         int noPreguntas = misPreguntas.size();
         int contador = 0;
+        int localDatXPane = this.noPreguntasMaxXPagina;
+        double anchorPanesHeight = this.paneVerticalPreguntas.getPrefHeight() / this.noPreguntasMaxXPagina;
+        double anchorPanesWidth = this.paneVerticalPreguntas.getPrefWidth();
         String miOrigin;
         if (noPreguntas < maxPreg)
         {
@@ -231,7 +249,8 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
         }
         AnchorPane localAPane;
         float incrementPerDivision = 1.0f / (float) noPreguntasMaxXPagina;
-       
+        if (!misPreguntas.isEmpty())
+        {
         for (Pregunta p : misPreguntas.subList(minPreg, maxPreg))
         {
             structPregButton structLocal = new structPregButton();
@@ -252,7 +271,36 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
             this.paneVerticalPreguntas.getItems().add(localAPane);
             this.paneVerticalPreguntas.setDividerPosition(contador, (float)contador * incrementPerDivision);
             contador++; 
+            localDatXPane--;
         }
+        }
+        else
+        {
+            localAPane = new AnchorPane();
+             localAPane.setPrefSize(anchorPanesWidth, anchorPanesHeight);
+             Label owner = new Label();
+             owner.setText("No hay preguntas en el Programa!!");
+             owner.setFont(new Font(40));
+             owner.setPrefSize(this.paneVerticalPreguntas.getPrefWidth()-10.0, 60);
+             AnchorPane.setTopAnchor(owner, 10.0);
+             AnchorPane.setLeftAnchor(owner, 10.0);
+             localAPane.getChildren().add(owner);
+             this.paneVerticalPreguntas.getItems().add(localAPane);
+             this.paneVerticalPreguntas.setDividerPosition(0, 0);
+             localDatXPane --;
+        }
+            contador = this.noPreguntasMaxXPagina-localDatXPane;
+         if (localDatXPane > 0)
+         {
+             for (int i = localDatXPane; i>0;i--)
+             {
+                 localAPane = new AnchorPane();
+                 localAPane.setPrefSize(anchorPanesWidth, anchorPanesHeight);
+                 this.paneVerticalPreguntas.getItems().add(localAPane);
+                 this.paneVerticalPreguntas.setDividerPosition(contador, (float)contador * incrementPerDivision);
+                 contador++;
+             }
+         }
         if (noPreguntas > maxPreg)
         {
             createButtonsPagina ( true ,false);
@@ -310,10 +358,10 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
         origin.setText(miOrigin);
         //Contenido - MiddeWay:
         contents.setPrefWidth(anchorPanesWidth - offset);
-        contents.setPrefHeight(anchorPanesHeight - offset);
+        contents.setPrefHeight((anchorPanesHeight - offset)/2);
         contents.setFont(new Font(15)); 
         contents.setWrapText(true);
-        AnchorPane.setTopAnchor(contents, (anchorPanesHeight / 2)- offset*3);
+        AnchorPane.setTopAnchor(contents, ((anchorPanesHeight / 2)- offset*4)/3);
         AnchorPane.setLeftAnchor(contents, offset);
         
         // Owner y Fecha - Bottom Middle
@@ -321,7 +369,7 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
         owner.setPrefHeight(20);
         owner.setFont(new Font(14)); 
         owner.setWrapText(false);
-        AnchorPane.setBottomAnchor(owner, 0.0);
+        AnchorPane.setBottomAnchor(owner, 25.0);
         AnchorPane.setLeftAnchor(owner, 0.0);
         
         //Origen - Top Corner:
@@ -344,11 +392,11 @@ public class ControladorEventosPaginaListadoPreguntas implements Initializable {
         respButton.setText("Responder");
         respButton.setId("");
         respButton.setStyle("-fx-background-color: #DFDFE5"); //White-ish Gray
-        respButton.setPrefSize(100, 40);
+        respButton.setPrefSize(100, 20);
         respButton.setFont(new Font(15));
         respButton.setId(String.valueOf(cont));
         respButton.setOnAction(HandlerResp);
-        AnchorPane.setBottomAnchor(respButton, 0.0);
+        AnchorPane.setBottomAnchor(respButton, 25.0);
         AnchorPane.setRightAnchor(respButton,0.0);
         
         

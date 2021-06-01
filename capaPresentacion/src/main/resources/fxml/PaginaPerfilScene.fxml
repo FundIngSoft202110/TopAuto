@@ -21,7 +21,7 @@
          <content>
             <AnchorPane prefHeight="1500.0" prefWidth="1367.0" style="-fx-background-color: FFFFFF;">
                <children>
-                  <ImageView fx:id="imagenUsuario" fitHeight="68.0" fitWidth="63.0" layoutX="1086.0" layoutY="3.0" preserveRatio="true">
+                  <ImageView fx:id="imagenUsuario" fitHeight="68.0" fitWidth="63.0" layoutX="1086.0" layoutY="3.0">
                      <image>
                         <Image url="@../imagenes/perfil.JPG" />
                      </image>
@@ -55,7 +55,7 @@
                         </LinearGradient>
                      </textFill>
                   </Button>
-                  <ImageView fx:id="imagenUsuario2" fitHeight="266.0" fitWidth="274.0" layoutX="93.0" layoutY="148.0" preserveRatio="true" smooth="false">
+                  <ImageView fx:id="imagenUsuario2" fitHeight="266.0" fitWidth="274.0" layoutX="93.0" layoutY="148.0" smooth="false">
                      <image>
                         <Image url="@../imagenes/perfil.png" />
                      </image>
@@ -67,11 +67,12 @@
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
-                                    <Button fx:id="butResenias" layoutY="-2.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="673.0" style="-fx-background-color: ffffff;" text="Reseñas">
+                                    <Button fx:id="butResenias" layoutY="-2.0" mnemonicParsing="false" onAction="#setPublicaciones" prefHeight="66.0" prefWidth="673.0" style="-fx-background-color: ffffff;" text="Reseñas">
                                        <font>
                                           <Font name="Arial Bold" size="27.0" />
                                        </font>
                                     </Button>
+                                    <Line endX="1366.0" fill="#00000080" layoutX="-273.0" layoutY="63.0" stroke="#00000080" />
                                  </children></AnchorPane>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="837.0">
                                  <children>
@@ -85,7 +86,6 @@
                         </SplitPane>
                      </children>
                   </AnchorPane>
-                  <Line endX="1366.0" fill="#00000080" layoutX="-1.0" layoutY="625.0" stroke="#00000080" />
                   <Text fx:id="textoNombreUsuario" layoutX="1174.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" wrappingWidth="109.341796875">
                      <font>
                         <Font name="Arial Bold" size="17.0" />
@@ -117,7 +117,7 @@
                      </font>
                   </Label>
                   <TextArea fx:id="descripcion" layoutX="425.0" layoutY="369.0" prefHeight="181.0" prefWidth="517.0" style="-fx-background-color: 808080;" text="miD" />
-                  <SplitPane fx:id="paneGeneral" layoutX="-2.0" layoutY="627.0" orientation="VERTICAL" prefHeight="339.0" prefWidth="1353.0">
+                  <SplitPane fx:id="paneGeneral" layoutX="-2.0" layoutY="627.0" orientation="VERTICAL" prefHeight="420.0" prefWidth="1353.0">
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="256.0" prefWidth="1183.0" />
                     </items>
@@ -198,6 +198,13 @@
                         <Font name="Arial Black" size="12.0" />
                      </font>
                   </Label>
+                  <Button fx:id="cambiarFotoPerfil" layoutX="250.0" layoutY="447.0" mnemonicParsing="false" onAction="#changeFoto" style="-fx-background-color: #FFFFFF; -fx-border-color: #191919;" text="Cambiar Foto Perfil">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                  </Button>
+                  <AnchorPane fx:id="panelPaginaPrev" layoutY="499.0" prefHeight="57.0" prefWidth="200.0" />
+                  <AnchorPane fx:id="panelPagina" layoutX="1209.0" layoutY="495.0" prefHeight="61.0" prefWidth="144.0" />
                </children>
             </AnchorPane>
          </content>
