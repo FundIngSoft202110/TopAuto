@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topauto.capapresentacion.ControladorEventosPaginaBuscarVehiculo">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topauto.capapresentacion.ControladorEventosPaginaBuscarVehiculo">
    <children>
       <AnchorPane layoutX="10.0" layoutY="10.0" style="-fx-background-color: ffffff;">
          <children>
@@ -63,7 +63,7 @@
                               <Font name="Arial Bold Italic" size="17.0" />
                            </font>
                         </Text>
-                        <ImageView fx:id="imagenUsuarioPerfil" fitHeight="56.0" fitWidth="63.0" layoutX="1172.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imagenUsuarioPerfil" fitHeight="56.0" fitWidth="63.0" layoutX="1172.0" layoutY="4.0" pickOnBounds="true" />
                         <AnchorPane layoutX="-6.0" layoutY="137.0" prefHeight="902.0" prefWidth="1366.0" style="-fx-background-color: #000000;">
                            <children>
                               <ImageView fx:id="imgVehiculosEncontrados" fitHeight="580.0" fitWidth="1021.0" layoutX="173.0" layoutY="88.0" onMouseClicked="#clkImgVehiculoEncontrado" pickOnBounds="true" preserveRatio="true" />
