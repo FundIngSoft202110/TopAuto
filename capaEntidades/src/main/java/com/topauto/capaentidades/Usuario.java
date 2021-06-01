@@ -3,6 +3,7 @@ package com.topauto.capaentidades;
 import java.util.ArrayList;
 
 public class Usuario {
+
     private String nombre;
     private String userName;
     private String correo;
@@ -16,7 +17,7 @@ public class Usuario {
     public Usuario() {
         this.publicaciones = new ArrayList<>();
     }
-    
+
     public Usuario(String nombre, String userName, String correo, String descripcion, String contrasenia, boolean estaVerficado, ArrayList<Publicacion> publicaciones, Imagen foto, Pais pais) {
         this.nombre = nombre;
         this.userName = userName;
@@ -28,7 +29,13 @@ public class Usuario {
         this.foto = foto;
         this.pais = pais;
     }
-
+    public Usuario(String nombre, String userName, String correo, String descripcion) {
+        this.nombre = nombre;
+        this.userName = userName;
+        this.correo = correo;
+        this.descripcion = descripcion;
+    }
+    
     public Usuario(String nombre, String userName, String correo, String contrasenia, Pais pais) {
         this.nombre = nombre;
         this.userName = userName;
@@ -113,9 +120,9 @@ public class Usuario {
     public String toString() {
         return "Usuario{" + "nombre=" + nombre + ", userName=" + userName + ", correo=" + correo + ", descripcion=" + descripcion + ", contrasenia=" + contrasenia + ", estaVerficado=" + estaVerficado + ", publicaciones=" + publicaciones + ", foto=" + foto + ", pais=" + pais + '}';
     }
-    
-    public Usuario copiar(){
-        return new Usuario(this.nombre, this.userName, this.correo, this.descripcion, this.contrasenia, this.estaVerficado, 
+
+    public Usuario copiar() {
+        return new Usuario(this.nombre, this.userName, this.correo, this.descripcion, this.contrasenia, this.estaVerficado,
                 this.publicaciones, this.foto, this.pais);
     }
 

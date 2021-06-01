@@ -254,34 +254,93 @@ public class ControladorPerfilTest {
      */
         @Test
     public void testModificarPerfilDesIgual() {
-        System.out.println("modificarPerfil");
-        Pais pais =new Pais("Colombia");
-        
+        System.out.println("modificarPerfil Igual");
+        Usuario usuario=new Usuario("Richard Fonseca", "richfon", "richfonpan@yahoo123", "Critico profesional de automoviles e integrante importante de TopAuto");
         ControladorPerfil instance = new ControladorPerfil();
         boolean result = instance.modificarPerfil(usuario);
         assertEquals(true, result);
     }
-
+        @Test
+    public void testModificarPerfilDesVacio() {
+        System.out.println("modificarPerfil vacio");
+        Usuario usuario=new Usuario("Richard Fonseca", "richfon", "richfonpan@yahoo123", "");
+        ControladorPerfil instance = new ControladorPerfil();
+        boolean result = instance.modificarPerfil(usuario);
+        assertEquals(true, result);
+    }
+    
     @Test
     public void testModificarPerfilNUlO() {
-        System.out.println("modificarPerfil");
+        System.out.println("modificarPerfil null");
         Usuario usuario = null;
         ControladorPerfil instance = new ControladorPerfil();
         boolean result = instance.modificarPerfil(usuario);
         assertEquals(false, result);
     }
 
+            @Test
+    public void testModificarPerfilDes() {
+        System.out.println("modificarPerfil des");
+        Usuario usuario=new Usuario("Richard Fonseca", "richfon", "richfonpan@yahoo123", "Un critico profesional de automoviles e integrante importante de TopAuto");
+        ControladorPerfil instance = new ControladorPerfil();
+        boolean result = instance.modificarPerfil(usuario);
+        assertEquals(true, result);
+    }
+            @Test
+    public void testModificarPerfilUsername() {
+        System.out.println("modificarPerfil username");
+        Usuario usuario=new Usuario("Richard Fonseca", "richfon8", "richfonpan@yahoo123", "Critico profesional de automoviles e integrante importante de TopAuto");
+        ControladorPerfil instance = new ControladorPerfil();
+        boolean result = instance.modificarPerfil(usuario);
+        assertEquals(false, result);
+    }
     /**
      * Test of modificarContraseña method, of class ControladorPerfil.
      */
     @Test
     public void testModificarContraseña() {
-        System.out.println("modificarContrase\u00f1a");
+        System.out.println("modificarContrasenia");
+        String identificador = "ramo";
+        String nueva = "ramo124";
+        ControladorPerfil instance = new ControladorPerfil();
+        boolean result = instance.modificarContraseña(identificador, nueva);
+        assertEquals(true, result);
+    }
+        @Test
+    public void testModificarContraseñaIgual() {
+        System.out.println("modificarContrasenia esta igual");
         String identificador = "ramo";
         String nueva = "ramo123";
         ControladorPerfil instance = new ControladorPerfil();
         boolean result = instance.modificarContraseña(identificador, nueva);
         assertEquals(true, result);
+    }
+        @Test
+    public void testModificarContraseñaUserNoExist() {
+        System.out.println("modificarContrasenia user no exist");
+        String identificador = "diosito";
+        String nueva = "ramo123";
+        ControladorPerfil instance = new ControladorPerfil();
+        boolean result = instance.modificarContraseña(identificador, nueva);
+        assertEquals(false, result);
+    }
+        @Test
+    public void testModificarContraseñaUsername() {
+        System.out.println("modificarContrasenia contra=user");
+        String identificador = "ramo";
+        String nueva = "ramo";
+        ControladorPerfil instance = new ControladorPerfil();
+        boolean result = instance.modificarContraseña(identificador, nueva);
+        assertEquals(false, result);
+    }
+            @Test
+    public void testModificarContraseñavacio() {
+        System.out.println("modificarContrasenia contra=user");
+        String identificador = "ramo";
+        String nueva = "";
+        ControladorPerfil instance = new ControladorPerfil();
+        boolean result = instance.modificarContraseña(identificador, nueva);
+        assertEquals(false, result);
     }
     /**
      * Test of borrarUsuario method, of class ControladorPerfil.
@@ -289,12 +348,33 @@ public class ControladorPerfilTest {
     @Test
     public void testBorrarUsuario() {
         System.out.println("borrarUsuario");
+        String username = "richfon";
+        ControladorPerfil instance = new ControladorPerfil();
+        boolean result = instance.borrarUsuario(username);
+        assertEquals(true, result);
+    }
+        @Test
+    public void testBorrarUsuariovacio() {
+        System.out.println("borrarUsuario vacio");
         String username = "";
         ControladorPerfil instance = new ControladorPerfil();
-        boolean expResult = false;
         boolean result = instance.borrarUsuario(username);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(false, result);
+    }
+        @Test
+    public void testBorrarUsuarioNoVal() {
+        System.out.println("borrarUsuario");
+        String username = "Yepeto";
+        ControladorPerfil instance = new ControladorPerfil();
+        boolean result = instance.borrarUsuario(username);
+        assertEquals(false, result);
+    }
+        @Test
+    public void testBorrarUsuarioYaBorrado() {
+        System.out.println("borrarUssuario ya borrado");
+        String username = "richfon";
+        ControladorPerfil instance = new ControladorPerfil();
+        boolean result = instance.borrarUsuario(username);
+        assertEquals(false, result);
     }
 }
