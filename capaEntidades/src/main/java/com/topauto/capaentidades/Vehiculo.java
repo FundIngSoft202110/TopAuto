@@ -25,6 +25,12 @@ public class Vehiculo {
 
     public Vehiculo() {
     }
+
+    public Vehiculo(String id) {
+        this.id = id;
+    }
+
+  
     
     public Vehiculo(String id, float velMax, float accMax, float potencia, float capacidadMotor, TipoMotor motor, TipoFrenos frenos, TipoDireccion direccion, TipoTransmision transmision, boolean tieneVidriosElectricos, boolean tieneAireAcondicionado, int maxPasajeros, int numPuertas, String modelo, ArrayList<Imagen> fotos, Fabricante marca, ArrayList<OrgSeguridad> orgAsociadas, ArrayList<VendedorExterno> vendedoresAsociados) {
         this.id = id;
