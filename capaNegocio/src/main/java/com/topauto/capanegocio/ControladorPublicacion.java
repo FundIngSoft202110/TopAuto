@@ -131,13 +131,15 @@ public class ControladorPublicacion {
     public boolean borrarPublicacion(String idPublicacion) {
         //Yerro
         try{
+            boolean resp=false;
             for(Publicacion p : publicaciones){
                 if(p.getId().equals(idPublicacion)){
                     publicaciones.remove(publicaciones.indexOf(p));
                     persistenciaPublicacion.borrarPublicacion(idPublicacion);
-                    return true;
+                    resp= true;
                 }
             }
+            return resp;
         }
         catch(Exception e){
             System.out.println("Ocurrio un error al borrar la publicacion");
