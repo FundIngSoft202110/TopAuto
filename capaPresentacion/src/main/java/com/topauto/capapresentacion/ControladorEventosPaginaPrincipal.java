@@ -172,6 +172,8 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
     private ImageView imgt5;
     private Text marcaPopulares1;
     private Text velMaxPopulares1;
+    @FXML
+    private Button botonCerrarSesion;
 
     //////////////////////own attributes//////////////////////////
     @Override
@@ -798,6 +800,33 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(ControladorEventosPaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void btnCerrarSesion(ActionEvent event) {
+        
+        try {
+            
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PaginaLoginScene.fxml"));
+            stage.setMaxWidth(840);
+            stage.setMaxHeight(500);
+            stage.setTitle("TopAuto Login");
+            
+            ControladorEventosPaginaLogin controlador = loader.getController();
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            
+            stage.setScene(scene);
+            stage.show();
+                        
+            Stage myStage = (Stage) this.botonCerrarSesion.getScene().getWindow();
+            myStage.close();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(ControladorEventosPaginaInicial.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
 }

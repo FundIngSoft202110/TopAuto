@@ -122,11 +122,6 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
     private Button botonPreguntas;
     @FXML
     private Button botonResenas;
-    @FXML
-    private TextField textFieldResenasOPreguntas;
-    @FXML
-    private Button botonPublicarResenaOPregunta;
-    //////////////////////own attributes//////////////////////////
     
     private Vehiculo miVehiculo;
     
@@ -1148,9 +1143,6 @@ public class ControladorEventosPaginaVehiculo implements Initializable {
 
     
 
-    @FXML
-    private void btnPublicarResenaOPregunta(ActionEvent event) {
-    }
 
     @FXML
     private void clkVA1(MouseEvent event) {

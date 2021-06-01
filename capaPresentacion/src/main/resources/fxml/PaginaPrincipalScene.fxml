@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topauto.capapresentacion.ControladorEventosPaginaPrincipal">
+<AnchorPane style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topauto.capapresentacion.ControladorEventosPaginaPrincipal">
    <children>
       <ScrollPane prefHeight="768.0" prefWidth="1366.0">
          <content>
@@ -42,12 +42,12 @@
                         <Font name="Arial Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Text fx:id="textoNombreUsuario" layoutX="1204.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" textAlignment="CENTER" wrappingWidth="133.0">
+                  <Text fx:id="textoNombreUsuario" layoutX="1182.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" textAlignment="CENTER" wrappingWidth="133.0">
                      <font>
                         <Font name="Arial Bold" size="17.0" />
                      </font>
                   </Text>
-                  <Button fx:id="botonIngresarOPerfil" layoutX="1191.0" layoutY="30.0" mnemonicParsing="false" onAction="#btnIngresar" prefHeight="13.0" prefWidth="160.0" style="-fx-background-color: ffffff;" text="Ingresar" textAlignment="CENTER">
+                  <Button fx:id="botonIngresarOPerfil" layoutX="1151.0" layoutY="31.0" mnemonicParsing="false" onAction="#btnIngresar" prefHeight="24.0" prefWidth="87.0" style="-fx-background-color: ffffff;" text="Ingresar" textAlignment="CENTER">
                      <font>
                         <Font name="Arial" size="13.0" />
                      </font>
@@ -361,7 +361,12 @@
                         <Font name="Arial Bold Italic" size="17.0" />
                      </font>
                   </Text>
-                  <ImageView fx:id="imagenUsuarioPerfil" fitHeight="56.0" fitWidth="63.0" layoutX="1166.0" layoutY="7.0" pickOnBounds="true" />
+                  <ImageView fx:id="imagenUsuarioPerfil" fitHeight="56.0" fitWidth="63.0" layoutX="1072.0" layoutY="7.0" pickOnBounds="true" />
+                  <Button fx:id="botonCerrarSesion" layoutX="1237.0" layoutY="31.0" mnemonicParsing="false" onAction="#btnCerrarSesion" prefHeight="24.0" prefWidth="102.0" style="-fx-background-color: ffffff;" text="Cerrar Sesion" textAlignment="CENTER">
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
          </content>

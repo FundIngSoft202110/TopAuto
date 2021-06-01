@@ -4,7 +4,6 @@
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,11 +12,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="795.0" prefWidth="1382.0" style="-fx-background-color: ffffff;" text="Buscar Vehiculo Por Barra De Busqueda" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topauto.capapresentacion.ControladorEventosPaginaVehiculo">
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2000.0" prefWidth="1382.0" style="-fx-background-color: ffffff;" text="Buscar Vehiculo Por Barra De Busqueda" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topauto.capapresentacion.ControladorEventosPaginaVehiculo">
   <content>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
          <children>
-            <ScrollPane prefHeight="768.0" prefWidth="1366.0">
+            <ScrollPane prefHeight="2000.0" prefWidth="1366.0">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2000.0" prefWidth="1351.0" style="-fx-background-color: ffffff;">
                      <children>
@@ -319,26 +318,16 @@
                               <ImageView fx:id="imgVendedorA1" fitHeight="199.0" fitWidth="669.0" onMouseClicked="#clkVA1" pickOnBounds="true" preserveRatio="true" />
                               <ImageView fx:id="imgVendedorA2" fitHeight="199.0" fitWidth="669.0" layoutX="11.0" layoutY="11.0" onMouseClicked="#clkVA2" pickOnBounds="true" preserveRatio="true" />
                            </children></VBox>
-                        <Button fx:id="botonPreguntas" layoutX="295.0" layoutY="1242.0" mnemonicParsing="false" onAction="#btnPreguntas" prefHeight="84.0" prefWidth="420.0" style="-fx-background-color: ffffff; -fx-border-color: d5cdcd;" text="Preguntas">
+                        <Button fx:id="botonPreguntas" layoutX="295.0" layoutY="1313.0" mnemonicParsing="false" onAction="#btnPreguntas" prefHeight="84.0" prefWidth="420.0" style="-fx-background-color: ffffff; -fx-border-color: d5cdcd;" text="Preguntas">
                            <font>
                               <Font name="Arial Bold" size="44.0" />
                            </font>
                         </Button>
-                        <Button fx:id="botonResenas" layoutX="715.0" layoutY="1242.0" mnemonicParsing="false" onAction="#btnReseñas" prefHeight="84.0" prefWidth="420.0" style="-fx-background-color: ffffff; -fx-border-color: d5cdcd;" text="Reseñas">
+                        <Button fx:id="botonResenas" layoutX="715.0" layoutY="1313.0" mnemonicParsing="false" onAction="#btnReseñas" prefHeight="84.0" prefWidth="420.0" style="-fx-background-color: ffffff; -fx-border-color: d5cdcd;" text="Reseñas">
                            <font>
                               <Font name="Arial Bold" size="44.0" />
                            </font>
                         </Button>
-                        <AnchorPane layoutX="295.0" layoutY="1326.0" prefHeight="71.0" prefWidth="840.0" style="-fx-border-color: d5cdcd;">
-                           <children>
-                              <TextField fx:id="textFieldResenasOPreguntas" layoutX="8.0" layoutY="10.0" prefHeight="49.0" prefWidth="691.0" style="-fx-border-color: #c90000;" />
-                              <Button fx:id="botonPublicarResenaOPregunta" layoutX="707.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnPublicarResenaOPregunta" prefHeight="49.0" prefWidth="122.0" style="-fx-border-color: d5cdcd; -fx-background-color: #c90000;" text="Publicar" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial Bold" size="20.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </AnchorPane>
                         <ImageView fx:id="imagenUsuario" fitHeight="61.0" fitWidth="59.0" layoutX="1167.0" layoutY="3.0" pickOnBounds="true" />
                         <ImageView fx:id="pantallaImagenesVehiculo" fitHeight="290.0" fitWidth="612.0" layoutX="199.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true" />
                         <AnchorPane layoutX="714.0" layoutY="516.0" prefHeight="22.0" prefWidth="342.0" style="-fx-background-color: #c90000;">
@@ -369,7 +358,7 @@
                         <ImageView fx:id="imgOrganizacionA3" fitHeight="50.0" fitWidth="210.0" layoutX="1072.0" layoutY="180.0" onMouseClicked="#clkOA3" pickOnBounds="true" preserveRatio="true" />
                         <SplitPane fx:id="paneGeneral" layoutX="133.0" layoutY="1397.0" orientation="VERTICAL" prefHeight="420.0" prefWidth="1109.0">
                            <items>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="256.0" prefWidth="1183.0" />
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="256.0" prefWidth="1183.0" style="-fx-background-color: ffffff;" />
                            </items>
                         </SplitPane>
                         <AnchorPane fx:id="panelPaginaPrev" layoutX="133.0" layoutY="1340.0" prefHeight="57.0" prefWidth="142.0" />
@@ -382,4 +371,3 @@
       </AnchorPane>
   </content>
 </TitledPane>
-
