@@ -13,7 +13,9 @@ import com.topauto.capaentidades.Publicacion;
 import com.topauto.capaentidades.Resenia;
 import com.topauto.capaentidades.Usuario;
 import com.topauto.capaentidades.Vehiculo;
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -69,7 +71,8 @@ public class ControladorPublicacionTest {
         Pais pa =new Pais("Colombia");
         Usuario us = new Usuario("Richard Fonseca", "richfon", "richfonpan@yahoo.com", "richfon123", pa);
         Vehiculo ve=new Vehiculo("100");//Tesla Model S
-        Resenia res = new Resenia(8, ve, "RES102", "Sorprendente", "El vehiculo es mejor de lo esperado", fecha, us);
+           java.util.Date fecha= Calendar.getInstance().getTime();
+     Resenia res = new Resenia(8, ve, "RES102", "Sorprendente", "El vehiculo es mejor de lo esperado", fecha, us);
         ControladorPublicacion instance = new ControladorPublicacion();
         boolean result = instance.crearPublicacion(res);
         assertEquals(true, result);
@@ -79,8 +82,10 @@ public class ControladorPublicacionTest {
         System.out.println("crearPregutaGeneral");
         Pais pa =new Pais("Colombia");
         Usuario us = new Usuario("Richard Fonseca", "richfon", "richfonpan@yahoo.com", "richfon123", pa);
-        new ArrayList<String>;
-        PRgeneral prgen = new PRgeneral(tags, "PRG102", "Recomendacion de camioneta", "Necesito una camioneta para el trabajo", fecha, us);
+        ArrayList<String> tags=new ArrayList();//añadir un tag al array
+        tags.add("Camioneta");
+           java.util.Date fecha= Calendar.getInstance().getTime();
+     PRgeneral prgen = new PRgeneral(tags, "PRG102", "Recomendacion de camioneta", "Necesito una camioneta para el trabajo", fecha, us);
         ControladorPublicacion instance = new ControladorPublicacion();
         boolean result = instance.crearPublicacion(prgen);
         assertEquals(true, result);
@@ -91,7 +96,8 @@ public class ControladorPublicacionTest {
         Pais pa =new Pais("Colombia");
         Usuario us = new Usuario("Richard Fonseca", "richfon", "richfonpan@yahoo.com", "richfon123", pa);
         Vehiculo ve=new Vehiculo("101");//TOYOTA SUPRA
-        PRrelacionada prrel = new PRrelacionada(ve, "PRA101", "Motor tiene sonidos", "el motor esta con unos sonidos rasposos alguna idea?", fecha, us);
+           java.util.Date fecha= Calendar.getInstance().getTime();
+     PRrelacionada prrel = new PRrelacionada(ve, "PRA101", "Motor tiene sonidos", "el motor esta con unos sonidos rasposos alguna idea?", fecha, us);
         ControladorPublicacion instance = new ControladorPublicacion();
         boolean result = instance.crearPublicacion(prrel);
         assertEquals(true, result);
@@ -110,6 +116,7 @@ public class ControladorPublicacionTest {
         Pais pa =new Pais("Colombia");
         Usuario us = new Usuario("Richard Fonseca", "richfon", "richfonpan@yahoo.com", "richfon123", pa);
         Vehiculo ve=new Vehiculo("100");//Tesla Model S
+        java.util.Date fecha= Calendar.getInstance().getTime();
         Resenia res = new Resenia(8, ve, "RES103", "Algo", "", fecha, us);
         ControladorPublicacion instance = new ControladorPublicacion();
         boolean result = instance.crearPublicacion(res);
@@ -121,7 +128,8 @@ public class ControladorPublicacionTest {
         Pais pa =new Pais("Colombia");
         Usuario us = new Usuario("Richard Fonseca", "richfon", "richfonpan@yahoo.com", "richfon123", pa);
         Vehiculo ve=new Vehiculo("100");//Tesla Model S
-        Resenia res = new Resenia(-8, ve, "RES102", "Sorprendente", "El vehiculo es mejor de lo esperado", fecha, us);
+       java.util.Date fecha= Calendar.getInstance().getTime();
+         Resenia res = new Resenia(-8, ve, "RES102", "Sorprendente", "El vehiculo es mejor de lo esperado", fecha, us);
         ControladorPublicacion instance = new ControladorPublicacion();
         boolean result = instance.crearPublicacion(res);
         assertEquals(false, result);
@@ -131,7 +139,8 @@ public class ControladorPublicacionTest {
         System.out.println("crearResenia");
         Pais pa =new Pais("Colombia");
         Usuario us = new Usuario("Richard Fonseca", "richfon", "richfonpan@yahoo.com", "richfon123", pa);
-        Resenia res = new Resenia(8, null, "RES104", "Sorprendente", "El vehiculo es mejor de lo esperado", fecha, us);
+           java.util.Date fecha= Calendar.getInstance().getTime();
+     Resenia res = new Resenia(8, null, "RES104", "Sorprendente", "El vehiculo es mejor de lo esperado", fecha, us);
         ControladorPublicacion instance = new ControladorPublicacion();
         boolean result = instance.crearPublicacion(res);
         assertEquals(false, result);
@@ -142,7 +151,8 @@ public class ControladorPublicacionTest {
         Pais pa =new Pais("Colombia");
         Usuario us = new Usuario("Richard Fonseca", "richfon", "richfonpan@yahoo.com", "richfon123", pa);
         Vehiculo ve=new Vehiculo("100");//Tesla Model S
-        Resenia res = new Resenia(8, ve, "RES105", "", "El vehiculo es mejor de lo esperado", fecha, us);
+          java.util.Date fecha= Calendar.getInstance().getTime();
+      Resenia res = new Resenia(8, ve, "RES105", "", "El vehiculo es mejor de lo esperado", fecha, us);
         ControladorPublicacion instance = new ControladorPublicacion();
         boolean result = instance.crearPublicacion(res);
         assertEquals(true, result);
@@ -156,7 +166,8 @@ public class ControladorPublicacionTest {
         Pais pa =new Pais("Colombia");
         Usuario us = new Usuario("Richard Fonseca", "richfon", "richfonpan@yahoo.com", "richfon123", pa);
         Vehiculo ve=new Vehiculo("100");//Tesla Model S
-        Resenia res = new Resenia(8, ve, "RES102", "Sorprendente", "El vehiculo es mejor de lo esperado,creo", fecha, us);
+          java.util.Date fecha= Calendar.getInstance().getTime();
+      Resenia res = new Resenia(8, ve, "RES102", "Sorprendente", "El vehiculo es mejor de lo esperado,creo", fecha, us);
         ControladorPublicacion instance = new ControladorPublicacion();
         boolean result = instance.modificarPublicacion(res);
         assertEquals(true, result);
@@ -168,7 +179,8 @@ public class ControladorPublicacionTest {
         Pais pa =new Pais("Colombia");
         Usuario us = new Usuario("Richard Fonseca", "richfon", "richfonpan@yahoo.com", "richfon123", pa);
         Vehiculo ve=new Vehiculo("100");//Tesla Model S
-        Resenia res = new Resenia(4, ve, "RES102", "Sorprendente", "El vehiculo es mejor de lo esperado", fecha, us);
+           java.util.Date fecha= Calendar.getInstance().getTime();
+     Resenia res = new Resenia(4, ve, "RES102", "Sorprendente", "El vehiculo es mejor de lo esperado", fecha, us);
         ControladorPublicacion instance = new ControladorPublicacion();
         boolean result = instance.modificarPublicacion(res);
         assertEquals(true, result);
@@ -179,7 +191,8 @@ public class ControladorPublicacionTest {
         Pais pa =new Pais("Colombia");
         Usuario us = new Usuario("Richard Fonseca", "richfon", "richfonpan@yahoo.com", "richfon123", pa);
         Vehiculo ve=new Vehiculo("100");//Tesla Model S
-        Resenia res = new Resenia(8, ve, "RES102", "Sorprende", "El vehiculo es mejor de lo esperado", fecha, us);
+           java.util.Date fecha= Calendar.getInstance().getTime();
+     Resenia res = new Resenia(8, ve, "RES102", "Sorprende", "El vehiculo es mejor de lo esperado", fecha, us);
         ControladorPublicacion instance = new ControladorPublicacion();
         boolean result = instance.modificarPublicacion(res);
         assertEquals(true, result);
@@ -190,7 +203,8 @@ public class ControladorPublicacionTest {
         Pais pa =new Pais("Colombia");
         Usuario us = new Usuario("Richard Fonseca", "richfon", "richfonpan@yahoo.com", "richfon123", pa);
         Vehiculo ve=new Vehiculo("101");//TOYOTA SUPRA
-        PRrelacionada prrel = new PRrelacionada(ve, "PRA101", "Motor tiene sonidos raros", "el motor esta con unos sonidos rasposos alguna idea?", fecha, us);
+           java.util.Date fecha= Calendar.getInstance().getTime();
+     PRrelacionada prrel = new PRrelacionada(ve, "PRA101", "Motor tiene sonidos raros", "el motor esta con unos sonidos rasposos alguna idea?", fecha, us);
         ControladorPublicacion instance = new ControladorPublicacion();
         boolean result = instance.modificarPublicacion(prrel);
         assertEquals(true, result);
@@ -200,7 +214,8 @@ public class ControladorPublicacionTest {
         Pais pa =new Pais("Colombia");
         Usuario us = new Usuario("Richard Fonseca", "richfon", "richfonpan@yahoo.com", "richfon123", pa);
         Vehiculo ve=new Vehiculo("101");//Tesla Model S->TOYOTA SUPRA
-        Resenia res = new Resenia(8, ve, "RES102", "Sorprende", "El vehiculo es mejor de lo esperado", fecha, us);
+           java.util.Date fecha= Calendar.getInstance().getTime();
+     Resenia res = new Resenia(8, ve, "RES102", "Sorprende", "El vehiculo es mejor de lo esperado", fecha, us);
         ControladorPublicacion instance = new ControladorPublicacion();
         boolean result = instance.modificarPublicacion(res);
         assertEquals(false, result);
@@ -210,8 +225,11 @@ public class ControladorPublicacionTest {
         System.out.println("ModificarPregutaGeneral");
         Pais pa =new Pais("Colombia");
         Usuario us = new Usuario("Richard Fonseca", "richfon", "richfonpan@yahoo.com", "richfon123", pa);
-        new ArrayList<String>;//añadir un tag al array
-        PRgeneral prgen = new PRgeneral(tags, "PRG102", "Recomendacion de camioneta", "Necesito una camioneta para el trabajo", fecha, us);
+        ArrayList<String> tags=new ArrayList();//añadir un tag al array
+        tags.add("Camioneta");
+        tags.add("trabajo");
+           java.util.Date fecha= Calendar.getInstance().getTime();
+     PRgeneral prgen = new PRgeneral(tags, "PRG102", "Recomendacion de camioneta", "Necesito una camioneta para el trabajo", fecha, us);
         ControladorPublicacion instance = new ControladorPublicacion();
         boolean result = instance.modificarPublicacion(prgen);
         assertEquals(true, result);
