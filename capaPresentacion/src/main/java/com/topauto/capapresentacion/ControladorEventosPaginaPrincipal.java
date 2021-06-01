@@ -360,12 +360,6 @@ public class ControladorEventosPaginaPrincipal implements Initializable {
     private void setUsuarioImage() {
         Image miImagen;
         try {
-            if(this.usuarioLogin.getFoto().getPath() == null)
-                    {
-                        this.usuarioLogin.getFoto().setPath("");
-                        
-                    }
-                  
             miImagen = new Image(this.usuarioLogin.getFoto().getPath());
             this.imagenUsuarioPerfil.setImage(miImagen);
         } catch (IllegalArgumentException e) {
