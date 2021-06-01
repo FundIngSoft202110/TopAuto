@@ -292,6 +292,7 @@ public class ControladorEventosPaginaEscribirPregunta implements Initializable {
             PRgeneral pregunta = new PRgeneral(tags,"PRG10"+count,this.txtTitulo.getText(),this.txtContenido.getText(),new Date(),0,0,this.miUsuario,comentarios);
             
             if(controlPublicacion.crearPublicacion(pregunta)){
+                this.miUsuario.getPublicaciones().add(pregunta);
                 Alert alerta = new Alert(Alert.AlertType.INFORMATION);
                 alerta.setHeaderText(null);
                 alerta.setTitle("Exito");

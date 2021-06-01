@@ -36,6 +36,8 @@ public class ControladorEventosPaginaInicial implements Initializable {
     private void administar(ActionEvent event) {
 
         claveIng = JOptionPane.showInputDialog("Ingrese la clave de Administrador");
+        if(claveIng != null)
+        {
         if(claveIng.equals(clave))
         {
             try {
@@ -65,6 +67,7 @@ public class ControladorEventosPaginaInicial implements Initializable {
             alert.setTitle("Clave Incorrecta");
             alert.setContentText("Verifique la clave e intentelo de nuevo");
             alert.showAndWait();
+        }
         }
         
     }

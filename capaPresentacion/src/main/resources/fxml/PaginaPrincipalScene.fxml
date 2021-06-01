@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topauto.capapresentacion.ControladorEventosPaginaPrincipal">
+<AnchorPane style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.topauto.capapresentacion.ControladorEventosPaginaPrincipal">
    <children>
       <ScrollPane prefHeight="768.0" prefWidth="1366.0">
          <content>
@@ -365,7 +365,7 @@
                         <Font name="Arial Bold Italic" size="17.0" />
                      </font>
                   </Text>
-                  <ImageView fx:id="imagenUsuarioPerfil" fitHeight="56.0" fitWidth="63.0" layoutX="1172.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imagenUsuarioPerfil" fitHeight="56.0" fitWidth="57.0" layoutX="1166.0" layoutY="4.0" pickOnBounds="true" />
                </children>
             </AnchorPane>
          </content>

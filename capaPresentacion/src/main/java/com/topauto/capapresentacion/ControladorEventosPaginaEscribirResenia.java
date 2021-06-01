@@ -276,7 +276,9 @@ public class ControladorEventosPaginaEscribirResenia implements Initializable {
             
             Resenia reseña = new Resenia(Integer.parseInt(this.boxPuntuacion.getValue()),vehiculo,"RES10"+count,this.txtTitulo.getText(),this.txtContenido.getText(),new Date(),0,0,this.miUsuario,comentarios);
             
-            if(controlPublicacion.crearPublicacion(reseña)){
+            if(controlPublicacion.crearPublicacion(reseña))
+            {
+                this.miUsuario.getPublicaciones().add(reseña);
                 Alert alerta = new Alert(Alert.AlertType.INFORMATION);
                 alerta.setHeaderText(null);
                 alerta.setTitle("Exito");

@@ -1,5 +1,6 @@
 package com.topauto.capapresentacion;
 
+import com.topauto.capaentidades.Imagen;
 import com.topauto.capaentidades.Pregunta;
 import com.topauto.capaentidades.Publicacion;
 import com.topauto.capaentidades.Usuario;
@@ -33,8 +34,16 @@ import com.topauto.capaentidades.Pregunta;
 import com.topauto.capaentidades.PRrelacionada;
 import com.topauto.capaentidades.Pais;
 import com.topauto.capanegocio.ControladorPerfil;
+import java.io.File;
+import static java.lang.Math.abs;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import javafx.event.EventHandler;
 import javafx.scene.text.Font;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 
 public class ControladorEventosPaginaPerfil implements Initializable {
 
@@ -52,6 +61,8 @@ public class ControladorEventosPaginaPerfil implements Initializable {
     private Button butResenias;
     @FXML
     private AnchorPane countries;
+    @FXML
+    private Button cambiarFotoPerfil;
     @FXML
     private ImageView imagenUsuario;
     @FXML
@@ -81,25 +92,33 @@ public class ControladorEventosPaginaPerfil implements Initializable {
     private AnchorPane parentContrasenia;
     @FXML
     private SplitPane paneGeneral;
+    @FXML
+    private AnchorPane panelPagina, panelPaginaPrev;
     
     private ControladorPerfil controladorPerfil = new ControladorPerfil();
     private ControladorPublicacion controladorPub = new ControladorPublicacion();
+    private Button sig,prev;
     private Usuario usuarioLogeado = new Usuario();
     ArrayList<Publicacion> misPublicaciones = new ArrayList<>();
     ArrayList<Pregunta> misPreguntas = new ArrayList<>();
-    int datosXPane = 4;
+    int datosXPane = 2, numChangeMax = datosXPane, numChangeMaxP = datosXPane;
     int minPreg = 0, maxPreg = datosXPane;
+    int minPub = 0, maxPub = datosXPane;
+    //HANDLERS:
     EventHandler <ActionEvent> HandlerEraseElement, HandlerEditElement;
+    EventHandler<ActionEvent> HandlerTurnNext, HandlerTurnBack;
     ArrayList<structPregButton> listCurrQuestionsDelete = new ArrayList<>();
     ArrayList<structResButton> listCurrPubsDelete = new ArrayList<>();
     ArrayList<structPregButton> listCurrQuestionsEdit = new ArrayList<>();
     ArrayList<structResButton> listCurrPubsEdit = new ArrayList<>();
-    boolean isPreguntaOpen = false;
+    boolean isPreguntaOpen = false, hitNextPage = false, hitLastPage = false;
 
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         changeAllLabels(false);
+        this.cambiarFotoPerfil.setVisible(false);
+        this.cambiarFotoPerfil.setDisable(true);
         controladorPerfil.descargarDatos();
         controladorPub.descargarDatos();
         resetCamps();
@@ -119,6 +138,43 @@ public class ControladorEventosPaginaPerfil implements Initializable {
                      editElement((Button)event.getSource());
                  }
              };
+        this.HandlerTurnNext = new EventHandler<ActionEvent>()
+             {
+                 @Override
+                 public void handle (ActionEvent event)
+                 {
+                     activateNextPage();
+                     if (getPreguntaOn())
+                {
+                    showPreguntasOnScreen(); 
+                }
+                     else
+                {
+                    showPubsOnScreen();
+                }
+                         
+                     
+                 }
+             };
+        this.HandlerTurnBack = new EventHandler<ActionEvent>()
+             {
+                 @Override
+                 public void handle (ActionEvent event)
+                 {
+                     activateLastPage();
+                     
+                     if (getPreguntaOn())
+                {
+                    showPreguntasOnScreen(); 
+                }
+                     else
+                {
+                    showPubsOnScreen();
+                }
+                 }
+                 
+             };
+        
     } 
     @FXML
     private void setPreguntas(ActionEvent event)
@@ -126,16 +182,58 @@ public class ControladorEventosPaginaPerfil implements Initializable {
          showPreguntasOnScreen();
 
     }
+    @FXML private void setPublicaciones (ActionEvent event){
+        showPubsOnScreen();
+    }
+    private boolean getPreguntaOn()
+    {
+        return this.isPreguntaOpen;
+    }
     private void showPreguntasOnScreen()
     {
-        this.isPreguntaOpen = true;
+        this.listCurrQuestionsDelete.clear();
+        this.paneGeneral.getItems().clear();
+        panelPagina.getChildren().clear();
+        panelPaginaPrev.getChildren().clear();
+        double anchorPanesHeight = this.paneGeneral.getPrefHeight() / this.datosXPane+1;
+        boolean prevActivo = false, sigActivo = false;
+        double anchorPanesWidth = this.paneGeneral.getPrefWidth();
+         int localDatXPane = this.datosXPane;
+         this.isPreguntaOpen = true;
          changeAllLabels(false);
          this.paneGeneral.getItems().clear();
-         float incrementPerDivision = 1.0f / (float) this.datosXPane;
+         float incrementPerDivision = 1.0f / (float) this.datosXPane+1;
          String miOrigin;
          AnchorPane localAPane;
          int contador = 0;
-         if ( misPreguntas.size()< maxPreg) maxPreg = misPreguntas.size();
+         
+         if (this.hitNextPage == true)
+        {
+            minPreg += datosXPane;
+            maxPreg += numChangeMax;
+        }
+        else if (this.hitLastPage == true)
+        {
+            minPreg -= datosXPane;
+            maxPreg -= numChangeMax;
+            numChangeMax = datosXPane;
+        }
+        //If the boundary surpasses the array size of comments, equal the boundary to the array size.
+        //This could happen only if hitNextPage is triggered.
+        if (misPreguntas.size() < maxPreg && hitNextPage == true)
+        {
+            this.numChangeMax = abs(misPreguntas.size() - (maxPreg - datosXPane));
+            maxPreg = misPreguntas.size();
+            
+        }
+        else if (misPreguntas.size() < maxPreg)
+        {
+            maxPreg = misPreguntas.size(); //Bad case scenario...
+        }
+         
+        
+         if (!this.misPreguntas.isEmpty())
+         {
          for (Pregunta p : misPreguntas.subList(minPreg, maxPreg))
         {
             structPregButton localStructD = new structPregButton();
@@ -154,34 +252,217 @@ public class ControladorEventosPaginaPerfil implements Initializable {
             localStructD.preguntas = p;
             localStructD.miButton = (Button)localAPane.getChildren().get(4);
             this.listCurrQuestionsDelete.add(localStructD);
-            localStructD.miButton = (Button)localAPane.getChildren().get(5);
-            this.listCurrQuestionsEdit.add(localStructD);
             //Add my elements to the structures for easy comparison ^^
 
             this.paneGeneral.getItems().add(localAPane);
             this.paneGeneral.setDividerPosition(contador, (float)contador * incrementPerDivision);
             contador++; 
+             localDatXPane --;
+        }
+         }
+         else
+         {
+             
+             localAPane = new AnchorPane();
+             localAPane.setPrefSize(anchorPanesWidth, anchorPanesHeight);
+             Label owner = new Label();
+             owner.setText("Este Usuario no Tiene Preguntas!");
+             owner.setFont(new Font(40));
+             owner.setPrefSize(this.paneGeneral.getPrefWidth()-10.0, 60);
+             AnchorPane.setTopAnchor(owner, 10.0);
+             AnchorPane.setLeftAnchor(owner, 10.0);
+             localAPane.getChildren().add(owner);
+             this.paneGeneral.getItems().add(localAPane);
+             this.paneGeneral.setDividerPosition(0, 0);
+             localDatXPane --;
+             
+         }
+         contador = this.datosXPane-localDatXPane;
+         if (localDatXPane > 0)
+         {
+             for (int i = localDatXPane; i>0;i--)
+             {
+                 localAPane = new AnchorPane();
+                 localAPane.setPrefSize(anchorPanesWidth, anchorPanesHeight);
+                 this.paneGeneral.getItems().add(localAPane);
+                 this.paneGeneral.setDividerPosition(contador, (float)contador * incrementPerDivision);
+                 contador++;
+             }
+         }
+         //Reset activation of buttons:
+        if (misPreguntas.size() > maxPreg)
+        {
+            sigActivo = true;
+        }
+        if (minPreg > 0)
+        {
+            prevActivo = true;
+        }
+        hitNextPage = false;
+        hitLastPage = false;
+        createButtonsPagina (sigActivo, prevActivo);
+        
+         
+    }
+    
+     private void showPubsOnScreen()
+    {
+        this.listCurrPubsDelete.clear();
+        panelPagina.getChildren().clear();
+        panelPaginaPrev.getChildren().clear();
+        this.paneGeneral.getItems().clear();
+        int localDatXPane = this.datosXPane;
+        double anchorPanesHeight = this.paneGeneral.getPrefHeight() / this.datosXPane;
+        boolean prevActivo = false, sigActivo = false;
+        double anchorPanesWidth = this.paneGeneral.getPrefWidth();
+         this.isPreguntaOpen = false;
+         changeAllLabels(false);
+         
+         float incrementPerDivision = 1.0f / (float) this.datosXPane;
+         String miOrigin;
+         AnchorPane localAPane;
+         int contador = 0;
+          if (this.hitNextPage == true)
+        {
+            minPub += datosXPane;
+            maxPub += numChangeMaxP;
+        }
+        else if (this.hitLastPage == true)
+        {
+            minPub -= datosXPane;
+            maxPub -= numChangeMaxP;
+            numChangeMaxP = datosXPane;
+        }
+        //If the boundary surpasses the array size of comments, equal the boundary to the array size.
+        //This could happen only if hitNextPage is triggered.
+        if (misPublicaciones.size() < maxPub && hitNextPage == true)
+        {
+            this.numChangeMaxP = abs(misPublicaciones.size() - (maxPub - datosXPane));
+            maxPub = misPublicaciones.size();
+            
+        }
+        else if (misPublicaciones.size() < maxPub)
+        {
+            maxPub = misPublicaciones.size(); //Bad case scenario...
+        }
+         if (!this.misPublicaciones.isEmpty())
+         {
+         for (Publicacion p : misPublicaciones.subList(minPub, maxPub))
+         {
+            structResButton localStructD = new structResButton();
+            
+            
+            miOrigin = "Reseña";
+            
+            localAPane = setUpAnchorPane( p.getPropietario().getUserName(), p.getDescripcion(), p.getTitulo(),
+                    p.getFecha().toString(), miOrigin, contador);
+            //Button DELETE is on location 4, Button EDIT is on location 5
+            localStructD.pub = p;
+            localStructD.miButton = (Button)localAPane.getChildren().get(4);
+            this.listCurrPubsDelete.add(localStructD);
+            //Add my elements to the structures for easy comparison ^^
+            this.paneGeneral.getItems().add(localAPane);
+            this.paneGeneral.setDividerPosition(contador, (float)contador * incrementPerDivision);
+            contador++; 
+            localDatXPane --;
+         }
+         }
+         else
+         {
+             System.out.print("Entra acá a Nada\n");
+             localAPane = new AnchorPane();
+             localAPane.setPrefSize(anchorPanesWidth, anchorPanesHeight);
+             Label owner = new Label();
+             owner.setText("Este Usuario no Tiene Reseñas!");
+             owner.setFont(new Font(40));
+             owner.setPrefSize(this.paneGeneral.getPrefWidth()-10.0, 60);
+             AnchorPane.setTopAnchor(owner, 10.0);
+             AnchorPane.setLeftAnchor(owner, 10.0);
+             localAPane.getChildren().add(owner);
+             this.paneGeneral.getItems().add(localAPane);
+             this.paneGeneral.setDividerPosition(0, 0);
+             localDatXPane --;
+             
+         }
+         
+         if (localDatXPane > 0)
+         {
+            contador = this.datosXPane-localDatXPane;
+             for (int i = localDatXPane; i>0;i--)
+             {
+                 
+                 localAPane = new AnchorPane();
+                 localAPane.setPrefSize(anchorPanesWidth, anchorPanesHeight);
+                 this.paneGeneral.getItems().add(localAPane);
+                 this.paneGeneral.setDividerPosition(contador, (float)contador * incrementPerDivision);
+                 contador++;
+             }
+         }
+         //Reset activation of buttons:
+        if (misPublicaciones.size() > maxPub)
+        {
+            sigActivo = true;
+        }
+        if (minPub > 0)
+        {
+            prevActivo = true;
+        }
+        hitNextPage = false;
+        hitLastPage = false;
+        createButtonsPagina (sigActivo, prevActivo);
+        
+    }
+     private void createButtonsPagina (boolean isSigTrue, boolean isPrevTrue)
+    {
+        panelPagina.getChildren().clear();
+        panelPaginaPrev.getChildren().clear();
+        
+       if ( isSigTrue == true)
+        {
+            
+            sig = new Button();
+            sig.setText("Sig. Pagina");
+            sig.setStyle("-fx-background-color: #DFDFE5"); //White-ish Gray
+            sig.setPrefSize(100, 40);
+            sig.setFont(new Font(15));
+            sig.setOnAction(this.HandlerTurnNext);
+            AnchorPane.setTopAnchor(sig, 0.0);
+            AnchorPane.setLeftAnchor(sig,0.0);
+            this.panelPagina.getChildren().add(sig);
+        }
+        if (isPrevTrue==true)
+        {
+            prev = new Button();
+            prev.setText("Prev. Pagina");
+            prev.setStyle("-fx-background-color: #DFDFE5"); //White-ish Gray
+            prev.setPrefSize(100, 40);
+            prev.setFont(new Font(15));
+            prev.setOnAction(this.HandlerTurnBack);
+            AnchorPane.setTopAnchor(prev, 0.0);
+            AnchorPane.setLeftAnchor(prev,0.0);
+            this.panelPaginaPrev.getChildren().add(prev);
         }
     }
      private AnchorPane setUpAnchorPane(String miUsername, String miDescripcion, String miTitulo, String miFecha, String miOrigin, int contador)
     {
         AnchorPane localAPane = new AnchorPane();
+        
         Label owner = new Label(), contents = new Label(), titulo = new Label();
         Label origin = new Label();
         double offset = 10.0;
         double anchorPanesHeight = this.paneGeneral.getPrefHeight() / this.datosXPane;
         double anchorPanesWidth = this.paneGeneral.getPrefWidth();
-        
+        localAPane.setPrefSize(anchorPanesWidth, anchorPanesHeight);
         owner.setText("By " + miUsername + " - " + miFecha); //El usuario que le pertenece
         contents.setText(miDescripcion);
         titulo.setText(miTitulo);
         origin.setText(miOrigin);
         //Contenido - MiddeWay:
         contents.setPrefWidth(anchorPanesWidth - offset);
-        contents.setPrefHeight(anchorPanesHeight - offset);
+        contents.setPrefHeight(anchorPanesHeight/2 - offset + offset*7);
         contents.setFont(new Font(15)); 
         contents.setWrapText(true);
-        AnchorPane.setTopAnchor(contents, (anchorPanesHeight / 2)- offset*3);
+        AnchorPane.setTopAnchor(contents, ((anchorPanesHeight / 2)- offset*6)/3);
         AnchorPane.setLeftAnchor(contents, offset);
         
         // Owner y Fecha - Bottom Middle
@@ -189,7 +470,7 @@ public class ControladorEventosPaginaPerfil implements Initializable {
         owner.setPrefHeight(20);
         owner.setFont(new Font(14)); 
         owner.setWrapText(false);
-        AnchorPane.setBottomAnchor(owner, 0.0);
+        AnchorPane.setBottomAnchor(owner, 25.0);
         AnchorPane.setLeftAnchor(owner, 0.0);
         
         //Origen - Top Corner:
@@ -216,23 +497,12 @@ public class ControladorEventosPaginaPerfil implements Initializable {
         delete.setFont(new Font(15));
         delete.setPrefSize(20, 20);
         delete.setId(String.valueOf(contador)); //Set ID
-        AnchorPane.setBottomAnchor(delete,0.0);
+        AnchorPane.setTopAnchor(delete,offset);
         AnchorPane.setRightAnchor(delete, offset);
-        
-        //Edit Button
-        Button edit = new Button();
-        edit.setText("edit");
-        edit.setStyle("-fx-background-color: #00913f"); //GREEN
-        edit.setOnAction(HandlerEditElement);
-        edit.setFont(new Font(10));
-        edit.setPrefSize(50, 20);
-        edit.setId(String.valueOf(contador)); //Set ID
-        AnchorPane.setTopAnchor(edit, 0.0);
-        AnchorPane.setRightAnchor(edit, offset);
 
         
         
-        localAPane.getChildren().addAll(origin, titulo, contents, owner, delete, edit);
+        localAPane.getChildren().addAll(origin, titulo, contents, owner, delete);
         return localAPane;
             
             
@@ -301,6 +571,7 @@ public class ControladorEventosPaginaPerfil implements Initializable {
     @FXML
     private void editCamps(ActionEvent event)
     {
+        
         makeEditableCamps();
         changeAllLabels(false);
     }
@@ -313,6 +584,14 @@ public class ControladorEventosPaginaPerfil implements Initializable {
          
          resetCamps();
 
+    }
+    private void activateNextPage()
+    {
+        hitNextPage = true;
+    }
+    private void activateLastPage()
+    {
+        hitLastPage = true;
     }
     @FXML
     private void makeContraseniaEditable (ActionEvent event)
@@ -438,10 +717,21 @@ public class ControladorEventosPaginaPerfil implements Initializable {
             {
                 if (p.miButton.getId().equals(button.getId()))
                 {
-                    System.out.print("va a borrar: "+ p.preguntas.getTitulo() + " \n");
+                    System.out.print("va a borrar: "+ p.preguntas.getId() + " \n");
+                    this.usuarioLogeado.getPublicaciones().remove(p.preguntas);
                     this.controladorPub.borrarPublicacion(p.preguntas.getId());
+                    break;
                 }
             }
+             setUsuarioImage();
+             if (minPreg>0)
+             {
+                 minPreg = 0;
+                 maxPreg = this.datosXPane;
+                 numChangeMax = this.datosXPane;
+             }
+            
+            showPreguntasOnScreen();
 
         }
         else
@@ -451,19 +741,86 @@ public class ControladorEventosPaginaPerfil implements Initializable {
                 if (p.miButton.getId().equals(button.getId()))
                 {
 
+                    this.usuarioLogeado.getPublicaciones().remove(p.pub);
                     this.controladorPub.borrarPublicacion(p.pub.getId());
+                    break;
                 }
             }
+              setUsuarioImage();
+             if (minPub>0)
+             {
+                 minPub = 0;
+                 maxPub = this.datosXPane;
+                 numChangeMaxP = this.datosXPane;
+             }
+            
+            showPubsOnScreen();
         }
-        refreshPubs();
-        showPreguntasOnScreen();
+       
+        
+        
+        
     }
     private void editElement(Button button)
     {
         button.setText("OK");
     }
     
-     
+    @FXML
+    private void changeFoto(ActionEvent event) throws IOException
+    {
+        Imagen image = new Imagen();
+        Stage stage = new Stage();
+        FileChooser directoryChooser = new FileChooser();
+        File selectedDirectory = directoryChooser.showOpenDialog(stage);
+        Path target;
+        String name;
+
+        if(selectedDirectory == null){
+          //No Directory selected
+        }else{
+            if (selectedDirectory.getAbsolutePath().contains(".jpg") || selectedDirectory.getAbsolutePath().contains(".JPG") || selectedDirectory.getAbsolutePath().contains(".png"))
+            {
+                Path resourceDirectory = Paths.get("src","main","resources","imagenes","fotosperfil");
+                 String absolutePath = resourceDirectory.toFile().getAbsolutePath();
+
+                 System.out.println(absolutePath + '\n');
+                 
+        Path targetDir = Paths.get(absolutePath);
+        Path sourceDir = Paths.get(selectedDirectory.getAbsolutePath());
+        if (selectedDirectory.getAbsolutePath().contains(".jpg"))
+        {
+        target = targetDir.resolve(this.usuarioLogeado.getUserName()+".jpg");
+        name = this.usuarioLogeado.getUserName()+".jpg";
+        }
+        else if (selectedDirectory.getAbsolutePath().contains(".JPG"))
+        {
+        target = targetDir.resolve(this.usuarioLogeado.getUserName()+".JPG");  
+        name = this.usuarioLogeado.getUserName()+".JPG";
+        }
+        else{
+        target = targetDir.resolve(this.usuarioLogeado.getUserName()+".png");  
+        name = this.usuarioLogeado.getUserName()+".png";
+        }
+        Files.copy(sourceDir, target, StandardCopyOption.REPLACE_EXISTING);
+        
+        image.setPath("imagenes/fotosperfil/"+name);
+        System.out.print(image.getPath()+'\n');
+        this.usuarioLogeado.setFoto(image);
+        this.controladorPerfil.modificarPerfil(usuarioLogeado);
+        
+        setUsuarioImage();
+            }
+            else
+            {
+                System.out.print("Tipo de Archivo Invalido");
+            }
+        }
+        
+
+        
+        
+    }
      
     public void setUsuario(Usuario miUsuario)
     {
@@ -472,6 +829,8 @@ public class ControladorEventosPaginaPerfil implements Initializable {
     }
     private void setUsuarioImage()
     {
+        this.misPreguntas.clear();
+        this.misPublicaciones.clear();
         ArrayList<Publicacion> misPub;
         int misPubN = 0, misPregN = 0;
         Image miImagen;
@@ -509,26 +868,7 @@ public class ControladorEventosPaginaPerfil implements Initializable {
         this.labelNoPreguntas.setText(String.valueOf(misPregN));
         this.labelNoResenias.setText(String.valueOf(misPubN));
     }
-    private void refreshPubs()
-    {
-        this.misPreguntas.clear();
-        this.misPublicaciones.clear();
-        ArrayList<Publicacion> misPub;
-        misPub = this.usuarioLogeado.getPublicaciones();
-        for (Publicacion p : misPub)
-        {
-            if ( p instanceof Pregunta)
-            {
-                
-                this.misPreguntas.add((Pregunta)p);
-            }
-            else if (p instanceof Publicacion)
-            {
-                misPublicaciones.add(p);
-                
-            }
-        }
-    }
+
     @FXML
     private void responder(ActionEvent event) {
         try {
