@@ -169,6 +169,12 @@ public class RepositorioPublicacion {
     public boolean persistirPublicacionModificada(Publicacion publicacion){
         try(MongoClient mongoClient = MongoClients.create(ConstantesConexion.CONNECTION_STRING)){
             MongoCollection<Document> coleccionPublicacion = mongoClient.getDatabase("entities").getCollection("publicacion");
+            
+            ArrayList<Document> comentarios = new ArrayList<>();
+            publicacion.getComentarios().forEach((c) -> {
+                comentarios.add(new Document("descripcion", c.getDescripcion()).append("fecha", c.getFecha()));
+            });
+            
             if(publicacion.getId().startsWith("RES"))
             {
                 if(coleccionPublicacion.replaceOne(eq("id", publicacion.getId()), new Document("id", publicacion.getId())
@@ -177,10 +183,10 @@ public class RepositorioPublicacion {
                         .append("fecha", publicacion.getFecha())
                         .append("numVotos", (double) publicacion.getNumVotos())
                         .append("numDenuncias", (double) publicacion.getNumDenuncias())
-                        .append("comentarios", publicacion.getComentarios())
+                        .append("comentarios", comentarios)
                         .append("propietario", publicacion.getPropietario().getUserName())
                         .append("idVehiculo", ((Resenia)publicacion).getVehiculo().getId())
-                        .append("puntuacion", ((Resenia)publicacion).getPuntuacion())) != null)
+                        .append("puntuacion", (double) ((Resenia)publicacion).getPuntuacion())) != null)
                 {
                     return true;
                 }
@@ -191,9 +197,9 @@ public class RepositorioPublicacion {
                         .append("titulo", publicacion.getTitulo())
                         .append("descripcion", publicacion.getDescripcion())
                         .append("fecha", publicacion.getFecha())
-                        .append("numVotos", publicacion.getNumVotos())
-                        .append("numDenuncias", publicacion.getNumDenuncias())
-                        .append("comentarios", publicacion.getComentarios())
+                        .append("numVotos", (double) publicacion.getNumVotos())
+                        .append("numDenuncias", (double) publicacion.getNumDenuncias())
+                        .append("comentarios", comentarios)
                         .append("propietario", publicacion.getPropietario().getUserName())
                         .append("idVehiculo", ((PRrelacionada)publicacion).getVehiculo().getId())) != null)
                 {
@@ -206,9 +212,9 @@ public class RepositorioPublicacion {
                         .append("titulo", publicacion.getTitulo())
                         .append("descripcion", publicacion.getDescripcion())
                         .append("fecha", publicacion.getFecha())
-                        .append("numVotos", publicacion.getNumVotos())
-                        .append("numDenuncias", publicacion.getNumDenuncias())
-                        .append("comentarios", publicacion.getComentarios())
+                        .append("numVotos", (double) publicacion.getNumVotos())
+                        .append("numDenuncias", (double) publicacion.getNumDenuncias())
+                        .append("comentarios", comentarios)
                         .append("propietario", publicacion.getPropietario().getUserName())
                         .append("tags", ((PRgeneral)publicacion).getTags())) != null)
                 {
